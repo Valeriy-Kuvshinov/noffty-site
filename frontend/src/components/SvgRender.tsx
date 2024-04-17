@@ -16,6 +16,6 @@ export function SvgComponent({ iconName }: SvgProp) {
     }, [iconName])
 
     return (
-        <div dangerouslySetInnerHTML={{ __html: svgMarkup }} />
+        <div className="svg-cmp" dangerouslySetInnerHTML={{ __html: svgMarkup }} />
     )
 }
