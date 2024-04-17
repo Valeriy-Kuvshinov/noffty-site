@@ -1,0 +1,14 @@
+.home-page .page-contents {
+    .intro-part {
+        gap: 1em;
+        margin: 0em auto 1em auto;
+
+        img {
+            max-width: 256px;
+        }
+
+        .noffty-links {
+            gap: 1em;
+        }
+    }
+}

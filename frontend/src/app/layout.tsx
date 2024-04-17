@@ -1,4 +1,4 @@
-import '../assets/stylus/global.css'
+import '../assets/css/global.css'
 
 const siteLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
 

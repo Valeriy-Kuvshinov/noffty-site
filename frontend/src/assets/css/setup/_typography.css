@@ -1,0 +1,14 @@
+@font-face {
+    src: url("../../fonts/CoolveticaCompressedRg-Regular-400.ttf");
+    font-family: 'cool-light';
+}
+
+@font-face {
+    src: url("../../fonts/CoolveticaCondensedRg-Regular-400.ttf");
+    font-family: 'cool-regular';
+}
+
+@font-face {
+    src: url("../../fonts/CoolveticaRg-Regular-400.ttf");
+    font-family: 'cool-bold';
+}

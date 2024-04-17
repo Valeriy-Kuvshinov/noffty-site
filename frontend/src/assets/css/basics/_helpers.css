@@ -84,23 +84,15 @@
 }
 
 .family-bold {
-    font-family: "nh-bold";
+    font-family: "cool-bold";
 }
 
 .family-regular {
-    font-family: "nh-medium";
+    font-family: "cool-regular";
 }
 
 .family-light {
-    font-family: "nh-light";
-}
-
-.family-sabon {
-    font-family: "sabon";
-}
-
-.family-nunito {
-    font-family: "nunito";
+    font-family: "cool-light";
 }
 
 /* //////////////////////////////////////////////////////////////// */
