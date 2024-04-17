@@ -11,6 +11,7 @@ export function SvgComponent({ iconName }: SvgProp) {
     useEffect(() => {
         const rawSvg = svgService.getSvg(iconName)
         const sanitizedSvg = DOMPurify.sanitize(rawSvg)
+
         setSvgMarkup(sanitizedSvg)
     }, [iconName])
 

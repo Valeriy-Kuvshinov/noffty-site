@@ -16,11 +16,15 @@
   },
   "devDependencies": {
     "@types/dompurify": "^3.0.5",
-    "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/node": "^20.12.7",
+    "@types/react": "^18.2.79",
     "@types/react-dom": "^18",
+    "css-loader": "^7.1.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.1",
+    "style-loader": "^4.0.0",
+    "stylus": "^0.63.0",
+    "stylus-loader": "^8.1.0",
     "typescript": "^5"
   }
 }

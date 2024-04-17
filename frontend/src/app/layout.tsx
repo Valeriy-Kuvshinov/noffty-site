@@ -1,22 +1,22 @@
-import { Inter } from "next/font/google"
-import "../assets/globals.css"
+import Head from "next/head"
+import { ReactNode } from "react"
 
-const inter = Inter({ subsets: ["latin"] })
+const siteLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
 
-export default function RootLayout({ children, }: Readonly<{
-  children: React.ReactNode
-}>) {
+export function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
-      <head>
+      <Head>
         <title>Noffty Productions</title>
-        <link rel="icon" href="/favicon.ico" />
-      </head>
-      <html lang="en">
-        <body className={inter.className}>
-          {children}
-        </body>
-      </html>
+        <link rel="icon" href={siteLogo} type="image/png" />
+      </Head>
+      <main>
+        {children}
+      </main>
     </>
   )
+}
+
+interface RootLayoutProps {
+  children: ReactNode
 }
