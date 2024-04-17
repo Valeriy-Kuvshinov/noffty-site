@@ -1,9 +1,11 @@
-import path from 'path'
 /** @type {import('next').NextConfig} */
+import path from 'path'
 // const nextConfig = {}
 
+// export default nextConfig
+
 const nextConfig = {
-    webpack: (config, { isServer, dev }) => {
+    webpack: (config) => {
         config.module.rules.push({
             test: /\.styl$/,
             use: [
@@ -16,6 +18,5 @@ const nextConfig = {
         return config
     }
 }
-console.log('attempt to find path', path.resolve('src/assets/stylus'))
 
 export default nextConfig

@@ -1,22 +1,19 @@
-import Head from "next/head"
-import { ReactNode } from "react"
+import '../assets/stylus/global.styl'
 
 const siteLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
 
-export function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children, }: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
-    <>
-      <Head>
+    <html lang="en">
+      <head>
         <title>Noffty Productions</title>
         <link rel="icon" href={siteLogo} type="image/png" />
-      </Head>
-      <main>
+      </head>
+      <body>
         {children}
-      </main>
-    </>
+      </body>
+    </html>
   )
-}
-
-interface RootLayoutProps {
-  children: ReactNode
 }
