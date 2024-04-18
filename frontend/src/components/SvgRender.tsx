@@ -1,21 +1,19 @@
-import { useState, useEffect } from "react"
-import DOMPurify from 'dompurify'
-import { SvgProp } from "../models/utility"
 import { SvgService } from "../services/svg.service"
+import { SvgProp } from "../models/utility"
 
 const svgService = new SvgService()
 
-export function SvgComponent({ iconName }: SvgProp) {
-    const [svgMarkup, setSvgMarkup] = useState('')
+function simpleSanitize(svgContent: string): string {
+    return svgContent.replace(/<script.*?>.*?<\/script>/gi, '')
+        .replace(/on\w+="[^"]*"/gi, '')
+}
 
-    useEffect(() => {
-        const rawSvg = svgService.getSvg(iconName)
-        const sanitizedSvg = DOMPurify.sanitize(rawSvg)
-
-        setSvgMarkup(sanitizedSvg)
-    }, [iconName])
+export function SvgRender({ iconName }: SvgProp) {
+    const rawSvg = svgService.getSvg(iconName)
+    const sanitizedSvg = simpleSanitize(rawSvg)
 
     return (
-        <div className="svg-cmp" dangerouslySetInnerHTML={{ __html: svgMarkup }} />
+        <div className="svg-cmp"
+            dangerouslySetInnerHTML={{ __html: sanitizedSvg }} />
     )
 }

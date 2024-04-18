@@ -9,6 +9,13 @@
 
         .noffty-links {
             gap: 1em;
+
+            .svg-cmp {
+                width: 72px;
+                height: 72px;
+                fill: var(--prmclr2);
+
+            }
         }
     }
 }
