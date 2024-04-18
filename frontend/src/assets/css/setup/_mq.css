@@ -1,9 +1,39 @@
 .home-page .page-contents {
     @media(max-width: 600px) {
         padding: 2em 1em;
+
+        .intro-part {
+            img {
+                max-width: 192px;
+            }
+
+            .noffty-links {
+                gap: 1em;
+
+                a .svg-cmp {
+                    width: 4em;
+                    height: 4em;
+                }
+            }
+        }
     }
 
     @media(min-width: 601px) {
         padding: 3em 2em;
+
+        .intro-part {
+            img {
+                max-width: 256px;
+            }
+
+            .noffty-links {
+                gap: 1.5em;
+
+                a .svg-cmp {
+                    width: 5em;
+                    height: 5em;
+                }
+            }
+        }
     }
 }

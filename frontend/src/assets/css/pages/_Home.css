@@ -1,20 +1,43 @@
 .home-page .page-contents {
     .intro-part {
         gap: 1em;
-        margin: 0em auto 1em auto;
+        padding-block-end: 1em;
+        border-bottom: 1px solid var(--scdclr7);
+        margin: 0 auto;
 
-        img {
-            max-width: 256px;
+        h2 {
+            letter-spacing: 1px;
         }
 
-        .noffty-links {
-            gap: 1em;
+        .noffty-links a {
+            position: relative;
 
             .svg-cmp {
-                width: 72px;
-                height: 72px;
-                fill: var(--prmclr2);
+                max-width: 120px;
+                max-height: 120px;
+                fill: var(--scdclr6);
 
+                &:first-child {
+                    stroke: var(--scdclr6);
+                    stroke-width: 0.25px;
+                }
+
+                &:last-child {
+                    position: absolute;
+                    padding: 0.25em;
+                    transform: scale(0.4);
+                    top: 0;
+                }
+            }
+
+            &:hover {
+                .svg-cmp {
+                    fill: var(--prmclr2);
+
+                    &:first-child {
+                        stroke: var(--prmclr2);
+                    }
+                }
             }
         }
     }

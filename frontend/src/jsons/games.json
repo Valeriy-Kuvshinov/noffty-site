@@ -1,0 +1,54 @@
+[
+    {
+        "name": "Boiling Point",
+        "note": "Reverse horde roguelite",
+        "outsideLink": "https://t1mure.itch.io/boiling-point",
+        "onSiteLink": "/games/boilingPoint",
+        "image": "https://res.cloudinary.com/djzid7ags/image/upload/v1713305550/games/ip2tjqbqm4mi5tib72wd.png"
+    },
+    {
+        "name": "Stoic^2",
+        "note": "Simple square splatformer",
+        "outsideLink": "https://t1mure.itch.io/stoic-squared",
+        "onSiteLink": "/games/stoic^2",
+        "image": "https://res.cloudinary.com/djzid7ags/image/upload/v1713305550/games/i9suxkchrzyez8xsuxic.png"
+    },
+    {
+        "name": "Betorched",
+        "note": "Turn based roguelite",
+        "outsideLink": "https://play.google.com/store/apps/details?id=com.NofftyProd.Betorched",
+        "image": "https://res.cloudinary.com/djzid7ags/image/upload/v1713305548/games/mzpzrcsed8py4jeen0x2.jpg"
+    },
+    {
+        "name": "WavePunk",
+        "note": "Wave merging adventure",
+        "outsideLink": "https://timure-noffty.itch.io/wavepunk",
+        "onSiteLink": "/games/wavePunk",
+        "image": "https://res.cloudinary.com/djzid7ags/image/upload/v1713305549/games/vca5dtv2segkfsvpr0gd.png"
+    },
+    {
+        "name": "Gun Stick Dash Jump",
+        "note": "Corrupted action platformer",
+        "outsideLink": "https://timure-noffty.itch.io/gsdj",
+        "onSiteLink": "/games/gunStickDashJump",
+        "image": "https://res.cloudinary.com/djzid7ags/image/upload/v1713305549/games/akmfhmpddtfndfqmisil.png"
+    },
+    {
+        "name": "Calcium Carnage",
+        "note": "2D combat platformer",
+        "outsideLink": "https://play.google.com/store/apps/details?id=com.Noffty.Calcium",
+        "image": "https://res.cloudinary.com/djzid7ags/image/upload/v1713305551/games/rjabf0aaujzr6gnnzanu.jpg"
+    },
+    {
+        "name": "Strandead",
+        "note": "Oxygen metroidvania",
+        "outsideLink": "https://play.google.com/store/apps/details?id=com.Timures.Strandead",
+        "image": "https://res.cloudinary.com/djzid7ags/image/upload/v1713305551/games/kg7kn1waor9eiiv2r2ua.png"
+    },
+    {
+        "name": "WordDart",
+        "note": "Last letter arcade",
+        "outsideLink": "https://play.google.com/store/apps/details?id=com.michaelkushnir.worddart",
+        "image": "https://res.cloudinary.com/djzid7ags/image/upload/v1713305548/games/w7mge4g4lm5bvdupdyqu.png"
+    }
+]

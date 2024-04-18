@@ -13,7 +13,7 @@ export default function Home() {
       <section className="page-contents flex column align-center w-h-100 layout-row">
         <article className="intro-part flex column full-center w-fit">
           <img src={companyLogo} alt="noffty logo" />
-          <h2>Welcome to Noffty Production's Website</h2>
+          <h2 className="text-center">Welcome to Noffty Production's Website</h2>
 
           <div className="noffty-links flex row">
             <a href={linkDiscord} aria-label="Discord">
@@ -34,6 +34,10 @@ export default function Home() {
             </a>
           </div>
         </article>
+
+        <div className="games-showcase">
+
+        </div>
       </section>
     </main>
   )
