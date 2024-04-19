@@ -41,4 +41,40 @@
             }
         }
     }
+
+    .games-showcase {
+        padding: 1em 0;
+        max-width: 900px;
+        border-bottom: 1px solid var(--scdclr7);
+        margin: 0 auto;
+
+        .games {
+            gap: 3em;
+
+            a {
+                gap: 1em;
+                color: var(--scdclr6);
+                letter-spacing: 0.5px;
+
+                img {
+                    padding: 1em;
+                }
+
+                div h3,
+                div p {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                }
+            }
+        }
+    }
+
+    .about {
+        padding: 1em 0;
+        margin: 0 auto;
+
+    }
 }

@@ -7,8 +7,15 @@
         "image": "https://res.cloudinary.com/djzid7ags/image/upload/v1713305550/games/ip2tjqbqm4mi5tib72wd.png"
     },
     {
+        "name": "Absurd^2",
+        "note": "Simple 2D platformer",
+        "outsideLink": "https://t1mure.itch.io/absurd2",
+        "onSiteLink": "/games/absurd^2",
+        "image": "https://res.cloudinary.com/djzid7ags/image/upload/v1713526025/games/wj3mjb1sykolecbocc6q.png"
+    },
+    {
         "name": "Stoic^2",
-        "note": "Simple square splatformer",
+        "note": "Super simple square splatformer",
         "outsideLink": "https://t1mure.itch.io/stoic-squared",
         "onSiteLink": "/games/stoic^2",
         "image": "https://res.cloudinary.com/djzid7ags/image/upload/v1713305550/games/i9suxkchrzyez8xsuxic.png"
