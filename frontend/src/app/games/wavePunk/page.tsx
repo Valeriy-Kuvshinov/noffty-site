@@ -1,9 +1,10 @@
+'use client'
 
-export default function GamesIndex() {
+export default function WavePunk() {
     return (
-        <main className="games-index-page full w-h-100">
+        <main className="game-page full w-h-100">
             <section className="page-contents flex column align-center w-h-100 layout-row">
-                <h2>This is Games index</h2>
+                <h2>This is WavePunk</h2>
             </section>
         </main>
     )

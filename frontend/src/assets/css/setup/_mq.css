@@ -21,11 +21,9 @@
             padding: 0 2em;
             grid-template-columns: repeat(2, 1fr);
         }
-    }
 
-    @media(max-width: 500px) {
-        .games-showcase .games {
-            grid-template-columns: repeat(1, 1fr);
+        .about .crew {
+            padding: 0 2em;
         }
     }
 
@@ -50,6 +48,14 @@
         .games-showcase .games {
             padding: 1em 2em;
             grid-template-columns: repeat(3, 1fr);
+        }
+
+        .about .crew {
+            padding: 1em 2em;
+
+            a img {
+                padding: 1em;
+            }
         }
     }
 }

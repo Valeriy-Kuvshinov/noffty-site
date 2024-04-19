@@ -52,9 +52,7 @@
             gap: 3em;
 
             a {
-                gap: 1em;
                 color: var(--scdclr6);
-                letter-spacing: 0.5px;
 
                 img {
                     padding: 1em;
@@ -67,14 +65,40 @@
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
                     -webkit-line-clamp: 1;
+                    letter-spacing: 0.5px;
                 }
             }
         }
     }
 
     .about {
+        gap: 1em;
         padding: 1em 0;
+        max-width: 900px;
         margin: 0 auto;
 
+        .crew {
+            gap: 2em;
+            grid-template-columns: repeat(3, 1fr);
+
+            a {
+                max-width: 192px;
+                color: var(--scdclr6);
+                margin: 0 auto;
+
+                img {
+                    border-radius: 50%;
+                }
+
+                h3 {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                    letter-spacing: 0.5px;
+                }
+            }
+        }
     }
 }

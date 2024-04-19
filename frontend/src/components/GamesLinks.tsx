@@ -6,7 +6,7 @@ export function GamesLinks({ games }: { games: Game[] }) {
     return (
         <div className="games grid">
             {games.map((game) => (game.onSiteLink ?
-                <Link href={game.onSiteLink} key={game.name} aria-label='noffty-game' rel="noopener noreferrer"
+                <Link href={game.onSiteLink} key={game.name} aria-label='noffty-game'
                     className='flex column align-center text-center text-capitalize'>
                     <img src={game.image} alt={game.name} className='w-100' />
                     <div>

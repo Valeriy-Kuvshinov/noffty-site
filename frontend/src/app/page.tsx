@@ -1,6 +1,7 @@
 import { GamesService } from "../services/games.service"
 import { GamesLinks } from "../components/GamesLinks"
 import { SpecialLink } from "../components/SpecialLink"
+import { CrewLinks } from "../components/CrewLinks"
 
 export default function Home() {
   const gamesService = new GamesService()
@@ -16,9 +17,9 @@ export default function Home() {
   ]
 
   const crewMembers = [
-    { name: 'Jen Ayve', image: 'https://res.cloudinary.com/djzid7ags/image/upload/v1713532539/about/qojmjvt07pyt2vtam8on.jpg' },
-    { name: 'T1mure', image: 'https://res.cloudinary.com/djzid7ags/image/upload/v1713532539/about/qmqucsp2nsxclvjxtwr0.jpg' },
-    { name: 'Valeriy Kuvshinov', image: 'https://res.cloudinary.com/djzid7ags/image/upload/v1713532539/about/f4r4gopvolilz6buvgry.jpg' }
+    { name: 'Jen Ayve', image: 'https://res.cloudinary.com/djzid7ags/image/upload/v1713535803/about/mhugb5libtdcxs6ugqg1.jpg' },
+    { name: 'T1mure', image: 'https://res.cloudinary.com/djzid7ags/image/upload/v1713535803/about/heachou19kttnd9qq0z7.jpg' },
+    { name: 'Valeriy Kuvshinov', image: 'https://res.cloudinary.com/djzid7ags/image/upload/v1713535803/about/vkx2jish5tjfrq7zn601.jpg' }
   ]
 
   return (
@@ -36,14 +37,14 @@ export default function Home() {
           </div>
         </article>
 
-        <article className="games-showcase flex column full-center w-fit">
+        <article className="games-showcase flex column full-center w-100">
           <h2 className="text-center">Published Games</h2>
           <GamesLinks games={games} />
         </article>
 
-        <article className="about flex column full-center w-fit">
+        <article className="about flex column full-center w-100">
           <h2 className="text-center">Meet The Crew</h2>
-
+          <CrewLinks crewMembers={crewMembers} />
         </article>
       </section>
     </main>

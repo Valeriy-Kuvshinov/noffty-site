@@ -18,11 +18,11 @@
         flex-wrap: wrap;
     }
 
-    &.space-between {
+    &.justify-between {
         justify-content: space-between;
     }
 
-    &.space-around {
+    &.justify-around {
         justify-content: space-around;
     }
 
