@@ -1,11 +1,12 @@
-import { GamesService } from "../services/games.service"
+import { GameService } from "../services/game.service"
 import { GamesLinks } from "../components/GamesLinks"
 import { SpecialLink } from "../components/SpecialLink"
 import { CrewLinks } from "../components/CrewLinks"
 
 export default function Home() {
-  const gamesService = new GamesService()
-  const games = gamesService.getGames()
+  const gamesService = new GameService()
+  const webGames = gamesService.getMiniGames('web')
+  const mobileGames = gamesService.getMiniGames('android')
 
   const companyLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305391/shv6c332n1pkelye6ipe.jpg'
 
@@ -39,7 +40,11 @@ export default function Home() {
 
         <article className="games-showcase flex column full-center w-100">
           <h2 className="text-center">Published Games</h2>
-          <GamesLinks games={games} />
+          <h3 className="text-center">Available on Your Browser Now!</h3>
+          <GamesLinks games={webGames} />
+
+          <h3 className="text-center">Available on Google Play!</h3>
+          <GamesLinks games={mobileGames} />
         </article>
 
         <article className="about flex column full-center w-100">

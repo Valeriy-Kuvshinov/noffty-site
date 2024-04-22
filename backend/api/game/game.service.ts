@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb"
-import { Product, ProductQueryParams, MatchCriteria } from "../../models/game.js"
+import { Game, GameQueryParams, MatchCriteria } from "../../models/game.js"
 import { dbService } from "../../services/db.service.js"
 import { loggerService } from "../../services/logger.service.js"
 
@@ -13,23 +13,23 @@ export const GameService = {
   remove
 }
 
-async function query(filterBy: ProductQueryParams = {}): Promise<Product[]> {
+async function query(filterBy: GameQueryParams = {}): Promise<Game[]> {
   try {
     const collection = await dbService.getCollection(GAMES_COLLECTION)
     const pipeline = _buildPipeline(filterBy)
 
-    return await collection.aggregate<Product>(pipeline).toArray()
+    return await collection.aggregate<Game>(pipeline).toArray()
   } catch (err) {
     loggerService.error('cannot find games', err)
     throw err
   }
 }
 
-async function getById(gameId: ObjectId): Promise<Product | null> {
+async function getById(gameId: ObjectId): Promise<Game | null> {
   try {
     const collection = await dbService.getCollection(GAMES_COLLECTION)
 
-    const product = await collection.findOne<Product>(
+    const product = await collection.findOne<Game>(
       { _id: new ObjectId(gameId) })
     return product
   } catch (err) {
@@ -38,11 +38,11 @@ async function getById(gameId: ObjectId): Promise<Product | null> {
   }
 }
 
-async function getByName(gameName: string): Promise<Product | null> {
+async function getByName(gameName: string): Promise<Game | null> {
   try {
     const collection = await dbService.getCollection(GAMES_COLLECTION)
 
-    const product = await collection.findOne<Product>(
+    const product = await collection.findOne<Game>(
       { name: { $regex: `^${gameName}$`, $options: 'i' } })
 
     if (product) loggerService.info('found game: ', product._id)
@@ -55,7 +55,7 @@ async function getByName(gameName: string): Promise<Product | null> {
   }
 }
 
-async function save(game: Product): Promise<Product> {
+async function save(game: Game): Promise<Game> {
   const collection = await dbService.getCollection(GAMES_COLLECTION)
 
   try {
@@ -94,7 +94,7 @@ async function remove(gameId: ObjectId): Promise<number> {
   }
 }
 
-function _buildPipeline(filterBy: ProductQueryParams): object[] {
+function _buildPipeline(filterBy: GameQueryParams): object[] {
   const pipeline: object[] = []
 
   const criteria: MatchCriteria = { $match: {} }

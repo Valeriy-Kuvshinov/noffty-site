@@ -1,6 +1,6 @@
 import express, { Router, Request, Response } from 'express'
 import { ObjectId } from 'mongodb'
-import { Product, ProductQueryParams } from '../../models/game.js'
+import { Game, GameQueryParams } from '../../models/game.js'
 import { GameService } from './game.service.js'
 import { loggerService } from '../../services/logger.service.js'
 
@@ -15,11 +15,11 @@ gameRoutes.put('/update/:id', _updateGame)
 gameRoutes.delete('/delete/:id', _removeGame)
 
 // game controller functions
-async function _getGames(req: Request<{}, {}, {}, ProductQueryParams>,
+async function _getGames(req: Request<{}, {}, {}, GameQueryParams>,
     res: Response): Promise<void> {
     try {
-        const { search, type } = req.query
-        let filterBy = { search, type }
+        const { search } = req.query
+        let filterBy = { search }
 
         loggerService.debug('Filtering games by: ', filterBy)
         const games = await GameService.query(filterBy)
@@ -52,7 +52,7 @@ async function _getGameByName(req: Request<{ name: string }>,
     }
 }
 
-async function _addGame(req: Request<{}, {}, Product>,
+async function _addGame(req: Request<{}, {}, Game>,
     res: Response): Promise<void> {
     try {
         const game = req.body
@@ -66,7 +66,7 @@ async function _addGame(req: Request<{}, {}, Product>,
     }
 }
 
-async function _updateGame(req: Request<{ id: ObjectId }, {}, Product>,
+async function _updateGame(req: Request<{ id: ObjectId }, {}, Game>,
     res: Response): Promise<void> {
     try {
         const game = { ...req.body, _id: req.params.id }

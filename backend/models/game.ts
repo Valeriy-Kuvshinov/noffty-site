@@ -1,37 +1,24 @@
 import { ObjectId } from "mongodb"
 
-export interface Product {
+export interface Game {
     _id?: ObjectId
     name: string
-    imgUrls: string[]
-    price: number
-    description: string
-    dimensions: string
-    materials: string
-    dateMade: string
-    stock: number
+    note: string
     type: string
-    createdAt: number
-    amount?: number
-}
-
-export interface Cart {
-    _id?: ObjectId
-    name?: string
-    price?: number
-    amount?: number
+    outsideLink: string
+    description: string
+    controls: string
+    icon: string
+    screenshots: string[]
 }
 
 export interface MatchCriteria {
     $match: {
         $or?: Array<{ name: { $regex: RegExp } } |
         { description: { $regex: RegExp } }>
-        type?: { $regex: RegExp }
     }
 }
 
-export interface ProductQueryParams {
+export interface GameQueryParams {
     search?: string
-    type?: string
-    excludeProductId?: string
 }

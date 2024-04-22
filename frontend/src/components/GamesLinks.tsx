@@ -1,8 +1,8 @@
 'use client'
 import Link from 'next/link'
-import { Game } from '../models/game'
+import { MiniGame } from '../models/game'
 
-export function GamesLinks({ games }: { games: Game[] }) {
+export function GamesLinks({ games }: { games: MiniGame[] }) {
     return (
         <div className="games grid">
             {games.map((game) => (game.type === 'web' ?

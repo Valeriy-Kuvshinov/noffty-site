@@ -1,4 +1,5 @@
 export interface Game {
+    _id?: string
     name: string
     note: string
     type: string
@@ -6,5 +7,14 @@ export interface Game {
     description: string
     controls: string
     icon: string
-    screenshot: string
+    screenshots: string[]
+}
+
+export interface MiniGame {
+    name: string
+    note: string
+    type: string
+    outsideLink: string
+    icon: string
+    screenshots: string[]
 }
