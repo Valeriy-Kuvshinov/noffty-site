@@ -29,6 +29,7 @@ async function _connect(): Promise<mongoDB.Db> {
         const client = await MongoClient.connect(config.dbURL)
         const db = client.db(config.dbName)
         dbConn = db
+
         return db
     } catch (err) {
         loggerService.error('Cannot Connect to DB', err)

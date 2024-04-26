@@ -18,13 +18,15 @@
             }
         }
 
-        .games-showcase .games {
-            padding: 0 2em;
-            grid-template-columns: repeat(2, 1fr);
-        }
-
+        .games-showcase .game-list,
         .about .crew {
             padding: 0 2em;
+        }
+    }
+
+    @media(max-width: 900px) {
+        .games-showcase .game-list {
+            grid-template-columns: repeat(1, 1fr);
         }
     }
 
@@ -46,17 +48,19 @@
             }
         }
 
-        .games-showcase .games {
-            padding: 1em 2em;
-            grid-template-columns: repeat(3, 1fr);
-        }
-
+        .games-showcase .game-list,
         .about .crew {
             padding: 1em 2em;
 
             a img {
                 padding: 1em;
             }
+        }
+    }
+
+    @media(min-width: 901px) {
+        .games-showcase .game-list {
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 }

@@ -29,9 +29,9 @@ async function getById(gameId: ObjectId): Promise<Game | null> {
   try {
     const collection = await dbService.getCollection(GAMES_COLLECTION)
 
-    const product = await collection.findOne<Game>(
+    const game = await collection.findOne<Game>(
       { _id: new ObjectId(gameId) })
-    return product
+    return game
   } catch (err) {
     loggerService.error(`Error finding game ${gameId}`, err)
     throw err
@@ -42,13 +42,13 @@ async function getByName(gameName: string): Promise<Game | null> {
   try {
     const collection = await dbService.getCollection(GAMES_COLLECTION)
 
-    const product = await collection.findOne<Game>(
+    const game = await collection.findOne<Game>(
       { name: { $regex: `^${gameName}$`, $options: 'i' } })
 
-    if (product) loggerService.info('found game: ', product._id)
+    if (game) loggerService.info('found game: ', game._id)
     else loggerService.error('No game found with name:', gameName)
 
-    return product
+    return game
   } catch (err) {
     loggerService.error(`Error finding game ${gameName}`, err)
     throw err
@@ -60,11 +60,11 @@ async function save(game: Game): Promise<Game> {
 
   try {
     if (game._id) {
-      const { _id, ...productToUpdate } = game
+      const { _id, ...gameToUpdate } = game
       const id = _id instanceof ObjectId ? _id : new ObjectId(_id)
 
       const result = await collection.updateOne(
-        { _id: id }, { $set: productToUpdate })
+        { _id: id }, { $set: gameToUpdate })
 
       if (result.matchedCount === 0) throw new Error(`Game with id ${id.toHexString()} not found`)
 

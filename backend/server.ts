@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(cors(corsOptions))
 }
 
-app.use('/api/product', gameRoutes)
+app.use('/api/game', gameRoutes)
 app.use('/api/mail', mailRoutes)
 
 app.get('*', (req, res) => {

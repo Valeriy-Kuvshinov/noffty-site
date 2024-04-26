@@ -4,7 +4,7 @@ import { GamePreview } from './GamePreview'
 
 export function GameList({ games }: { games: Game[] }) {
     return (
-        <div className="games grid">
+        <div className="game-list grid">
             {games.map((game: Game) => (
                 <GamePreview key={game.name} game={game} />
             ))}
