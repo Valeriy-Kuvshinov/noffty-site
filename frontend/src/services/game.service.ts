@@ -1,13 +1,12 @@
-import { Game, MiniGame } from '../models/game'
+import { Game } from '../models/game'
 
 export class GameService {
-    getMiniGames(type: string): MiniGame[] {
+    getMiniGames(type: string): Game[] {
         if (type === 'web') return [
             {
                 "name": "Absurd^2",
                 "note": "Simple 2D platformer",
                 "type": "web",
-                "outsideLink": "https://t1mure.itch.io/absurd2",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790258/games/icons/n06kstfi1jxuzibtc5sz.png",
                 "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
             },
@@ -15,7 +14,6 @@ export class GameService {
                 "name": "WavePunk",
                 "note": "Wave merging adventure",
                 "type": "web",
-                "outsideLink": "https://timure-noffty.itch.io/wavepunk",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790259/games/icons/mb8ngo63kqd43ujftami.png",
                 "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
             },
@@ -23,12 +21,11 @@ export class GameService {
                 "name": "Gun Stick Dash Jump",
                 "note": "Corrupted action platformer",
                 "type": "web",
-                "outsideLink": "https://timure-noffty.itch.io/gsdj",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790259/games/icons/tmwtyg0bkjrhoy33axjd.png",
                 "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
             }
         ]
-        else return [
+        else if (type === 'android') return [
             {
                 "name": "Betorched",
                 "note": "Turn based roguelite",
@@ -46,7 +43,6 @@ export class GameService {
                 "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
             }
         ]
+        else return []
     }
-
-
 }
