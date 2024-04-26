@@ -1,3 +1,4 @@
+/* home page mq */
 .home-page .page-contents {
     @media(max-width: 600px) {
         padding: 2em 1em;

@@ -1,5 +1,5 @@
 import { GameService } from "../services/game.service"
-import { GamesLinks } from "../components/GamesLinks"
+import { GameList } from "../components/GameList"
 import { SpecialLink } from "../components/SpecialLink"
 import { CrewLinks } from "../components/CrewLinks"
 
@@ -40,11 +40,11 @@ export default function Home() {
 
         <article className="games-showcase flex column full-center w-100">
           <h2 className="text-center">Published Games</h2>
-          <h3 className="text-center">Available on Your Browser Now!</h3>
-          <GamesLinks games={webGames} />
+          <h3 className="text-center">Play on Our Site Right Away!</h3>
+          <GameList games={webGames} />
 
           <h3 className="text-center">Available on Google Play!</h3>
-          <GamesLinks games={mobileGames} />
+          <GameList games={mobileGames} />
         </article>
 
         <article className="about flex column full-center w-100">

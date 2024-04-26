@@ -1,6 +1,37 @@
 import { Game } from '../models/game'
+import { HttpService } from './http.service'
+
+const baseUrl: string = 'game/'
 
 export class GameService {
+    private httpService: HttpService
+
+    constructor() {
+        this.httpService = new HttpService()
+    }
+
+    async query() {
+        return this.httpService.get(baseUrl, '')
+    }
+
+    async getById(gameId: string) {
+        return this.httpService.get(`${baseUrl}by-id/${gameId}`)
+    }
+
+    async getByName(gameName: string) {
+        return this.httpService.get(`${baseUrl}by-name/${gameName}`)
+    }
+
+    async save(game: Game) {
+        if (game._id) {
+            return this.httpService.put(`${baseUrl}update/${game._id}`, game)
+        } else return this.httpService.post(baseUrl + 'add/', game)
+    }
+
+    async remove(id: string) {
+        return this.httpService.delete(`${baseUrl}delete/${id}`)
+    }
+
     getMiniGames(type: string): Game[] {
         if (type === 'web') return [
             {

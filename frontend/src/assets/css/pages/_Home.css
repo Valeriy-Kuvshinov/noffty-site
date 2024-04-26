@@ -47,28 +47,6 @@
         max-width: 900px;
         border-bottom: 1px solid var(--scdclr7);
         margin: 0 auto;
-
-        .games {
-            gap: 3em;
-
-            a {
-                color: var(--scdclr6);
-
-                img {
-                    padding: 1em;
-                }
-
-                div h3,
-                div p {
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 1;
-                    letter-spacing: 0.5px;
-                }
-            }
-        }
     }
 
     .about {

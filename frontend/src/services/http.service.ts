@@ -3,22 +3,16 @@ export class HttpService {
         const url = `${endpoint}`
         const headers = { 'Content-Type': 'application/json' }
 
-        const config = {
-            method: method,
-            headers: headers,
-            body: method !== 'GET' && method !== 'DELETE' ?
-                JSON.stringify(data) : null
-        }
+        const config: RequestInit = { method: method, headers: headers }
 
-        if (method === 'DELETE' && data) config.body = JSON.stringify(data)
+        if (method !== 'GET' && data) config.body = JSON.stringify(data)
 
         try {
             const response = await fetch(url, config)
             const jsonData = await response.json()
-            if (!response.ok) {
-                throw new Error(jsonData.message ||
-                    'An unknown error occurred')
-            }
+
+            if (!response.ok) throw new Error(jsonData.message ||
+                'An unknown error occurred')
             return jsonData
         } catch (error) {
             console.error('HTTP Service Error: ', error)
@@ -26,21 +20,22 @@ export class HttpService {
         }
     }
 
-    get(endpoint: string, params: string) {
+    get(endpoint: string, params?: any) {
         const queryString = params ?
-            `?${new URLSearchParams(params)}` : ''
+            `?${new URLSearchParams(params).toString()}` : ''
         return this.request('GET', `${endpoint}${queryString}`)
     }
 
-    post(endpoint: string, data: string) {
+    post(endpoint: string, data?: any) {
         return this.request('POST', endpoint, data)
     }
 
-    put(endpoint: string, data: string) {
+    put(endpoint: string, data?: any) {
         return this.request('PUT', endpoint, data)
     }
 
-    delete(endpoint: string, data: string) {
-        return this.request('DELETE', endpoint, data)
+    delete(endpoint: string, data?: any) {
+        if (data) return this.request('DELETE', endpoint, data)
+        else return this.request('DELETE', endpoint)
     }
 }

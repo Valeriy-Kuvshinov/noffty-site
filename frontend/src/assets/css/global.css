@@ -13,3 +13,5 @@
 @import './pages/_Home.css';
 
 /* components */
+@import './components/_GameList.css';
+@import './components/_GamePreview.css';
