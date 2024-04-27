@@ -4,6 +4,7 @@ export interface Game {
     note: string
     type: string
     outsideLink?: string
+    gameLink?: string
     description?: string
     controls?: string
     icon: string

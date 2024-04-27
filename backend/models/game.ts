@@ -5,9 +5,10 @@ export interface Game {
     name: string
     note: string
     type: string
-    outsideLink: string
-    description: string
-    controls: string
+    outsideLink?: string
+    gameLink?: string
+    description?: string
+    controls?: string
     icon: string
     screenshots: string[]
 }

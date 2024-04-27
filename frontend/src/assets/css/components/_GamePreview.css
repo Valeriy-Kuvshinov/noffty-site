@@ -41,3 +41,47 @@
         }
     }
 }
+
+/* index page area */
+.index-page .page-contents {
+    .game-list a {
+        gap: 0.5em;
+        color: var(--scdclr6);
+
+        img {
+            padding: 0;
+            border-radius: 0.75em;
+        }
+
+        .preview-info {
+            column-gap: 1em;
+            grid-template-columns: 64px 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+
+            h3,
+            p {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                letter-spacing: 0.5px;
+                grid-column: 2 / -1;
+            }
+
+            h3 {
+                grid-row: 1 / 2;
+            }
+
+            p {
+                grid-row: 2 / -1;
+            }
+
+            img {
+                grid-column: span 1;
+                grid-row: span 2;
+                border-radius: 1em;
+            }
+        }
+    }
+}

@@ -3,3 +3,9 @@
         gap: 3em;
     }
 }
+
+.index-page .page-contents {
+    .game-list {
+        gap: 3em;
+    }
+}
