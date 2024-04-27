@@ -44,7 +44,8 @@ async function _getGameById(req: Request<{ id: ObjectId }>,
 async function _getGameByName(req: Request<{ name: string }>,
     res: Response): Promise<void> {
     try {
-        const game = await GameService.getByName(req.params.name)
+        const gameName = decodeURIComponent(req.params.name)
+        const game = await GameService.getByName(gameName)
         res.json(game)
     } catch (err) {
         loggerService.error('Failed to get game by name', err)

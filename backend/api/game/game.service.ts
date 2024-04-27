@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb"
 import { Game, GameQueryParams, MatchCriteria } from "../../models/game.js"
 import { dbService } from "../../services/db.service.js"
 import { loggerService } from "../../services/logger.service.js"
+import { utilityService } from "../../services/utility.service.js"
 
 const GAMES_COLLECTION = 'game'
 
@@ -42,8 +43,9 @@ async function getByName(gameName: string): Promise<Game | null> {
   try {
     const collection = await dbService.getCollection(GAMES_COLLECTION)
 
+    const refinedName = utilityService.escapeRegExp(gameName)
     const game = await collection.findOne<Game>(
-      { name: { $regex: `^${gameName}$`, $options: 'i' } })
+      { name: { $regex: `^${refinedName}$`, $options: 'i' } })
 
     if (game) loggerService.info('found game: ', game._id)
     else loggerService.error('No game found with name:', gameName)

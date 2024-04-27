@@ -10,7 +10,7 @@ export const utilityService = {
     makeId,
     idToObjectId,
     verifyRecaptcha,
-    formatDate
+    escapeRegExp
 }
 dotenv.config()
 
@@ -58,17 +58,6 @@ async function verifyRecaptcha(token: string): Promise<void> {
     }
 }
 
-function formatDate(dateInput: Date | number = new Date()): string {
-    // If dateInput is a number, convert it to a Date object
-    const date = new Date(dateInput)
-    return date.toLocaleString("en-US", {
-        timeZone: "America/New_York",
-        month: 'short',
-        day: '2-digit',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true
-    })
+function escapeRegExp(string: string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }
