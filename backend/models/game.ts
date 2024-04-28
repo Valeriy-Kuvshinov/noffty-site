@@ -8,11 +8,12 @@ export interface Game {
     outsideLink?: string
     gameLink?: string
     description?: string
+    credits?: string
     controls?: string
-    genre?: string
-    tags?: string[]
+    genre?: string[]
     devlog?: string
     walkthrough?: string
+    isGameJam: boolean
     icon: string
     screenshots: string[]
 }

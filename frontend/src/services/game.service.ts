@@ -39,21 +39,24 @@ export class GameService {
                 "note": "Simple 2D platformer",
                 "platform": "html5",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790258/games/icons/n06kstfi1jxuzibtc5sz.png",
-                "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
+                "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"],
+                "isGameJam": false
             },
             {
                 "name": "WavePunk",
                 "note": "Wave merging adventure",
                 "platform": "html5",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790259/games/icons/mb8ngo63kqd43ujftami.png",
-                "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
+                "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"],
+                "isGameJam": true
             },
             {
                 "name": "Gun Stick Dash Jump",
                 "note": "Corrupted action platformer",
                 "platform": "html5",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790259/games/icons/tmwtyg0bkjrhoy33axjd.png",
-                "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
+                "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"],
+                "isGameJam": true
             }
         ]
         else if (platform === 'android') return [
@@ -63,7 +66,8 @@ export class GameService {
                 "platform": "android",
                 "outsideLink": "https://play.google.com/store/apps/details?id=com.NofftyProd.Betorched",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790259/games/icons/uhdnw0urvavw4b3qveln.jpg",
-                "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
+                "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"],
+                "isGameJam": false
             },
             {
                 "name": "WordDart",
@@ -71,7 +75,8 @@ export class GameService {
                 "platform": "android",
                 "outsideLink": "https://play.google.com/store/apps/details?id=com.michaelkushnir.worddart",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790260/games/icons/gjve8kwuitf5v8ie32b0.png",
-                "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
+                "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"],
+                "isGameJam": false
             }
         ]
         else return []

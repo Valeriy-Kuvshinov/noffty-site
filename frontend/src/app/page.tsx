@@ -6,7 +6,7 @@ import { ImageContainer } from "../components/ImageContainer"
 
 export default function Home() {
   const gamesService = new GameService()
-  const webGames = gamesService.getMiniGames('web')
+  const webGames = gamesService.getMiniGames('html5')
   const mobileGames = gamesService.getMiniGames('android')
 
   const companyLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305391/shv6c332n1pkelye6ipe.jpg'
