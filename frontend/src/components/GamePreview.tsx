@@ -3,7 +3,7 @@ import { Game } from '../models/game'
 import { ImageContainer } from './ImageContainer'
 
 export function GamePreview({ game }: { game: Game }) {
-    return game.type === 'web' ? (
+    return game.platform === 'html5' ? (
         <Link href={`/games/${game.name}`} key={game.name} aria-label='noffty-game'
             className='flex column align-center w-100 text-capitalize fast-trans'>
             <ImageContainer src={game.screenshots[0]} alt={game.name} />

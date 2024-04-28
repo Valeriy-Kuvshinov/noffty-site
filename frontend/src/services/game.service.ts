@@ -32,35 +32,35 @@ export class GameService {
         return this.httpService.delete(`${baseUrl}delete/${id}`)
     }
 
-    getMiniGames(type: string): Game[] {
-        if (type === 'web') return [
+    getMiniGames(platform: string): Game[] {
+        if (platform === 'html5') return [
             {
                 "name": "Absurd^2",
                 "note": "Simple 2D platformer",
-                "type": "web",
+                "platform": "html5",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790258/games/icons/n06kstfi1jxuzibtc5sz.png",
                 "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
             },
             {
                 "name": "WavePunk",
                 "note": "Wave merging adventure",
-                "type": "web",
+                "platform": "html5",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790259/games/icons/mb8ngo63kqd43ujftami.png",
                 "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
             },
             {
                 "name": "Gun Stick Dash Jump",
                 "note": "Corrupted action platformer",
-                "type": "web",
+                "platform": "html5",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790259/games/icons/tmwtyg0bkjrhoy33axjd.png",
                 "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
             }
         ]
-        else if (type === 'android') return [
+        else if (platform === 'android') return [
             {
                 "name": "Betorched",
                 "note": "Turn based roguelite",
-                "type": "android",
+                "platform": "android",
                 "outsideLink": "https://play.google.com/store/apps/details?id=com.NofftyProd.Betorched",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790259/games/icons/uhdnw0urvavw4b3qveln.jpg",
                 "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]
@@ -68,7 +68,7 @@ export class GameService {
             {
                 "name": "WordDart",
                 "note": "Last letter arcade",
-                "type": "android",
+                "platform": "android",
                 "outsideLink": "https://play.google.com/store/apps/details?id=com.michaelkushnir.worddart",
                 "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1713790260/games/icons/gjve8kwuitf5v8ie32b0.png",
                 "screenshots": ["https://res.cloudinary.com/djzid7ags/image/upload/v1713788996/games/screenshots/y0gftpol6jink8zrsq4a.png"]

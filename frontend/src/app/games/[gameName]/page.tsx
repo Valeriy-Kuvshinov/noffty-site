@@ -35,9 +35,9 @@ export default function GameDetails({ params }: { params: { gameName: string } }
         <main className="game-page full w-h-100">
             <section className="page-contents flex column align-center w-h-100 layout-row">
                 {loading ? (
-                    <p>Loading...</p>
+                    <p>Standby...</p>
                 ) : game ? (
-                    game.type === 'web' ? (
+                    game.platform === 'html5' ? (
                         <>
                             <h2>You Are Now Playing {game.name}</h2>
                             <iframe className="w-100"

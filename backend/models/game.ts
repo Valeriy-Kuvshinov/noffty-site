@@ -4,11 +4,15 @@ export interface Game {
     _id?: ObjectId
     name: string
     note: string
-    type: string
+    platform: string
     outsideLink?: string
     gameLink?: string
     description?: string
     controls?: string
+    genre?: string
+    tags?: string[]
+    devlog?: string
+    walkthrough?: string
     icon: string
     screenshots: string[]
 }
