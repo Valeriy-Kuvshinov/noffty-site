@@ -1,7 +1,7 @@
 import { Game } from '../models/game'
 import { HttpService } from './http.service'
 
-const baseUrl: string = 'http://localhost:3030/api/game/'
+const baseUrl: string = 'game/'
 
 export class GameService {
     private httpService: HttpService

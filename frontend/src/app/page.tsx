@@ -2,6 +2,7 @@ import { GameService } from "../services/game.service"
 import { GameList } from "../components/GameList"
 import { SpecialLink } from "../components/SpecialLink"
 import { CrewLinks } from "../components/CrewLinks"
+import { ImageContainer } from "../components/ImageContainer"
 
 export default function Home() {
   const gamesService = new GameService()
@@ -27,7 +28,7 @@ export default function Home() {
     <main className="home-page full w-h-100">
       <section className="page-contents flex column align-center w-h-100 layout-row">
         <article className="intro-part flex column full-center w-fit">
-          <img src={companyLogo} alt="noffty logo" />
+          <ImageContainer src={companyLogo} alt="noffty logo" />
           <h2 className="text-center">Welcome to Noffty Production's Website</h2>
 
           <div className="noffty-links flex row">

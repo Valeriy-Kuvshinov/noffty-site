@@ -2,10 +2,11 @@
 .home-page .page-contents {
     .games-showcase .game-list a {
         gap: 0.5em;
-        color: var(--scdclr6);
+        color: var(--scdclr3);
 
         img {
             padding: 0;
+            aspect-ratio: 1.75 / 1;
             border-radius: 0.75em;
         }
 
@@ -37,7 +38,12 @@
                 grid-column: span 1;
                 grid-row: span 2;
                 border-radius: 1em;
+                aspect-ratio: 1 / 1;
             }
+        }
+
+        &:hover {
+            color: var(--scdclr4);
         }
     }
 }
@@ -46,7 +52,7 @@
 .index-page .page-contents {
     .game-list a {
         gap: 0.5em;
-        color: var(--scdclr6);
+        color: var(--scdclr3);
 
         img {
             padding: 0;
@@ -82,6 +88,10 @@
                 grid-row: span 2;
                 border-radius: 1em;
             }
+        }
+
+        &:hover {
+            color: var(--scdclr4);
         }
     }
 }

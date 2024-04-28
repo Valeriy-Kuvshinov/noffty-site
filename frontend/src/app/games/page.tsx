@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from "react"
 import { GameService } from "../../services/game.service"
-import { GameList } from "@/components/GameList"
+import { GameList } from "../../components/GameList"
 
 export default function GamesIndex() {
     const [games, setGames] = useState([])

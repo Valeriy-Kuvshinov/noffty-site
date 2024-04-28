@@ -1,6 +1,10 @@
+const baseUrl = process.env.NODE_ENV === 'production'
+    ? '/api/'
+    : '//localhost:3030/api/'
+
 export class HttpService {
     async request(method: string, endpoint: string, data?: any) {
-        const url = `${endpoint}`
+        const url = `${baseUrl}${endpoint}`
         const headers = { 'Content-Type': 'application/json' }
 
         const config: RequestInit = { method: method, headers: headers }
