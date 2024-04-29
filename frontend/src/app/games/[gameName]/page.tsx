@@ -37,27 +37,33 @@ export default function GameDetails({ params }: { params: { gameName: string } }
                 {loading ? (
                     <p>Standby...</p>
                 ) : game ? (
-                    game.platform === 'html5' ? (
-                        <>
-                            <h2>You Are Now Playing {game.name}</h2>
-                            <iframe className="w-100"
-                                src={game.gameLink}
-                                title={game.name}
-                                allow={allowAttributes}
-                                allowFullScreen={true}
-                            ></iframe>
-                            <section className="game-body w-100">
-                                <img src={game.icon} alt={game.name} />
-                                <div className="game-info">
-                                    <p>{game.note}</p>
-                                    <p>{game.description}</p>
-                                    <p>Game controls: {game.controls}</p>
-                                </div>
+                    <>
+                        {game.platform === 'html5' ? (
+                            <>
+                                <h2>You Are Now Playing {game.name}</h2>
+                                <iframe className="w-100"
+                                    src={game.gameLink}
+                                    title={game.name}
+                                    allow={allowAttributes}
+                                    allowFullScreen={true}
+                                ></iframe>
+                            </>
+                        ) : (
+                            <section className="error w-100">
+                                <p>Whoa, looks like the game is not intended for the browser, but for
+                                    <span className="text-capitalize"> {game.platform}</span> instead.</p>
+                                <a href={game.outsideLink} target="_blank" rel="noopener noreferrer">Take Me to The Game!</a>
                             </section>
-                        </>
-                    ) : (
-                        <p>This game is not available as a web version.</p>
-                    )
+                        )}
+                        <section className="game-body w-100">
+                            <img src={game.icon} alt={game.name} />
+                            <div className="game-info">
+                                <p>{game.note}</p>
+                                <p>{game.description}</p>
+                                <p>Game controls: {game.controls}</p>
+                            </div>
+                        </section>
+                    </>
                 ) : (
                     <p>Sorry, no game found matching {params.gameName}.</p>
                 )}
