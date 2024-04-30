@@ -1,10 +1,13 @@
 .game-page .page-contents {
-    iframe {
-        max-width: 900px;
-        height: 600px;
-        border: none;
-        overflow: hidden;
-        touch-action: none;
-        margin: 0 auto;
+    .game-frame {
+
+        iframe {
+            max-width: 1050px;
+            height: 650px;
+            border: none;
+            overflow: hidden;
+            touch-action: none;
+            margin: 0 auto;
+        }
     }
 }

@@ -39,7 +39,7 @@ export default function GameDetails({ params }: { params: { gameName: string } }
                 ) : game ? (
                     <>
                         {game.platform === 'html5' ? (
-                            <>
+                            <div className="game-frame flex column w-100 text-center">
                                 <h2>You Are Now Playing {game.name}</h2>
                                 <iframe className="w-100"
                                     src={game.gameLink}
@@ -47,9 +47,9 @@ export default function GameDetails({ params }: { params: { gameName: string } }
                                     allow={allowAttributes}
                                     allowFullScreen={true}
                                 ></iframe>
-                            </>
+                            </div>
                         ) : (
-                            <section className="error w-100">
+                            <section className="game-frame flex column w-100">
                                 <p>Whoa, looks like the game is not intended for the browser, but for
                                     <span className="text-capitalize"> {game.platform}</span> instead.</p>
                                 <a href={game.outsideLink} target="_blank" rel="noopener noreferrer">Take Me to The Game!</a>
@@ -61,6 +61,35 @@ export default function GameDetails({ params }: { params: { gameName: string } }
                                 <p>{game.note}</p>
                                 <p>{game.description}</p>
                                 <p>Game controls: {game.controls}</p>
+                                <p>{game.credits}</p>
+                                <div className="video-wrapper grid">
+                                    {game.walkthrough && (
+                                        <div className="video">
+                                            <p>In case you have any issues, we have this video for help:</p>
+                                            <iframe
+                                                src={`https://www.youtube.com/embed/${new URLSearchParams(new URL(game.walkthrough).search).get('v')}`}
+                                                title="Game Walkthrough"
+                                                allowFullScreen={true}
+                                                className="w-100"
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            ></iframe>
+                                        </div>
+                                    )}
+                                    {game.devlog && (
+                                        <div className="video">
+                                            <p>Check out the developer's log:</p>
+                                            <iframe
+                                                src={`https://www.youtube.com/embed/${new URLSearchParams(new URL(game.devlog).search).get('v')}`}
+                                                title="Developer's Log"
+                                                allowFullScreen={true}
+                                                className="w-100"
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            ></iframe>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </section>
                     </>

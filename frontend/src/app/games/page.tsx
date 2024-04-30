@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { GameService } from "../../services/game.service"
 import { GameList } from "../../components/GameList"
 
-export default function GamesIndex() {
+export default function GameIndex() {
     const [games, setGames] = useState([])
     const [loading, setLoading] = useState(true)
     const gameService = new GameService()

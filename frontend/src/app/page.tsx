@@ -41,11 +41,14 @@ export default function Home() {
 
         <article className="games-showcase flex column full-center w-100">
           <h2 className="text-center">Published Games</h2>
-          <h3 className="text-center">Play on Our Site Right Away!</h3>
+          <h3 className="text-center">Available On Our Site Now!</h3>
           <GameList games={webGames} />
 
-          <h3 className="text-center">Available on Google Play!</h3>
+          <h3 className="text-center">Available On Google Play!</h3>
           <GameList games={mobileGames} />
+
+            <p>We've got plenty more, which you can find on our website.</p>
+          <a href="/games/">Click Here!</a>
         </article>
 
         <article className="about flex column full-center w-100">

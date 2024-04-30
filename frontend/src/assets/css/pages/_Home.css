@@ -9,6 +9,10 @@
             letter-spacing: 1px;
         }
 
+        .image-container img {
+            margin: 0 auto;
+        }
+
         .noffty-links a {
             position: relative;
 
