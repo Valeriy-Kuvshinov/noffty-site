@@ -11,6 +11,7 @@
 
 /* pages */
 @import './pages/_Home.css';
+@import './pages/_GameIndex.css';
 @import './pages/_GameDetails.css';
 
 /* components */

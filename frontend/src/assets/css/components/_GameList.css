@@ -1,12 +1,6 @@
-.home-page .page-contents {
-    .games-showcase .game-list {
-        gap: 3em;
-        margin: 1em 0;
-    }
-}
-
+.home-page .page-contents,
 .index-page .page-contents {
-    .game-list {
+    .games-showcase .game-list {
         gap: 3em;
         margin: 1em 0;
     }

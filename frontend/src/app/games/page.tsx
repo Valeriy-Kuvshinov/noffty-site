@@ -28,10 +28,10 @@ export default function GameIndex() {
                 {loading ? (
                     <p>Loading games...</p>
                 ) : (
-                    <>
+                    <div className="games-showcase flex column full-center w-100">
                         <h2>Noffty's Game Collection</h2>
                         <GameList games={games} />
-                    </>
+                    </div>
                 )}
             </section>
         </main>

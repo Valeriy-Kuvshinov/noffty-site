@@ -1,13 +1,18 @@
 .game-page .page-contents {
     .game-frame {
+        padding: 1em 0;
+        max-width: 1200px;
+        border-bottom: 1px solid var(--scdclr7);
+        margin: 0 auto;
+
+        h2 {
+            margin-block-end: 1em;
+        }
 
         iframe {
-            max-width: 1050px;
-            height: 650px;
+            aspect-ratio: 1.75 / 1.25;
             border: none;
             overflow: hidden;
-            touch-action: none;
-            margin: 0 auto;
         }
     }
 }
