@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import { Game } from "../../../models/game"
 import { GameService } from "../../../services/game.service"
 import { UtilityService } from "../../../services/utility.service"
+import { GameDetailsBody } from "../../../components/GameDetailsBody"
+import { SvgRender } from "../../../components/SvgRender"
 
 export default function GameDetails({ params }: { params: { gameName: string } }) {
     const gameService = new GameService()
@@ -49,52 +51,18 @@ export default function GameDetails({ params }: { params: { gameName: string } }
                             ></iframe>
                         </div>
                     ) : (
-                        <section className="game-frame flex column w-100">
+                        <div className="game-frame flex column w-100 text-center">
                             <p>Whoa, looks like the game is not intended for the browser, but for
                                 <span className="text-capitalize"> {game.platform}</span> instead.</p>
-                            <a href={game.outsideLink} target="_blank" rel="noopener noreferrer">Take Me to The Game!</a>
-                        </section>
-                    )}
-                    <section className="game-body w-100">
-                        <div className="game-info">
-                            <div className="screenshots-container">
-                                {game.screenshots.slice(1).map((screenshot, index) => (
-                                    <img key={index} src={screenshot} alt={`Additional screenshot ${index + 1} of ${game.name}`} className="game-screenshot" />
-                                ))}
-                            </div>
-                            <p>{game.description}</p>
-                            <p>Game controls: {game.controls}</p>
-                            <p>{game.credits}</p>
-                            <div className="video-wrapper grid">
-                                {game.walkthrough && (
-                                    <div className="video">
-                                        <p>In case you have any issues, we have this video for help:</p>
-                                        <iframe
-                                            src={`https://www.youtube.com/embed/${new URLSearchParams(new URL(game.walkthrough).search).get('v')}`}
-                                            title="Game Walkthrough"
-                                            allowFullScreen={true}
-                                            className="w-100"
-                                            frameBorder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        ></iframe>
-                                    </div>
-                                )}
-                                {game.devlog && (
-                                    <div className="video">
-                                        <p>Check out the developer's log:</p>
-                                        <iframe
-                                            src={`https://www.youtube.com/embed/${new URLSearchParams(new URL(game.devlog).search).get('v')}`}
-                                            title="Developer's Log"
-                                            allowFullScreen={true}
-                                            className="w-100"
-                                            frameBorder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        ></iframe>
-                                    </div>
-                                )}
-                            </div>
+                            <a href={game.outsideLink} className="flex row fast-trans"
+                                target="_blank" rel="noopener noreferrer">
+                                <SvgRender iconName={game.platform} />
+                                <span>Take Me to The Game!</span>
+                                <SvgRender iconName={game.platform} />
+                            </a>
                         </div>
-                    </section>
+                    )}
+                    <GameDetailsBody game={game} />
                 </>) : (
                     <p>Sorry, no game found matching {gameName}.</p>
                 )}

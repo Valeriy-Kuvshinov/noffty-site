@@ -2,6 +2,8 @@ export interface Game {
     _id?: string
     name: string
     note: string
+    icon: string
+    screenshots: string[]
     platform: string
     outsideLink?: string
     gameLink?: string
@@ -12,6 +14,5 @@ export interface Game {
     devlog?: string
     walkthrough?: string
     isGameJam: boolean
-    icon: string
-    screenshots: string[]
+    createdAt?: number
 }

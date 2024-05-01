@@ -20,4 +20,30 @@ export class UtilityService {
                 return "fullscreen; midi;"
         }
     }
+
+    capitalizeString(str: string) {
+        return str.split(' ').map(word => word.charAt(0).toUpperCase() +
+            word.slice(1).toLowerCase()).join(' ')
+    }
+
+    upperCaseString(str: string): string {
+        return str.toUpperCase()
+    }
+
+    formatDate(timestamp: number) {
+        const date = new Date(timestamp * 1000)
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"]
+
+        const day = date.getDate().toString().padStart(2, '0')
+        const month = monthNames[date.getMonth()]
+        const year = date.getFullYear()
+
+        return `${day} ${month} ${year}`
+    }
+
+    getYouTubeEmbedUrl(url: string): string {
+        const videoId = new URLSearchParams(new URL(url).search).get('v')
+        return `https://www.youtube.com/embed/${videoId}`
+    }
 }

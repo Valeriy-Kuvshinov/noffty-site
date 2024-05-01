@@ -91,7 +91,23 @@
         padding: 2em 1em;
     }
 
+    @media(max-width: 700px) {
+        .game-body {
+            .video-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+
     @media(min-width: 601px) {
         padding: 3em 2em;
+    }
+
+    @media(min-width: 701px) {
+        .game-body {
+            .video-wrapper {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
     }
 }

@@ -1,18 +1,138 @@
 .game-page .page-contents {
+    h3 {
+        letter-spacing: 1px;
+    }
+
+    p {
+        letter-spacing: 0.75px;
+    }
+
     .game-frame {
         padding: 1em 0;
         max-width: 1200px;
-        border-bottom: 1px solid var(--scdclr7);
-        margin: 0 auto;
+        min-height: 350px;
+        background: var(--scdclr3);
+        color: var(--prmclr1);
+        border-radius: 1.5em;
+        margin: 0 auto 1em auto;
 
         h2 {
-            margin-block-end: 1em;
+            padding-block-end: 0.5em;
         }
 
         iframe {
             aspect-ratio: 1.75 / 1.25;
             border: none;
             overflow: hidden;
+        }
+
+        a {
+            padding: 1em 1.5em;
+            gap: 0.25em;
+            background: var(--scdclr2);
+            color: var(--scdclr3);
+            letter-spacing: 0.75px;
+            border-radius: 0.5em;
+            margin: 1em auto;
+
+            .svg-cmp {
+                width: 24px;
+            }
+
+            &:hover {
+                background: var(--prmclr3);
+                color: var(--scdclr4);
+            }
+        }
+    }
+
+    .game-body {
+        gap: 1em;
+        border-top: 1px solid var(--scdclr7);
+        padding-block-start: 1em;
+
+        p {
+            &.seperator {
+                padding-block-start: 1em;
+                border-top: 1px solid var(--scdclr7);
+            }
+        }
+
+        .screenshots {
+            gap: 1em;
+            padding-block-end: 1em;
+            margin: 0 auto;
+
+            img {
+                max-width: 375px;
+                justify-self: center;
+                border-radius: 0.5em;
+                cursor: pointer;
+            }
+        }
+
+        .video-wrapper {
+            gap: 1em;
+            border-bottom: 1px solid var(--scdclr7);
+            padding-block-end: 1em;
+
+            .video {
+                gap: 0.5em;
+
+                p {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                }
+
+                iframe {
+                    max-height: 450px;
+                    aspect-ratio: 1.75 / 1.25;
+                    border-radius: 0.5em;
+                }
+            }
+        }
+
+        .game-info {
+            padding: 1em 0;
+            max-width: 600px;
+            background: var(--scdclr7);
+            border-radius: 0.5em;
+            margin: 0 auto;
+
+            p {
+                gap: 1em;
+
+                span {
+                    min-width: 100px;
+                }
+            }
+
+            a {
+                padding: 1em 1.5em;
+                gap: 0.25em;
+                background: var(--scdclr3);
+                color: var(--prmclr1);
+                letter-spacing: 0.75px;
+                border-radius: 0.5em;
+                margin: 1em auto;
+
+                .svg-cmp {
+                    width: 24px;
+                    fill: var(--prmclr1);
+                }
+
+                &:hover {
+                    background: var(--prmclr1);
+                    color: var(--scdclr3);
+
+                    .svg-cmp {
+                        fill: var(--scdclr3);
+                    }
+                }
+            }
         }
     }
 }
