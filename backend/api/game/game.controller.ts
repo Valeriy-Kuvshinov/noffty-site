@@ -18,8 +18,8 @@ gameRoutes.delete('/delete/:id', _removeGame)
 async function _getGames(req: Request<{}, {}, {}, GameQueryParams>,
     res: Response): Promise<void> {
     try {
-        const { search } = req.query
-        let filterBy = { search }
+        const { name, platform, genre, isGameJam } = req.query
+        let filterBy = { name, platform, genre, isGameJam }
 
         loggerService.debug('Filtering games by: ', filterBy)
         const games = await GameService.query(filterBy)

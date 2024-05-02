@@ -105,11 +105,20 @@ function _buildPipeline(filterBy: GameQueryParams): object[] {
 
   const criteria: MatchCriteria = { $match: {} }
 
-  if (filterBy.search) {
-    criteria.$match.$or = [
-      { name: { $regex: new RegExp(filterBy.search, 'i') } },
-      { description: { $regex: new RegExp(filterBy.search, 'i') } }
-    ]
+  if (filterBy.name) {
+    criteria.$match.name = { $regex: new RegExp(filterBy.name, 'i') }
+  }
+
+  if (filterBy.platform) {
+    criteria.$match.platform = filterBy.platform
+  }
+
+  if (filterBy.genre) {
+    criteria.$match.genre = { $in: [filterBy.genre] }
+  }
+
+  if (filterBy.isGameJam !== undefined) {
+    criteria.$match.isGameJam = filterBy.isGameJam
   }
 
   pipeline.push(criteria)

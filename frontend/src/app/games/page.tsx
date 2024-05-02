@@ -2,11 +2,13 @@
 import { useEffect, useState } from "react"
 import { GameService } from "../../services/game.service"
 import { GameList } from "../../components/GameList"
+import { GameFilter } from "@/components/GameFilter"
 
 export default function GameIndex() {
+    const gameService = new GameService()
+
     const [games, setGames] = useState([])
     const [loading, setLoading] = useState(true)
-    const gameService = new GameService()
 
     useEffect(() => {
         fetchGames()
@@ -16,10 +18,11 @@ export default function GameIndex() {
         try {
             const fetchedGames = await gameService.query()
             setGames(fetchedGames)
+            setLoading(false)
         } catch (err) {
             console.error("Failed to fetch games:", err)
+            setLoading(false)
         }
-        setLoading(false)
     }
 
     return (
@@ -29,6 +32,7 @@ export default function GameIndex() {
                     <p>Loading games...</p>
                 ) : (
                     <div className="games-showcase flex column full-center w-100">
+                        <GameFilter gameService={gameService} onFilterChange={fetchGames} />
                         <h2>Noffty's Game Collection</h2>
                         <GameList games={games} />
                     </div>

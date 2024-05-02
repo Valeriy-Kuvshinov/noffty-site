@@ -16,3 +16,10 @@ export interface Game {
     isGameJam: boolean
     createdAt?: number
 }
+
+export interface GameQueryParams {
+    name?: string
+    platform?: string
+    genre?: string
+    isGameJam?: boolean
+}

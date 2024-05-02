@@ -21,11 +21,16 @@ export interface Game {
 
 export interface MatchCriteria {
     $match: {
-        $or?: Array<{ name: { $regex: RegExp } } |
-        { description: { $regex: RegExp } }>
+        name?: { $regex: RegExp }
+        platform?: string
+        genre?: { $in: string[] }
+        isGameJam?: boolean
     }
 }
 
 export interface GameQueryParams {
-    search?: string
+    name?: string
+    platform?: string
+    genre?: string
+    isGameJam?: boolean
 }

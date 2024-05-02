@@ -1,4 +1,4 @@
-import { Game } from '../models/game'
+import { Game, GameQueryParams } from '../models/game'
 import { HttpService } from './http.service'
 
 const baseUrl: string = 'game/'
@@ -6,12 +6,18 @@ const baseUrl: string = 'game/'
 export class GameService {
     private httpService: HttpService
 
+    currentFilter: GameQueryParams = {}
+
     constructor() {
         this.httpService = new HttpService()
     }
 
     async query() {
-        return this.httpService.get(baseUrl, '')
+        const queryParams = new URLSearchParams(
+            this.currentFilter as any).toString()
+        console.log("URL being requested:", `${baseUrl}?${queryParams}`)
+        console.log("URL being requested with filter:", this.currentFilter)
+        return this.httpService.get(`${baseUrl}?${queryParams}`)
     }
 
     async getById(gameId: string) {
@@ -30,6 +36,13 @@ export class GameService {
 
     async remove(id: string) {
         return this.httpService.delete(`${baseUrl}delete/${id}`)
+    }
+
+    updateFilter(newFilter?: GameQueryParams) {
+        if (newFilter && Object.keys(newFilter).length > 0) {
+            this.currentFilter = { ...this.currentFilter, ...newFilter }
+        } else this.currentFilter = {}
+        console.log("Current Filter in Service:", this.currentFilter)
     }
 
     getMiniGames(platform: string): Game[] {
