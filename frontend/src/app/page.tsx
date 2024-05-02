@@ -47,8 +47,8 @@ export default function Home() {
           <h3 className="text-center">Available on Google Play!</h3>
           <GameList games={mobileGames} />
 
-          <p>We've got plenty more, which you can find on our website.</p>
-          <a href="/games/" className="action-btn">Click Here!</a>
+          <h4 className="text-center">We've got plenty more games, which you can</h4>
+          <a href="/games/" className="action-btn fast-trans">Find on Our Website</a>
         </article>
 
         <article className="about flex column full-center w-100">

@@ -51,6 +51,20 @@
         max-width: 1200px;
         border-bottom: 1px solid var(--scdclr7);
         margin: 0 auto;
+
+        .action-btn {
+            padding: 1em 1.5em;
+            background: var(--scdclr2);
+            color: var(--scdclr3);
+            letter-spacing: 0.75px;
+            border-radius: 0.5em;
+            margin: 1em auto;
+
+            &:hover {
+                background: var(--scdclr1);
+                color: var(--scdclr4);
+            }
+        }
     }
 
     .about {
@@ -68,7 +82,8 @@
                 color: var(--scdclr6);
                 margin: 0 auto;
 
-                img {
+                .image-container img {
+                    min-width: 60px;
                     border-radius: 50%;
                 }
 

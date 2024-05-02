@@ -10,7 +10,8 @@ export const utilityService = {
     makeId,
     idToObjectId,
     verifyRecaptcha,
-    escapeRegExp
+    escapeRegExp,
+    formatText
 }
 dotenv.config()
 
@@ -60,4 +61,8 @@ async function verifyRecaptcha(token: string): Promise<void> {
 
 function escapeRegExp(string: string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function formatText(string: string) {
+    return string.replace(/\n/g, '<br>')
 }

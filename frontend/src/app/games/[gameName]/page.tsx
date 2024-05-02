@@ -48,6 +48,7 @@ export default function GameDetails({ params }: { params: { gameName: string } }
                                 title={game.name}
                                 allow={allowAttributes}
                                 allowFullScreen={true}
+                                aria-label="The game view frame"
                             ></iframe>
                         </div>
                     ) : (
@@ -55,7 +56,7 @@ export default function GameDetails({ params }: { params: { gameName: string } }
                             <p>Whoa, looks like the game is not intended for the browser, but for
                                 <span className="text-capitalize"> {game.platform}</span> instead.</p>
                             <a href={game.outsideLink} className="flex row fast-trans"
-                                target="_blank" rel="noopener noreferrer">
+                                target="_blank" rel="noopener noreferrer" aria-label="Outside game navigate">
                                 <SvgRender iconName={game.platform} />
                                 <span>Take Me to The Game!</span>
                                 <SvgRender iconName={game.platform} />

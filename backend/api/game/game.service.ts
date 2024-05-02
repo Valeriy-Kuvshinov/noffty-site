@@ -47,7 +47,11 @@ async function getByName(gameName: string): Promise<Game | null> {
     const game = await collection.findOne<Game>(
       { name: { $regex: `^${refinedName}$`, $options: 'i' } })
 
-    if (game) loggerService.info('found game: ', game._id)
+    if (game) {
+      loggerService.info('found game: ', game._id)
+      if (game.description) game.description = utilityService.formatText(game.description)
+      if (game.credits) game.credits = utilityService.formatText(game.credits)
+    }
     else loggerService.error('No game found with name:', gameName)
 
     return game

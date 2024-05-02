@@ -8,11 +8,11 @@
     }
 
     .game-frame {
-        padding: 1em 0;
+        padding: 1em 0 1.5em 0;
         max-width: 1200px;
         min-height: 350px;
-        background: var(--scdclr3);
-        color: var(--prmclr1);
+        background: var(--scdclr2);
+        color: var(--scdclr3);
         border-radius: 1.5em;
         margin: 0 auto 1em auto;
 
@@ -21,9 +21,10 @@
         }
 
         iframe {
+            max-height: 750px;
             aspect-ratio: 1.75 / 1.25;
             border: none;
-            overflow: hidden;
+            box-shadow: 0 4px 100px rgba(0, 0, 0, 0.75);
         }
 
         a {
@@ -61,11 +62,14 @@
         .screenshots {
             gap: 1em;
             padding-block-end: 1em;
+            max-width: 100%;
+            overflow-x: auto;
+            scrollbar-width: thin;
             margin: 0 auto;
 
-            img {
+            .image-container img {
                 max-width: 375px;
-                justify-self: center;
+                min-width: 135px;
                 border-radius: 0.5em;
                 cursor: pointer;
             }
@@ -91,6 +95,7 @@
                     max-height: 450px;
                     aspect-ratio: 1.75 / 1.25;
                     border-radius: 0.5em;
+                    border: none;
                 }
             }
         }

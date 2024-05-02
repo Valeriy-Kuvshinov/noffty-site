@@ -1,5 +1,6 @@
 'use client'
 import Link from "next/link"
+import { ImageContainer } from "./ImageContainer"
 
 interface CrewMember {
     name: string
@@ -12,7 +13,7 @@ export function CrewLinks({ crewMembers }: { crewMembers: CrewMember[] }) {
             {crewMembers.map(member => (
                 <Link key={member.name} href="/about/introduction"
                     passHref className="flex column justify-between">
-                    <img src={member.image} alt={member.name} />
+                    <ImageContainer src={member.image} alt={member.name} />
                     <h3 className="text-center">{member.name}</h3>
                 </Link>
             ))}

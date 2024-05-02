@@ -1,32 +1,45 @@
+import React from "react"
 import { Game } from "../models/game"
 import { UtilityService } from "../services/utility.service"
 import { SvgRender } from "./SvgRender"
+import { ImageContainer } from "./ImageContainer"
 
 export function GameDetailsBody({ game }: { game: Game }) {
     const utilService = new UtilityService()
 
     const gridTemplateColumns = `repeat(${game.screenshots.length - 1}, 1fr)`
 
+    function convertLineBreaks(string: string) {
+        const parts = string.split('<br>')
+        return parts.map((line, index) => (
+            <React.Fragment key={index}>
+                {line}
+                {index < parts.length - 1 && <br />}
+            </React.Fragment>
+        ))
+    }
+
     return (
         <article className="game-body flex column w-100">
             <h3 className="text-center text-capitalize">{game.note}</h3>
-            <div className={`screenshots grid ${game.platform !== 'android' ? 'w-100' : ''} h-fit`}
+            <div className={`screenshots grid ${game.platform !== 'android' ? 'w-100' : ''}`}
                 style={{ gridTemplateColumns }}>
                 {game.screenshots.slice(1).map((screenshot, index) => (
-                    <img key={index}
+                    <ImageContainer
+                        key={index}
                         src={screenshot}
+                        alt={`${game.name} screenshot number ${index + 1}`}
                         className={`h-100 ${game.platform !== 'android' ? 'w-100' : ''}`}
                         style={{
-                            maxHeight: game.screenshots.length < 4 ? '215px' : 'auto',
+                            maxHeight: game.screenshots.length < 5 ? '215px' : 'auto',
                             aspectRatio: game.platform !== 'android' ? '1.75 / 1.25' : ''
                         }}
-                        alt={`${game.name} screenshot number ${index + 1}`}
                     />
                 ))}
             </div>
-            <p className="seperator">{game.description}</p>
+            <p className="separator">{convertLineBreaks(game.description!)}</p>
             <p className="text-bold">Controls: {game.controls}</p>
-            <p>{game.credits}</p>
+            <p>{convertLineBreaks(game.credits!)}</p>
             <div className="video-wrapper grid w-100">
                 {game.walkthrough && (
                     <div className="video flex column w-100">
@@ -34,8 +47,8 @@ export function GameDetailsBody({ game }: { game: Game }) {
                         <iframe
                             src={utilService.getYouTubeEmbedUrl(game.walkthrough)}
                             title="Game Walkthrough"
+                            aria-label="Video walkthrough for the game"
                             allowFullScreen={true}
-                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         ></iframe>
                     </div>
@@ -46,8 +59,8 @@ export function GameDetailsBody({ game }: { game: Game }) {
                         <iframe
                             src={utilService.getYouTubeEmbedUrl(game.devlog)}
                             title="Developer's Log"
+                            aria-label="Video devlog about the game"
                             allowFullScreen={true}
-                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         ></iframe>
                     </div>
@@ -69,7 +82,7 @@ export function GameDetailsBody({ game }: { game: Game }) {
                     {game.genre?.map(genre => utilService.capitalizeString(genre)).join(', ')}
                 </p>
                 {game.outsideLink?.includes('itch.io') && (
-                    <a href={game.outsideLink} target="_blank"
+                    <a href={game.outsideLink} target="_blank" aria-label="itch.io navigate button"
                         rel="noopener noreferrer" className="flex row align-center w-fit fast-trans">
                         <SvgRender iconName={'itch'} />
                         <span>Available on Itch.io as well!</span>

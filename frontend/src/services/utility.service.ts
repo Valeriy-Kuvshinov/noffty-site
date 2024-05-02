@@ -1,21 +1,30 @@
 
 export class UtilityService {
     getBrowserName() {
-        const userAgent = navigator.userAgent
+        const userAgent = navigator.userAgent.toLowerCase()
 
-        if (userAgent.includes("Firefox")) return "Firefox"
-        else if (userAgent.includes("Chrome")) return "Chrome"
-        else if (userAgent.includes("Safari")) return "Safari"
-        else return "Other"
+        switch (true) {
+            case userAgent.includes("chrome") && !userAgent.includes("edg"):
+                return "Chrome"
+            case userAgent.includes("firefox"):
+                return "Firefox"
+            case userAgent.includes("safari") && !userAgent.includes("chrome"):
+                return "Safari"
+            case userAgent.includes("edg"):
+                return "Edge"
+            default:
+                return "Other"
+        }
     }
 
     getAllowAttributes() {
         const browser = this.getBrowserName()
         switch (browser) {
-            case "Firefox":
-                return "fullscreen; midi;"
             case "Chrome":
+            case "Edge":
                 return "fullscreen; midi; gyroscope; accelerometer; cross-origin-isolated;"
+            case "Firefox":
+                return "fullscreen; midi; accelerometer;"
             default:
                 return "fullscreen; midi;"
         }
