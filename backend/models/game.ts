@@ -15,7 +15,7 @@ export interface Game {
     genre?: string[]
     devlog?: string
     walkthrough?: string
-    isGameJam: boolean
+    isGameJam: string
     createdAt?: number
 }
 
@@ -24,7 +24,7 @@ export interface MatchCriteria {
         name?: { $regex: RegExp }
         platform?: string
         genre?: { $in: string[] }
-        isGameJam?: boolean
+        isGameJam?: string
     }
 }
 
@@ -32,5 +32,5 @@ export interface GameQueryParams {
     name?: string
     platform?: string
     genre?: string
-    isGameJam?: boolean
+    isGameJam?: string
 }

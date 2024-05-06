@@ -117,7 +117,7 @@ function _buildPipeline(filterBy: GameQueryParams): object[] {
     criteria.$match.genre = { $in: [filterBy.genre] }
   }
 
-  if (filterBy.isGameJam !== undefined) {
+  if (filterBy.isGameJam) {
     criteria.$match.isGameJam = filterBy.isGameJam
   }
 

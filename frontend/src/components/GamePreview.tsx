@@ -10,7 +10,7 @@ export function GamePreview({ game }: { game: Game }) {
             className='flex column align-center w-100 text-capitalize fast-trans'>
             <div className='preview-body w-100 h-fit'>
                 <ImageContainer src={game.screenshots[0]} alt={game.name} />
-                {game.isGameJam && <span className="gmtk" title='Game{Jam} Submission'>JAM</span>}
+                {game.isGameJam === 'yes' && <span className="gmtk" title='Game{Jam} Submission'>JAM</span>}
                 <SvgRender iconName={game.platform} />
             </div>
 

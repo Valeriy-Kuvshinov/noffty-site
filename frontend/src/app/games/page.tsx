@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from "react"
+import { GameQueryParams } from "../../models/game"
 import { GameService } from "../../services/game.service"
 import { GameList } from "../../components/GameList"
 import { GameFilter } from "@/components/GameFilter"
@@ -11,12 +12,12 @@ export default function GameIndex() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetchGames()
+        fetchGames({})
     }, [])
 
-    async function fetchGames() {
+    async function fetchGames(filterBy: GameQueryParams) {
         try {
-            const fetchedGames = await gameService.query()
+            const fetchedGames = await gameService.query(filterBy)
             setGames(fetchedGames)
             setLoading(false)
         } catch (err) {
@@ -28,15 +29,15 @@ export default function GameIndex() {
     return (
         <main className="index-page full w-h-100">
             <section className="page-contents flex column align-center w-h-100 layout-row">
-                {loading ? (
-                    <p>Loading games...</p>
-                ) : (
-                    <div className="games-showcase flex column full-center w-100">
-                        <GameFilter gameService={gameService} onFilterChange={fetchGames} />
-                        <h2>Noffty's Game Collection</h2>
+                <div className="games-showcase flex column full-center w-100">
+                    <h2 className="text-center">Noffty's Game Collection</h2>
+                    <GameFilter onFilterChange={fetchGames} />
+                    {loading ? (
+                        <p>Loading games...</p>
+                    ) : (
                         <GameList games={games} />
-                    </div>
-                )}
+                    )}
+                </div>
             </section>
         </main>
     )
