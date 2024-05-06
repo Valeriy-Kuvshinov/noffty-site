@@ -12,10 +12,10 @@ export default function GameIndex() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetchGames({})
+        fetchGames()
     }, [])
 
-    async function fetchGames(filterBy: GameQueryParams) {
+    async function fetchGames(filterBy?: GameQueryParams) {
         try {
             const fetchedGames = await gameService.query(filterBy)
             setGames(fetchedGames)

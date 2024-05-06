@@ -9,7 +9,7 @@
         .image-container img {
             padding: 0;
             border-radius: 0.75em;
-            aspect-ratio: 1.75 / 1.25;
+            aspect-ratio: 16 / 9;
         }
 
         .gmtk {

@@ -10,7 +10,6 @@ interface GameFilterProps {
 
 export function GameFilter({ onFilterChange }: GameFilterProps) {
     const gameService = new GameService()
-
     const defaultFilter = gameService.getDefaultFilter()
 
     const [filter, setFilter] = useState(defaultFilter)
@@ -18,6 +17,7 @@ export function GameFilter({ onFilterChange }: GameFilterProps) {
 
     useEffect(() => {
         onFilterChange(debouncedFilter)
+        updateUrlQueryParameters(debouncedFilter)
     }, [debouncedFilter])
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
@@ -26,6 +26,16 @@ export function GameFilter({ onFilterChange }: GameFilterProps) {
             ...prevFilter,
             [name]: value
         }))
+    }
+
+    function updateUrlQueryParameters(updatedFilter: GameQueryParams) {
+        const newSearchParams = new URLSearchParams(window.location.search);
+        Object.entries(updatedFilter).forEach(([key, value]) => {
+            if (value) newSearchParams.set(key, value)
+            else newSearchParams.delete(key)
+        })
+        const newUrl = `${window.location.pathname}?${newSearchParams.toString()}`
+        window.history.pushState({}, '', newUrl)
     }
 
     return (

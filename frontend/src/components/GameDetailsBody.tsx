@@ -32,7 +32,7 @@ export function GameDetailsBody({ game }: { game: Game }) {
                         className={`h-100 ${game.platform !== 'android' ? 'w-100' : ''}`}
                         style={{
                             maxHeight: game.screenshots.length < 5 ? '215px' : 'auto',
-                            aspectRatio: game.platform !== 'android' ? '1.75 / 1.25' : ''
+                            aspectRatio: game.platform !== 'android' ? '16 / 9' : '9 / 16'
                         }}
                     />
                 ))}
