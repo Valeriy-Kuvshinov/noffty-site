@@ -1,8 +1,8 @@
 'use client'
 import Link from 'next/link'
 import { Game } from '../models/game'
-import { ImageContainer } from './ImageContainer'
-import { SvgRender } from './SvgRender'
+import { ImageContainer } from './general/ImageContainer'
+import { SvgRender } from './general/SvgRender'
 
 export function GamePreview({ game }: { game: Game }) {
     return (

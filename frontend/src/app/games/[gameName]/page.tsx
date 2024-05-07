@@ -4,7 +4,9 @@ import { Game } from "../../../models/game"
 import { GameService } from "../../../services/game.service"
 import { UtilityService } from "../../../services/utility.service"
 import { GameDetailsBody } from "../../../components/GameDetailsBody"
-import { SvgRender } from "../../../components/SvgRender"
+import { SvgRender } from "../../../components/general/SvgRender"
+import { Loader } from "../../../components/general/Loader"
+import { ErrorContainer } from "../../../components/general/ErrorContainer"
 
 export default function GameDetails({ params }: { params: { gameName: string } }) {
     const gameService = new GameService()
@@ -38,7 +40,7 @@ export default function GameDetails({ params }: { params: { gameName: string } }
         <main className="game-page full w-h-100">
             <section className="page-contents flex column align-center w-h-100 layout-row">
                 {loading ? (
-                    <p>Loading {gameName}...</p>
+                    <Loader />
                 ) : game ? (<>
                     {game.platform === 'html5' ? (
                         <div className="game-frame flex column w-100 text-center">
@@ -65,7 +67,7 @@ export default function GameDetails({ params }: { params: { gameName: string } }
                     )}
                     <GameDetailsBody game={game} />
                 </>) : (
-                    <p>Sorry, no game found matching {gameName}.</p>
+                    <ErrorContainer message={`Sorry, no game found matching ${gameName}.`} />
                 )}
             </section>
         </main>

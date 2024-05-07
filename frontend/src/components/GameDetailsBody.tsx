@@ -1,8 +1,8 @@
 import React from "react"
 import { Game } from "../models/game"
 import { UtilityService } from "../services/utility.service"
-import { SvgRender } from "./SvgRender"
-import { ImageContainer } from "./ImageContainer"
+import { SvgRender } from "./general/SvgRender"
+import { ImageContainer } from "./general/ImageContainer"
 
 export function GameDetailsBody({ game }: { game: Game }) {
     const utilService = new UtilityService()

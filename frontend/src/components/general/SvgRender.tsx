@@ -1,5 +1,5 @@
-import { SvgService } from "../services/svg.service"
-import { SvgProp } from "../models/utility"
+import { SvgService } from "../../services/svg.service"
+import { SvgProp } from "../../models/utility"
 
 const svgService = new SvgService()
 

@@ -1,5 +1,5 @@
 'use client'
-import { useImageLoader } from "../hooks/imageLoader"
+import { useImageLoader } from "../../hooks/imageLoader"
 
 interface ImageContainerProps {
     src: string

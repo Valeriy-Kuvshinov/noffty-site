@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link"
-import { ImageContainer } from "./ImageContainer"
+import { ImageContainer } from "./general/ImageContainer"
 
 interface CrewMember {
     name: string

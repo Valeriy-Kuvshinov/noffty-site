@@ -1,4 +1,4 @@
-import { SvgRender } from "./SvgRender"
+import { SvgRender } from "./general/SvgRender"
 
 interface SpecialLink {
     iconName: string

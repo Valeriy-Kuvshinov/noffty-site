@@ -2,7 +2,7 @@ import { GameService } from "../services/game.service"
 import { GameList } from "../components/GameList"
 import { SpecialLink } from "../components/SpecialLink"
 import { CrewLinks } from "../components/CrewLinks"
-import { ImageContainer } from "../components/ImageContainer"
+import { ImageContainer } from "../components/general/ImageContainer"
 
 export default function Home() {
   const gamesService = new GameService()

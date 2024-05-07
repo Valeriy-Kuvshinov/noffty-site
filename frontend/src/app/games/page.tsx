@@ -3,7 +3,8 @@ import { useEffect, useState } from "react"
 import { GameQueryParams } from "../../models/game"
 import { GameService } from "../../services/game.service"
 import { GameList } from "../../components/GameList"
-import { GameFilter } from "@/components/GameFilter"
+import { GameFilter } from "../../components/GameFilter"
+import { Loader } from "../../components/general/Loader"
 
 export default function GameIndex() {
     const gameService = new GameService()
@@ -33,7 +34,7 @@ export default function GameIndex() {
                     <h2 className="text-center">Noffty's Game Collection</h2>
                     <GameFilter onFilterChange={fetchGames} />
                     {loading ? (
-                        <p>Loading games...</p>
+                        <Loader />
                     ) : (
                         <GameList games={games} />
                     )}
