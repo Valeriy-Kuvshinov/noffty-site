@@ -15,6 +15,29 @@ export function GameFilter({ onFilterChange }: GameFilterProps) {
     const [filter, setFilter] = useState(defaultFilter)
     const debouncedFilter = useDebounce(filter, 500)
 
+    const genres = [
+        { label: 'All Genres', value: '' },
+        { label: 'Action', value: 'action' },
+        { label: 'Platformer', value: 'platformer' },
+        { label: 'Word', value: 'word' },
+        { label: 'Survival', value: 'survival' },
+        { label: 'Adventure', value: 'adventure' },
+        { label: 'Puzzle', value: 'puzzle' }
+    ]
+
+    const platforms = [
+        { label: 'All Platforms', value: '' },
+        { label: 'Android', value: 'android' },
+        { label: 'Browser', value: 'html5' },
+        { label: 'Steam', value: 'steam' }
+    ]
+
+    const gameJams = [
+        { label: 'All', value: '' },
+        { label: 'Yes', value: 'yes' },
+        { label: 'No', value: 'no' }
+    ]
+
     useEffect(() => {
         onFilterChange(debouncedFilter)
         updateUrlQueryParameters(debouncedFilter)
@@ -47,24 +70,19 @@ export function GameFilter({ onFilterChange }: GameFilterProps) {
                 onChange={handleInputChange}
             />
             <select name="platform" onChange={handleInputChange}>
-                <option value="">All Platforms</option>
-                <option value="android">Android</option>
-                <option value="html5">HTML5</option>
-                <option value="steam">Steam</option>
+                {platforms.map(platform => (
+                    <option key={platform.value} value={platform.value}>{platform.label}</option>
+                ))}
             </select>
             <select name="genre" onChange={handleInputChange}>
-                <option value="">All Genres</option>
-                <option value="action">Action</option>
-                <option value="platformer">Platformer</option>
-                <option value="word">Word</option>
-                <option value="survival">Survival</option>
-                <option value="adventure">Adventure</option>
-                <option value="puzzle">Puzzle</option>
+                {genres.map(genre => (
+                    <option key={genre.value} value={genre.value}>{genre.label}</option>
+                ))}
             </select>
             <select name="isGameJam" onChange={handleInputChange}>
-                <option value="">All</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                {gameJams.map(status => (
+                    <option key={status.value} value={status.value}>{status.label}</option>
+                ))}
             </select>
         </article>
     )

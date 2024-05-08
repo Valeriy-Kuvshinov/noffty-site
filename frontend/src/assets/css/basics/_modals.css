@@ -7,3 +7,54 @@
     background: rgba(0, 0, 0, .75);
     z-index: 15;
 }
+
+.loader-container {
+    margin: 4em auto 0 auto;
+
+    span {
+        color: var(--scdclr4);
+        font-size: 1.5em;
+    }
+
+    img {
+        width: 180px;
+
+        &:nth-child(3) {
+            margin-block-start: -2em;
+            z-index: -1;
+        }
+
+    }
+}
+
+.error-container {
+    gap: 2em;
+    margin: 4em auto 0 auto;
+
+    .error-area {
+        gap: 1em;
+        font-size: 1.5em;
+
+        .image-container {
+            max-width: 120px;
+        }
+
+        span {
+            max-width: 400px;
+        }
+    }
+
+    a {
+        padding: 1em 1.5em;
+        background: var(--scdclr2);
+        color: var(--scdclr3);
+        letter-spacing: 0.75px;
+        border-radius: 0.5em;
+        margin: 0 auto;
+
+        &:hover {
+            background: var(--scdclr1);
+            color: var(--scdclr4);
+        }
+    }
+}

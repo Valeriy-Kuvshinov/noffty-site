@@ -1,23 +1,13 @@
-import React from "react"
 import { Game } from "../../models/game"
 import { UtilityService } from "../../services/utility.service"
 import { SvgRender } from "../general/SvgRender"
 import { ImageContainer } from "../general/ImageContainer"
+import { ReworkedText } from "../general/ReworkedText"
 
 export function GameDetailsBody({ game }: { game: Game }) {
     const utilService = new UtilityService()
 
     const gridTemplateColumns = `repeat(${game.screenshots.length - 1}, 1fr)`
-
-    function convertLineBreaks(string: string) {
-        const parts = string.split('<br>')
-        return parts.map((line, index) => (
-            <React.Fragment key={index}>
-                {line}
-                {index < parts.length - 1 && <br />}
-            </React.Fragment>
-        ))
-    }
 
     return (
         <article className="game-body flex column w-100">
@@ -37,9 +27,9 @@ export function GameDetailsBody({ game }: { game: Game }) {
                     />
                 ))}
             </div>
-            <p className="separator">{convertLineBreaks(game.description!)}</p>
+            <ReworkedText string={game.description!} />
             <p className="text-bold">Controls: {game.controls}</p>
-            <p>{convertLineBreaks(game.credits!)}</p>
+            <ReworkedText string={game.credits!} />
             <div className="video-wrapper grid w-100">
                 {game.walkthrough && (
                     <div className="video flex column w-100">
@@ -82,7 +72,7 @@ export function GameDetailsBody({ game }: { game: Game }) {
                     {game.genre?.map(genre => utilService.capitalizeString(genre)).join(', ')}
                 </p>
                 {game.outsideLink?.includes('itch.io') && (
-                    <a href={game.outsideLink} target="_blank" aria-label="itch.io navigate button"
+                    <a href={game.outsideLink} target="_blank" aria-label="navigation to itch.io" title="Go to itch.io?"
                         rel="noopener noreferrer" className="flex row align-center w-fit fast-trans">
                         <SvgRender iconName={'itch'} />
                         <span>Available on Itch.io as well!</span>

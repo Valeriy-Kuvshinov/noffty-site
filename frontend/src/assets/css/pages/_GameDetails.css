@@ -84,13 +84,6 @@
         border-top: 1px solid var(--scdclr7);
         padding-block-start: 1em;
 
-        p {
-            &.seperator {
-                padding-block-start: 1em;
-                border-top: 1px solid var(--scdclr7);
-            }
-        }
-
         .screenshots {
             gap: 1em;
             padding-block-end: 1em;
@@ -105,6 +98,11 @@
                 border-radius: 0.5em;
                 cursor: pointer;
             }
+        }
+
+        p:nth-child(3) {
+            padding-block-start: 1em;
+            border-top: 1px solid var(--scdclr7);
         }
 
         .video-wrapper {
