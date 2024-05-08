@@ -1,7 +1,7 @@
 'use client'
-import { Game } from '../models/game'
+import { Game } from '../../models/game'
 import { GamePreview } from './GamePreview'
-import { ErrorContainer } from './general/ErrorContainer'
+import { ErrorContainer } from '../general/ErrorContainer'
 
 export function GameList({ games }: { games: Game[] }) {
     return (

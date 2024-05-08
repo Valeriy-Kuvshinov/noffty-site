@@ -2,24 +2,21 @@
 import { useEffect, useState } from "react"
 import { Game } from "../../../models/game"
 import { GameService } from "../../../services/game.service"
-import { UtilityService } from "../../../services/utility.service"
-import { GameDetailsBody } from "../../../components/GameDetailsBody"
-import { SvgRender } from "../../../components/general/SvgRender"
+import { GameDetailsBody } from "../../../components/game/GameDetailsBody"
 import { Loader } from "../../../components/general/Loader"
 import { ErrorContainer } from "../../../components/general/ErrorContainer"
+import { GameDetailsFrame } from "../../../components/game/GameDetailsFrame"
 
 export default function GameDetails({ params }: { params: { gameName: string } }) {
     const gameService = new GameService()
-    const utilityService = new UtilityService()
+
+    const gameName = decodeURIComponent(params.gameName)
 
     const [game, setGame] = useState<Game | null>(null)
     const [loading, setLoading] = useState(true)
-    const [allowAttributes, setAllowAttributes] = useState('')
-    const gameName = decodeURIComponent(params.gameName)
 
     useEffect(() => {
         fetchGame()
-        setAllowAttributes(utilityService.getAllowAttributes())
     }, [params.gameName])
 
     async function fetchGame() {
@@ -42,29 +39,7 @@ export default function GameDetails({ params }: { params: { gameName: string } }
                 {loading ? (
                     <Loader />
                 ) : game ? (<>
-                    {game.platform === 'html5' ? (
-                        <div className="game-frame flex column w-100 text-center">
-                            <h2>You Are Now Playing {game.name}</h2>
-                            <iframe className="w-100"
-                                src={game.gameLink}
-                                title={game.name}
-                                allow={allowAttributes}
-                                allowFullScreen={true}
-                                aria-label="The game view frame"
-                            ></iframe>
-                        </div>
-                    ) : (
-                        <div className="game-frame flex column w-100 text-center">
-                            <p>Whoa, looks like the game is not intended for the browser, but for
-                                <span className="text-capitalize"> {game.platform}</span> instead.</p>
-                            <a href={game.outsideLink} className="flex row fast-trans"
-                                target="_blank" rel="noopener noreferrer" aria-label="Outside game navigate">
-                                <SvgRender iconName={game.platform} />
-                                <span>Take Me to The Game!</span>
-                                <SvgRender iconName={game.platform} />
-                            </a>
-                        </div>
-                    )}
+                    <GameDetailsFrame game={game} />
                     <GameDetailsBody game={game} />
                 </>) : (
                     <ErrorContainer message={`Sorry, no game found matching ${gameName}.`} />

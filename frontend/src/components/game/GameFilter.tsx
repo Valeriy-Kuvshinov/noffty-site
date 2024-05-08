@@ -1,8 +1,8 @@
 'use client'
 import { useEffect, useState } from "react"
-import { GameQueryParams } from "../models/game"
-import { GameService } from "../services/game.service"
-import { useDebounce } from "../hooks/debounce"
+import { GameQueryParams } from "../../models/game"
+import { GameService } from "../../services/game.service"
+import { useDebounce } from "../../hooks/debounce"
 
 interface GameFilterProps {
     onFilterChange: (filterBy: GameQueryParams) => void

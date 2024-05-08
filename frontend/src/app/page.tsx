@@ -1,5 +1,5 @@
 import { GameService } from "../services/game.service"
-import { GameList } from "../components/GameList"
+import { GameList } from "../components/game/GameList"
 import { SpecialLink } from "../components/SpecialLink"
 import { CrewLinks } from "../components/CrewLinks"
 import { ImageContainer } from "../components/general/ImageContainer"

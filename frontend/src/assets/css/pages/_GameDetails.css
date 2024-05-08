@@ -20,11 +20,43 @@
             padding-block-end: 0.5em;
         }
 
-        iframe {
-            max-height: 750px;
-            aspect-ratio: 16 / 9;
-            border: none;
-            box-shadow: 0 4px 100px rgba(0, 0, 0, 0.75);
+        .iframe-container {
+            position: relative;
+
+            iframe {
+                max-height: 750px;
+                aspect-ratio: 16 / 9;
+                border: none;
+                box-shadow: 0 4px 100px rgba(0, 0, 0, 0.75);
+
+                &.fullscreen {
+                    max-height: 100%;
+                    max-width: 100%;
+                }
+            }
+
+            button {
+                position: absolute;
+                bottom: 1em;
+                right: 0.75em;
+                width: 3em;
+                height: 3em;
+                border: 1px solid var(--scdclr1);
+                opacity: 0.75;
+
+                .svg-cmp {
+                    fill: var(--prmclr1);
+                }
+
+                &:hover {
+                    opacity: 1;
+                    border: 1px solid var(--scdclr4);
+
+                    .svg-cmp {
+                        fill: var(--scdclr4);
+                    }
+                }
+            }
         }
 
         a {

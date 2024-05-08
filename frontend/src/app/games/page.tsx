@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react"
 import { GameQueryParams } from "../../models/game"
 import { GameService } from "../../services/game.service"
-import { GameList } from "../../components/GameList"
-import { GameFilter } from "../../components/GameFilter"
+import { GameList } from "../../components/game/GameList"
+import { GameFilter } from "../../components/game/GameFilter"
 import { Loader } from "../../components/general/Loader"
 
 export default function GameIndex() {
