@@ -48,7 +48,7 @@ export default function Home() {
           <GameList games={mobileGames} />
 
           <h4 className="text-center">We've got plenty more games, which you can</h4>
-          <a href="/games/" className="action-btn fast-trans" title="Go to games index?"
+          <a href="/games" className="action-btn fast-trans" title="Go to games index?"
             aria-label="games index navigation">Find on Our Website</a>
         </article>
 

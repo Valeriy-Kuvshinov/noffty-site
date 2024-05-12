@@ -1,11 +1,13 @@
 .index-page .page-contents {
     .games-showcase {
-        padding: 1em 0;
-        max-width: 1200px;
         margin: 0 auto;
 
         h2 {
             margin-block-end: 1em;
+        }
+
+        .filter-area {
+            padding-bottom: 1em;
         }
     }
 }

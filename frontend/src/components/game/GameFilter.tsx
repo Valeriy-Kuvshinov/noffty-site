@@ -13,30 +13,11 @@ export function GameFilter({ onFilterChange }: GameFilterProps) {
     const defaultFilter = gameService.getDefaultFilter()
 
     const [filter, setFilter] = useState(defaultFilter)
-    const debouncedFilter = useDebounce(filter, 500)
+    const debouncedFilter = useDebounce(filter, 1000)
 
-    const genres = [
-        { label: 'All Genres', value: '' },
-        { label: 'Action', value: 'action' },
-        { label: 'Platformer', value: 'platformer' },
-        { label: 'Word', value: 'word' },
-        { label: 'Survival', value: 'survival' },
-        { label: 'Adventure', value: 'adventure' },
-        { label: 'Puzzle', value: 'puzzle' }
-    ]
-
-    const platforms = [
-        { label: 'All Platforms', value: '' },
-        { label: 'Android', value: 'android' },
-        { label: 'Browser', value: 'html5' },
-        { label: 'Steam', value: 'steam' }
-    ]
-
-    const gameJams = [
-        { label: 'All', value: '' },
-        { label: 'Yes', value: 'yes' },
-        { label: 'No', value: 'no' }
-    ]
+    const genres = gameService.getGenres()
+    const platforms = gameService.getPlatforms()
+    const gameJams = gameService.getGameJams()
 
     useEffect(() => {
         onFilterChange(debouncedFilter)

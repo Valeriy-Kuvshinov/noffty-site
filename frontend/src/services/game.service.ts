@@ -35,6 +35,8 @@ export class GameService {
         return this.httpService.delete(`${baseUrl}delete/${id}`)
     }
 
+
+    // filtering stuff
     getDefaultFilter(): GameQueryParams {
         return {
             name: '',
@@ -44,6 +46,36 @@ export class GameService {
         }
     }
 
+    getGenres() {
+        return [
+            { label: 'All Genres', value: '' },
+            { label: 'Action', value: 'action' },
+            { label: 'Platformer', value: 'platformer' },
+            { label: 'Word', value: 'word' },
+            { label: 'Survival', value: 'survival' },
+            { label: 'Adventure', value: 'adventure' },
+            { label: 'Puzzle', value: 'puzzle' }
+        ]
+    }
+
+    getPlatforms() {
+        return [
+            { label: 'All Platforms', value: '' },
+            { label: 'Android', value: 'android' },
+            { label: 'Browser', value: 'html5' },
+            { label: 'Steam', value: 'steam' }
+        ]
+    }
+
+    getGameJams() {
+        return [
+            { label: 'All', value: '' },
+            { label: 'Yes', value: 'yes' },
+            { label: 'No', value: 'no' }
+        ]
+    }
+
+    // for home page only
     getMiniGames(platform: string): Game[] {
         if (platform === 'html5') return [
             {

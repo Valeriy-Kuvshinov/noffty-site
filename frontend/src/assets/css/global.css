@@ -17,3 +17,4 @@
 /* components */
 @import './components/_GameList.css';
 @import './components/_GamePreview.css';
+@import './components/_Header.css';

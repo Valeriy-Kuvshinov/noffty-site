@@ -1,0 +1,19 @@
+.header {
+    height: 4em;
+    background: var(--prmclr4);
+    border-bottom: 1px solid var(--scdclr6);
+
+    .header-contents {
+        .links {
+
+            a {
+                color: var(--scdclr6);
+
+                &:hover,
+                &.active {
+                    color: var(--scdclr4)
+                }
+            }
+        }
+    }
+}
