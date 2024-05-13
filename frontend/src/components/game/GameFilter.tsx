@@ -1,8 +1,9 @@
 'use client'
-import { useEffect, useState } from "react"
+import { ChangeEvent, useEffect } from "react"
 import { GameQueryParams } from "../../models/game"
 import { GameService } from "../../services/game.service"
 import { useDebounce } from "../../hooks/debounce"
+import { useUrlQuery } from "../../hooks/urlQuery"
 
 interface GameFilterProps {
     onFilterChange: (filterBy: GameQueryParams) => void
@@ -10,36 +11,25 @@ interface GameFilterProps {
 
 export function GameFilter({ onFilterChange }: GameFilterProps) {
     const gameService = new GameService()
-    const defaultFilter = gameService.getDefaultFilter()
-
-    const [filter, setFilter] = useState(defaultFilter)
-    const debouncedFilter = useDebounce(filter, 1000)
-
     const genres = gameService.getGenres()
     const platforms = gameService.getPlatforms()
     const gameJams = gameService.getGameJams()
 
+    const defaultValues: GameQueryParams = { name: '', platform: '', genre: '', isGameJam: '' }
+    const [filter, setFilter] = useUrlQuery(defaultValues)
+    const debouncedFilter = useDebounce(filter, 1000)
+    
     useEffect(() => {
+        onFilterChange(filter)
         onFilterChange(debouncedFilter)
-        updateUrlQueryParameters(debouncedFilter)
     }, [debouncedFilter])
 
-    function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
-        const { name, value } = e.target
-        setFilter(prevFilter => ({
+    function handleInputChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+        const { name, value } = e.target;
+        setFilter((prevFilter: GameQueryParams) => ({
             ...prevFilter,
             [name]: value
         }))
-    }
-
-    function updateUrlQueryParameters(updatedFilter: GameQueryParams) {
-        const newSearchParams = new URLSearchParams(window.location.search);
-        Object.entries(updatedFilter).forEach(([key, value]) => {
-            if (value) newSearchParams.set(key, value)
-            else newSearchParams.delete(key)
-        })
-        const newUrl = `${window.location.pathname}?${newSearchParams.toString()}`
-        window.history.pushState({}, '', newUrl)
     }
 
     return (
@@ -48,6 +38,7 @@ export function GameFilter({ onFilterChange }: GameFilterProps) {
                 type="text"
                 name="name"
                 placeholder="Search by name..."
+                value={filter.name || ''}
                 onChange={handleInputChange}
             />
             <select name="platform" onChange={handleInputChange}>

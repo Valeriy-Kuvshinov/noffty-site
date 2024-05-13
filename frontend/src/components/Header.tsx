@@ -1,15 +1,26 @@
 'use client'
 import Link from "next/link"
+import { useState } from "react"
 import { usePathname } from "next/navigation"
 import { ImageContainer } from "./general/ImageContainer"
 
 export function Header() {
     const pathname = usePathname()
+    const [searchTerm, setSearchTerm] = useState('')
 
     const headerLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
 
     function isActive(path: string) {
         return pathname === path
+    }
+
+    function handleSearchInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+        setSearchTerm(e.target.value)
+    }
+
+    function handleSearchSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        window.location.href = `/games?name=${encodeURIComponent(searchTerm)}`
     }
 
     return (
@@ -32,6 +43,17 @@ export function Header() {
                         title="Go to about page?" aria-label="about page navigation">
                         <span>About</span>
                     </Link>
+                    <form onSubmit={handleSearchSubmit} className="flex row align-center">
+                        <input
+                            type="text"
+                            placeholder="Search games..."
+                            value={searchTerm}
+                            onChange={handleSearchInputChange}
+                        />
+                        <button type="submit" className="search-button">
+                            Search
+                        </button>
+                    </form>
                 </div>
             </section>
         </article>

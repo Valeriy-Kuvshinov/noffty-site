@@ -13,6 +13,11 @@
                 &.active {
                     color: var(--scdclr4)
                 }
+
+                &.active {
+                    cursor: default;
+                    pointer-events: none;
+                }
             }
         }
     }
