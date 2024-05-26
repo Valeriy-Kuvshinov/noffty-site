@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 
 export function Loader() {
     const loaderGif = 'https://res.cloudinary.com/djzid7ags/image/upload/v1715092957/rofgvwuxaocbanu3fpzl.gif'
-    const floor = 'https://res.cloudinary.com/djzid7ags/image/upload/v1715197467/d7ykdhe8ppwvfhcizrbr.png'
+    const floor = 'https://res.cloudinary.com/djzid7ags/image/upload/v1716704406/ogkkverm9r1wxupucbxp.avif'
     const phrases = [
         "Fetching data...",
         "Almost there...",

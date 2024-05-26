@@ -1,7 +1,8 @@
 import { GameService } from "../services/game.service"
+import { UtilityService } from "../services/utility.service"
 import { GameList } from "../components/game/GameList"
+import { CrewLink } from "../components/CrewLink"
 import { SpecialLink } from "../components/SpecialLink"
-import { CrewLinks } from "../components/CrewLinks"
 import { ImageContainer } from "../components/general/ImageContainer"
 
 export default function Home() {
@@ -9,20 +10,11 @@ export default function Home() {
   const webGames = gamesService.getMiniGames('html5')
   const mobileGames = gamesService.getMiniGames('android')
 
-  const companyLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305391/shv6c332n1pkelye6ipe.jpg'
+  const utilService = new UtilityService()
+  const socialLinks = utilService.getSocialLinks()
+  const crewMembers = utilService.getCrewMembers()
 
-  const socialLinks = [
-    { iconName: "discord", link: "https://discord.gg/SeNsSRt", ariaLabel: "Discord" },
-    { iconName: "itch", link: "https://t1mure.itch.io/", ariaLabel: "Itch.io" },
-    { iconName: "googlePlay", link: "https://play.google.com/store/apps/dev?id=8915839538887603911&", ariaLabel: "Google Play" },
-    { iconName: "youtube", link: "https://www.youtube.com/channel/UCUCpztVlwt_pz0xDZe_ajIA", ariaLabel: "YouTube" }
-  ]
-
-  const crewMembers = [
-    { name: 'Jen Ayve', image: 'https://res.cloudinary.com/djzid7ags/image/upload/v1713535803/about/mhugb5libtdcxs6ugqg1.jpg' },
-    { name: 'T1mure', image: 'https://res.cloudinary.com/djzid7ags/image/upload/v1713535803/about/heachou19kttnd9qq0z7.jpg' },
-    { name: 'Valeriy Kuvshinov', image: 'https://res.cloudinary.com/djzid7ags/image/upload/v1713535803/about/vkx2jish5tjfrq7zn601.jpg' }
-  ]
+  const companyLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1716704406/xtidg8pprkayhx9pxhce.avif'
 
   return (
     <main className="home-page full w-h-100">
@@ -49,12 +41,18 @@ export default function Home() {
 
           <h4 className="text-center">We've got plenty more games, which you can</h4>
           <a href="/games" className="action-btn fast-trans" title="Go to games index?"
-            aria-label="games index navigation">Find on Our Website</a>
+            aria-label="Go to games page">Find on Our Website!</a>
         </article>
 
         <article className="about flex column full-center w-100">
           <h2 className="text-center">Meet The Crew</h2>
-          <CrewLinks crewMembers={crewMembers} />
+
+          <div className="crew grid w-100">
+            {crewMembers.map(member => (
+              <CrewLink key={member.name} name={member.name}
+                image={member.image} ariaLabel={member.ariaLabel} />
+            ))}
+          </div>
         </article>
       </section>
     </main>

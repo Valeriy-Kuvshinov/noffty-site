@@ -1,12 +1,7 @@
+import { LinkTypeTwo } from "../models/utility"
 import { SvgRender } from "./general/SvgRender"
 
-interface SpecialLink {
-    iconName: string
-    link: string
-    ariaLabel: string
-}
-
-export function SpecialLink({ iconName, link, ariaLabel }: SpecialLink) {
+export function SpecialLink({ iconName, link, ariaLabel }: LinkTypeTwo) {
     return (
         <a href={link} target="_blank" rel="noopener noreferrer"
             aria-label={ariaLabel}>

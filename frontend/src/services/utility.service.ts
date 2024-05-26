@@ -1,3 +1,4 @@
+import { LinkTypeOne, LinkTypeTwo } from "../models/utility"
 
 export class UtilityService {
     getBrowserName() {
@@ -54,5 +55,22 @@ export class UtilityService {
     getYouTubeEmbedUrl(url: string): string {
         const videoId = new URLSearchParams(new URL(url).search).get('v')
         return `https://www.youtube.com/embed/${videoId}`
+    }
+
+    getSocialLinks(): LinkTypeTwo[] {
+        return [
+            { iconName: "discord", link: "https://discord.gg/SeNsSRt", ariaLabel: "Go to Noffty's Discord channel" },
+            { iconName: "itch", link: "https://t1mure.itch.io/", ariaLabel: "Go to T1mure's Itch.io account" },
+            { iconName: "googlePlay", link: "https://play.google.com/store/apps/dev?id=8915839538887603911&", ariaLabel: "Go to Noffty's Google Play account" },
+            { iconName: "youtube", link: "https://www.youtube.com/channel/UCUCpztVlwt_pz0xDZe_ajIA", ariaLabel: "Go to Noffty's YouTube channel" }
+        ]
+    }
+
+    getCrewMembers(): LinkTypeOne[] {
+        return [
+            { name: 'Jen Ayve', image: 'https://res.cloudinary.com/djzid7ags/image/upload/v1716660974/about/juqpgt9bszc2bxfuock9.avif', ariaLabel: "About Jen Ayve" },
+            { name: 'T1mure', image: 'https://res.cloudinary.com/djzid7ags/image/upload/v1716660952/about/m4dlfg9iigh8oubcc3l1.avif', ariaLabel: "About T1mure" },
+            { name: 'Valeriy Kuvshinov', image: 'https://res.cloudinary.com/djzid7ags/image/upload/v1716660971/about/k2g5cvcwgjry7tpeaei5.avif', ariaLabel: "About Valeriy Kuvshinov" }
+        ]
     }
 }
