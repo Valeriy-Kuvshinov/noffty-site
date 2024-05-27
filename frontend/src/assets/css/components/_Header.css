@@ -1,22 +1,53 @@
 .header {
-    height: 4em;
     background: var(--prmclr4);
     border-bottom: 1px solid var(--scdclr6);
 
-    .header-contents {
-        .links {
+    .header-contents .links {
+        a {
+            color: var(--scdclr6);
 
-            a {
-                color: var(--scdclr6);
+            &:hover,
+            &.active {
+                color: var(--scdclr4);
+            }
 
-                &:hover,
-                &.active {
-                    color: var(--scdclr4)
+            &.active {
+                cursor: default;
+                pointer-events: none;
+            }
+        }
+
+        form {
+            width: 250px;
+
+            input {
+                height: 32px;
+                padding: 0.25em 0.5em;
+                border: 1px solid white;
+                border-radius: 0.5em 0 0 0.5em;
+
+                &:focus {
+                    border-right-color: var(--scdclr8);
+                }
+            }
+
+            button {
+                width: 48px;
+                height: 32px;
+                padding: 0.25em;
+                border-radius: 0 0.5em 0.5em 0;
+                background: var(--scdclr4);
+
+                .svg-cmp {
+                    fill: var(--scdclr8);
                 }
 
-                &.active {
-                    cursor: default;
-                    pointer-events: none;
+                &:hover {
+                    background: var(--scdclr8);
+
+                    .svg-cmp {
+                        fill: var(--scdclr4);
+                    }
                 }
             }
         }

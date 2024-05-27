@@ -1,8 +1,8 @@
 import { GameService } from "../services/game.service"
 import { UtilityService } from "../services/utility.service"
 import { GameList } from "../components/game/GameList"
-import { CrewLink } from "../components/CrewLink"
-import { SpecialLink } from "../components/SpecialLink"
+import { CrewLink } from "../components/general/CrewLink"
+import { SpecialLink } from "../components/general/SpecialLink"
 import { ImageContainer } from "../components/general/ImageContainer"
 
 export default function Home() {

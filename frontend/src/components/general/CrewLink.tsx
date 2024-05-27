@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link"
-import { LinkTypeOne } from "../models/utility"
-import { ImageContainer } from "./general/ImageContainer"
+import { LinkTypeOne } from "../../models/utility"
+import { ImageContainer } from "./../general/ImageContainer"
 
 export function CrewLink({ name, image, ariaLabel }: LinkTypeOne) {
     return (
