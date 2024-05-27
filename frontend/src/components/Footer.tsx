@@ -41,7 +41,7 @@ export function Footer() {
                         ))}
                     </div>
                 </div>
-                <span className="copyright">Noffty Productions 2024 &copy;</span>
+                <span className="copyright">&copy; 2024 Noffty Productions. All Rights Reserved.</span>
             </section>
         </article>
     )

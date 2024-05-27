@@ -12,7 +12,6 @@ export class GameService {
 
     async query(filterBy: GameQueryParams = {}) {
         const queryParams = new URLSearchParams(filterBy as any).toString()
-        console.log("URL being requested with filter:", filterBy)
         console.log(`Excepted request to backend: ${baseUrl}?${queryParams}`)
         return this.httpService.get(`${baseUrl}?${queryParams}`)
     }
@@ -34,7 +33,6 @@ export class GameService {
     async remove(id: string) {
         return this.httpService.delete(`${baseUrl}delete/${id}`)
     }
-
 
     // filtering stuff
     getDefaultFilter(): GameQueryParams {

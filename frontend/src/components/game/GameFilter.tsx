@@ -1,36 +1,54 @@
 'use client'
-import { ChangeEvent, useEffect } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { GameQueryParams } from "../../models/game"
 import { GameService } from "../../services/game.service"
 import { useDebounce } from "../../hooks/debounce"
-import { useUrlQuery } from "../../hooks/urlQuery"
 
 interface GameFilterProps {
     onFilterChange: (filterBy: GameQueryParams) => void
 }
 
 export function GameFilter({ onFilterChange }: GameFilterProps) {
+    const searchParams = useSearchParams()
+    const router = useRouter()
+
     const gameService = new GameService()
     const genres = gameService.getGenres()
     const platforms = gameService.getPlatforms()
     const gameJams = gameService.getGameJams()
 
-    const defaultValues: GameQueryParams = { name: '', platform: '', genre: '', isGameJam: '' }
-    const [filter, setFilter] = useUrlQuery(defaultValues)
+    const defaultValues = {
+        name: searchParams.get('name') || '',
+        platform: searchParams.get('platform') || '',
+        genre: searchParams.get('genre') || '',
+        isGameJam: searchParams.get('isGameJam') || ''
+    }
+
+    const [filter, setFilter] = useState(defaultValues)
     const debouncedFilter = useDebounce(filter, 1000)
-    
+
     useEffect(() => {
-        onFilterChange(filter)
         onFilterChange(debouncedFilter)
-    }, [debouncedFilter])
+    }, [debouncedFilter, onFilterChange])
 
     function handleInputChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
-        const { name, value } = e.target;
-        setFilter((prevFilter: GameQueryParams) => ({
+        const { name, value } = e.target
+        setFilter((prevFilter) => ({
             ...prevFilter,
             [name]: value
         }))
     }
+
+    useEffect(() => {
+        const newSearchParams = new URLSearchParams()
+        Object.entries(debouncedFilter).forEach(([key, value]) => {
+            if (value) newSearchParams.set(key, value)
+            else newSearchParams.delete(key)
+        })
+        router.replace(`?${newSearchParams.toString()}`,
+            undefined, { shallow: true })
+    }, [debouncedFilter, router])
 
     return (
         <article className="filter-area grid w-100">

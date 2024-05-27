@@ -6,6 +6,7 @@
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: auto auto;
         column-gap: 1em;
+        max-width: 1200px;
 
         .links {
             gap: 1em;
