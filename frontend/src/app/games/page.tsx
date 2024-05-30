@@ -13,14 +13,16 @@ export default function GameIndex() {
     const [loading, setLoading] = useState(true)
     const { getDefaultFilterValues, updateSearchParams, searchParams } = useSearchParamsUpdate()
 
+    const searchParamsString = searchParams.toString()
+    const defaultValues = getDefaultFilterValues()
+
     useEffect(() => {
         fetchGames()
-    }, [searchParams])
+    }, [searchParamsString])
 
     async function fetchGames() {
         try {
-            const filterBy = getDefaultFilterValues()
-            const fetchedGames = await gameService.query(filterBy)
+            const fetchedGames = await gameService.query(defaultValues)
 
             setGames(fetchedGames)
             setLoading(false)
@@ -36,9 +38,8 @@ export default function GameIndex() {
                 <div className="games-showcase flex column full-center w-100">
                     <h2 className="text-center">Noffty's Game Collection</h2>
                     <GameFilter
-                        getDefaultFilterValues={getDefaultFilterValues}
+                        defaultValues={defaultValues}
                         updateSearchParams={updateSearchParams}
-                        searchParams={searchParams}
                     />
                     {loading ? (
                         <Loader />

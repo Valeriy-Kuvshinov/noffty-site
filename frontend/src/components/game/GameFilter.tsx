@@ -1,44 +1,33 @@
 'use client'
-import { ChangeEvent, useEffect, useMemo, useState } from "react"
+import { isEqual } from 'lodash'
+import { ChangeEvent, useEffect, useState } from "react"
 import { GameQueryParams } from "../../models/game"
 import { GameService } from "../../services/game.service"
 import { useDebounce } from "../../hooks/debounce"
 
 interface GameFilterProps {
-    getDefaultFilterValues: () => GameQueryParams
+    defaultValues: GameQueryParams
     updateSearchParams: (filterBy: GameQueryParams) => void
-    searchParams: URLSearchParams
 }
 
-export function GameFilter({ getDefaultFilterValues, updateSearchParams, searchParams }: GameFilterProps) {
+export function GameFilter({ defaultValues, updateSearchParams, }: GameFilterProps) {
     const gameService = new GameService()
     const genres = gameService.getGenres()
     const platforms = gameService.getPlatforms()
     const gameJams = gameService.getGameJams()
 
-    const defaultValues = useMemo(() => {
-        console.log('Calculating default values')
-        return getDefaultFilterValues()
-    }, [searchParams])
-
     const [filter, setFilter] = useState(defaultValues)
     const debouncedFilter = useDebounce(filter, 1000)
 
     useEffect(() => {
-        console.log('Setting filter state based on default values')
-        setFilter(defaultValues)
-    }, [defaultValues])
-
-    useEffect(() => {
-        console.log('Updating search params based on debounced filter')
-        updateSearchParams(debouncedFilter)
-    }, [debouncedFilter])
+        if (!isEqual(debouncedFilter, defaultValues)) {
+            updateSearchParams(debouncedFilter)
+        }
+    }, [debouncedFilter, defaultValues])
 
     function handleInputChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         const { name, value } = e.target
-        setFilter((prevFilter) => ({
-            ...prevFilter, [name]: value
-        }))
+        setFilter((prevFilter) => ({ ...prevFilter, [name]: value }))
     }
 
     return (

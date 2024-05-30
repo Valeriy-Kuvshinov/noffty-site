@@ -2,12 +2,14 @@
 import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
+import { useSearchParamsUpdate } from "../hooks/searchParamsUpdate"
 import { SvgRender } from "./general/SvgRender"
 import { ImageContainer } from "./general/ImageContainer"
 
 export function Header() {
     const pathname = usePathname()
     const [searchTerm, setSearchTerm] = useState('')
+    const { updateSearchParams } = useSearchParamsUpdate()
 
     const headerLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
 
@@ -21,7 +23,8 @@ export function Header() {
 
     function handleSearchSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        window.location.href = `/games?name=${encodeURIComponent(searchTerm)}`
+        updateSearchParams({ name: searchTerm }, '/games')
+        setSearchTerm('')
     }
 
     return (
