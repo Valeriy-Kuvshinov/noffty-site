@@ -15,7 +15,8 @@
 @import './pages/_GameDetails.css';
 
 /* components */
+@import './components/_Header.css';
+@import './components/_GameFilter.css';
 @import './components/_GameList.css';
 @import './components/_GamePreview.css';
-@import './components/_Header.css';
 @import './components/_Footer.css';

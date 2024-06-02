@@ -46,30 +46,30 @@ export class GameService {
 
     getGenres() {
         return [
-            { label: 'All Genres', value: '' },
-            { label: 'Action', value: 'action' },
-            { label: 'Platformer', value: 'platformer' },
-            { label: 'Word', value: 'word' },
-            { label: 'Survival', value: 'survival' },
-            { label: 'Adventure', value: 'adventure' },
-            { label: 'Puzzle', value: 'puzzle' }
+            { label: 'Any', value: '', iconName: 'globe' },
+            { label: 'Action', value: 'action', iconName: 'action' },
+            { label: 'Platformer', value: 'platformer', iconName: 'platformer' },
+            { label: 'Word', value: 'word', iconName: 'word' },
+            { label: 'Survival', value: 'survival', iconName: 'heart' },
+            { label: 'Adventure', value: 'adventure', iconName: 'adventure' },
+            { label: 'Puzzle', value: 'puzzle', iconName: 'puzzle' }
         ]
     }
 
     getPlatforms() {
         return [
-            { label: 'All Platforms', value: '' },
-            { label: 'Android', value: 'android' },
-            { label: 'Browser', value: 'html5' },
-            { label: 'Steam', value: 'steam' }
+            { label: 'Any', value: '', iconName: 'globe' },
+            { label: 'Android', value: 'android', iconName: 'android' },
+            { label: 'Browser', value: 'html5', iconName: 'html5' },
+            { label: 'Steam', value: 'steam', iconName: 'steam' }
         ]
     }
 
     getGameJams() {
         return [
-            { label: 'All', value: '' },
-            { label: 'Yes', value: 'yes' },
-            { label: 'No', value: 'no' }
+            { label: 'Any', value: '', iconName: 'globe' },
+            { label: 'Yes', value: 'yes', iconName: 'confirm' },
+            { label: 'No', value: 'no', iconName: 'cancel' }
         ]
     }
 

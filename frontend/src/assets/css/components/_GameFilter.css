@@ -1,0 +1,84 @@
+.index-page .page-contents .games-showcase {
+    .filter-area {
+        max-width: 400px;
+        gap: 0.5em;
+        padding-bottom: 4em;
+
+        input {
+            height: 32px;
+            padding: 0.25em 0.5em;
+            border: 2px solid transparent;
+            border-radius: 0.5em;
+
+            &:focus {
+                border-color: var(--mnrclr2);
+            }
+        }
+
+        .select-options {
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 1em;
+
+            .select-option {
+                position: relative;
+
+                label {
+                    margin-bottom: 0.25em;
+                }
+
+                .svg-cmp {
+                    width: 24px;
+                    height: 24px;
+                    fill: var(--prmclr1);
+                }
+
+                .custom-select-container {
+                    position: absolute;
+                    top: 100%;
+                    z-index: 5;
+                    border-radius: 0.5em;
+                    background: white;
+                    color: var(--prmclr1);
+                    cursor: pointer;
+
+                    .selected-value {
+                        border-radius: 0.5em;
+
+                        &.open {
+                            border-bottom: 1px solid var(--prmclr1);
+                            border-radius: 0.5em 0.5em 0 0;
+
+                            .svg-cmp {
+                                transform: rotate(90deg);
+                            }
+                        }
+                    }
+
+                    .options-container .option,
+                    .selected-value {
+                        padding: 0.25em 0.5em;
+
+                        &:hover {
+                            background: var(--prmclr1);
+                            color: var(--prmclr2);
+
+                            .svg-cmp {
+                                fill: var(--prmclr2);
+                            }
+                        }
+                    }
+
+                    .options-container .option {
+                        &:not(:last-child) {
+                            border-bottom: 1px solid var(--prmclr1);
+                        }
+
+                        &:last-child:hover {
+                            border-radius: 0 0 0.5em 0.5em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
