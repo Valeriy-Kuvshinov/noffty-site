@@ -35,7 +35,11 @@ export default function GameIndex() {
         <main className="index-page full w-h-100">
             <section className="page-contents flex column align-center w-h-100 layout-row">
                 <div className="games-showcase flex column full-center w-100">
-                    <h2 className="text-center">Explore Our {games.length} Matching Games</h2>
+                    <h2 className="text-center">
+                        {games.length === 1
+                            ? 'Explore Our Matching Game'
+                            : `Explore Our ${games.length} Matching Games`}
+                    </h2>
                     <GameFilter
                         defaultValues={defaultValues}
                         updateSearchParams={updateSearchParams}

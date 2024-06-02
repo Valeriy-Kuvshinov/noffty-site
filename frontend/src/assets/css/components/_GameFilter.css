@@ -5,10 +5,10 @@
         padding-bottom: 4em;
 
         input {
-            height: 32px;
-            padding: 0.25em 0.5em;
+            padding: 0.5em 0.5em;
             border: 2px solid transparent;
             border-radius: 0.5em;
+            font-size: 1.25em;
 
             &:focus {
                 border-color: var(--mnrclr2);
@@ -29,7 +29,7 @@
                 .svg-cmp {
                     width: 24px;
                     height: 24px;
-                    fill: var(--prmclr1);
+                    fill: var(--scdclr3);
                 }
 
                 .custom-select-container {
@@ -37,15 +37,15 @@
                     top: 100%;
                     z-index: 5;
                     border-radius: 0.5em;
-                    background: white;
-                    color: var(--prmclr1);
+                    background: var(--prmclr1);
+                    color: var(--scdclr3);
                     cursor: pointer;
 
                     .selected-value {
                         border-radius: 0.5em;
 
                         &.open {
-                            border-bottom: 1px solid var(--prmclr1);
+                            border-bottom: 1px solid var(--scdclr3);
                             border-radius: 0.5em 0.5em 0 0;
 
                             .svg-cmp {
@@ -56,21 +56,21 @@
 
                     .options-container .option,
                     .selected-value {
-                        padding: 0.25em 0.5em;
+                        padding: 0.5em 0.5em;
 
                         &:hover {
-                            background: var(--prmclr1);
-                            color: var(--prmclr2);
+                            background: var(--prmclr2);
+                            color: var(--prmclr1);
 
                             .svg-cmp {
-                                fill: var(--prmclr2);
+                                fill: var(--prmclr1);
                             }
                         }
                     }
 
                     .options-container .option {
                         &:not(:last-child) {
-                            border-bottom: 1px solid var(--prmclr1);
+                            border-bottom: 1px solid var(--scdclr3);
                         }
 
                         &:last-child:hover {

@@ -27,7 +27,7 @@
                 border-radius: 0.5em 0 0 0.5em;
 
                 &:focus {
-                    border-color: var(--mnrclr1);
+                    border-color: var(--mnrclr2);
                 }
             }
 
@@ -36,7 +36,7 @@
                 height: 32px;
                 padding: 0.25em;
                 border-radius: 0 0.5em 0.5em 0;
-                background: var(--scdclr4);
+                background: var(--scdclr3);
 
                 .svg-cmp {
                     fill: var(--scdclr8);
@@ -46,7 +46,7 @@
                     background: var(--scdclr8);
 
                     .svg-cmp {
-                        fill: var(--scdclr4);
+                        fill: var(--scdclr3);
                     }
                 }
             }

@@ -77,6 +77,8 @@ input,
 textarea,
 select {
     width: 100%;
+    background: var(--prmclr1);
+    color: var(--scdclr3);
     outline: none;
     text-align: inherit;
     font-family: 'cool-bold';

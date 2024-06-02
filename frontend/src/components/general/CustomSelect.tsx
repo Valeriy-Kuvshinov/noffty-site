@@ -1,5 +1,6 @@
 'use client'
-import { useState } from "react"
+import { useRef, useState } from "react"
+import { useClickOutside } from "../../hooks/clickOutside"
 import { SvgRender } from "./SvgRender"
 
 interface Option {
@@ -18,17 +19,24 @@ interface SelectProps {
 
 export function CustomSelect({ options, value, onChange, label, id }: SelectProps) {
     const [isOpen, setIsOpen] = useState(false)
+    const selectRef = useRef<HTMLDivElement>(null)
 
     function handleSelect(option: any) {
         onChange(option.value)
         setIsOpen(false)
     }
 
+    function closeSelect() {
+        setIsOpen(false)
+    }
+
+    useClickOutside(selectRef, closeSelect)
+
     return (
         <article className='select-option flex column'>
             <label htmlFor={id}>{label}</label>
 
-            <div className="custom-select-container w-100" id={id}>
+            <div ref={selectRef} className="custom-select-container w-100" id={id}>
                 <div className={`selected-value flex row align-center justify-between fast-trans ${isOpen ? 'open' : ''}`}
                     onClick={() => setIsOpen(!isOpen)}>
                     {options.find((opt: Option) => opt.value === value)?.label}
