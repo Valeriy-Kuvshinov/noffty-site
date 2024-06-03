@@ -1,4 +1,5 @@
 import '../assets/css/global.css'
+import { DeviceTypeProvider } from '../contexts/deviceTypeContext'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 
@@ -14,11 +15,13 @@ export default function RootLayout({ children, }: Readonly<{
         <link rel="icon" href={siteLogo} type="image/png" />
       </head>
       <body>
-        <div className='main-container'>
-          <Header />
-          {children}
-          <Footer />
-        </div>
+        <DeviceTypeProvider>
+          <main className='main-container'>
+            <Header />
+            {children}
+            <Footer />
+          </main>
+        </DeviceTypeProvider>
       </body>
     </html>
   )

@@ -20,6 +20,11 @@
 
         .games-showcase .game-list {
             grid-template-columns: repeat(1, 1fr);
+
+            a {
+                max-width: 450px;
+                margin: 0 auto;
+            }
         }
     }
 
@@ -67,6 +72,11 @@
 
         .games-showcase .game-list {
             grid-template-columns: repeat(1, 1fr);
+
+            a {
+                max-width: 450px;
+                margin: 0 auto;
+            }
         }
     }
 
@@ -96,10 +106,8 @@
     }
 
     @media(max-width: 700px) {
-        .game-body {
-            .video-wrapper {
-                grid-template-columns: 1fr;
-            }
+        .game-body .video-wrapper {
+            grid-template-columns: 1fr;
         }
     }
 
@@ -112,10 +120,8 @@
     }
 
     @media(min-width: 701px) {
-        .game-body {
-            .video-wrapper {
-                grid-template-columns: 1fr 1fr;
-            }
+        .game-body .video-wrapper {
+            grid-template-columns: 1fr 1fr;
         }
     }
 }
@@ -136,7 +142,7 @@
     @media(max-width: 600px) {
         padding: 1em 1em;
 
-        .links {
+        .mobile-view {
             font-size: 1.25em;
         }
     }
@@ -144,8 +150,8 @@
     @media(min-width: 601px) {
         padding: 1em 2em;
 
-        .links {
-            font-size: 1.5em;
+        .desktop-view {
+            font-size: 1.75em;
         }
     }
 }

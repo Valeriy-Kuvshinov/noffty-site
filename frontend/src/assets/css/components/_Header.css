@@ -2,53 +2,87 @@
     background: var(--prmclr4);
     border-bottom: 1px solid var(--scdclr6);
 
-    .header-contents .links {
-        a {
-            color: var(--scdclr6);
+    a {
+        color: var(--scdclr6);
 
-            &:hover,
-            &.active {
-                color: var(--scdclr4);
-            }
+        &:nth-child(1) {
+            height: 48px;
+            aspect-ratio: 1 / 1;
+        }
 
-            &.active {
-                cursor: default;
-                pointer-events: none;
+        &:hover,
+        &.active {
+            color: var(--scdclr4);
+        }
+
+        &.active {
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+
+    form {
+        input {
+            padding: 0.5em 0.5em;
+            border: 2px solid transparent;
+            border-radius: 0.5em 0 0 0.5em;
+            font-size: 0.5em;
+
+            &:focus {
+                border-color: var(--mnrclr2);
             }
         }
 
+        button {
+            width: 48px;
+            height: 40.4px;
+            padding: 0.5em;
+            border-radius: 0 0.5em 0.5em 0;
+            background: var(--scdclr3);
+
+            .svg-cmp {
+                fill: var(--scdclr8);
+            }
+
+            &:hover {
+                background: var(--scdclr8);
+
+                .svg-cmp {
+                    fill: var(--scdclr3);
+                }
+            }
+        }
+    }
+
+    .header-contents .mobile-view {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto;
+
+        button:nth-child(1),
+        a {
+            height: 48px;
+            aspect-ratio: 1 / 1;
+        }
+
+        a {
+            justify-self: center;
+        }
+
+        button:nth-child(1) .svg-cmp {
+            fill: var(--scdclr3);
+        }
+
         form {
-            width: 250px;
+            grid-column: 1 / -1;
+            grid-row: 2;
+            margin-block-start: 0.5em;
 
             input {
-                height: 32px;
-                padding: 0.25em 0.5em;
-                border: 2px solid transparent;
-                border-radius: 0.5em 0 0 0.5em;
-
-                &:focus {
-                    border-color: var(--mnrclr2);
-                }
+                font-size: 0.75em;
             }
 
             button {
-                width: 48px;
-                height: 32px;
-                padding: 0.25em;
-                border-radius: 0 0.5em 0.5em 0;
-                background: var(--scdclr3);
-
-                .svg-cmp {
-                    fill: var(--scdclr8);
-                }
-
-                &:hover {
-                    background: var(--scdclr8);
-
-                    .svg-cmp {
-                        fill: var(--scdclr3);
-                    }
-                }
+                height: 35.5px;
             }
         }
     }

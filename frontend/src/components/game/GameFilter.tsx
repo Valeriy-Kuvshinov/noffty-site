@@ -5,6 +5,7 @@ import { GameQueryParams } from "../../models/game"
 import { GameService } from "../../services/game.service"
 import { useDebounce } from "../../hooks/debounce"
 import { CustomSelect } from '../general/CustomSelect'
+import { SvgRender } from '../general/SvgRender'
 
 interface GameFilterProps {
     defaultValues: GameQueryParams
@@ -34,33 +35,25 @@ export function GameFilter({ defaultValues, updateSearchParams, }: GameFilterPro
     return (
         <article className="filter-area flex column layout-row w-100">
             <input
-                type="text"
-                name="name"
-                placeholder="Search by name..."
-                value={filter.name || ''}
-                onChange={handleInputChange}
+                type="text" name="name" placeholder="Search by name..."
+                value={filter.name || ''} onChange={handleInputChange}
             />
+            <SvgRender iconName="search" />
             <div className='select-options grid'>
                 <CustomSelect
-                    options={platforms}
-                    value={filter.platform || ''}
+                    options={platforms} value={filter.platform || ''}
                     onChange={(newValue) => setFilter(prev => ({ ...prev, platform: newValue }))}
-                    label="Select Platform"
-                    id="platform-select"
+                    label="Select Platform" id="platform-select"
                 />
                 <CustomSelect
-                    options={genres}
-                    value={filter.genre || ''}
+                    options={genres} value={filter.genre || ''}
                     onChange={(newValue) => setFilter(prev => ({ ...prev, genre: newValue }))}
-                    label="Select Genre"
-                    id="genre-select"
+                    label="Select Genre" id="genre-select"
                 />
                 <CustomSelect
-                    options={gameJams}
-                    value={filter.isGameJam || ''}
+                    options={gameJams} value={filter.isGameJam || ''}
                     onChange={(newValue) => setFilter(prev => ({ ...prev, isGameJam: newValue }))}
-                    label="Made for GMTK"
-                    id="isGameJam-select"
+                    label="Made for GMTK?" id="isGameJam-select"
                 />
             </div>
         </article>
