@@ -44,14 +44,12 @@ export function Header() {
                             <ImageContainer src={headerLogo} alt="noffty logo" />
                         </Link>
                         {!isGamesPage && (
-                            <form onSubmit={handleSearchSubmit} className="flex row align-center">
+                            <form onSubmit={handleSearchSubmit} className="w-100 layout-row fast-trans">
                                 <input
                                     type="text" placeholder="Search games..."
                                     value={searchTerm} onChange={handleSearchInputChange}
                                 />
-                                <button type="submit" className="fast-trans">
-                                    <SvgRender iconName="search" />
-                                </button>
+                                <SvgRender iconName="search" />
                             </form>
                         )}
                     </div>
@@ -74,14 +72,12 @@ export function Header() {
                             <span>Contact</span>
                         </Link>
                         {!isGamesPage && (
-                            <form onSubmit={handleSearchSubmit} className="flex row align-center">
+                            <form onSubmit={handleSearchSubmit} className="w-100 fast-trans">
                                 <input
                                     type="text" placeholder="Search games..."
                                     value={searchTerm} onChange={handleSearchInputChange}
                                 />
-                                <button type="submit" className="fast-trans">
-                                    <SvgRender iconName="search" />
-                                </button>
+                                <SvgRender iconName="search" />
                             </form>
                         )}
                     </div>

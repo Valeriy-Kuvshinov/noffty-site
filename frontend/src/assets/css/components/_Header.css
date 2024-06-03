@@ -22,35 +22,37 @@
     }
 
     form {
+        position: relative;
+        max-width: 65px;
+
+        &:focus-within {
+            max-width: 250px;
+
+            .svg-cmp {
+                opacity: 1;
+            }
+        }
+
         input {
-            padding: 0.5em 0.5em;
+            padding: 0.25em 0.5em;
             border: 2px solid transparent;
-            border-radius: 0.5em 0 0 0.5em;
-            font-size: 0.5em;
+            border-radius: 0.5em;
+            font-size: 0.56em;
 
             &:focus {
                 border-color: var(--mnrclr2);
             }
         }
 
-        button {
-            width: 48px;
-            height: 40.4px;
-            padding: 0.5em;
-            border-radius: 0 0.5em 0.5em 0;
-            background: var(--scdclr3);
-
-            .svg-cmp {
-                fill: var(--scdclr8);
-            }
-
-            &:hover {
-                background: var(--scdclr8);
-
-                .svg-cmp {
-                    fill: var(--scdclr3);
-                }
-            }
+        .svg-cmp {
+            position: absolute;
+            height: 26px;
+            width: 32px;
+            top: 0.325em;
+            right: 0.25em;
+            fill: var(--scdclr3);
+            z-index: 1;
+            opacity: 0;
         }
     }
 
@@ -75,14 +77,20 @@
         form {
             grid-column: 1 / -1;
             grid-row: 2;
+            max-width: 200px;
             margin-block-start: 0.5em;
+
+            &:focus-within {
+                max-width: 400px;
+            }
 
             input {
                 font-size: 0.75em;
             }
 
-            button {
-                height: 35.5px;
+            .svg-cmp {
+                height: 28px;
+                top: 0.2em;
             }
         }
     }
