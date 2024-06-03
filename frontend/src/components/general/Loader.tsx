@@ -7,15 +7,17 @@ export function Loader() {
     const phrases = [
         "Fetching data...",
         "Almost there...",
-        "Getting info...",
         "One moment...",
         "Loading content...",
         "Hang tight...",
-        "In a second...",
         "Standby, gamer...",
-        "Among us!?",
-        "Follow T1mure!",
-        "T2mure is nice..."
+        "Boiling the point...",
+        "Cleansing corruption...",
+        "Combining waves...",
+        "Loading^2...",
+        "Subscribe to T1mure!",
+        "T2mure is also cool...",
+        "Where is T3mure?"
     ]
 
     const [currentPhrase, setCurrentPhrase] = useState('')

@@ -49,8 +49,8 @@ export class GameService {
             { label: 'Any', value: '', iconName: 'globe' },
             { label: 'Action', value: 'action', iconName: 'action' },
             { label: 'Platformer', value: 'platformer', iconName: 'platformer' },
-            { label: 'Word', value: 'word', iconName: 'word' },
-            { label: 'Survival', value: 'survival', iconName: 'heart' },
+            { label: 'Other', value: 'other', iconName: 'questionMark' },
+            { label: 'Roguelike', value: 'roguelike', iconName: 'dice' },
             { label: 'Adventure', value: 'adventure', iconName: 'adventure' },
             { label: 'Puzzle', value: 'puzzle', iconName: 'puzzle' }
         ]

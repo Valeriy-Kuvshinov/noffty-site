@@ -10,7 +10,7 @@ export function GameDetailsBody({ game }: { game: Game }) {
     const gridTemplateColumns = `repeat(${game.screenshots.length - 1}, 1fr)`
 
     return (
-        <article className="game-body flex column w-100">
+        <article className="game-body flex column w-100 layout-row">
             <h3 className="text-center text-capitalize">{game.note}</h3>
             <div className={`screenshots grid ${game.platform !== 'android' ? 'w-100' : ''}`}
                 style={{ gridTemplateColumns }}>

@@ -53,7 +53,7 @@ export function GameFilter({ defaultValues, updateSearchParams, }: GameFilterPro
                 <CustomSelect
                     options={gameJams} value={filter.isGameJam || ''}
                     onChange={(newValue) => setFilter(prev => ({ ...prev, isGameJam: newValue }))}
-                    label="Made for GMTK?" id="isGameJam-select"
+                    label="Made for Jam?" id="isGameJam-select"
                 />
             </div>
         </article>

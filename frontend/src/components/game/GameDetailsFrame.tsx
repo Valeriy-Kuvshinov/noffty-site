@@ -39,7 +39,7 @@ export function GameDetailsFrame({ game }: { game: Game }) {
 
     return (<>
         {game.platform === 'html5' ? (
-            <div className="game-frame flex column w-100 text-center">
+            <div className="game-frame flex column w-100 layout-row text-center">
                 <h2>You Are Now Playing {game.name}</h2>
                 <div className="iframe-container w-100" ref={iframeContainerRef}>
                     <iframe className={`w-100 ${isFullscreen ? 'fullscreen' : ''}`}
