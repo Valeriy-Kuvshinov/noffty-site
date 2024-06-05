@@ -3,7 +3,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
 import { useSearchParamsUpdate } from "../hooks/searchParamsUpdate"
-import { useDeviceType } from "../contexts/deviceTypeContext"
+import { useDeviceType } from "../contexts/DeviceTypeContext"
 import { SvgRender } from "./general/SvgRender"
 import { ImageContainer } from "./general/ImageContainer"
 
@@ -32,10 +32,10 @@ export function Header() {
     }
 
     return (
-        <article className="header full">
+        <header className="full">
             <section className="header-contents w-h-100 layout-row">
                 {isMobileView ? (
-                    <div className="mobile-view grid align-center justify-between w-100">
+                    <nav className="mobile-view grid align-center justify-between w-100">
                         <button className="fast-trans">
                             <SvgRender iconName="menu" />
                         </button>
@@ -52,9 +52,9 @@ export function Header() {
                                 <SvgRender iconName="search" />
                             </form>
                         )}
-                    </div>
+                    </nav>
                 ) : (
-                    <div className="desktop-view flex row align-center justify-between w-100">
+                    <nav className="desktop-view flex row align-center justify-between w-100">
                         <Link href="/" className={`fast-trans ${isActive('/') ? 'active' : ''}`}
                             title="Go to home?" aria-label="Navigate to home page">
                             <ImageContainer src={headerLogo} alt="noffty logo" />
@@ -80,9 +80,9 @@ export function Header() {
                                 <SvgRender iconName="search" />
                             </form>
                         )}
-                    </div>
+                    </nav>
                 )}
             </section>
-        </article>
+        </header>
     )
 }

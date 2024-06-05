@@ -15,7 +15,7 @@ export function Footer() {
     }
 
     return (
-        <article className="footer full">
+        <footer className="full">
             <section className="footer-contents w-h-100 grid layout-row">
                 <div className="links flex column">
                     <h3>Navigation</h3>
@@ -43,6 +43,6 @@ export function Footer() {
                 </div>
                 <span className="copyright">&copy; 2024 Noffty Productions. All Rights Reserved.</span>
             </section>
-        </article>
+        </footer>
     )
 }

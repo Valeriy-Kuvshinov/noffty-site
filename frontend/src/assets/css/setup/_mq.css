@@ -4,7 +4,7 @@
         padding: 2em 1em;
 
         .intro-part {
-            img {
+            .image-container img {
                 max-width: 192px;
             }
 
@@ -17,22 +17,13 @@
                 }
             }
         }
-
-        .games-showcase .game-list {
-            grid-template-columns: repeat(1, 1fr);
-
-            a {
-                max-width: 450px;
-                margin: 0 auto;
-            }
-        }
     }
 
     @media(min-width: 601px) {
         padding: 2em 2em;
 
         .intro-part {
-            img {
+            .image-container img {
                 max-width: 256px;
             }
 
@@ -46,21 +37,8 @@
             }
         }
 
-        .games-showcase .game-list,
-        .about .crew {
-            a img {
-                padding: 1em;
-            }
-        }
-
-        .games-showcase .game-list {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media(min-width: 901px) {
-        .games-showcase .game-list {
-            grid-template-columns: repeat(3, 1fr);
+        .about .crew a .image-container img {
+            padding: 1em;
         }
     }
 }
@@ -69,29 +47,10 @@
 .index-page .page-contents {
     @media(max-width: 600px) {
         padding: 2em 1em;
-
-        .games-showcase .game-list {
-            grid-template-columns: repeat(1, 1fr);
-
-            a {
-                max-width: 450px;
-                margin: 0 auto;
-            }
-        }
     }
 
     @media(min-width: 601px) {
         padding: 2em 2em;
-
-        .games-showcase .game-list {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media(min-width: 901px) {
-        .games-showcase .game-list {
-            grid-template-columns: repeat(3, 1fr);
-        }
     }
 }
 
@@ -126,6 +85,24 @@
     }
 }
 
+/* game list cmp mq */
+.index-page .page-contents .games-showcase .game-list,
+.home-page .page-contents .games-showcase .game-list {
+
+    @media(max-width: 480px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    @media(min-width: 481px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media(min-width: 901px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
 /* not found page mq */
 .error-page .page-contents {
     @media(max-width: 600px) {
@@ -138,7 +115,7 @@
 }
 
 /* header mq */
-.header .header-contents {
+header .header-contents {
     @media(max-width: 600px) {
         padding: 1em 1em;
 
@@ -157,7 +134,7 @@
 }
 
 /* footer mq */
-.footer .footer-contents {
+footer .footer-contents {
     @media(max-width: 600px) {
         padding: 1em 1em;
     }
