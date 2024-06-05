@@ -1,0 +1,8 @@
+.modal-wrapper .aside-menu {
+    padding: 2em 1em;
+    gap: 1em;
+    max-width: 400px;
+    border-right: 1px solid var(--scdclr6);
+    color: var(--scdclr6);
+    background: var(--prmclr1);
+}

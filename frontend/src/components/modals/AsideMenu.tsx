@@ -1,16 +1,31 @@
+'use client'
+import { useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useModal } from "../../contexts/ModalContext"
+import { useClickOutside } from "../../hooks/clickOutside"
 
 export function AsideMenu() {
     const pathname = usePathname()
+    const { activeModal, closeModal } = useModal()
+
+    const asideRef = useRef<HTMLDivElement>(null)
+
+    function closeAsideMenu() {
+        closeModal('aside-menu')
+    }
 
     function isActive(path: string) {
         return pathname === path
     }
 
+    useClickOutside(asideRef, closeAsideMenu)
+
+    if (activeModal !== 'aside-menu') return null
+
     return (
-        <dialog className="modal-wrapper full">
-            <nav>
+        <dialog className="modal-wrapper w-h-100" open>
+            <nav className="aside-menu flex column w-h-100" ref={asideRef}>
                 <Link href="/" className={`fast-trans ${isActive('/') ? 'active' : ''}`}
                     title="Go to home page?" aria-label="Navigate to home page">
                     <span>Home</span>

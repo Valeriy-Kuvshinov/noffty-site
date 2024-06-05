@@ -20,3 +20,5 @@
 @import './components/_GameList.css';
 @import './components/_GamePreview.css';
 @import './components/_Footer.css';
+
+@import './components/modals/_AsideMenu.css';

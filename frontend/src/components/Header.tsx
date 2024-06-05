@@ -4,6 +4,7 @@ import { useState } from "react"
 import { usePathname } from "next/navigation"
 import { useSearchParamsUpdate } from "../hooks/searchParamsUpdate"
 import { useDeviceType } from "../contexts/DeviceTypeContext"
+import { useModal } from "../contexts/ModalContext"
 import { SvgRender } from "./general/SvgRender"
 import { ImageContainer } from "./general/ImageContainer"
 
@@ -12,6 +13,7 @@ export function Header() {
     const [searchTerm, setSearchTerm] = useState('')
     const { updateSearchParams } = useSearchParamsUpdate()
     const deviceType = useDeviceType()
+    const { openModal } = useModal()
 
     const isMobileView = deviceType === 'mobile' || deviceType === 'mini-tablet'
     const headerLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
@@ -31,12 +33,16 @@ export function Header() {
         setSearchTerm('')
     }
 
+    function openAsideMenu() {
+        openModal('aside-menu')
+    }
+
     return (
         <header className="full">
             <section className="header-contents w-h-100 layout-row">
                 {isMobileView ? (
                     <nav className="mobile-view grid align-center justify-between w-100">
-                        <button className="fast-trans">
+                        <button className="fast-trans" onClick={openAsideMenu}>
                             <SvgRender iconName="menu" />
                         </button>
                         <Link href="/" className={`fast-trans ${isActive('/') ? 'active' : ''}`}
