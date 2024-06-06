@@ -4,5 +4,9 @@
         gap: 3em;
         max-width: 1300px;
         margin: 1em 0;
+
+        .error-container {
+            grid-column: 1/-1;
+        }
     }
 }

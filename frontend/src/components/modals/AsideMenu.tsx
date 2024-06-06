@@ -53,12 +53,12 @@ export function AsideMenu() {
                         <SvgRender iconName="controller" />
                         <span>Games</span>
                     </Link>
-                    <Link href="/about/introduction" className={`flex row align-center ${isActive('/about/introduction') ? 'active' : ''}`}
+                    <Link href="/about" className={`flex row align-center ${isActive('/about') ? 'active' : ''}`}
                         onClick={closeAsideMenu} title="Go to about page?" aria-label="Navigate to about page">
                         <SvgRender iconName="info" />
                         <span>About</span>
                     </Link>
-                    <Link href="/about/contact" className={`flex row align-center ${isActive('/about/contact') ? 'active' : ''}`}
+                    <Link href="/contact" className={`flex row align-center ${isActive('/contact') ? 'active' : ''}`}
                         onClick={closeAsideMenu} title="Go to contact page?" aria-label="Navigate to contact page">
                         <SvgRender iconName="mail" />
                         <span>Contact</span>

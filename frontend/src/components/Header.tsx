@@ -69,11 +69,11 @@ export function Header() {
                             title="Go to games index?" aria-label="Navigate to games page">
                             <span>Games</span>
                         </Link>
-                        <Link href="/about/introduction" className={`${isActive('/about/introduction') ? 'active' : ''}`}
+                        <Link href="/about" className={`${isActive('/about') ? 'active' : ''}`}
                             title="Go to about page?" aria-label="Navigate to about page">
                             <span>About</span>
                         </Link>
-                        <Link href="/about/contact" className={`${isActive('/about/contact') ? 'active' : ''}`}
+                        <Link href="/contact" className={`${isActive('/contact') ? 'active' : ''}`}
                             title="Go to contact page?" aria-label="Navigate to contact page">
                             <span>Contact</span>
                         </Link>
