@@ -46,9 +46,9 @@ export class GameService {
 
     getGenres() {
         return [
+            { label: 'Any', value: '', iconName: 'globe' },
             { label: 'Action', value: 'action', iconName: 'action' },
             { label: 'Adventure', value: 'adventure', iconName: 'adventure' },
-            { label: 'Any', value: '', iconName: 'globe' },
             { label: 'Other', value: 'other', iconName: 'questionMark' },
             { label: 'Platformer', value: 'platformer', iconName: 'platformer' },
             { label: 'Puzzle', value: 'puzzle', iconName: 'puzzle' },

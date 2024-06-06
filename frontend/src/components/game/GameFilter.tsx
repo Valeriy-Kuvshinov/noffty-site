@@ -1,8 +1,8 @@
 'use client'
-import { isEqual } from 'lodash'
 import { ChangeEvent, useEffect, useState } from "react"
 import { GameQueryParams } from "../../models/game"
 import { GameService } from "../../services/game.service"
+import { UtilityService } from '../../services/utility.service'
 import { useDebounce } from "../../hooks/debounce"
 import { CustomSelect } from '../general/CustomSelect'
 import { SvgRender } from '../general/SvgRender'
@@ -13,6 +13,7 @@ interface GameFilterProps {
 }
 
 export function GameFilter({ defaultValues, updateSearchParams, }: GameFilterProps) {
+    const utilityService = new UtilityService()
     const gameService = new GameService()
     const genres = gameService.getGenres()
     const platforms = gameService.getPlatforms()
@@ -22,7 +23,7 @@ export function GameFilter({ defaultValues, updateSearchParams, }: GameFilterPro
     const debouncedFilter = useDebounce(filter, 1000)
 
     useEffect(() => {
-        if (!isEqual(debouncedFilter, defaultValues)) {
+        if (!utilityService.areEqual(debouncedFilter, defaultValues)) {
             updateSearchParams(debouncedFilter)
         }
     }, [debouncedFilter, defaultValues])

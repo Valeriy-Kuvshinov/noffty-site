@@ -3,7 +3,6 @@ import { LinkTypeOne, LinkTypeTwo } from "../models/utility"
 export class UtilityService {
     getBrowserName() {
         const userAgent = navigator.userAgent.toLowerCase()
-
         switch (true) {
             case userAgent.includes("chrome") && !userAgent.includes("edg"):
                 return "Chrome"
@@ -55,6 +54,20 @@ export class UtilityService {
     getYouTubeEmbedUrl(url: string): string {
         const videoId = new URLSearchParams(new URL(url).search).get('v')
         return `https://www.youtube.com/embed/${videoId}`
+    }
+
+    areEqual<T extends object>(obj1: T, obj2: T): boolean {
+        const keys1 = Object.keys(obj1)
+        const keys2 = Object.keys(obj2)
+
+        if (keys1.length !== keys2.length) return false
+
+        for (const key of keys1) {
+            if (obj1[key as keyof T] !== obj2[key as keyof T]) {
+                return false
+            }
+        }
+        return true
     }
 
     getSocialLinks(): LinkTypeTwo[] {
