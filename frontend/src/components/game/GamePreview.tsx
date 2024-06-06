@@ -7,7 +7,7 @@ import { SvgRender } from '../general/SvgRender'
 export function GamePreview({ game }: { game: Game }) {
     return (
         <Link href={`/games/${game.name}`} key={game.name} aria-label='noffty-game'
-            className='flex column align-center w-100 text-capitalize fast-trans'>
+            className='flex column align-center w-100 text-capitalize'>
             <div className='preview-body w-100 h-fit'>
                 <ImageContainer src={game.screenshots[0]} alt={game.name} />
                 {game.isGameJam === 'yes' && <span className="gmtk" title='Game{Jam} Submission'>JAM</span>}

@@ -1,8 +1,52 @@
 .modal-wrapper .aside-menu {
-    padding: 2em 1em;
-    gap: 1em;
-    max-width: 400px;
+    max-width: 275px;
     border-right: 1px solid var(--scdclr6);
-    color: var(--scdclr6);
     background: var(--prmclr1);
+    transform: translateX(-100%);
+
+    &.show {
+        transform: translateX(0);
+    }
+
+    .menu-header {
+        padding: 2em 1em;
+        border-bottom: 1px solid var(--scdclr6);
+        padding-block-end: 1em;
+
+        .image-container {
+            max-width: 64px;
+        }
+
+        span {
+            font-size: 1.25em;
+            color: var(--scdclr6);
+        }
+    }
+
+    nav {
+
+        a {
+            gap: 1em;
+            padding: 1em;
+            color: var(--scdclr6);
+            fill: var(--scdclr6);
+            border-bottom: 1px solid var(--scdclr6);
+
+            &.active {
+                cursor: default;
+                pointer-events: none;
+            }
+
+            .svg-cmp {
+                width: 32px;
+            }
+
+            &:hover,
+            &.active {
+                color: var(--scdclr4);
+                fill: var(--scdclr4);
+                background: var(--prmclr4);
+            }
+        }
+    }
 }

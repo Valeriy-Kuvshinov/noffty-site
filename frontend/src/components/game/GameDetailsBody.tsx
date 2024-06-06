@@ -73,7 +73,7 @@ export function GameDetailsBody({ game }: { game: Game }) {
                 </p>
                 {game.outsideLink?.includes('itch.io') && (
                     <a href={game.outsideLink} target="_blank" aria-label="navigation to itch.io" title="Go to itch.io?"
-                        rel="noopener noreferrer" className="flex row align-center w-fit fast-trans">
+                        rel="noopener noreferrer" className="flex row align-center w-fit">
                         <SvgRender iconName={'itch'} />
                         <span>Available on Itch.io as well!</span>
                         <SvgRender iconName={'itch'} />

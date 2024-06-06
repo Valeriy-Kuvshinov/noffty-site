@@ -9,7 +9,7 @@ export function ErrorContainer({ message }: { message: string }) {
                 <ImageContainer src={errorImage} alt="Error.." />
                 <span>{message}</span>
             </div>
-            <a href="/" className="fast-trans" aria-label="Go to home page"
+            <a href="/" aria-label="Go to home page"
                 title="Return to home page?">Return to home?</a>
         </article>
     )

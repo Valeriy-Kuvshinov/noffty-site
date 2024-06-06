@@ -19,15 +19,15 @@ export function Footer() {
             <section className="footer-contents w-h-100 grid layout-row">
                 <div className="links flex column">
                     <h3>Navigation</h3>
-                    <Link href="/games" className={`fast-trans ${isActive('/games') ? 'active' : ''}`}
+                    <Link href="/games" className={`${isActive('/games') ? 'active' : ''}`}
                         title="Go to games index?" aria-label="Navigate to games page">
                         <span>Games</span>
                     </Link>
-                    <Link href="/about/contact" className={`fast-trans ${isActive('/about/contact') ? 'active' : ''}`}
+                    <Link href="/about/contact" className={`${isActive('/about/contact') ? 'active' : ''}`}
                         title="Go to contact page?" aria-label="Navigate to contact page">
                         <span>Contact</span>
                     </Link>
-                    <Link href="/about/introduction" className={`fast-trans ${isActive('/about/introduction') ? 'active' : ''}`}
+                    <Link href="/about/introduction" className={`${isActive('/about/introduction') ? 'active' : ''}`}
                         title="Go to about page?" aria-label="Navigate to about page">
                         <span>About</span>
                     </Link>

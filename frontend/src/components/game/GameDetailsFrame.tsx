@@ -49,8 +49,8 @@ export function GameDetailsFrame({ game }: { game: Game }) {
                         allowFullScreen={true}
                         aria-label="game frame"
                     ></iframe>
-                    <button onClick={toggleFullscreen} className="fast-trans"
-                        title="Toggle fullscreen?" aria-label="frame fullscreen toggle">
+                    <button onClick={toggleFullscreen} title="Toggle fullscreen?"
+                        aria-label="frame fullscreen toggle">
                         <SvgRender iconName={isFullscreen ? 'compress' : 'expand'} />
                     </button>
                 </div>
@@ -59,8 +59,8 @@ export function GameDetailsFrame({ game }: { game: Game }) {
             <div className="game-frame flex column w-100 text-center">
                 <p>Whoa, looks like the game is not intended for the browser, but for
                     <span className="text-capitalize"> {game.platform}</span> instead.</p>
-                <a href={game.outsideLink} className="flex row fast-trans"
-                    target="_blank" rel="noopener noreferrer" aria-label="Outside game navigation">
+                <a href={game.outsideLink} className="flex row" target="_blank"
+                    rel="noopener noreferrer" aria-label="Outside game navigation">
                     <SvgRender iconName={game.platform} />
                     <span>Take Me to The Game!</span>
                     <SvgRender iconName={game.platform} />

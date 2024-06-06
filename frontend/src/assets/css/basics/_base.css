@@ -41,7 +41,8 @@ h4,
 h5,
 h6,
 p,
-a {
+a,
+span {
     margin: 0;
     font-weight: normal;
     padding: 0;
@@ -51,6 +52,7 @@ a {
 a {
     text-decoration: none;
     color: inherit;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
         text-decoration: none;
@@ -62,6 +64,7 @@ button {
     cursor: pointer;
     border: none;
     background: none;
+    transition: all 0.3s ease-in-out;
 }
 
 input,
