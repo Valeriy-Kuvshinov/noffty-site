@@ -1,37 +1,32 @@
 import { Game, GameQueryParams } from '../models/game'
+import { Option } from '../models/utility'
 import { HttpService } from './http.service'
 
 const baseUrl: string = 'game/'
 
 export class GameService {
-    private httpService: HttpService
-
-    constructor() {
-        this.httpService = new HttpService()
-    }
-
     async query(filterBy: GameQueryParams = {}) {
         const queryParams = new URLSearchParams(filterBy as any).toString()
         console.log(`Excepted request to backend: ${baseUrl}?${queryParams}`)
-        return this.httpService.get(`${baseUrl}?${queryParams}`)
+        return HttpService.get(`${baseUrl}?${queryParams}`)
     }
 
     async getById(gameId: string) {
-        return this.httpService.get(`${baseUrl}by-id/${gameId}`)
+        return HttpService.get(`${baseUrl}by-id/${gameId}`)
     }
 
     async getByName(gameName: string) {
-        return this.httpService.get(`${baseUrl}by-name/${gameName}`)
+        return HttpService.get(`${baseUrl}by-name/${gameName}`)
     }
 
     async save(game: Game) {
         if (game._id) {
-            return this.httpService.put(`${baseUrl}update/${game._id}`, game)
-        } else return this.httpService.post(baseUrl + 'add/', game)
+            return HttpService.put(`${baseUrl}update/${game._id}`, game)
+        } else return HttpService.post(baseUrl + 'add/', game)
     }
 
     async remove(id: string) {
-        return this.httpService.delete(`${baseUrl}delete/${id}`)
+        return HttpService.remove(`${baseUrl}delete/${id}`)
     }
 
     // filtering stuff
@@ -44,7 +39,7 @@ export class GameService {
         }
     }
 
-    getGenres() {
+    getGenres(): Option[] {
         return [
             { label: 'Any', value: '', iconName: 'globe' },
             { label: 'Action', value: 'action', iconName: 'action' },
@@ -56,7 +51,7 @@ export class GameService {
         ]
     }
 
-    getPlatforms() {
+    getPlatforms(): Option[] {
         return [
             { label: 'Any', value: '', iconName: 'globe' },
             { label: 'Android', value: 'android', iconName: 'android' },
@@ -65,7 +60,7 @@ export class GameService {
         ]
     }
 
-    getGameJams() {
+    getGameJams(): Option[] {
         return [
             { label: 'Any', value: '', iconName: 'globe' },
             { label: 'Yes', value: 'yes', iconName: 'confirm' },

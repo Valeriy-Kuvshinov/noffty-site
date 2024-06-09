@@ -10,9 +10,8 @@ export default function Home() {
   const webGames = gamesService.getMiniGames('html5')
   const mobileGames = gamesService.getMiniGames('android')
 
-  const utilService = new UtilityService()
-  const socialLinks = utilService.getSocialLinks()
-  const crewMembers = utilService.getCrewMembers()
+  const socialLinks = UtilityService.getSocialLinks()
+  const crewMembers = UtilityService.getCrewMembers()
 
   const companyLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1716704406/xtidg8pprkayhx9pxhce.avif'
 

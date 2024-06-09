@@ -2,44 +2,50 @@ const baseUrl = process.env.NODE_ENV === 'production'
     ? '/api/'
     : '//localhost:3030/api/'
 
-export class HttpService {
-    async request(method: string, endpoint: string, data?: any) {
-        const url = `${baseUrl}${endpoint}`
-        const headers = { 'Content-Type': 'application/json' }
+export const HttpService = {
+    request,
+    get,
+    post,
+    put,
+    remove
+}
 
-        const config: RequestInit = { method: method, headers: headers }
+async function request(method: string, endpoint: string, data?: any) {
+    const url = `${baseUrl}${endpoint}`
+    const headers = { 'Content-Type': 'application/json' }
 
-        if (method !== 'GET' && data) config.body = JSON.stringify(data)
+    const config: RequestInit = { method: method, headers: headers }
 
-        try {
-            const response = await fetch(url, config)
-            const jsonData = await response.json()
+    if (method !== 'GET' && data) config.body = JSON.stringify(data)
 
-            if (!response.ok) throw new Error(jsonData.message ||
-                'An unknown error occurred')
-            return jsonData
-        } catch (error) {
-            console.error('HTTP Service Error: ', error)
-            throw error
-        }
+    try {
+        const response = await fetch(url, config)
+        const jsonData = await response.json()
+
+        if (!response.ok) throw new Error(jsonData.message ||
+            'An unknown error occurred')
+        return jsonData
+    } catch (error) {
+        console.error('HTTP Service Error: ', error)
+        throw error
     }
+}
 
-    get(endpoint: string, params?: any) {
-        const queryString = params ?
-            `?${new URLSearchParams(params).toString()}` : ''
-        return this.request('GET', `${endpoint}${queryString}`)
-    }
+function get(endpoint: string, params?: any) {
+    const queryString = params ?
+        `?${new URLSearchParams(params).toString()}` : ''
+    return request('GET', `${endpoint}${queryString}`)
+}
 
-    post(endpoint: string, data?: any) {
-        return this.request('POST', endpoint, data)
-    }
+function post(endpoint: string, data?: any) {
+    return request('POST', endpoint, data)
+}
 
-    put(endpoint: string, data?: any) {
-        return this.request('PUT', endpoint, data)
-    }
+function put(endpoint: string, data?: any) {
+    return request('PUT', endpoint, data)
+}
 
-    delete(endpoint: string, data?: any) {
-        if (data) return this.request('DELETE', endpoint, data)
-        else return this.request('DELETE', endpoint)
-    }
+function remove(endpoint: string, data?: any) {
+    if (data) return request('DELETE', endpoint, data)
+    return request('DELETE', endpoint)
 }

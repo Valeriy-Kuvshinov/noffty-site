@@ -5,14 +5,12 @@ import { UtilityService } from "../../services/utility.service"
 import { SvgRender } from "../general/SvgRender"
 
 export function GameDetailsFrame({ game }: { game: Game }) {
-    const utilityService = new UtilityService()
-
     const [isFullscreen, setIsFullscreen] = useState(false)
     const [allowAttributes, setAllowAttributes] = useState('')
     const iframeContainerRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        setAllowAttributes(utilityService.getAllowAttributes())
+        setAllowAttributes(UtilityService.getAllowAttributes())
 
         document.addEventListener('fullscreenchange', handleFullscreenChange)
         return () => document.removeEventListener('fullscreenchange', handleFullscreenChange)

@@ -1,13 +1,8 @@
 'use client'
+import { Option } from "../../models/utility"
 import { useRef, useState } from "react"
 import { useClickOutside } from "../../hooks/clickOutside"
 import { SvgRender } from "./SvgRender"
-
-interface Option {
-    value: string
-    label: string
-    iconName: string
-}
 
 interface SelectProps {
     options: Option[]

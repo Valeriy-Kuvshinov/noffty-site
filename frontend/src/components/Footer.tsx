@@ -7,8 +7,7 @@ import { SpecialLink } from "./general/SpecialLink"
 export function Footer() {
     const pathname = usePathname()
 
-    const utilService = new UtilityService()
-    const socialLinks = utilService.getSocialLinks()
+    const socialLinks = UtilityService.getSocialLinks()
 
     function isActive(path: string) {
         return pathname === path

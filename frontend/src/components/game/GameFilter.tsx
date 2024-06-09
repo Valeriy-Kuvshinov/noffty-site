@@ -13,7 +13,6 @@ interface GameFilterProps {
 }
 
 export function GameFilter({ defaultValues, updateSearchParams, }: GameFilterProps) {
-    const utilityService = new UtilityService()
     const gameService = new GameService()
     const genres = gameService.getGenres()
     const platforms = gameService.getPlatforms()
@@ -23,7 +22,7 @@ export function GameFilter({ defaultValues, updateSearchParams, }: GameFilterPro
     const debouncedFilter = useDebounce(filter, 1000)
 
     useEffect(() => {
-        if (!utilityService.areEqual(debouncedFilter, defaultValues)) {
+        if (!UtilityService.areEqual(debouncedFilter, defaultValues)) {
             updateSearchParams(debouncedFilter)
         }
     }, [debouncedFilter, defaultValues])

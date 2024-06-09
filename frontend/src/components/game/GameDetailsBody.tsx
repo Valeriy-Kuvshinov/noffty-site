@@ -5,8 +5,6 @@ import { ImageContainer } from "../general/ImageContainer"
 import { ReworkedText } from "../general/ReworkedText"
 
 export function GameDetailsBody({ game }: { game: Game }) {
-    const utilService = new UtilityService()
-
     const gridTemplateColumns = `repeat(${game.screenshots.length - 1}, 1fr)`
 
     return (
@@ -35,7 +33,7 @@ export function GameDetailsBody({ game }: { game: Game }) {
                     <div className="video flex column w-100">
                         <p>If you're stuck, we've got you covered:</p>
                         <iframe
-                            src={utilService.getYouTubeEmbedUrl(game.walkthrough)}
+                            src={UtilityService.getYouTubeEmbedUrl(game.walkthrough)}
                             title="Game Walkthrough"
                             aria-label="Video walkthrough for the game"
                             allowFullScreen={true}
@@ -47,7 +45,7 @@ export function GameDetailsBody({ game }: { game: Game }) {
                     <div className="video flex column w-100">
                         <p>Be sure to check out the developer's log:</p>
                         <iframe
-                            src={utilService.getYouTubeEmbedUrl(game.devlog)}
+                            src={UtilityService.getYouTubeEmbedUrl(game.devlog)}
                             title="Developer's Log"
                             aria-label="Video devlog about the game"
                             allowFullScreen={true}
@@ -59,17 +57,17 @@ export function GameDetailsBody({ game }: { game: Game }) {
             <div className="game-info flex column w-100">
                 <p className="flex">
                     <span className="text-right">Published</span>
-                    {utilService.formatDate(game.createdAt!)} GMT / UTC
+                    {UtilityService.formatDate(game.createdAt!)} GMT / UTC
                 </p>
                 <p className="flex">
                     <span className="text-right">Platform</span>
                     {game.platform.includes('html5') ?
-                        utilService.upperCaseString(game.platform) :
-                        utilService.capitalizeString(game.platform)}
+                        UtilityService.upperCaseString(game.platform) :
+                        UtilityService.capitalizeString(game.platform)}
                 </p>
                 <p className="flex">
                     <span className="text-right">Genre</span>
-                    {game.genre?.map(genre => utilService.capitalizeString(genre)).join(', ')}
+                    {game.genre?.map(genre => UtilityService.capitalizeString(genre)).join(', ')}
                 </p>
                 {game.outsideLink?.includes('itch.io') && (
                     <a href={game.outsideLink} target="_blank" aria-label="navigation to itch.io" title="Go to itch.io?"
