@@ -1,7 +1,6 @@
 import { GameService } from "../services/game.service"
 import { UtilityService } from "../services/utility.service"
 import { GameList } from "../components/game/GameList"
-import { CrewLink } from "../components/general/CrewLink"
 import { SpecialLink } from "../components/general/SpecialLink"
 import { ImageContainer } from "../components/general/ImageContainer"
 
@@ -11,7 +10,6 @@ export default function Home() {
   const mobileGames = gamesService.getMiniGames('android')
 
   const socialLinks = UtilityService.getSocialLinks()
-  const crewMembers = UtilityService.getCrewMembers()
 
   const companyLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1716704406/xtidg8pprkayhx9pxhce.avif'
 
@@ -44,14 +42,7 @@ export default function Home() {
         </article>
 
         <article className="about flex column full-center w-100">
-          <h2 className="text-center">Meet The Crew</h2>
-
-          <div className="crew grid w-100">
-            {crewMembers.map(member => (
-              <CrewLink key={member.name} name={member.name}
-                image={member.image} ariaLabel={member.ariaLabel} />
-            ))}
-          </div>
+          <h2 className="text-center">Get to know us</h2>
         </article>
       </section>
     </main>
