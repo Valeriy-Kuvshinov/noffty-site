@@ -49,7 +49,6 @@
     .games-showcase {
         padding: 1em 0;
         max-width: 1200px;
-        border-bottom: 1px solid var(--scdclr7);
         margin: 0 auto;
 
         .action-btn {
@@ -63,39 +62,6 @@
             &:hover {
                 background: var(--scdclr1);
                 color: var(--scdclr4);
-            }
-        }
-    }
-
-    .about {
-        gap: 1em;
-        padding: 1em 0;
-        max-width: 1200px;
-        margin: 0 auto;
-
-        .crew {
-            gap: 2em;
-            grid-template-columns: repeat(3, 1fr);
-
-            a {
-                max-width: 192px;
-                color: var(--scdclr6);
-                margin: 0 auto;
-
-                .image-container img {
-                    min-width: 60px;
-                    border-radius: 50%;
-                    background: none;
-                }
-
-                h3 {
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 1;
-                    letter-spacing: 0.5px;
-                }
             }
         }
     }

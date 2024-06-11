@@ -28,6 +28,21 @@ export default function About() {
                     url: 'https://www.youtube.com/@T1mure',
                     iconName: 'youtube',
                     userName: '@T1mure'
+                },
+                {
+                    url: 'https://www.youtube.com/@T2mure',
+                    iconName: 'youtube',
+                    userName: '@T2mure'
+                },
+                {
+                    url: 'https://t1mure.itch.io/',
+                    iconName: 'itch',
+                    userName: '@T1mure'
+                },
+                {
+                    url: 'https://soundcloud.com/ultim8kex228',
+                    iconName: 'soundcloud',
+                    userName: '@T1mure'
                 }
             ],
             contributions: [
@@ -42,6 +57,16 @@ export default function About() {
                     url: 'https://www.youtube.com/@Jen_Ayve',
                     iconName: 'youtube',
                     userName: '@Jen_Ayve'
+                },
+                {
+                    url: 'https://soundcloud.com/am-jen-862126876',
+                    iconName: 'soundcloud',
+                    userName: '@Jen Ayve'
+                },
+                {
+                    url: 'https://www.instagram.com/benayve/',
+                    iconName: 'instagram',
+                    userName: '@Benayve'
                 }
             ],
             contributions: [
@@ -57,6 +82,11 @@ export default function About() {
                     url: 'https://www.youtube.com/@valeriykuvshinov',
                     iconName: 'youtube',
                     userName: '@valeriykuvshinov'
+                },
+                {
+                    url: 'https://soundcloud.com/valerykuvshinuv',
+                    iconName: 'soundcloud',
+                    userName: '@Valeriy.Kuvshin.ov'
                 },
                 {
                     url: 'www.linkedin.com/in/valeriy-kuvshin-ov',
@@ -75,7 +105,12 @@ export default function About() {
                 {
                     url: 'https://www.youtube.com/@ics_de',
                     iconName: 'youtube',
-                    userName: '@T1mure'
+                    userName: '@ics_de'
+                },
+                {
+                    url: 'https://ics-de.itch.io/',
+                    iconName: 'itch',
+                    userName: '@ics_de'
                 }
             ],
             contributions: [
@@ -86,12 +121,18 @@ export default function About() {
             name: 'Seriousbznz',
             social: [],
             contributions: [
-                { game: '', role: 'Advisory and Innovation' }
+                { game: '', role: 'Game Consulting' }
             ]
         },
         {
             name: 'Tynnyri',
-            social: [],
+            social: [
+                {
+                    url: 'https://soundcloud.com/user-tynnyri',
+                    iconName: 'soundcloud',
+                    userName: '@Tynnyri'
+                }
+            ],
             contributions: [
                 { game: 'Betroched', role: 'Art' }
             ]
@@ -103,6 +144,11 @@ export default function About() {
                     url: 'https://www.youtube.com/@michael.kushnir',
                     iconName: 'youtube',
                     userName: '@michael.kushnir'
+                },
+                {
+                    url: 'https://soundcloud.com/excustic',
+                    iconName: 'soundcloud',
+                    userName: '@Excustic'
                 }
             ],
             contributions: [
@@ -173,7 +219,7 @@ export default function About() {
                     </div>
                 </article>
 
-                {selectedMember && (<article className="member-info grid w-100 h-fit">
+                {selectedMember && (<article className="member-info grid w-100">
                     <h3 className="text-center">{selectedMember.name}</h3>
 
                     <ul className="flex column">
@@ -189,7 +235,7 @@ export default function About() {
                         <div className="social-links-area flex column">
                             <h4 className="text-center">Follow Them On:</h4>
 
-                            <div className="social-links flex row">
+                            <div className="social-links grid">
                                 {selectedMember.social.map((social, index) => (
                                     <a className="flex column align-center" key={index}
                                         href={social.url} target="_blank" rel="noopener noreferrer"

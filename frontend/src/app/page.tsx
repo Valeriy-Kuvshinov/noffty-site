@@ -40,10 +40,6 @@ export default function Home() {
           <a href="/games" className="action-btn" title="Go to games index?"
             aria-label="Go to games page">Find on Our Website!</a>
         </article>
-
-        <article className="about flex column full-center w-100">
-          <h2 className="text-center">Get to know us</h2>
-        </article>
       </section>
     </main>
   )

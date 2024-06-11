@@ -62,7 +62,7 @@
             }
 
             .social-links {
-                gap: 1.5em;
+                gap: 2em;
                 margin: 0 auto;
 
                 a {
@@ -71,6 +71,10 @@
                     .svg-cmp {
                         width: 48px;
                         fill: var(--prmclr2);
+                    }
+
+                    &:only-child:nth-child(1) {
+                        grid-column: 1 / -1 !important;
                     }
                 }
             }
