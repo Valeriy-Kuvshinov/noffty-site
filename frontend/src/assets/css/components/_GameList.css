@@ -2,7 +2,7 @@
 .index-page .page-contents {
     .games-showcase .game-list {
         gap: 3em;
-        max-width: 1300px;
+        max-width: 1500px;
         margin: 1em 0;
 
         .error-container {
