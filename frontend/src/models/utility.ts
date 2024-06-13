@@ -1,11 +1,3 @@
-export interface IconDictionary {
-    [key: string]: string
-}
-
-export interface SvgProp {
-    iconName: string
-}
-
 export interface LinkTypeTwo {
     iconName: string
     link: string
@@ -16,4 +8,21 @@ export interface Option {
     value: string
     label: string
     iconName: string
+}
+
+interface Social {
+    url: string
+    iconName: string
+    userName: string
+}
+
+interface Contribution {
+    game: string
+    role: string
+}
+
+export interface Person {
+    name: string
+    social?: Social[]
+    contributions: Contribution[]
 }

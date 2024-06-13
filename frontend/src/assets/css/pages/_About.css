@@ -8,7 +8,7 @@
     .intro-part,
     .credits {
         gap: 0.5em;
-        padding-block-end: 1em;
+        padding-block-end: 2em;
     }
 
     .credits .crew-list {

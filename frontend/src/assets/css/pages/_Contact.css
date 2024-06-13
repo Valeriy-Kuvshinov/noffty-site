@@ -1,0 +1,12 @@
+.contact-page .page-contents {
+    gap: 1em;
+
+    h3 {
+        font-size: 1.75em;
+    }
+
+    .intro-part {
+        gap: 0.5em;
+        padding-block-end: 2em;
+    }
+}

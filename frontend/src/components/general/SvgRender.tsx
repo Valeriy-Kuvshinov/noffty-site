@@ -1,5 +1,8 @@
 import { SvgService } from "../../services/svg.service"
-import { SvgProp } from "../../models/utility"
+
+interface SvgProp {
+    iconName: string
+}
 
 export function SvgRender({ iconName }: SvgProp) {
     const svgService = new SvgService()

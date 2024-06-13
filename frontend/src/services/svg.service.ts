@@ -1,4 +1,6 @@
-import { IconDictionary } from "../models/utility"
+interface IconDictionary {
+  [key: string]: string
+}
 
 export class SvgService {
   private icons: IconDictionary = {
