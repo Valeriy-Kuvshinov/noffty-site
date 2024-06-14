@@ -8,6 +8,8 @@ import http from 'http'
 
 import { gameRoutes } from './api/game/game.controller.js'
 import { mailRoutes } from './api/mail/mail.controller.js'
+import { userRoutes } from './api/user/user.controller.js'
+import { authRoutes } from './api/auth/auth.controller.js'
 
 import { loggerService } from './services/logger.service.js'
 
@@ -40,6 +42,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use('/api/game', gameRoutes)
+app.use('/api/user', userRoutes)
+app.use('/api/auth', authRoutes)
 app.use('/api/mail', mailRoutes)
 
 app.get('*', (req, res) => {

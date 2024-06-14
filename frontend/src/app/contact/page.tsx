@@ -1,6 +1,8 @@
 'use client'
 
 export default function Contact() {
+    const recaptchaKey = ''
+
     return (
         <main className="contact-page full w-h-100">
             <section className="page-contents grid w-h-100 layout-row">

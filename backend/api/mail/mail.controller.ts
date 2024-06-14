@@ -1,5 +1,5 @@
 import express, { Router, Request, Response } from 'express'
-import { ContactUsRequestBody } from '../../models/utility.js'
+import { ContactUsRequestBody, VerificationMailRequestBody } from '../../models/utility.js'
 import { loggerService } from '../../services/logger.service.js'
 import { mailService } from './mail.service.js'
 
@@ -7,6 +7,7 @@ import { mailService } from './mail.service.js'
 export const mailRoutes: Router = express.Router()
 
 mailRoutes.post('/contact', _sendContactUsMail)
+mailRoutes.post('/reset', _sendResetCodeMail)
 
 // mail controller functions
 async function _sendContactUsMail(req: Request<ContactUsRequestBody>,
@@ -16,6 +17,20 @@ async function _sendContactUsMail(req: Request<ContactUsRequestBody>,
 
     try {
         await mailService.sendContactUsMail(name, email, title, message, recaptchaToken)
+        res.status(200).send({ msg: 'Mail successfully sent' })
+    } catch (error) {
+        loggerService.error('Failed sending mail: ' + error)
+        res.status(500).send({ error: 'Failed sending mail' })
+    }
+}
+
+async function _sendResetCodeMail(req: Request<VerificationMailRequestBody>,
+    res: Response): Promise<void> {
+    const { email, code } = req.body
+    loggerService.debug(`Received reset code form data: ${email}, ${code}`)
+
+    try {
+        await mailService.sendResetCodeMail(email, code)
         res.status(200).send({ msg: 'Mail successfully sent' })
     } catch (error) {
         loggerService.error('Failed sending mail: ' + error)
