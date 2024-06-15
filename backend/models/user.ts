@@ -7,16 +7,14 @@ export interface LoginRequestBody {
 }
 
 export interface SignupRequestBody {
-    username: string
-    password: string
     email: string
+    password: string
     imgUrls?: string[]
     recaptchaToken: string
 }
 
 export interface User {
     _id?: ObjectId
-    username?: string
     password?: string
     email?: string
     imgUrls?: string[]
@@ -27,6 +25,6 @@ export interface User {
 
 export interface UserQueryParams {
     userId?: string
-    username?: string
+    email?: string
     isVerified?: boolean
 }

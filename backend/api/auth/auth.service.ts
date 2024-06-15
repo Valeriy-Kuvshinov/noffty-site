@@ -11,7 +11,8 @@ export const authService = {
   getLoginToken,
   validateToken,
   checkPassword,
-  hashPassword
+  hashPassword,
+  getRecaptchaSiteKey
 }
 dotenv.config()
 
@@ -20,9 +21,7 @@ const cryptr = new Cryptr(process.env.DECRYPTION!)
 async function login(loginId: string, password: string): Promise<User | null> {
   loggerService.debug(`auth - login with loginId: ${loginId}`)
 
-  const user = loginId.includes('@')
-    ? await userService.getByEmail(loginId)
-    : await userService.getByUsername(loginId)
+  const user = await userService.getByEmail(loginId)
 
   if (!user) throw new Error('Invalid loginId or password')
 
@@ -32,16 +31,15 @@ async function login(loginId: string, password: string): Promise<User | null> {
   return user
 }
 
-async function signup(username: string, password: string, email: string, imgUrls: string[]): Promise<User> {
-  loggerService.debug(`auth - signup with username: ${username}`)
+async function signup(password: string, email: string, imgUrls: string[]): Promise<User> {
+  loggerService.debug(`auth - signup with email: ${email}`)
 
-  if (!username || !password) throw new Error('Missing required details')
+  if (!email || !password) throw new Error('Missing required details')
   const hash = await hashPassword(password)
 
   return userService.save({
-    username,
-    password: hash,
     email,
+    password: hash,
     imgUrls,
     createdAt: Date.now(),
     isAdmin: false,
@@ -76,4 +74,9 @@ function validateToken(loginToken: string): User | null {
     loggerService.error('Invalid login token')
   }
   return null
+}
+
+function getRecaptchaSiteKey(): string {
+  loggerService.info('Sending Recaptcha site key')
+  return process.env.RECAPTCHA_SITE_KEY!
 }

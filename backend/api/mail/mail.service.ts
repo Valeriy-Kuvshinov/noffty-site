@@ -33,8 +33,8 @@ async function sendContactUsMail(name: string, email: string, title: string, mes
 async function sendResetCodeMail(email: string, code: string): Promise<void> {
     loggerService.debug(`Sending reset code email containing: ${email}, ${code}`)
     const emailHtml = `
-        <p>Dear user,</p>
-        <p>To proceed with resetting the password / email of your account, please copy the following code:</p>
+        <p>Dear admin,</p>
+        <p>To proceed with resetting the password of your account, please copy the following code:</p>
         <p><b>${code}</b></p>
         <p>Do not give this code to anyone!</p>
         <hr>
@@ -43,8 +43,8 @@ async function sendResetCodeMail(email: string, code: string): Promise<void> {
     const mailOptions: MailOptions = {
         from: process.env.SENDER_GMAIL_ADDRESS ?? '',
         to: email,
-        subject: `Reset user at Ori-Carlin`,
-        text: `Dear user, To proceed with reseting the password / email of your account,
+        subject: `Reset user at Noffty Manager`,
+        text: `Dear admin, To proceed with reseting the password of your account,
         please copy the following code: ${code}.
         Do not give this code to anyone!
         If you did not request a user reset, please ignore this email or contact us through the site.`,

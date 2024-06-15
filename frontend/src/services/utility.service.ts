@@ -1,6 +1,8 @@
 import { LinkTypeTwo } from "../models/utility"
+import { HttpService } from './http.service'
 
 export const UtilityService = {
+    getRecaptchaKey,
     getBrowserName,
     getAllowAttributes,
     capitalizeString,
@@ -9,6 +11,10 @@ export const UtilityService = {
     getYouTubeEmbedUrl,
     areEqual,
     getSocialLinks
+}
+
+async function getRecaptchaKey() {
+    return HttpService.get(`auth/recaptcha`)
 }
 
 function getBrowserName() {

@@ -10,7 +10,6 @@ export const userRoutes: Router = express.Router()
 userRoutes.get('/', _getUsers)
 userRoutes.get('/by-id/:id', _getUserById)
 userRoutes.get('/by-email/:email', _getUserByEmail)
-userRoutes.get('/check-username/:username', _checkUsernameAvailable)
 userRoutes.get('/check-email/:email', _checkEmailAvailable)
 userRoutes.post('/add/', _addUser)
 userRoutes.put('/update/:id', _updateUser)
@@ -47,22 +46,6 @@ async function _getUserByEmail(req: Request<{ email: string }>,
   } catch (err) {
     loggerService.error('Failed to get user', err)
     res.status(500).send({ err: 'Failed to get user' })
-  }
-}
-
-async function _checkUsernameAvailable(req: Request<{ username: string }>,
-  res: Response): Promise<void> {
-  try {
-    const userName = req.params.username
-    const user = await userService.getByUsername(userName)
-
-    if (user) loggerService.error('This username is not available: ', user.username)
-    else loggerService.info('This username is available: ', userName)
-
-    res.json({ isAvailable: !user })
-  } catch (err) {
-    loggerService.error('Error with checking availability of username', err)
-    res.status(500).send({ err: 'Error with checking availability of username' })
   }
 }
 
