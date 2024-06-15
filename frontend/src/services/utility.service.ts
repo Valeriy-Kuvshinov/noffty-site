@@ -13,7 +13,7 @@ export const UtilityService = {
     getSocialLinks
 }
 
-async function getRecaptchaKey() {
+async function getRecaptchaKey(): Promise<any> {
     return HttpService.get(`auth/recaptcha`)
 }
 

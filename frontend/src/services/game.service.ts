@@ -5,27 +5,27 @@ import { HttpService } from './http.service'
 const baseUrl: string = 'game/'
 
 export class GameService {
-    async query(filterBy: GameQueryParams = {}) {
+    async query(filterBy: GameQueryParams = {}): Promise<any> {
         const queryParams = new URLSearchParams(filterBy as any).toString()
         console.log(`Excepted request to backend: ${baseUrl}?${queryParams}`)
         return HttpService.get(`${baseUrl}?${queryParams}`)
     }
 
-    async getById(gameId: string) {
+    async getById(gameId: string): Promise<any> {
         return HttpService.get(`${baseUrl}by-id/${gameId}`)
     }
 
-    async getByName(gameName: string) {
+    async getByName(gameName: string): Promise<any> {
         return HttpService.get(`${baseUrl}by-name/${gameName}`)
     }
 
-    async save(game: Game) {
+    async save(game: Game): Promise<any> {
         if (game._id) {
             return HttpService.put(`${baseUrl}update/${game._id}`, game)
         } else return HttpService.post(baseUrl + 'add/', game)
     }
 
-    async remove(id: string) {
+    async remove(id: string): Promise<any> {
         return HttpService.remove(`${baseUrl}delete/${id}`)
     }
 

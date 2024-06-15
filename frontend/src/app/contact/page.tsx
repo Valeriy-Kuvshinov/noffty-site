@@ -1,4 +1,5 @@
 import { UtilityService } from "../../services/utility.service"
+import { ContactForm } from "../../components/forms/ContactForm"
 
 export default async function Contact() {
     let recaptchaKey = ''
@@ -20,7 +21,7 @@ export default async function Contact() {
                         Got any suggestions, bugs to report or willing to help in our game development?
                         We'd like to hear that from you down below!
                     </p>
-                    {recaptchaKey && <p>Recaptcha Key: {recaptchaKey}</p>}
+                    {recaptchaKey && <ContactForm recaptchaKey={recaptchaKey} />}
                 </article>
             </section>
         </main>

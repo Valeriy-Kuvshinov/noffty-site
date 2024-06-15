@@ -1,4 +1,4 @@
-export interface ContactUsRequestBody {
+export interface ContactUsReqBody {
     name: string
     email: string
     title: string
@@ -6,7 +6,7 @@ export interface ContactUsRequestBody {
     recaptchaToken: string
 }
 
-export interface VerificationMailRequestBody {
+export interface VerificationMailReqBody {
     username?: string
     email: string
     code?: string

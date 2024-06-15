@@ -26,3 +26,17 @@ export interface Person {
     social?: Social[]
     contributions: Contribution[]
 }
+
+export interface ContactUsReqBody {
+    name: string
+    email: string
+    title: string
+    message: string
+    recaptchaToken: string
+}
+
+export interface VerificationMailReqBody {
+    username?: string
+    email: string
+    code?: string
+}

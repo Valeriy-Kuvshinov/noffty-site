@@ -1,5 +1,5 @@
 import express, { Router, Request, Response } from 'express'
-import { ContactUsRequestBody, VerificationMailRequestBody } from '../../models/utility.js'
+import { ContactUsReqBody, VerificationMailReqBody } from '../../models/utility.js'
 import { loggerService } from '../../services/logger.service.js'
 import { mailService } from './mail.service.js'
 
@@ -10,7 +10,7 @@ mailRoutes.post('/contact', _sendContactUsMail)
 mailRoutes.post('/reset', _sendResetCodeMail)
 
 // mail controller functions
-async function _sendContactUsMail(req: Request<ContactUsRequestBody>,
+async function _sendContactUsMail(req: Request<ContactUsReqBody>,
     res: Response): Promise<void> {
     const { name, email, title, message, recaptchaToken } = req.body
     loggerService.debug(`Received contact form data: ${name}, ${email}, ${title}, ${message}, ${recaptchaToken}`)
@@ -24,7 +24,7 @@ async function _sendContactUsMail(req: Request<ContactUsRequestBody>,
     }
 }
 
-async function _sendResetCodeMail(req: Request<VerificationMailRequestBody>,
+async function _sendResetCodeMail(req: Request<VerificationMailReqBody>,
     res: Response): Promise<void> {
     const { email, code } = req.body
     loggerService.debug(`Received reset code form data: ${email}, ${code}`)
