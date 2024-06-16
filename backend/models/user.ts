@@ -20,11 +20,9 @@ export interface User {
     imgUrls?: string[]
     createdAt?: number
     isAdmin?: boolean
-    isVerified?: boolean
 }
 
 export interface UserQueryParams {
     userId?: string
     email?: string
-    isVerified?: boolean
 }

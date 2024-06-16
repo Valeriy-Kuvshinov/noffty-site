@@ -1,54 +1,67 @@
 'use client'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { FormEvent, useRef } from 'react'
-import { ContactUsReqBody } from '../../models/utility'
+import { useRef } from 'react'
 import { MailService } from '../../services/mail.service'
+import { useForm } from '../../hooks/form'
+import { RecaptchaContainer } from './RecaptchaContainer'
+
+interface ContactUsReqBody {
+    name: string
+    email: string
+    title: string
+    requestType: 'Q&A' | 'Bug Report' | 'Volunteering' | 'Other'
+    message: string
+    recaptchaToken: string
+}
 
 export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
     const recaptchaRef = useRef<ReCAPTCHA>(null)
-
     const mailService = new MailService()
 
-    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-        const form = event.currentTarget
-        const name = (form.elements.namedItem('name') as HTMLInputElement).value
-        const email = (form.elements.namedItem('email') as HTMLInputElement).value
-        const title = (form.elements.namedItem('title') as HTMLInputElement).value
-        const message = (form.elements.namedItem('message') as HTMLInputElement).value
-        const token = await recaptchaRef.current?.executeAsync()
+    // Define initial form values
+    const initialValues: ContactUsReqBody = {
+        name: '',
+        email: '',
+        title: '',
+        requestType: 'Q&A',
+        message: '',
+        recaptchaToken: ''
+    }
 
-        const formData: ContactUsReqBody = {
-            name: name,
-            email: email,
-            title: title,
-            message: message,
-            recaptchaToken: token || ''
-        }
-        console.log('Recaptcha token:', formData.recaptchaToken)
-        // Here you would handle the form submission, including the recaptcha token
+    const { values, handleChange, handleSubmit, resetForm } = useForm(initialValues, async (formData) => {
+        const token = await recaptchaRef.current?.executeAsync()
+        const completeFormData = { ...formData, recaptchaToken: token || '' }
         try {
-            const response = await mailService.sendContactUsMail(formData)
-            console.log('Mail sent successfully:', response)
+            const response = await mailService.sendContactUsMail(completeFormData)
+            console.log(response)
+
+            resetForm()
+            recaptchaRef.current?.reset()
         } catch (error) {
             console.error('Failed to send contact mail:', error)
         }
-    }
+    })
 
     return (
-        <form onSubmit={handleSubmit}>
-            <section className='form-inputs'>
-                <input type="text" name="name" placeholder="Your Name" required />
-                <input type="email" name="email" placeholder="Your Email" required />
-                <input type="text" name="title" placeholder="Subject" required />
-                <textarea name="message" placeholder="Your Message" required />
+        <form className='flex column layout-row w-100' onSubmit={handleSubmit}>
+            <section className='form-inputs grid'>
+                <input type="text" name="name" value={values.name} onChange={handleChange} placeholder="Your Name" required />
+                <input type="email" name="email" value={values.email} onChange={handleChange} placeholder="Your Email" required />
+                <input type="text" name="title" value={values.title} onChange={handleChange} placeholder="Subject" required />
+                <select name="requestType" value={values.requestType} onChange={handleChange}>
+                    <option value="Q&A">Q&A</option>
+                    <option value="Bug Report">Bug Report</option>
+                    <option value="Volunteering">Volunteering</option>
+                    <option value="Other">Other</option>
+                </select>
+                <textarea name="message" value={values.message} onChange={handleChange} placeholder="Your Message" required />
             </section>
 
-            <div className='flex row form-actions'>
-                <button type="submit">Send Message</button>
-                <ReCAPTCHA sitekey={recaptchaKey}
-                    size="invisible" ref={recaptchaRef} />
-            </div>
+            <section className='form-actions flex row align-center justify-between'>
+                <button className='flex' type="submit">Send</button>
+                <RecaptchaContainer />
+            </section>
+            <ReCAPTCHA sitekey={recaptchaKey} size="invisible" ref={recaptchaRef} />
         </form>
     )
 }

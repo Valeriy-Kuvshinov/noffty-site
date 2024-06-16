@@ -2,6 +2,7 @@ export interface ContactUsReqBody {
     name: string
     email: string
     title: string
+    requestType: string
     message: string
     recaptchaToken: string
 }
@@ -10,11 +11,6 @@ export interface VerificationMailReqBody {
     username?: string
     email: string
     code?: string
-}
-
-export interface RecaptchaResponse {
-    success: boolean
-    'error-codes'?: string[]
 }
 
 export interface MailOptions {

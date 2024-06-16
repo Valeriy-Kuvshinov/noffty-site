@@ -1,4 +1,4 @@
-import { MailOptions } from '../../models/utility.js'
+import { ContactUsReqBody, MailOptions } from '../../models/utility.js'
 import { loggerService } from '../../services/logger.service.js'
 import { utilityService } from '../../services/utility.service.js'
 import { mailUtilService } from '../../services/mail.util.service.js'
@@ -8,11 +8,16 @@ export const mailService = {
     sendResetCodeMail
 }
 
-async function sendContactUsMail(name: string, email: string, title: string, message: string, recaptchaToken: string): Promise<void> {
+async function sendContactUsMail(data: ContactUsReqBody): Promise<void> {
+    const { name, email, title, requestType, message, recaptchaToken } = data
     await utilityService.verifyRecaptcha(recaptchaToken)
 
-    loggerService.debug(`Sending email containing: ${name}, ${email}, ${title}, ${message}`)
+    loggerService.debug(`Sending email containing: ${name}, ${email},
+         ${title}, ${requestType}, ${message}`)
     const emailHtml = `
+        <p>Dear admin, a new message from Contact Us has arrived.</p>
+        <p>Message type: ${requestType}</p>
+        <hr>
         <p>${message}</p>
         <hr>
         <p>This message was sent by <b>${name}</b>.</p>
@@ -22,8 +27,10 @@ async function sendContactUsMail(name: string, email: string, title: string, mes
         from: process.env.SENDER_GMAIL_ADDRESS ?? '',
         to: process.env.RECEIVER_EMAIL_ADDRESS ?? '',
         replyTo: email,
-        subject: `From ${name}, topic: ${title}`,
-        text: `${message}, This message was sent by ${name}.
+        subject: `Contact message: "${title}"`,
+        text: `Dear admin, a new message from Contact Us has arrived.
+        Message type: ${requestType}.
+        ${message}, This message was sent by ${name}.
         Contact him back via this email: ${email}, or by pressing the Reply button.`,
         html: mailUtilService.prepareEmailBody(emailHtml),
     }

@@ -2,8 +2,12 @@ import fs from 'fs'
 import fetch from 'node-fetch'
 import dotenv from 'dotenv'
 import { ObjectId } from 'mongodb'
-import { RecaptchaResponse } from '../models/utility.js'
 import { loggerService } from './logger.service.js'
+
+interface RecaptchaResponse {
+    success: boolean
+    'error-codes'?: string[]
+}
 
 export const utilityService = {
     readJsonFile,

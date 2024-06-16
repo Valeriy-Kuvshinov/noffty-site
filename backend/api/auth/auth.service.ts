@@ -43,7 +43,6 @@ async function signup(password: string, email: string, imgUrls: string[]): Promi
     imgUrls,
     createdAt: Date.now(),
     isAdmin: false,
-    isVerified: false,
   })
 }
 

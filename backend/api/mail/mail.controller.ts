@@ -10,13 +10,14 @@ mailRoutes.post('/contact', _sendContactUsMail)
 mailRoutes.post('/reset', _sendResetCodeMail)
 
 // mail controller functions
-async function _sendContactUsMail(req: Request<ContactUsReqBody>,
-    res: Response): Promise<void> {
-    const { name, email, title, message, recaptchaToken } = req.body
-    loggerService.debug(`Received contact form data: ${name}, ${email}, ${title}, ${message}, ${recaptchaToken}`)
-
+async function _sendContactUsMail(req: Request<ContactUsReqBody>, res: Response): Promise<void> {
+    const { name, email, title, message, requestType, recaptchaToken } = req.body
+    loggerService.debug(`Received contact form data: ${name}, ${email},
+         ${title}, ${message}, ${requestType}, ${recaptchaToken}`)
     try {
-        await mailService.sendContactUsMail(name, email, title, message, recaptchaToken)
+        await mailService.sendContactUsMail({
+            name, email, title, message, requestType, recaptchaToken
+        })
         res.status(200).send({ msg: 'Mail successfully sent' })
     } catch (error) {
         loggerService.error('Failed sending mail: ' + error)
@@ -24,8 +25,7 @@ async function _sendContactUsMail(req: Request<ContactUsReqBody>,
     }
 }
 
-async function _sendResetCodeMail(req: Request<VerificationMailReqBody>,
-    res: Response): Promise<void> {
+async function _sendResetCodeMail(req: Request<VerificationMailReqBody>, res: Response): Promise<void> {
     const { email, code } = req.body
     loggerService.debug(`Received reset code form data: ${email}, ${code}`)
 

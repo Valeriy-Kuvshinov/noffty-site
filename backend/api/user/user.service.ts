@@ -12,7 +12,6 @@ export const userService = {
   save,
   getById,
   getByEmail,
-  checkNonVerifiedUsers,
 }
 
 async function query(filterBy: UserQueryParams = {}): Promise<User[]> {
@@ -99,19 +98,4 @@ function _buildPipeline(filterBy: UserQueryParams): any {
   if (filterBy.userId) criteria._id = new ObjectId(filterBy.userId)
 
   return criteria
-}
-
-async function checkNonVerifiedUsers(): Promise<number> {
-  try {
-    const collection = await dbService.getCollection(USERS_COLLECTION)
-    const { deletedCount } = await collection.deleteMany({ isVerified: false })
-
-    if (deletedCount === 0) loggerService.error('No unverified users found')
-    else loggerService.info(`${deletedCount} unverified users were found and removed`)
-
-    return deletedCount
-  } catch (err) {
-    loggerService.error('Error while checking non-verified users', err)
-    throw err
-  }
 }
