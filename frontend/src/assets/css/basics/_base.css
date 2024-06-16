@@ -11,7 +11,7 @@ body {
     height: 100%;
     margin: 0;
     min-height: 100vh;
-    font-family: 'cool-bold';
+    font-family: 'cool-bold', Arial, sans-serif;
     background: var(--scdclr8);
     color: var(--prmclr2);
 }
@@ -84,7 +84,7 @@ select {
     color: var(--scdclr3);
     outline: none;
     text-align: inherit;
-    font-family: 'cool-bold';
+    font-family: 'cool-bold', Arial, sans-serif;
     line-height: 1.6;
     transition: all 0.3s ease-in-out;
 }

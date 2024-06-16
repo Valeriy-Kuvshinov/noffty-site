@@ -1,14 +1,17 @@
 @font-face {
-    src: url("../../fonts/CoolveticaCompressedRg-Regular-400.ttf");
     font-family: 'cool-light';
+    src: url("../../fonts/CoolveticaCompressedRg-Regular-400.ttf") format('truetype');
+    font-display: swap;
 }
 
 @font-face {
-    src: url("../../fonts/CoolveticaCondensedRg-Regular-400.ttf");
     font-family: 'cool-regular';
+    src: url("../../fonts/CoolveticaCondensedRg-Regular-400.ttf") format('truetype');
+    font-display: swap;
 }
 
 @font-face {
-    src: url("../../fonts/CoolveticaRg-Regular-400.ttf");
     font-family: 'cool-bold';
+    src: url("../../fonts/CoolveticaRg-Regular-400.ttf") format('truetype');
+    font-display: swap;
 }

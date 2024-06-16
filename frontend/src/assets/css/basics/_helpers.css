@@ -84,15 +84,15 @@
 }
 
 .family-bold {
-    font-family: "cool-bold";
+    font-family: "cool-bold", Arial, sans-serif;
 }
 
 .family-regular {
-    font-family: "cool-regular";
+    font-family: "cool-regular", Arial, sans-serif;
 }
 
 .family-light {
-    font-family: "cool-light";
+    font-family: "cool-light", Arial, sans-serif;
 }
 
 /* //////////////////////////////////////////////////////////////// */
