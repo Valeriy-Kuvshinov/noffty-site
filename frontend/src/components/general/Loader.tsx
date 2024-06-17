@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from "react"
+import { ImageContainer } from "./ImageContainer"
 
 export function Loader() {
     const loaderGif = 'https://res.cloudinary.com/djzid7ags/image/upload/v1715092957/rofgvwuxaocbanu3fpzl.gif'
@@ -34,8 +35,8 @@ export function Loader() {
     return (
         <article className="loader-container flex column">
             <span className="text-center">{currentPhrase}</span>
-            <img src={loaderGif} alt="Loading.." />
-            <img src={floor} alt="Loading.." />
+            <ImageContainer src={loaderGif} alt="Loading..." />
+            <ImageContainer src={floor} alt="Loading..." />
         </article>
     )
 }

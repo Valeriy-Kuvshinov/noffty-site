@@ -4,7 +4,7 @@ import { GameQueryParams } from "../../models/game"
 import { GameService } from "../../services/game.service"
 import { UtilityService } from '../../services/utility.service'
 import { useDebounce } from "../../hooks/debounce"
-import { CustomSelect } from '../general/CustomSelect'
+import { CustomSelect } from '../forms/CustomSelect'
 import { SvgRender } from '../general/SvgRender'
 
 interface GameFilterProps {
@@ -12,7 +12,7 @@ interface GameFilterProps {
     updateSearchParams: (filterBy: GameQueryParams) => void
 }
 
-export function GameFilter({ defaultValues, updateSearchParams, }: GameFilterProps) {
+export function GameFilter({ defaultValues, updateSearchParams }: GameFilterProps) {
     const gameService = new GameService()
     const genres = gameService.getGenres()
     const platforms = gameService.getPlatforms()

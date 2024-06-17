@@ -12,32 +12,48 @@
 
     form {
         gap: 1em;
-        max-width: 600px;
+        max-width: 700px;
 
         .form-inputs {
-            gap: 0.5em;
+            gap: 0.75em;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(3, auto);
 
-            textarea {
-                grid-column: 1 / -1;
-            }
+            .input-area {
+                gap: 0.25em;
 
-            input,
-            select,
-            textarea {
-                padding: 0.25em 0.5em;
-                border: 2px solid transparent;
-                border-radius: 0.5em;
-                font-size: 1em;
+                label {
+                    padding: 0 0.5em;
+                    column-gap: 0.5em;
 
-                &:focus {
-                    border-color: var(--mnrclr2);
+                    .svg-cmp {
+                        width: 32px;
+                        fill: var(--prmclr2);
+                    }
+                }
+
+                textarea {
+                    min-height: 180px;
+                }
+
+                input,
+                select,
+                textarea {
+                    padding: 0.25em 0.5em;
+                    border: 2px solid transparent;
+                    border-radius: 0.5em;
+                    font-size: 1em;
+
+                    &:focus {
+                        border-color: var(--mnrclr2);
+                    }
                 }
             }
+
         }
 
         .form-actions {
+            padding: 0 0.5em;
+
             button {
                 padding: 0.5em 1em;
                 background: var(--prmclr1);
@@ -58,10 +74,6 @@
 
                 .image-container {
                     max-width: 36px;
-
-                    img {
-                        background: none;
-                    }
                 }
 
                 span {

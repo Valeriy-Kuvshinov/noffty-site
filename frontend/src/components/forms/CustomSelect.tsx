@@ -1,11 +1,11 @@
 'use client'
-import { Option } from "../../models/utility"
+import { CustomOption } from "../../models/utility"
 import { useRef, useState } from "react"
 import { useClickOutside } from "../../hooks/clickOutside"
-import { SvgRender } from "./SvgRender"
+import { SvgRender } from "../general/SvgRender"
 
 interface SelectProps {
-    options: Option[]
+    options: CustomOption[]
     value: string
     onChange: (newValue: string) => void
     label: string
@@ -34,12 +34,12 @@ export function CustomSelect({ options, value, onChange, label, id }: SelectProp
             <div ref={selectRef} className="custom-select-container w-100" id={id}>
                 <div className={`selected-value flex row align-center justify-between fast-trans ${isOpen ? 'open' : ''}`}
                     onClick={() => setIsOpen(!isOpen)}>
-                    {options.find((opt: Option) => opt.value === value)?.label}
+                    {options.find((opt: CustomOption) => opt.value === value)?.label}
                     <SvgRender iconName='arrow' />
                 </div>
                 {isOpen && (
                     <div className="options-container">
-                        {options.map((option: Option) => (
+                        {options.map((option: CustomOption) => (
                             <div key={option.value}
                                 className="option flex row align-center justify-between fast-trans"
                                 onClick={() => handleSelect(option)}>

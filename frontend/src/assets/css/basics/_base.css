@@ -20,8 +20,11 @@ body {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
-    background: var(--prmclr4);
     transition: all 0.5s ease-in-out;
+}
+
+.image-container img:nth-child(1) {
+    background: var(--prmclr4);
 }
 
 .svg-cmp {

@@ -18,14 +18,13 @@
         font-size: 1.5em;
     }
 
-    img {
+    .image-container {
         width: 180px;
 
         &:nth-child(3) {
             margin-block-start: -2em;
             z-index: -1;
         }
-
     }
 }
 
@@ -39,10 +38,6 @@
 
         .image-container {
             max-width: 120px;
-
-            img {
-                background: none;
-            }
         }
 
         span {

@@ -1,5 +1,5 @@
 import { Game, GameQueryParams } from '../models/game'
-import { Option } from '../models/utility'
+import { CustomOption } from '../models/utility'
 import { HttpService } from './http.service'
 
 const baseUrl: string = 'game/'
@@ -39,7 +39,7 @@ export class GameService {
         }
     }
 
-    getGenres(): Option[] {
+    getGenres(): CustomOption[] {
         return [
             { label: 'Any', value: '', iconName: 'globe' },
             { label: 'Action', value: 'action', iconName: 'action' },
@@ -51,7 +51,7 @@ export class GameService {
         ]
     }
 
-    getPlatforms(): Option[] {
+    getPlatforms(): CustomOption[] {
         return [
             { label: 'Any', value: '', iconName: 'globe' },
             { label: 'Android', value: 'android', iconName: 'android' },
@@ -60,7 +60,7 @@ export class GameService {
         ]
     }
 
-    getGameJams(): Option[] {
+    getGameJams(): CustomOption[] {
         return [
             { label: 'Any', value: '', iconName: 'globe' },
             { label: 'Yes', value: 'yes', iconName: 'confirm' },

@@ -4,7 +4,7 @@ export interface LinkTypeTwo {
     ariaLabel: string
 }
 
-export interface Option {
+export interface CustomOption {
     value: string
     label: string
     iconName: string

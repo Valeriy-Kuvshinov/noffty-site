@@ -4,12 +4,13 @@ import { useRef } from 'react'
 import { MailService } from '../../services/mail.service'
 import { useForm } from '../../hooks/form'
 import { RecaptchaContainer } from './RecaptchaContainer'
+import { InputArea } from './InputArea'
 
 interface ContactUsReqBody {
     name: string
     email: string
     title: string
-    requestType: 'Q&A' | 'Bug Report' | 'Volunteering' | 'Other'
+    requestType: string
     message: string
     recaptchaToken: string
 }
@@ -18,7 +19,6 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
     const recaptchaRef = useRef<ReCAPTCHA>(null)
     const mailService = new MailService()
 
-    // Define initial form values
     const initialValues: ContactUsReqBody = {
         name: '',
         email: '',
@@ -45,16 +45,33 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
     return (
         <form className='flex column layout-row w-100' onSubmit={handleSubmit}>
             <section className='form-inputs grid'>
-                <input type="text" name="name" value={values.name} onChange={handleChange} placeholder="Your Name" required />
-                <input type="email" name="email" value={values.email} onChange={handleChange} placeholder="Your Email" required />
-                <input type="text" name="title" value={values.title} onChange={handleChange} placeholder="Subject" required />
-                <select name="requestType" value={values.requestType} onChange={handleChange}>
-                    <option value="Q&A">Q&A</option>
-                    <option value="Bug Report">Bug Report</option>
-                    <option value="Volunteering">Volunteering</option>
-                    <option value="Other">Other</option>
-                </select>
-                <textarea name="message" value={values.message} onChange={handleChange} placeholder="Your Message" required />
+                <InputArea
+                    label="Name" type="text" name="name" svg='person'
+                    value={values.name} onChange={handleChange} placeholder="Your name"
+                />
+                <InputArea
+                    label="Email" type="email" name="email" svg='mail'
+                    value={values.email} onChange={handleChange} placeholder="Your email"
+                />
+                <InputArea
+                    label="Title" type="text" name="title" svg='title'
+                    value={values.title} onChange={handleChange} placeholder="Asking about..."
+                />
+                <InputArea
+                    label="Subject" type="select" name="requestType" svg='info'
+                    value={values.requestType} onChange={handleChange}
+                    options={[
+                        { value: "Q&A", label: "Q&A" },
+                        { value: "Suggestion", label: "Suggestion" },
+                        { value: "Bug Report", label: "Bug Report" },
+                        { value: "Volunteering", label: "Volunteering" },
+                        { value: "Other", label: "Other" }
+                    ]}
+                />
+                <InputArea
+                    label="Message" type="textarea" name="message" svg='message'
+                    value={values.message} onChange={handleChange} placeholder="Yo, I got a question..."
+                />
             </section>
 
             <section className='form-actions flex row align-center justify-between'>
