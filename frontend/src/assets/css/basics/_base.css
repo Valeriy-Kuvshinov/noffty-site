@@ -68,6 +68,11 @@ button {
     border: none;
     background: none;
     transition: all 0.3s ease-in-out;
+
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
 }
 
 input,

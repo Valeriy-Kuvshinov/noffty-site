@@ -15,9 +15,10 @@ interface InputAreaProps {
     onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
     placeholder?: string
     options?: Option[]
+    maxLength?: number
 }
 
-export function InputArea({ label, svg, type, name, value, onChange, placeholder, options }: InputAreaProps) {
+export function InputArea({ label, svg, type, name, value, onChange, placeholder, options, maxLength }: InputAreaProps) {
     return (
         <div className='input-area grid'>
             <label className='flex row align-center' htmlFor={name}>
@@ -32,10 +33,10 @@ export function InputArea({ label, svg, type, name, value, onChange, placeholder
                 </select>
             ) : type === 'textarea' ? (
                 <textarea id={name} name={name} value={value}
-                    onChange={onChange} placeholder={placeholder} required />
+                    onChange={onChange} placeholder={placeholder} required maxLength={maxLength} />
             ) : (
                 <input type={type} id={name} name={name} value={value}
-                    onChange={onChange} placeholder={placeholder} required />
+                    onChange={onChange} placeholder={placeholder} required maxLength={maxLength} />
             )}
         </div>
     )

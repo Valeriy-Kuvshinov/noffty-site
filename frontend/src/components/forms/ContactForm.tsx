@@ -20,12 +20,8 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
     const mailService = new MailService()
 
     const initialValues: ContactUsReqBody = {
-        name: '',
-        email: '',
-        title: '',
-        requestType: 'Q&A',
-        message: '',
-        recaptchaToken: ''
+        name: '', email: '', title: '', requestType: 'Q&A',
+        message: '', recaptchaToken: ''
     }
 
     const { values, handleChange, handleSubmit, resetForm } = useForm(initialValues, async (formData) => {
@@ -41,20 +37,21 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
             console.error('Failed to send contact mail:', error)
         }
     })
+    const allFieldsFilled = values.name && values.email && values.title && values.requestType && values.message
 
     return (
         <form className='flex column layout-row w-100' onSubmit={handleSubmit}>
             <section className='form-inputs grid'>
                 <InputArea
-                    label="Name" type="text" name="name" svg='person'
+                    label="Name" type="text" name="name" svg='person' maxLength={30}
                     value={values.name} onChange={handleChange} placeholder="Your name"
                 />
                 <InputArea
-                    label="Email" type="email" name="email" svg='mail'
+                    label="Email" type="email" name="email" svg='mail' maxLength={50}
                     value={values.email} onChange={handleChange} placeholder="Your email"
                 />
                 <InputArea
-                    label="Title" type="text" name="title" svg='title'
+                    label="Title" type="text" name="title" svg='title' maxLength={50}
                     value={values.title} onChange={handleChange} placeholder="Asking about..."
                 />
                 <InputArea
@@ -69,13 +66,15 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
                     ]}
                 />
                 <InputArea
-                    label="Message" type="textarea" name="message" svg='message'
+                    label="Message" type="textarea" name="message" svg='message' maxLength={600}
                     value={values.message} onChange={handleChange} placeholder="Yo, I got a question..."
                 />
             </section>
-
             <section className='form-actions flex row align-center justify-between'>
-                <button className='flex' type="submit">Send</button>
+                <button className={`flex row align-center ${!allFieldsFilled ? 'disabled' : ''}`}
+                    type="submit" disabled={!allFieldsFilled}>
+                    <span>Send</span>
+                </button>
                 <RecaptchaContainer />
             </section>
             <ReCAPTCHA sitekey={recaptchaKey} size="invisible" ref={recaptchaRef} />

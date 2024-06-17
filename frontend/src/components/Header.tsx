@@ -52,7 +52,7 @@ export function Header() {
                         {!isGamesPage && (
                             <form onSubmit={handleSearchSubmit} className="w-100 layout-row fast-trans">
                                 <input
-                                    type="text" placeholder="Search games..."
+                                    type="text" placeholder="Search games..." maxLength={35}
                                     value={searchTerm} onChange={handleSearchInputChange}
                                 />
                                 <SvgRender iconName="search" />
@@ -80,7 +80,7 @@ export function Header() {
                         {!isGamesPage && (
                             <form onSubmit={handleSearchSubmit} className="w-100 fast-trans">
                                 <input
-                                    type="text" placeholder="Search games..."
+                                    type="text" placeholder="Search games..." maxLength={35}
                                     value={searchTerm} onChange={handleSearchInputChange}
                                 />
                                 <SvgRender iconName="search" />

@@ -23,7 +23,7 @@ header {
 
     form {
         position: relative;
-        max-width: 65px;
+        max-width: 68px;
 
         &:focus-within {
             max-width: 250px;
