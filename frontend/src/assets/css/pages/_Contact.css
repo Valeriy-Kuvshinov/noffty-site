@@ -22,12 +22,18 @@
                 gap: 0.25em;
 
                 label {
+                    grid-template-columns: auto auto 1fr;
                     padding: 0 0.5em;
                     column-gap: 0.5em;
 
                     .svg-cmp {
                         width: 32px;
                         fill: var(--prmclr2);
+                    }
+
+                    p {
+                        justify-self: end;
+                        color: var(--mnrclr3);
                     }
                 }
 
@@ -46,6 +52,12 @@
                     &:focus {
                         border-color: var(--mnrclr2);
                     }
+                }
+
+                &.error input,
+                &.error select,
+                &.error textarea {
+                    border-color: var(--mnrclr3);
                 }
             }
 

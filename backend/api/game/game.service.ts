@@ -121,6 +121,7 @@ function _buildPipeline(filterBy: GameQueryParams): object[] {
     criteria.$match.isGameJam = filterBy.isGameJam
   }
 
-  pipeline.push(criteria)
+  pipeline.push(criteria, { $sort: { createdAt: -1 } })
+
   return pipeline
 }
