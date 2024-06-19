@@ -3,7 +3,9 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { useRef } from 'react'
 import { MailService } from '../../services/mail.service'
 import { useForm } from '../../hooks/form'
+import { useHoverSwitch } from '../../hooks/hoverSwitch'
 import { RecaptchaContainer } from './RecaptchaContainer'
+import { ImageContainer } from '../general/ImageContainer'
 import { InputArea } from './InputArea'
 
 interface ContactUsReqBody {
@@ -16,8 +18,10 @@ interface ContactUsReqBody {
 }
 
 export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
-    const recaptchaRef = useRef<ReCAPTCHA>(null)
+    const defaultImg = 'https://res.cloudinary.com/djzid7ags/image/upload/v1718830337/g373afizfrrnplfms5rf.avif'
+    const hoveredImg = 'https://res.cloudinary.com/djzid7ags/image/upload/v1718830337/ig5n5ytdmnrh5wopdajt.avif'
     const mailService = new MailService()
+    const recaptchaRef = useRef<ReCAPTCHA>(null)
 
     const initialValues: ContactUsReqBody = {
         name: '', email: '', title: '', requestType: 'Q&A',
@@ -25,10 +29,27 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
     }
 
     const validationSchema = {
-        name: { required: true, minLength: 3, pattern: /^[a-zA-Z\s.'-]+$/ },
-        email: { required: true, email: true, minLength: 5 },
-        title: { required: true, minLength: 3, pattern: /^[a-zA-Z0-9\s.+#!?'-]+$/ },
-        message: { required: true, minLength: 15, pattern: /^[a-zA-Z0-9\s.+!?#@'",;$:-]+$/ }
+        name: {
+            required: true,
+            minLength: 3,
+            noDigits: true,
+            pattern: /[\s'.-]+/
+        },
+        email: {
+            required: true,
+            email: true,
+            minLength: 5
+        },
+        title: {
+            required: true,
+            minLength: 3,
+            pattern: /[\s.\-!?']+/
+        },
+        message: {
+            required: true,
+            minLength: 15,
+            pattern: /[\s.\-!?@#$',*;:]+/
+        }
     }
 
     const { values, errors, validateField, handleChange, handleSubmit, resetForm } =
@@ -48,6 +69,13 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
         })
     const allFieldsFilled = values.name && values.email &&
         values.title && values.requestType && values.message
+    const hasErrors = Object.values(errors).some(error => error)
+
+    const { value: buttonImage, handleMouseEnter, handleMouseLeave } = useHoverSwitch({
+        defaultValue: defaultImg,
+        hoverValue: hoveredImg,
+        condition: hasErrors
+    })
 
     return (
         <form className='flex column layout-row w-100' onSubmit={handleSubmit}>
@@ -85,8 +113,10 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
                 />
             </section>
             <section className='form-actions flex row align-center justify-between'>
-                <button className={`flex row align-center ${!allFieldsFilled ? 'disabled' : ''}`}
-                    type="submit" disabled={!allFieldsFilled}>
+                <button className={`flex row align-center ${!allFieldsFilled || hasErrors ? 'disabled' : ''}`}
+                    type="submit" disabled={!allFieldsFilled || hasErrors}
+                    onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                    <ImageContainer src={buttonImage} alt='Submit' />
                     <span>Send</span>
                 </button>
                 <RecaptchaContainer />

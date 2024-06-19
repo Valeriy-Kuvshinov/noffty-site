@@ -67,14 +67,20 @@
             padding: 0 0.5em;
 
             button {
-                padding: 0.5em 1em;
-                background: var(--prmclr1);
+                padding: 0.5em 0.75em;
+                gap: 0.25em;
+                background-color: var(--prmclr1);
                 color: var(--scdclr3);
                 border-radius: 0.5em;
                 font-size: 1.25em;
 
+                .image-container img {
+                    width: 42px;
+                    height: 30px;
+                }
+
                 &:hover {
-                    background: var(--mnrclr1);
+                    background-color: var(--mnrclr1);
                     color: var(--scdclr4);
                 }
             }

@@ -27,6 +27,15 @@ export interface Person {
     contributions: Contribution[]
 }
 
+export interface ValidationOptions {
+    minLength?: number
+    pattern?: RegExp
+    required?: boolean
+    noLetters?: boolean
+    noDigits?: boolean
+    email?: boolean
+}
+
 export interface VerificationMailReqBody {
     username?: string
     email: string

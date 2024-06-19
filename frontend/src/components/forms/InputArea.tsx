@@ -1,16 +1,10 @@
-import { SvgRender } from "../general/SvgRender"
 import { ChangeEvent } from "react"
+import { ValidationOptions } from "../../models/utility"
+import { SvgRender } from "../general/SvgRender"
 
 interface Option {
     value: string
     label: string
-}
-
-interface ValidationOptions {
-    minLength?: number
-    required?: boolean
-    email?: boolean
-    pattern?: RegExp
 }
 
 interface InputAreaProps {

@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react"
+import { ValidationOptions } from "../models/utility"
 
 interface FormValues {
     [key: string]: any
@@ -6,13 +7,6 @@ interface FormValues {
 
 interface SubmitHandler {
     (values: FormValues): void
-}
-
-interface ValidationOptions {
-    minLength?: number
-    required?: boolean
-    email?: boolean
-    pattern?: RegExp
 }
 
 export function useForm(initialValues: FormValues, validationSchema: Record<string,
@@ -31,21 +25,22 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
     }
 
     function validateField(name: string, value: string) {
-        const fieldValidation = validationSchema[name]
-        let errorMessage = null
+        const fieldValidation = validationSchema[name];
+        let errorMessage = null;
 
-        if (fieldValidation) {
-            if (fieldValidation.required) {
-                errorMessage = validateRequired(value)
-            }
-            if (!errorMessage && fieldValidation.minLength) {
-                errorMessage = validateMinLength(value, fieldValidation.minLength)
-            }
-            if (!errorMessage && fieldValidation.email) {
-                errorMessage = validateEmail(value)
-            }
-            if (!errorMessage && fieldValidation.pattern) {
-                errorMessage = validatePattern(value, fieldValidation.pattern)
+        const validations = [
+            { check: fieldValidation.required, func: () => validateRequired(value) },
+            { check: fieldValidation.minLength, func: () => validateMinLength(value, fieldValidation.minLength!) },
+            { check: fieldValidation.noLetters, func: () => validateNoLetters(value) },
+            { check: fieldValidation.noDigits, func: () => validateNoDigits(value) },
+            { check: fieldValidation.email, func: () => validateEmail(value) },
+            { check: fieldValidation.pattern, func: () => validatePattern(value, fieldValidation.pattern!) }
+        ];
+
+        for (let validation of validations) {
+            if (!errorMessage && validation.check) {
+                errorMessage = validation.func();
+                if (errorMessage) break;
             }
         }
         setErrors(prevErrors => ({
@@ -68,8 +63,20 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
 }
 
 // input / textarea optional validators
+function validateRequired(value: string): string | null {
+    return value.trim() === '' ? 'Cannot be left empty' : null
+}
+
 function validateMinLength(value: string, minLength: number): string | null {
     return value.length < minLength ? `Needs ${minLength} characters at least` : null
+}
+
+function validateNoLetters(value: string): string | null {
+    return /[a-zA-Z]/.test(value) ? "Cannot insert letters" : null
+}
+
+function validateNoDigits(value: string): string | null {
+    return /\d/.test(value) ? "Cannot insert digits" : null
 }
 
 function validateEmail(value: string): string | null {
@@ -77,10 +84,8 @@ function validateEmail(value: string): string | null {
     return emailRegex.test(value) ? null : 'Invalid email format'
 }
 
-function validateRequired(value: string): string | null {
-    return value.trim() === '' ? 'Cannot be left empty' : null
-}
-
 function validatePattern(value: string, pattern: RegExp): string | null {
-    return pattern.test(value) ? null : 'Invalid characters detected'
+    // by default allow letters and numbers
+    const combinedPattern = new RegExp('^[a-zA-Z0-9' + pattern.source + ']*$')
+    return combinedPattern.test(value) ? null : 'Invalid characters used'
 }
