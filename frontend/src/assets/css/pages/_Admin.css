@@ -1,9 +1,12 @@
 .admin-page .page-contents {
-    .games-showcase {
-        margin: 0 auto;
+    background: var(--mnrclr7);
 
-        h2 {
-            margin-block-end: 1em;
-        }
+    .add-btn {
+        padding: 0.25em 0.5em;
+        margin-block-start: 1em;
+        margin-block-end: 2em;
+        background: var(--prmclr2);
+        color: var(--prmclr1);
+        border-radius: 0.5em;
     }
 }

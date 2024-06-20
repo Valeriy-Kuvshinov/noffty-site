@@ -25,12 +25,27 @@
             font-size: 14px;
         }
 
-        .svg-cmp {
+        .icon,
+        button {
             position: absolute;
-            top: 0.5em;
+            top: 0.75em;
             right: 0.75em;
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
+        }
+
+        button {
+            left: 0.75em;
+            padding: 0.25em;
+            background: var(--prmclr2);
+            border-radius: 0.5em;
+            opacity: 0.8;
+
+            &:hover {
+                fill: var(--scdclr4);
+                background: var(--prmclr1);
+                opacity: 1;
+            }
         }
     }
 

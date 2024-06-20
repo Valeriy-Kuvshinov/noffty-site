@@ -8,6 +8,7 @@ import { Loader } from "../../components/general/Loader"
 
 export default function GameIndex() {
     const gameService = new GameService()
+    const isAdminPage = false
 
     const [games, setGames] = useState([])
     const [loading, setLoading] = useState(true)
@@ -34,21 +35,19 @@ export default function GameIndex() {
     return (
         <main className="index-page full w-h-100">
             <section className="page-contents flex column align-center w-h-100 layout-row">
-                <div className="games-showcase flex column full-center w-100">
-                    <h2 className="text-center">
-                        {games.length === 1
-                            ? 'Explore Our Matching Game'
-                            : `Explore Our ${games.length} Matching Games`}
-                    </h2>
-                    <GameFilter
-                        defaultValues={defaultValues}
-                        updateSearchParams={updateSearchParams}
-                    />
-                    {loading ? (
-                        <Loader />
-                    ) : (
-                        <GameList games={games} />)}
-                </div>
+                <h2 className="text-center">
+                    {games.length === 1
+                        ? 'Explore Our Matching Game'
+                        : `Explore Our ${games.length} Matching Games`}
+                </h2>
+                <GameFilter
+                    defaultValues={defaultValues}
+                    updateSearchParams={updateSearchParams}
+                />
+                {loading ? (
+                    <Loader />
+                ) : (
+                    <GameList games={games} isAdminPage={isAdminPage} />)}
             </section>
         </main>
     )

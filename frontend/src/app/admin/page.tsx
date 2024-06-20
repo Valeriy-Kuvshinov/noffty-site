@@ -1,4 +1,5 @@
 'use client'
+import Link from "next/link"
 import { useState, useEffect } from "react"
 import { GameService } from "../../services/game.service"
 import { useSearchParamsUpdate } from "../../hooks/searchParamsUpdate"
@@ -8,6 +9,7 @@ import { Loader } from "../../components/general/Loader"
 
 export default function AdminIndex() {
     const gameService = new GameService()
+    const isAdminPage = true
 
     const [games, setGames] = useState([])
     const [loading, setLoading] = useState(true)
@@ -34,22 +36,19 @@ export default function AdminIndex() {
     return (
         <main className="admin-page full w-h-100">
             <section className="page-contents flex column align-center w-h-100 layout-row">
-                <div className="games-showcase flex column full-center w-100">
-                    <h2>Welcome Admin!</h2>
-                    <h2 className="text-center">
-                        {games.length === 1
-                            ? '${games.length} Game Found'
-                            : `${games.length} Games Found`}
-                    </h2>
-                    <GameFilter
-                        defaultValues={defaultValues}
-                        updateSearchParams={updateSearchParams}
-                    />
-                    {loading ? (
-                        <Loader />
-                    ) : (
-                        <GameList games={games} />)}
-                </div>
+                <h2>Welcome Home Boss!</h2>
+                <h3>Find and update your games, or...</h3>
+                <Link href={`/admin/edit`} className="add-btn">
+                    <span>Add New Game</span>
+                </Link>
+                <GameFilter
+                    defaultValues={defaultValues}
+                    updateSearchParams={updateSearchParams}
+                />
+                {loading ? (
+                    <Loader />
+                ) : (
+                    <GameList games={games} isAdminPage={isAdminPage} />)}
             </section>
         </main>
     )

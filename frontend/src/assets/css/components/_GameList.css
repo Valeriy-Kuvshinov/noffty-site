@@ -1,7 +1,7 @@
-.home-page .page-contents,
+.home-page .page-contents .games-showcase,
 .index-page .page-contents,
 .admin-page .page-contents {
-    .games-showcase .game-list {
+    .game-list {
         gap: 3em;
         max-width: 1500px;
         margin: 1em 0;

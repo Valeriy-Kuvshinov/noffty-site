@@ -1,9 +1,9 @@
-.index-page .page-contents .games-showcase,
-.admin-page .page-contents .games-showcase  {
+.index-page .page-contents,
+.admin-page .page-contents {
     .filter-area {
         position: relative;
         max-width: 400px;
-        gap: 0.5em;
+        gap: 0.75em;
         padding-bottom: 4em;
 
         >.svg-cmp {
