@@ -42,8 +42,7 @@ export default function GameDetails({ params }: { params: { gameName: string } }
                     <GameDetailsFrame game={game} />
                     <GameDetailsBody game={game} />
                 </>) : (
-                    <ErrorContainer message={`Sorry, no game found matching ${gameName}.`} />
-                )}
+                    <ErrorContainer message={`Sorry, no game found matching ${gameName}.`} />)}
             </section>
         </main>
     )

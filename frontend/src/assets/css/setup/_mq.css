@@ -172,8 +172,9 @@
     }
 }
 
-/* game index page mq */
-.index-page .page-contents {
+/* game index & admin page page mq */
+.index-page .page-contents,
+.admin-page .page-contents {
     @media(max-width: 600px) {
         padding: 2em 1em;
     }
@@ -216,7 +217,8 @@
 
 /* game list cmp mq */
 .index-page .page-contents .games-showcase .game-list,
-.home-page .page-contents .games-showcase .game-list {
+.home-page .page-contents .games-showcase .game-list,
+.admin-page .page-contents .games-showcase .game-list {
 
     @media(max-width: 480px) {
         grid-template-columns: repeat(1, 1fr);

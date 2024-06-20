@@ -1,0 +1,9 @@
+.admin-page .page-contents {
+    .games-showcase {
+        margin: 0 auto;
+
+        h2 {
+            margin-block-end: 1em;
+        }
+    }
+}

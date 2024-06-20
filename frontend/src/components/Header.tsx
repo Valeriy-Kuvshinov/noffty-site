@@ -15,9 +15,8 @@ export function Header() {
     const deviceType = useDeviceType()
     const { openModal } = useModal()
 
-    const isMobileView = deviceType === 'mobile' || deviceType === 'mini-tablet'
     const headerLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
-    const isGamesPage = pathname.startsWith('/games')
+    const hiddenSearchPages = pathname.startsWith('/games') || pathname.startsWith('/admin')
 
     function isActive(path: string) {
         return pathname === path
@@ -40,7 +39,7 @@ export function Header() {
     return (
         <header className="full">
             <section className="header-contents w-h-100 layout-row">
-                {isMobileView ? (
+                {deviceType === 'mobile' || deviceType === 'mini-tablet' ? (
                     <nav className="mobile-view grid align-center justify-between w-100">
                         <button onClick={openAsideMenu}>
                             <SvgRender iconName="menu" />
@@ -49,15 +48,14 @@ export function Header() {
                             title="Go to home?" aria-label="Navigate to home page">
                             <ImageContainer src={headerLogo} alt="noffty logo" />
                         </Link>
-                        {!isGamesPage && (
+                        {!hiddenSearchPages && (
                             <form onSubmit={handleSearchSubmit} className="w-100 layout-row fast-trans">
                                 <input
                                     type="text" placeholder="Search games..." maxLength={35}
                                     value={searchTerm} onChange={handleSearchInputChange}
                                 />
                                 <SvgRender iconName="search" />
-                            </form>
-                        )}
+                            </form>)}
                     </nav>
                 ) : (
                     <nav className="desktop-view flex row align-center justify-between w-100">
@@ -77,17 +75,15 @@ export function Header() {
                             title="Go to contact page?" aria-label="Navigate to contact page">
                             <span>Contact</span>
                         </Link>
-                        {!isGamesPage && (
+                        {!hiddenSearchPages && (
                             <form onSubmit={handleSearchSubmit} className="w-100 fast-trans">
                                 <input
                                     type="text" placeholder="Search games..." maxLength={35}
                                     value={searchTerm} onChange={handleSearchInputChange}
                                 />
                                 <SvgRender iconName="search" />
-                            </form>
-                        )}
-                    </nav>
-                )}
+                            </form>)}
+                    </nav>)}
             </section>
         </header>
     )

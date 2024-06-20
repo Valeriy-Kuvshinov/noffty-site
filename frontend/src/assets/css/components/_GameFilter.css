@@ -1,4 +1,5 @@
-.index-page .page-contents .games-showcase {
+.index-page .page-contents .games-showcase,
+.admin-page .page-contents .games-showcase  {
     .filter-area {
         position: relative;
         max-width: 400px;

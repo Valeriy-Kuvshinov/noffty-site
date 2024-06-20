@@ -1,5 +1,6 @@
-.home-page .page-contents .games-showcase .game-list a,
-.index-page .page-contents .game-list a {
+.home-page .page-contents .game-list a,
+.index-page .page-contents .game-list a,
+.admin-page .page-contents .game-list a {
     gap: 0.5em;
     color: var(--scdclr3);
 

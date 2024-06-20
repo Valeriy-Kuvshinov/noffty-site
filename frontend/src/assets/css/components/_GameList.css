@@ -1,5 +1,6 @@
 .home-page .page-contents,
-.index-page .page-contents {
+.index-page .page-contents,
+.admin-page .page-contents {
     .games-showcase .game-list {
         gap: 3em;
         max-width: 1500px;

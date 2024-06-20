@@ -25,8 +25,8 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
     }
 
     function validateField(name: string, value: string) {
-        const fieldValidation = validationSchema[name];
-        let errorMessage = null;
+        const fieldValidation = validationSchema[name]
+        let errorMessage = null
 
         const validations = [
             { check: fieldValidation.required, func: () => validateRequired(value) },
@@ -35,12 +35,12 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
             { check: fieldValidation.noDigits, func: () => validateNoDigits(value) },
             { check: fieldValidation.email, func: () => validateEmail(value) },
             { check: fieldValidation.pattern, func: () => validatePattern(value, fieldValidation.pattern!) }
-        ];
+        ]
 
         for (let validation of validations) {
             if (!errorMessage && validation.check) {
-                errorMessage = validation.func();
-                if (errorMessage) break;
+                errorMessage = validation.func()
+                if (errorMessage) break
             }
         }
         setErrors(prevErrors => ({

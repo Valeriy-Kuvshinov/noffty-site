@@ -15,6 +15,7 @@
 @import './pages/_Contact.css';
 @import './pages/_GameIndex.css';
 @import './pages/_GameDetails.css';
+@import './pages/_Admin.css';
 
 /* components */
 @import './components/_Header.css';
