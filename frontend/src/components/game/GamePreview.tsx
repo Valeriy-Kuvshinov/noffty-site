@@ -15,7 +15,7 @@ export function GamePreview({ game, isAdminPage }: GamePreviewProps) {
 
     function handleEditClick(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
-        router.push(`/admin/${game.name}`)
+        router.push(`/admin/edit/${game.name}`)
     }
 
     return (
@@ -23,15 +23,17 @@ export function GamePreview({ game, isAdminPage }: GamePreviewProps) {
             className='flex column align-center w-100 text-capitalize'>
             <div className='preview-body w-100 h-fit'>
                 <ImageContainer src={game.screenshots[0]} alt={game.name} />
-                {game.isGameJam === 'yes' && <span className="gmtk" title='Game{Jam} Submission'>JAM</span>}
+                {game.isGameJam === 'yes' && (
+                    <span className="gmtk" title='Game{Jam} Submission' aria-label='GameJam Submission'>
+                        JAM
+                    </span>)}
                 <div className='icon'>
                     <SvgRender iconName={game.platform} />
                 </div>
-                {isAdminPage && <button
-                    className='flex full-center'
-                    onClick={handleEditClick}>
-                    <SvgRender iconName='edit' />
-                </button>}
+                {isAdminPage && (
+                    <button className='flex full-center' onClick={handleEditClick}>
+                        <SvgRender iconName='edit' />
+                    </button>)}
             </div>
 
             <div className='preview-info grid w-100 h-fit'>
