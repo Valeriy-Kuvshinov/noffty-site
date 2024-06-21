@@ -11,6 +11,7 @@ authRoutes.post('/login', _login)
 authRoutes.post('/signup', _signup)
 authRoutes.post('/logout', _logout)
 authRoutes.get('/recaptcha', _getRecaptchaKey)
+authRoutes.get('/cloudinary', _getCloudinaryFrontKeys)
 
 // auth controller functions
 async function _login(req: Request<LoginRequestBody>,
@@ -71,12 +72,20 @@ async function _logout(req: Request, res: Response): Promise<void> {
 
 async function _getRecaptchaKey(req: Request, res: Response): Promise<void> {
   try {
-    loggerService.info('Fetching Recaptcha site key')
     const recaptchaSiteKey = authService.getRecaptchaSiteKey()
     res.json({ siteKey: recaptchaSiteKey })
-    loggerService.info('Recaptcha site key sent successfully')
   } catch (err) {
     loggerService.error('Failed to fetch reCAPTCHA site key', err)
     res.status(500).send({ err: 'Failed to fetch reCAPTCHA site key' })
+  }
+}
+
+async function _getCloudinaryFrontKeys(req: Request, res: Response): Promise<void> {
+  try {
+    const cloudinaryKeys = authService.getCloudinaryFrontKeys()
+    res.json(cloudinaryKeys)
+  } catch (err) {
+    loggerService.error('Failed to fetch Cloudinary keys', err)
+    res.status(500).send({ err: 'Failed to fetch Cloudinary keys' })
   }
 }

@@ -10,11 +10,16 @@ export const UtilityService = {
     formatDate,
     getYouTubeEmbedUrl,
     areEqual,
-    getSocialLinks
+    getSocialLinks,
+    getCloudinaryKeys
 }
 
 async function getRecaptchaKey(): Promise<any> {
     return HttpService.get(`auth/recaptcha`)
+}
+
+async function getCloudinaryKeys(): Promise<any> {
+    return HttpService.get(`auth/cloudinary`)
 }
 
 function getBrowserName() {
