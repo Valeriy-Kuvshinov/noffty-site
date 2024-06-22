@@ -14,6 +14,7 @@ export function AsideMenu() {
     const [showAsideMenu, setShowAsideMenu] = useState(false)
 
     const headerLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
+    const isOpen = activeModal === 'aside-menu'
 
     function closeAsideMenu() {
         setShowAsideMenu(false)
@@ -24,15 +25,12 @@ export function AsideMenu() {
         return pathname === path
     }
 
-    useClickOutside(asideRef, closeAsideMenu)
-
-    const isOpen = activeModal === 'aside-menu'
-
     useEffect(() => {
         if (isOpen) setTimeout(() => setShowAsideMenu(true), 50)
         else setShowAsideMenu(false)
     }, [isOpen])
 
+    useClickOutside(asideRef, closeAsideMenu)
     if (!isOpen) return null
 
     return (

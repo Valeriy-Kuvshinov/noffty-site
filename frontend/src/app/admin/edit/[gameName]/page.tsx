@@ -38,8 +38,7 @@ export default async function GameEdit({ params }: { params: { gameName: string 
                     <GameForm game={game} cloudName={cloudinaryKeys.cloudName}
                         uploadPreset={cloudinaryKeys.uploadPreset} defaultIcon={defaultIcon}
                         defaultScreenshot={defaultScreenshot}
-                    />
-                )}
+                    />)}
             </section>
         </main>
     )

@@ -7,6 +7,7 @@ import { useHoverSwitch } from '../../hooks/hoverSwitch'
 import { RecaptchaContainer } from './RecaptchaContainer'
 import { ImageContainer } from '../general/ImageContainer'
 import { InputArea } from './InputArea'
+import { SvgRender } from '../general/SvgRender'
 
 interface ContactUsReqBody {
     name: string
@@ -29,27 +30,10 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
     }
 
     const validationSchema = {
-        name: {
-            required: true,
-            minLength: 3,
-            noDigits: true,
-            pattern: /[\s'.-]+/
-        },
-        email: {
-            required: true,
-            email: true,
-            minLength: 5
-        },
-        title: {
-            required: true,
-            minLength: 3,
-            pattern: /[\s.\-!?']+/
-        },
-        message: {
-            required: true,
-            minLength: 15,
-            pattern: /[\s.\-!?@#$',*;:]+/
-        }
+        name: { required: true, minLength: 3, noDigits: true, pattern: /[\s'.-]+/ },
+        email: { required: true, email: true, minLength: 5 },
+        title: { required: true, minLength: 3, pattern: /[\s.\-!?']+/ },
+        message: { required: true, minLength: 15, pattern: /[\s.\-!?@#$',*;:]+/ }
     }
 
     const { values, errors, validateField, handleChange, handleSubmit, resetForm } =
@@ -68,13 +52,11 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
             }
         })
     const allFieldsFilled = values.name && values.email &&
-        values.title && values.requestType && values.message
+        values.title && values.message
     const hasErrors = Object.values(errors).some(error => error)
 
     const { value: buttonImage, handleMouseEnter, handleMouseLeave } = useHoverSwitch({
-        defaultValue: defaultImg,
-        hoverValue: hoveredImg,
-        condition: hasErrors
+        defaultValue: defaultImg, hoverValue: hoveredImg, condition: hasErrors
     })
 
     return (
@@ -95,7 +77,7 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
                     value={values.title} onChange={handleChange} placeholder="Asking about..."
                     error={errors.title} onBlur={() => validateField('title', values.title)}
                 />
-                <InputArea
+                {/* <InputArea
                     label="Subject" type="select" name="requestType" svg='info'
                     value={values.requestType} onChange={handleChange}
                     options={[
@@ -105,7 +87,20 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
                         { value: "Volunteering", label: "Volunteering" },
                         { value: "Other", label: "Other" }
                     ]}
-                />
+                /> */}
+                <div className='input-area grid'>
+                    <label className='grid align-center' htmlFor="requestType">
+                        <SvgRender iconName='info' />
+                        <span>Subject</span>
+                    </label>
+                    <select id="requestType" name="requestType" value={values.requestType} onChange={handleChange}>
+                        <option value="Q&A">Q&A</option>
+                        <option value="Suggestion">Suggestion</option>
+                        <option value="Bug Report">Bug Report</option>
+                        <option value="Volunteering">Volunteering</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
                 <InputArea
                     label="Message*" type="textarea" name="message" svg='message' maxLength={600}
                     value={values.message} onChange={handleChange} placeholder="Yo, I got a question..."

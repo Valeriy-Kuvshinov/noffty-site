@@ -44,8 +44,7 @@ export default async function GameCreate() {
                     <GameForm game={defaultGame} cloudName={cloudinaryKeys.cloudName}
                         uploadPreset={cloudinaryKeys.uploadPreset} defaultIcon={defaultIcon}
                         defaultScreenshot={defaultScreenshot}
-                    />
-                )}
+                    />)}
             </section>
         </main>
     )

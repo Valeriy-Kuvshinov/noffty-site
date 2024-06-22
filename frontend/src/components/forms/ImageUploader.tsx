@@ -98,9 +98,7 @@ export function ImageUploader({ index, defaultImgUrl, folderName, cloudName,
         event.currentTarget.classList.remove('drag-over')
 
         const files = event.dataTransfer.files
-        if (files && files.length > 0) {
-            onFileDropped(files[0])
-        }
+        if (files && files.length > 0) onFileDropped(files[0])
     }
 
     return (

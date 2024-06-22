@@ -14,18 +14,20 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
     const [values, setValues] = useState<FormValues>(initialValues)
     const [errors, setErrors] = useState<FormValues>({})
 
-    function handleChange(event: ChangeEvent<HTMLInputElement |
-        HTMLTextAreaElement | HTMLSelectElement>) {
+    function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
         const { name, value } = event.target
         setValues(prevValues => ({
             ...prevValues,
             [name]: value
         }))
-        validateField(name, value)
+        if (event.target.tagName.toLowerCase() !== "select") {
+            validateField(name, value)
+        }
     }
 
     function validateField(name: string, value: string) {
         const fieldValidation = validationSchema[name]
+        if (!fieldValidation) return
         let errorMessage = null
 
         const validations = [

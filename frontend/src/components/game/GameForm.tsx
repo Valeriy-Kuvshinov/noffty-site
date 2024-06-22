@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation"
 import { Game } from "../../models/game"
 import { GameService } from "../../services/game.service"
 import { ImageUploader } from "../forms/ImageUploader"
+import { SvgRender } from "../general/SvgRender"
 
 interface GameFormProps {
     game: Game
@@ -16,9 +17,13 @@ interface GameFormProps {
 export function GameForm({ game, cloudName, uploadPreset, defaultIcon,
     defaultScreenshot }: GameFormProps) {
     const gameService = new GameService()
-
     const router = useRouter()
-    const [formData, setFormData] = useState<Game>(game)
+
+    const [formData, setFormData] = useState<Game>({
+        ...game,
+        description: game.description?.replace(/<br>/g, '\n'),
+        credits: game.credits?.replace(/<br>/g, '\n')
+    })
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
         const { name, value } = e.target
@@ -68,7 +73,7 @@ export function GameForm({ game, cloudName, uploadPreset, defaultIcon,
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="flex column w-100 layout-row" onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="name">Game Title:</label>
                 <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
@@ -111,7 +116,7 @@ export function GameForm({ game, cloudName, uploadPreset, defaultIcon,
 
             <div>
                 <label htmlFor="controls">Controls:</label>
-                <textarea id="controls" name="controls" value={formData.controls} onChange={handleChange} />
+                <input id="controls" name="controls" value={formData.controls} onChange={handleChange} />
             </div>
 
             <div>
@@ -165,13 +170,13 @@ export function GameForm({ game, cloudName, uploadPreset, defaultIcon,
                         className={`flex ${formData.screenshots.length === 1 ? 'disabled' : ''}`}
                         type="button" onClick={() => handleRemoveScreenshot(formData.screenshots.length - 1)}
                         disabled={formData.screenshots.length === 1}>
-                        Remove
+                        <SvgRender iconName="minus" />
                     </button>
                     <button
                         className={`flex ${formData.screenshots.length >= 5 ? 'disabled' : ''}`}
                         type="button" onClick={handleAddScreenshot}
                         disabled={formData.screenshots.length >= 5}>
-                        Add Screenshot
+                        <SvgRender iconName="plus" />
                     </button>
                 </div>
             </div>
