@@ -31,10 +31,10 @@ export default function Home() {
         <article className="games-showcase flex column full-center w-100">
           <h2 className="text-center">Published Games</h2>
           <h3 className="text-center">Available on Our Site Now!</h3>
-          <GameList games={webGames} />
+          <GameList games={webGames} isAdminPage={false} />
 
           <h3 className="text-center">Available on Google Play!</h3>
-          <GameList games={mobileGames} />
+          <GameList games={mobileGames} isAdminPage={false} />
 
           <h4 className="text-center">We've got plenty more games, which you can</h4>
           <a href="/games" className="action-btn" title="Go to games index?"

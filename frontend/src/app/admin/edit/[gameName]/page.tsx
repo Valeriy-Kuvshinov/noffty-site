@@ -1,11 +1,16 @@
 import { Game } from "../../../../models/game"
 import { GameService } from "../../../../services/game.service"
 import { UtilityService } from "../../../../services/utility.service"
+import { GameForm } from "../../../../components/game/GameForm"
+import { SvgRender } from "../../../../components/general/SvgRender"
 
 export default async function GameEdit({ params }: { params: { gameName: string } }) {
-    const gameService = new GameService()
+    const defaultIcon = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719002261/vohr6yravygkly4duxhv.avif'
+    const defaultScreenshot = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719002299/zmbzvexomb5jmawvpqzd.avif'
 
+    const gameService = new GameService()
     const gameName = decodeURIComponent(params.gameName)
+
     let cloudinaryKeys = { cloudName: '', uploadPreset: '' }
     let game: Game | null = null
 
@@ -25,7 +30,16 @@ export default async function GameEdit({ params }: { params: { gameName: string 
     return (
         <main className="edit-page full w-h-100">
             <section className="page-contents flex column align-center w-h-100 layout-row">
+                <a href="/admin" title="Return to game list?" aria-label="Return to game list?">
+                    <SvgRender iconName="return" />
+                </a>
                 <h2>You are now editing {gameName}</h2>
+                {game && (
+                    <GameForm game={game} cloudName={cloudinaryKeys.cloudName}
+                        uploadPreset={cloudinaryKeys.uploadPreset} defaultIcon={defaultIcon}
+                        defaultScreenshot={defaultScreenshot}
+                    />
+                )}
             </section>
         </main>
     )
