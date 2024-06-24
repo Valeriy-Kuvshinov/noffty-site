@@ -9,25 +9,16 @@ import { ImageContainer } from '../general/ImageContainer'
 import { InputArea } from './InputArea'
 import { SvgRender } from '../general/SvgRender'
 
-interface ContactUsReqBody {
-    name: string
-    email: string
-    title: string
-    requestType: string
-    message: string
-    recaptchaToken: string
+interface ContactFormProps {
+    recaptchaKey: string
+    initialValues: any
 }
 
-export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
+export function ContactForm({ recaptchaKey, initialValues }: ContactFormProps) {
     const defaultImg = 'https://res.cloudinary.com/djzid7ags/image/upload/v1718830337/g373afizfrrnplfms5rf.avif'
     const hoveredImg = 'https://res.cloudinary.com/djzid7ags/image/upload/v1718830337/ig5n5ytdmnrh5wopdajt.avif'
     const mailService = new MailService()
     const recaptchaRef = useRef<ReCAPTCHA>(null)
-
-    const initialValues: ContactUsReqBody = {
-        name: '', email: '', title: '', requestType: 'Q&A',
-        message: '', recaptchaToken: ''
-    }
 
     const validationSchema = {
         name: { required: true, minLength: 3, noDigits: true, pattern: /[\s'.-]+/ },
@@ -60,53 +51,40 @@ export function ContactForm({ recaptchaKey }: { recaptchaKey: string }) {
     })
 
     return (
-        <form className='flex column layout-row w-100' onSubmit={handleSubmit}>
-            <section className='form-inputs grid'>
-                <InputArea
-                    label="Name*" type="text" name="name" svg='person' maxLength={30}
-                    value={values.name} onChange={handleChange} placeholder="Your name"
-                    error={errors.name} onBlur={() => validateField('name', values.name)}
-                />
-                <InputArea
-                    label="Email*" type="email" name="email" svg='mail' maxLength={50}
-                    value={values.email} onChange={handleChange} placeholder="Your email"
-                    error={errors.email} onBlur={() => validateField('email', values.email)}
-                />
-                <InputArea
-                    label="Title*" type="text" name="title" svg='title' maxLength={50}
-                    value={values.title} onChange={handleChange} placeholder="Asking about..."
-                    error={errors.title} onBlur={() => validateField('title', values.title)}
-                />
-                {/* <InputArea
-                    label="Subject" type="select" name="requestType" svg='info'
-                    value={values.requestType} onChange={handleChange}
-                    options={[
-                        { value: "Q&A", label: "Q&A" },
-                        { value: "Suggestion", label: "Suggestion" },
-                        { value: "Bug Report", label: "Bug Report" },
-                        { value: "Volunteering", label: "Volunteering" },
-                        { value: "Other", label: "Other" }
-                    ]}
-                /> */}
-                <div className='input-area grid'>
-                    <label className='grid align-center' htmlFor="requestType">
-                        <SvgRender iconName='info' />
-                        <span>Subject</span>
-                    </label>
-                    <select id="requestType" name="requestType" value={values.requestType} onChange={handleChange}>
-                        <option value="Q&A">Q&A</option>
-                        <option value="Suggestion">Suggestion</option>
-                        <option value="Bug Report">Bug Report</option>
-                        <option value="Volunteering">Volunteering</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                <InputArea
-                    label="Message*" type="textarea" name="message" svg='message' maxLength={600}
-                    value={values.message} onChange={handleChange} placeholder="Yo, I got a question..."
-                    error={errors.message} onBlur={() => validateField('message', values.message)}
-                />
-            </section>
+        <form className='grid layout-row w-100' onSubmit={handleSubmit}>
+            <InputArea
+                label="Name*" type="text" name="name" svg='person' maxLength={30}
+                value={values.name} onChange={handleChange} placeholder="Your name"
+                error={errors.name} onBlur={() => validateField('name', values.name)}
+            />
+            <InputArea
+                label="Email*" type="email" name="email" svg='mail' maxLength={50}
+                value={values.email} onChange={handleChange} placeholder="Your email"
+                error={errors.email} onBlur={() => validateField('email', values.email)}
+            />
+            <InputArea
+                label="Title*" type="text" name="title" svg='title' maxLength={50}
+                value={values.title} onChange={handleChange} placeholder="Asking about..."
+                error={errors.title} onBlur={() => validateField('title', values.title)}
+            />
+            <div className='input-area grid'>
+                <label className='grid align-center' htmlFor="requestType">
+                    <SvgRender iconName='info' />
+                    <span>Subject</span>
+                </label>
+                <select id="requestType" name="requestType" value={values.requestType} onChange={handleChange}>
+                    <option value="Q&A">Q&A</option>
+                    <option value="Suggestion">Suggestion</option>
+                    <option value="Bug Report">Bug Report</option>
+                    <option value="Volunteering">Volunteering</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <InputArea
+                label="Message*" type="textarea" name="message" svg='message' maxLength={600}
+                value={values.message} onChange={handleChange} placeholder="Yo, I got a question..."
+                error={errors.message} onBlur={() => validateField('message', values.message)}
+            />
             <section className='form-actions flex row align-center justify-between'>
                 <button className={`flex row align-center ${!allFieldsFilled || hasErrors ? 'disabled' : ''}`}
                     type="submit" disabled={!allFieldsFilled || hasErrors}

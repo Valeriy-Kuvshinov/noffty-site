@@ -2,11 +2,6 @@ import { ChangeEvent } from "react"
 import { ValidationOptions } from "../../models/utility"
 import { SvgRender } from "../general/SvgRender"
 
-interface Option {
-    value: string
-    label: string
-}
-
 interface InputAreaProps {
     label: string
     svg: string
@@ -32,10 +27,8 @@ interface InputAreaProps {
     validationOptions?: ValidationOptions
 }
 
-export function InputArea({
-    label, svg, type, name, value, onChange, placeholder,
-    maxLength, error, onBlur, validationOptions
-}: InputAreaProps) {
+export function InputArea({ label, svg, type, name, value, onChange,
+    placeholder, maxLength, error, onBlur, validationOptions }: InputAreaProps) {
     return (
         <div className={`input-area grid ${error ? 'error' : ''}`}>
             <label className='grid align-center' htmlFor={name}>

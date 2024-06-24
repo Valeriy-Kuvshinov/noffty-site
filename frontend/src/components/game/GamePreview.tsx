@@ -38,8 +38,8 @@ export function GamePreview({ game, isAdminPage }: GamePreviewProps) {
 
             <div className='preview-info grid w-100 h-fit'>
                 <ImageContainer src={game.icon} alt={game.name} />
-                <h3>{game.name}</h3>
-                <p>{game.note}</p>
+                <h3 title={game.name}>{game.name}</h3>
+                <p title={game.note}>{game.note}</p>
             </div>
         </Link>
     )

@@ -11,59 +11,56 @@
     }
 
     form {
-        gap: 1em;
-        max-width: 700px;
+        gap: 0.75em;
+        max-width: 750px;
+        grid-template-columns: 1fr 1fr;
 
-        .form-inputs {
-            gap: 0.75em;
-            grid-template-columns: 1fr 1fr;
+        .input-area {
+            gap: 0.25em;
 
-            .input-area {
-                gap: 0.25em;
+            label {
+                grid-template-columns: auto auto 1fr;
+                padding: 0 0.5em;
+                column-gap: 0.5em;
 
-                label {
-                    grid-template-columns: auto auto 1fr;
-                    padding: 0 0.5em;
-                    column-gap: 0.5em;
-
-                    .svg-cmp {
-                        width: 32px;
-                        fill: var(--prmclr2);
-                    }
-
-                    p {
-                        justify-self: end;
-                        color: var(--mnrclr3);
-                    }
+                .svg-cmp {
+                    width: 32px;
+                    fill: var(--prmclr2);
                 }
 
-                textarea {
-                    min-height: 180px;
+                p {
+                    justify-self: end;
+                    color: var(--mnrclr3);
                 }
+            }
 
-                input,
-                select,
-                textarea {
-                    padding: 0.25em 0.5em;
-                    border: 2px solid transparent;
-                    border-radius: 0.5em;
-                    font-size: 1em;
+            textarea {
+                min-height: 180px;
+            }
 
-                    &:focus {
-                        border-color: var(--mnrclr2);
-                    }
+            input,
+            select,
+            textarea {
+                padding: 0.25em 0.5em;
+                border: 2px solid transparent;
+                border-radius: 0.5em;
+                font-size: 1em;
+
+                &:focus {
+                    border-color: var(--mnrclr2);
                 }
+            }
 
-                &.error input,
-                &.error select,
-                &.error textarea {
-                    border-color: var(--mnrclr3);
-                }
+            &.error input,
+            &.error select,
+            &.error textarea {
+                border-color: var(--mnrclr3);
             }
         }
 
         .form-actions {
-            padding: 0 0.5em;
+            margin-block-start: 0.5em;
+            grid-column: 1 / -1;
 
             button {
                 padding: 0.5em 0.75em;

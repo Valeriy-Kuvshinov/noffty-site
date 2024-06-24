@@ -36,6 +36,7 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
             { check: fieldValidation.noLetters, func: () => validateNoLetters(value) },
             { check: fieldValidation.noDigits, func: () => validateNoDigits(value) },
             { check: fieldValidation.email, func: () => validateEmail(value) },
+            { check: fieldValidation.link, func: () => validateLink(value) },
             { check: fieldValidation.pattern, func: () => validatePattern(value, fieldValidation.pattern!) }
         ]
 
@@ -84,6 +85,11 @@ function validateNoDigits(value: string): string | null {
 function validateEmail(value: string): string | null {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
     return emailRegex.test(value) ? null : 'Invalid email format'
+}
+
+function validateLink(value: string): string | null {
+    const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:[0-9]{1,5})?(\/[^\s]*)?$/
+    return urlRegex.test(value) ? null : 'Invalid URL format'
 }
 
 function validatePattern(value: string, pattern: RegExp): string | null {

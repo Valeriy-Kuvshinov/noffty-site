@@ -34,6 +34,7 @@ export interface ValidationOptions {
     noLetters?: boolean
     noDigits?: boolean
     email?: boolean
+    link?: boolean
 }
 
 export interface VerificationMailReqBody {
