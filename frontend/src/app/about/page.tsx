@@ -166,22 +166,20 @@ export default function About() {
         }
     ]
 
-    return (
-        <main className="about-page full w-h-100">
-            <section className="page-contents grid w-h-100 layout-row">
-                <article className="intro-part flex column w-100">
-                    <h3 className="text-center">About Noffty Productions</h3>
+    return (<main className="about-page full w-h-100">
+        <section className="page-contents grid w-h-100 layout-row">
+            <article className="intro-part flex column w-100">
+                <h3 className="text-center">About Noffty Productions</h3>
 
-                    <p className="text-center">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error
-                        pariatur at odit aperiam id, velit repellendus minima, officia
-                        repudiandae dolor, deserunt rem labore minus nesciunt aliquid magnam
-                        beatae quia expedita.
-                    </p>
-                </article>
+                <p className="text-center">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error
+                    pariatur at odit aperiam id, velit repellendus minima, officia
+                    repudiandae dolor, deserunt rem labore minus nesciunt aliquid magnam
+                    beatae quia expedita.
+                </p>
+            </article>
 
-                <CrewInfo people={people} />
-            </section>
-        </main>
-    )
+            <CrewInfo people={people} />
+        </section>
+    </main>)
 }

@@ -41,11 +41,8 @@ export function GameDetailsFrame({ game }: { game: Game }) {
                 <h2>You Are Now Playing {game.name}</h2>
                 <div className="iframe-container w-100" ref={iframeContainerRef}>
                     <iframe className={`w-100 ${isFullscreen ? 'fullscreen' : ''}`}
-                        src={game.gameLink}
-                        title={game.name}
-                        allow={allowAttributes}
-                        allowFullScreen={true}
-                        aria-label="game frame"
+                        src={game.gameLink} title={game.name} allow={allowAttributes}
+                        allowFullScreen={true} aria-label="game frame"
                     ></iframe>
                     <button onClick={toggleFullscreen} title="Toggle fullscreen?"
                         aria-label="frame fullscreen toggle">
@@ -63,7 +60,6 @@ export function GameDetailsFrame({ game }: { game: Game }) {
                     <span>Take Me to The Game!</span>
                     <SvgRender iconName={game.platform} />
                 </a>
-            </div>
-        )}
+            </div>)}
     </>)
 }

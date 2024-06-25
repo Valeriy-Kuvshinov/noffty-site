@@ -48,51 +48,49 @@ export function ContactForm({ initialValues }: any) {
         defaultValue: defaultImg, hoverValue: hoveredImg, condition: hasErrors
     })
 
-    return (
-        <form className='grid layout-row w-100' onSubmit={handleSubmit}>
-            <InputArea
-                label="Name*" type="text" name="name" svg='person' maxLength={30}
-                value={values.name} onChange={handleChange} placeholder="Your name"
-                error={errors.name} onBlur={() => validateField('name', values.name)}
-            />
-            <InputArea
-                label="Email*" type="email" name="email" svg='mail' maxLength={50}
-                value={values.email} onChange={handleChange} placeholder="Your email"
-                error={errors.email} onBlur={() => validateField('email', values.email)}
-            />
-            <InputArea
-                label="Title*" type="text" name="title" svg='title' maxLength={50}
-                value={values.title} onChange={handleChange} placeholder="Asking about..."
-                error={errors.title} onBlur={() => validateField('title', values.title)}
-            />
-            <div className='input-area grid'>
-                <label className='grid align-center' htmlFor="requestType">
-                    <SvgRender iconName='info' />
-                    <span>Subject</span>
-                </label>
-                <select id="requestType" name="requestType" value={values.requestType} onChange={handleChange}>
-                    <option value="Q&A">Q&A</option>
-                    <option value="Suggestion">Suggestion</option>
-                    <option value="Bug Report">Bug Report</option>
-                    <option value="Volunteering">Volunteering</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-            <InputArea
-                label="Message*" type="textarea" name="message" svg='message' maxLength={600}
-                value={values.message} onChange={handleChange} placeholder="Yo, I got a question..."
-                error={errors.message} onBlur={() => validateField('message', values.message)}
-            />
-            <section className='form-actions flex row align-center justify-between'>
-                <button className={`flex row align-center ${!allFieldsFilled || hasErrors ? 'disabled' : ''}`}
-                    type="submit" disabled={!allFieldsFilled || hasErrors}
-                    onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <ImageContainer src={buttonImage} alt='Submit' />
-                    <span>Send</span>
-                </button>
-                <RecaptchaContainer />
-            </section>
-            <ReCAPTCHA sitekey={recaptchaSiteKey} size="invisible" ref={recaptchaRef} />
-        </form>
-    )
+    return (<form className='grid layout-row w-100' onSubmit={handleSubmit}>
+        <InputArea
+            label="Name*" type="text" name="name" svg='person' maxLength={30}
+            value={values.name} onChange={handleChange} placeholder="Your name"
+            error={errors.name} onBlur={() => validateField('name', values.name)}
+        />
+        <InputArea
+            label="Email*" type="email" name="email" svg='mail' maxLength={50}
+            value={values.email} onChange={handleChange} placeholder="Your email"
+            error={errors.email} onBlur={() => validateField('email', values.email)}
+        />
+        <InputArea
+            label="Title*" type="text" name="title" svg='title' maxLength={50}
+            value={values.title} onChange={handleChange} placeholder="Asking about..."
+            error={errors.title} onBlur={() => validateField('title', values.title)}
+        />
+        <div className='input-area grid'>
+            <label className='grid align-center' htmlFor="requestType">
+                <SvgRender iconName='info' />
+                <span>Subject</span>
+            </label>
+            <select id="requestType" name="requestType" value={values.requestType} onChange={handleChange}>
+                <option value="Q&A">Q&A</option>
+                <option value="Suggestion">Suggestion</option>
+                <option value="Bug Report">Bug Report</option>
+                <option value="Volunteering">Volunteering</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <InputArea
+            label="Message*" type="textarea" name="message" svg='message' maxLength={600}
+            value={values.message} onChange={handleChange} placeholder="Yo, I got a question..."
+            error={errors.message} onBlur={() => validateField('message', values.message)}
+        />
+        <section className='form-actions flex row align-center justify-between'>
+            <button className={`flex row align-center ${!allFieldsFilled || hasErrors ? 'disabled' : ''}`}
+                type="submit" disabled={!allFieldsFilled || hasErrors}
+                onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <ImageContainer src={buttonImage} alt='Submit' />
+                <span>Send</span>
+            </button>
+            <RecaptchaContainer />
+        </section>
+        <ReCAPTCHA sitekey={recaptchaSiteKey} size="invisible" ref={recaptchaRef} />
+    </form>)
 }

@@ -16,11 +16,8 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
 
     function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
         const { name, value } = event.target
-        setValues(prevValues => ({
-            ...prevValues,
-            [name]: value
-        }))
-        if (event.target.tagName.toLowerCase() !== "select") {
+        setValues(prevValues => ({ ...prevValues, [name]: value }))
+        if (event.target.tagName.toLowerCase() !== "select" && validationSchema[name]?.required) {
             validateField(name, value)
         }
     }
@@ -29,6 +26,11 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
         const fieldValidation = validationSchema[name]
         if (!fieldValidation) return
         let errorMessage = null
+
+        if (!fieldValidation.required && value.trim() === '') {
+            setErrors(prevErrors => ({ ...prevErrors, [name]: null }))
+            return
+        }
 
         const validations = [
             { check: fieldValidation.required, func: () => validateRequired(value) },
@@ -46,10 +48,7 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
                 if (errorMessage) break
             }
         }
-        setErrors(prevErrors => ({
-            ...prevErrors,
-            [name]: errorMessage
-        }))
+        setErrors(prevErrors => ({ ...prevErrors, [name]: errorMessage }))
     }
 
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {

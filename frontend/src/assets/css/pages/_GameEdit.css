@@ -15,8 +15,7 @@
     }
 
     form {
-        gap: 0.75em;
-        max-width: 1200px;
+        gap: 1em;
         grid-template-columns: 1fr 1fr 1fr;
         margin-block-start: 1em;
 
@@ -30,7 +29,7 @@
 
                 .upload-preview {
                     &.drag-over .file-upload-container label {
-                        border: 2px dashed var(--prmclr1);
+                        border: 2px dashed var(--mnrclr2);
                         border-radius: 0.5em;
 
                         .image-container img {
@@ -62,6 +61,7 @@
                             aspect-ratio: 4 / 3;
                             max-height: 250px;
                             border-radius: 0 0 0.5em 0.5em;
+                            background: var(--scdclr6);
                         }
                     }
                 }
@@ -74,6 +74,14 @@
                         gap: 1em;
                         padding: 2em;
                         background: var(--prmclr2);
+
+                        &:nth-child(1) {
+                            border-radius: 0.5em 0 0 0.5em;
+                        }
+
+                        &:nth-child(2) {
+                            border-radius: 0 0.5em 0.5em 0;
+                        }
 
                         &:hover {
                             background: var(--scdclr6);
@@ -104,6 +112,10 @@
                 .upload-area {
                     grid-template-columns: 1fr 1fr;
                 }
+            }
+
+            &:nth-child(14) .upload-area {
+                max-width: 9em;
             }
         }
 

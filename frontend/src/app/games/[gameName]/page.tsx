@@ -28,17 +28,15 @@ export default function GameDetails({ params }: { params: { gameName: string } }
         }
     }
 
-    return (
-        <main className="game-page full w-h-100">
-            <section className="page-contents flex column align-center w-h-100 layout-row">
-                {loading ? (
-                    <Loader />
-                ) : game ? (<>
-                    <GameDetailsFrame game={game} />
-                    <GameDetailsBody game={game} />
-                </>) : (
-                    <ErrorContainer message={`Sorry, no game found matching ${gameName}.`} />)}
-            </section>
-        </main>
-    )
+    return (<main className="game-page full w-h-100">
+        <section className="page-contents flex column align-center w-h-100 layout-row">
+            {loading ? (
+                <Loader />
+            ) : game ? (<>
+                <GameDetailsFrame game={game} />
+                <GameDetailsBody game={game} />
+            </>) : (
+                <ErrorContainer message={`Sorry, no game found matching ${gameName}.`} />)}
+        </section>
+    </main>)
 }

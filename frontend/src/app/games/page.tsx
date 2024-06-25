@@ -32,23 +32,21 @@ export default function GameIndex() {
         }
     }
 
-    return (
-        <main className="index-page full w-h-100">
-            <section className="page-contents flex column align-center w-h-100 layout-row">
-                <h2 className="text-center">
-                    {games.length === 1
-                        ? 'Explore Our Matching Game'
-                        : `Explore Our ${games.length} Matching Games`}
-                </h2>
-                <GameFilter
-                    defaultValues={defaultValues}
-                    updateSearchParams={updateSearchParams}
-                />
-                {loading ? (
-                    <Loader />
-                ) : (
-                    <GameList games={games} isAdminPage={isAdminPage} />)}
-            </section>
-        </main>
-    )
+    return (<main className="index-page full w-h-100">
+        <section className="page-contents flex column align-center w-h-100 layout-row">
+            <h2 className="text-center">
+                {games.length === 1
+                    ? 'Explore Our Matching Game'
+                    : `Explore Our ${games.length} Matching Games`}
+            </h2>
+            <GameFilter
+                defaultValues={defaultValues}
+                updateSearchParams={updateSearchParams}
+            />
+            {loading ? (
+                <Loader />
+            ) : (
+                <GameList games={games} isAdminPage={isAdminPage} />)}
+        </section>
+    </main>)
 }

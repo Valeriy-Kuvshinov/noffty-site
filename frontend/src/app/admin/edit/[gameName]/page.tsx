@@ -19,7 +19,14 @@ export default function GameEdit({ params }: { params: { gameName: string } }) {
     async function fetchGame() {
         try {
             const fetchedGame = await gameService.getByName(gameName)
-            setGame(fetchedGame)
+
+            const formattedGame = { //format certain fields that use textarea
+                ...fetchedGame,
+                description: fetchedGame.description?.replace(/<br>/g, '\n'),
+                controls: fetchedGame.controls?.replace(/<br>/g, '\n'),
+                credits: fetchedGame.credits?.replace(/<br>/g, '\n')
+            }
+            setGame(formattedGame)
             setLoading(false)
         } catch (error) {
             console.error('Failed to fetch game', error)
@@ -27,21 +34,18 @@ export default function GameEdit({ params }: { params: { gameName: string } }) {
         }
     }
 
-    return (
-        <main className="edit-page full w-h-100">
-            <section className="page-contents flex column align-center w-h-100 layout-row">
-                <a href="/admin" title="Return to game list?" aria-label="Return to game list?">
-                    <SvgRender iconName="return" />
-                </a>
-                <h2>You are now editing {gameName}</h2>
-                {loading ? (
-                    <Loader />
-                ) : game ? (
-                    <GameForm game={game} />
-                ) : (
-                    <ErrorContainer message={`Sorry, no game found matching ${gameName}.`} />
-                )}
-            </section>
-        </main>
-    )
+    return (<main className="edit-page full w-h-100">
+        <section className="page-contents flex column align-center w-h-100 layout-row">
+            <a href="/admin" title="Return to game list?" aria-label="Return to game list?">
+                <SvgRender iconName="return" />
+            </a>
+            <h2>You are now editing {gameName}</h2>
+            {loading ? (
+                <Loader />
+            ) : game ? (
+                <GameForm game={game} />
+            ) : (
+                <ErrorContainer message={`Sorry, no game found matching ${gameName}.`} />)}
+        </section>
+    </main>)
 }

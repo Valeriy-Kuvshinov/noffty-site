@@ -33,23 +33,21 @@ export default function AdminIndex() {
         }
     }
 
-    return (
-        <main className="admin-page full w-h-100">
-            <section className="page-contents flex column align-center w-h-100 layout-row">
-                <h2>Welcome Home Boss!</h2>
-                <h3>Find and update your games, or...</h3>
-                <Link href={`/admin/edit`} className="add-btn">
-                    <span>Add New Game</span>
-                </Link>
-                <GameFilter
-                    defaultValues={defaultValues}
-                    updateSearchParams={updateSearchParams}
-                />
-                {loading ? (
-                    <Loader />
-                ) : (
-                    <GameList games={games} isAdminPage={isAdminPage} />)}
-            </section>
-        </main>
-    )
+    return (<main className="admin-page full w-h-100">
+        <section className="page-contents flex column align-center w-h-100 layout-row">
+            <h2>Welcome Home Boss!</h2>
+            <h3>Find and update your games, or...</h3>
+            <Link href={`/admin/edit`} className="add-btn">
+                <span>Add New Game</span>
+            </Link>
+            <GameFilter
+                defaultValues={defaultValues}
+                updateSearchParams={updateSearchParams}
+            />
+            {loading ? (
+                <Loader />
+            ) : (
+                <GameList games={games} isAdminPage={isAdminPage} />)}
+        </section>
+    </main>)
 }

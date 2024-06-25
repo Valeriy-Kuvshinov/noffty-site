@@ -11,9 +11,9 @@ export default function GameCreate() {
         platform: 'html5',
         outsideLink: 'https://t1mure.itch.io/absurd2',
         gameLink: 'https://html-classic.itch.zone/html/9577176/index.html',
-        description: 'Game info',
+        description: 'Game info for the user',
         credits: 'Game stuff by T1mure',
-        controls: 'WASD for movement',
+        controls: 'WASD / Space keys to move',
         genre: ['action'],
         devlog: '',
         walkthrough: '',
@@ -30,6 +30,5 @@ export default function GameCreate() {
                 <h2>You are now adding a new game</h2>
                 {defaultGame && (<GameForm game={defaultGame} />)}
             </section>
-        </main>
-    )
+        </main>)
 }

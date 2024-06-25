@@ -32,11 +32,9 @@ export function Loader() {
         return phrases[randomIndex]
     }
 
-    return (
-        <article className="loader-container flex column">
-            <span className="text-center">{currentPhrase}</span>
-            <ImageContainer src={loaderGif} alt="Loading..." />
-            <ImageContainer src={floor} alt="Loading..." />
-        </article>
-    )
+    return (<article className="loader-container flex column">
+        <span className="text-center">{currentPhrase}</span>
+        <ImageContainer src={loaderGif} alt="Loading..." />
+        <ImageContainer src={floor} alt="Loading..." />
+    </article>)
 }

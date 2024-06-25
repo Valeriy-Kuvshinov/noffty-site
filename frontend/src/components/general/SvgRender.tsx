@@ -34,8 +34,6 @@ export function SvgRender({ iconName }: SvgProp) {
         }).join(';')
     }
 
-    return (
-        <div className="svg-cmp flex fast-trans"
-            dangerouslySetInnerHTML={{ __html: sanitizedSvg }} />
-    )
+    return (<div className="svg-cmp flex fast-trans"
+        dangerouslySetInnerHTML={{ __html: sanitizedSvg }} />)
 }

@@ -33,36 +33,35 @@ export function AsideMenu() {
     useClickOutside(asideRef, closeAsideMenu)
     if (!isOpen) return null
 
-    return (
-        <dialog className="modal-wrapper w-h-100" open={isOpen}>
-            <article className={`aside-menu flex column w-h-100 fast-trans ${showAsideMenu ? 'show' : ''}`} ref={asideRef}>
-                <div className="menu-header flex row align-center justify-between">
-                    <ImageContainer src={headerLogo} alt="noffty logo" />
-                    <span>Noffty Productions</span>
-                </div>
-                <nav className="flex column">
-                    <Link href="/" className={`flex row align-center ${isActive('/') ? 'active' : ''}`}
-                        onClick={closeAsideMenu} title="Go to home page?" aria-label="Navigate to home page">
-                        <SvgRender iconName="home" />
-                        <span>Home</span>
-                    </Link>
-                    <Link href="/games" className={`flex row align-center ${isActive('/games') ? 'active' : ''}`}
-                        onClick={closeAsideMenu} title="Go to games page?" aria-label="Navigate to games page">
-                        <SvgRender iconName="controller" />
-                        <span>Games</span>
-                    </Link>
-                    <Link href="/about" className={`flex row align-center ${isActive('/about') ? 'active' : ''}`}
-                        onClick={closeAsideMenu} title="Go to about page?" aria-label="Navigate to about page">
-                        <SvgRender iconName="info" />
-                        <span>About</span>
-                    </Link>
-                    <Link href="/contact" className={`flex row align-center ${isActive('/contact') ? 'active' : ''}`}
-                        onClick={closeAsideMenu} title="Go to contact page?" aria-label="Navigate to contact page">
-                        <SvgRender iconName="mail" />
-                        <span>Contact</span>
-                    </Link>
-                </nav>
-            </article>
-        </dialog>
-    )
+    return (<dialog className="modal-wrapper w-h-100" open={isOpen}>
+        <article className={`aside-menu flex column w-h-100 fast-trans ${showAsideMenu ? 'show' : ''}`} ref={asideRef}>
+            <div className="menu-header flex row align-center justify-between">
+                <ImageContainer src={headerLogo} alt="noffty logo" />
+                <span>Noffty Productions</span>
+            </div>
+
+            <nav className="flex column">
+                <Link href="/" className={`flex row align-center ${isActive('/') ? 'active' : ''}`}
+                    onClick={closeAsideMenu} title="Go to home page?" aria-label="Navigate to home page">
+                    <SvgRender iconName="home" />
+                    <span>Home</span>
+                </Link>
+                <Link href="/games" className={`flex row align-center ${isActive('/games') ? 'active' : ''}`}
+                    onClick={closeAsideMenu} title="Go to games page?" aria-label="Navigate to games page">
+                    <SvgRender iconName="controller" />
+                    <span>Games</span>
+                </Link>
+                <Link href="/about" className={`flex row align-center ${isActive('/about') ? 'active' : ''}`}
+                    onClick={closeAsideMenu} title="Go to about page?" aria-label="Navigate to about page">
+                    <SvgRender iconName="info" />
+                    <span>About</span>
+                </Link>
+                <Link href="/contact" className={`flex row align-center ${isActive('/contact') ? 'active' : ''}`}
+                    onClick={closeAsideMenu} title="Go to contact page?" aria-label="Navigate to contact page">
+                    <SvgRender iconName="mail" />
+                    <span>Contact</span>
+                </Link>
+            </nav>
+        </article>
+    </dialog>)
 }

@@ -12,7 +12,5 @@ export function ReworkedText({ string }: { string: string }) {
         ))
     }
 
-    return (
-        <p>{convertLineBreaks(string)}</p>
-    )
+    return (<p>{convertLineBreaks(string)}</p>)
 }

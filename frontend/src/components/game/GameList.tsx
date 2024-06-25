@@ -9,14 +9,13 @@ interface GameListProps {
 }
 
 export function GameList({ games, isAdminPage }: GameListProps) {
-    return (
-        <div className="game-list grid w-100">
-            {games.length === 0 ? (
-                <ErrorContainer message={`No games found...`} />
-            ) : (
-                games.map((game: Game) => (
-                    <GamePreview key={game.name} game={game} isAdminPage={isAdminPage} />
-                )))}
-        </div>
-    )
+
+    return (<div className="game-list grid w-100">
+        {games.length === 0 ? (
+            <ErrorContainer message={`No games found...`} />
+        ) : (
+            games.map((game: Game) => (
+                <GamePreview key={game.name} game={game}
+                    isAdminPage={isAdminPage} />)))}
+    </div>)
 }
