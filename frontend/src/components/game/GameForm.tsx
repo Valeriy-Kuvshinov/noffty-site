@@ -27,10 +27,10 @@ export function GameForm({ game }: { game: Game }) {
         name: { required: true, minLength: 3, pattern: /[\s.\-!^&?']+/ },
         note: { required: true, minLength: 3, pattern: /[\s.\-!?']+/ },
         outsideLink: { required: true, minLength: 3, link: true },
-        gameLink: { required: true, minLength: 3, link: true },
+        gameLink: { minLength: 3, link: true },
         devlog: { minLength: 3, link: true },
         walkthrough: { minLength: 3, link: true },
-        description: { required: true, minLength: 15, pattern: /[\s.\-!?@#$',^*;:]+/ },
+        description: { required: true, minLength: 15, pattern: /[\s.\-!?@#$',^*;():]+/ },
         credits: { required: true, minLength: 3, pattern: /[\s.\-!?@#$',^*;:]+/ },
         controls: { required: true, minLength: 3, pattern: /[\s.\-!?@#$',^/*;:]+/ }
     }
@@ -77,8 +77,7 @@ export function GameForm({ game }: { game: Game }) {
                 console.error('Failed to save game', error)
             }
         })
-    const allFieldsFilled = values.name && values.note &&
-        values.outsideLink && values.gameLink &&
+    const allFieldsFilled = values.name && values.note && values.outsideLink &&
         values.description && values.credits && values.controls
     const hasErrors = Object.values(errors).some(error => error)
 
@@ -99,7 +98,7 @@ export function GameForm({ game }: { game: Game }) {
                 error={errors.outsideLink} onBlur={() => validateField('outsideLink', values.outsideLink)}
             />
 
-            <InputArea label="Files Link*" svg="folder" type="text" name="gameLink"
+            <InputArea label="Files Link" svg="folder" type="text" name="gameLink"
                 value={values.gameLink || ''} onChange={handleChange}
                 error={errors.gameLink} onBlur={() => validateField('gameLink', values.gameLink)}
             />

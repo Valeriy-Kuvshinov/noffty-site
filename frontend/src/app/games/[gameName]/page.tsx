@@ -9,15 +9,12 @@ import { GameDetailsFrame } from "../../../components/game/GameDetailsFrame"
 
 export default function GameDetails({ params }: { params: { gameName: string } }) {
     const gameService = new GameService()
-
     const gameName = decodeURIComponent(params.gameName)
 
     const [game, setGame] = useState<Game | null>(null)
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        fetchGame()
-    }, [params.gameName])
+    useEffect(() => { fetchGame() }, [gameName])
 
     async function fetchGame() {
         try {

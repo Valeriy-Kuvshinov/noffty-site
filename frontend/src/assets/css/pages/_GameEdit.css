@@ -21,47 +21,6 @@
         margin-block-start: 1em;
 
         .input-area {
-            gap: 0.25em;
-
-            label {
-                grid-template-columns: auto auto 1fr;
-                padding: 0 0.5em;
-                column-gap: 0.5em;
-
-                .svg-cmp {
-                    width: 32px;
-                    fill: var(--prmclr2);
-                }
-
-                p {
-                    justify-self: end;
-                    color: var(--mnrclr3);
-                }
-            }
-
-            textarea {
-                min-height: 180px;
-            }
-
-            input,
-            select,
-            textarea {
-                padding: 0.25em 0.5em;
-                border: 2px solid transparent;
-                border-radius: 0.5em;
-                font-size: 1em;
-
-                &:focus {
-                    border-color: var(--mnrclr2);
-                }
-            }
-
-            &.error input,
-            &.error select,
-            &.error textarea {
-                border-color: var(--mnrclr3);
-            }
-
             &.h-fit select {
                 height: 37.6px;
             }
@@ -113,7 +72,7 @@
 
                     button {
                         gap: 1em;
-                        padding: 1em 2em;
+                        padding: 2em;
                         background: var(--prmclr2);
 
                         &:hover {

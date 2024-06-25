@@ -8,22 +8,21 @@ import { Loader } from "../../../../components/general/Loader"
 import { ErrorContainer } from "../../../../components/general/ErrorContainer"
 
 export default function GameEdit({ params }: { params: { gameName: string } }) {
-    const [game, setGame] = useState<Game | null>(null)
-    const [loading, setLoading] = useState(true)
     const gameService = new GameService()
     const gameName = decodeURIComponent(params.gameName)
 
-    useEffect(() => {
-        fetchGame()
-    }, [gameName])
+    const [game, setGame] = useState<Game | null>(null)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => { fetchGame() }, [gameName])
 
     async function fetchGame() {
         try {
             const fetchedGame = await gameService.getByName(gameName)
             setGame(fetchedGame)
+            setLoading(false)
         } catch (error) {
             console.error('Failed to fetch game', error)
-        } finally {
             setLoading(false)
         }
     }

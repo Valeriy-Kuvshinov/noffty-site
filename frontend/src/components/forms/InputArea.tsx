@@ -16,14 +16,14 @@ interface InputAreaProps {
     validationOptions?: ValidationOptions
 }
 
-export function InputArea({ label, svg, type, name, value, onChange,
-    placeholder, maxLength, error, onBlur, validationOptions }: InputAreaProps) {
+export function InputArea({ label, svg, type, name, value, onChange, placeholder,
+    maxLength, error, onBlur, validationOptions }: InputAreaProps) {
     return (
         <div className={`input-area grid ${error ? 'error' : ''}`}>
             <label className='grid align-center' htmlFor={name}>
                 <SvgRender iconName={svg} />
                 <span>{label}</span>
-                {error && <p>{error}</p>}
+                {error && <p title={error}>{error}</p>}
             </label>
             {type === 'textarea' ? (
                 <textarea id={name} name={name} value={value} onChange={onChange}
