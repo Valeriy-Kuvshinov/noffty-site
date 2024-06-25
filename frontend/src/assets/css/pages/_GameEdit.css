@@ -113,6 +113,7 @@
 
                     button {
                         gap: 1em;
+                        padding: 1em 2em;
                         background: var(--prmclr2);
 
                         &:hover {
@@ -132,7 +133,7 @@
                         }
 
                         span {
-                            font-size: 16px;
+                            font-size: 1.25em;
                         }
                     }
                 }

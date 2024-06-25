@@ -12,8 +12,7 @@ export const authService = {
   validateToken,
   checkPassword,
   hashPassword,
-  getRecaptchaSiteKey,
-  getCloudinaryFrontKeys
+  getFrontAPIKeys
 }
 dotenv.config()
 
@@ -76,14 +75,12 @@ function validateToken(loginToken: string): User | null {
   return null
 }
 
-function getRecaptchaSiteKey(): string {
-  loggerService.info('Sending Recaptcha site key')
-  return process.env.RECAPTCHA_SITE_KEY!
-}
+function getFrontAPIKeys(): { recaptchaSiteKey: string; cloudinary: { cloudName: string; uploadPreset: string } } {
+  loggerService.info('Sending API keys')
 
-function getCloudinaryFrontKeys(): { cloudName: string, uploadPreset: string } {
-  loggerService.info('Sending Cloudinary keys')
+  const recaptchaSiteKey = process.env.RECAPTCHA_SITE_KEY!
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME!
   const uploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET!
-  return { cloudName, uploadPreset }
+
+  return { recaptchaSiteKey, cloudinary: { cloudName, uploadPreset } }
 }

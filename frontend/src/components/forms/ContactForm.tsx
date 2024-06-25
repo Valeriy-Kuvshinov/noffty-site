@@ -2,6 +2,7 @@
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useRef } from 'react'
 import { MailService } from '../../services/mail.service'
+import { useApiKeys } from '../../contexts/ApiContext'
 import { useForm } from '../../hooks/form'
 import { useHoverSwitch } from '../../hooks/hoverSwitch'
 import { RecaptchaContainer } from './RecaptchaContainer'
@@ -9,16 +10,13 @@ import { ImageContainer } from '../general/ImageContainer'
 import { InputArea } from './InputArea'
 import { SvgRender } from '../general/SvgRender'
 
-interface ContactFormProps {
-    recaptchaKey: string
-    initialValues: any
-}
-
-export function ContactForm({ recaptchaKey, initialValues }: ContactFormProps) {
+export function ContactForm({ initialValues }: any) {
     const defaultImg = 'https://res.cloudinary.com/djzid7ags/image/upload/v1718830337/g373afizfrrnplfms5rf.avif'
     const hoveredImg = 'https://res.cloudinary.com/djzid7ags/image/upload/v1718830337/ig5n5ytdmnrh5wopdajt.avif'
+
     const mailService = new MailService()
     const recaptchaRef = useRef<ReCAPTCHA>(null)
+    const { recaptchaSiteKey } = useApiKeys()
 
     const validationSchema = {
         name: { required: true, minLength: 3, noDigits: true, pattern: /[\s'.-]+/ },
@@ -94,7 +92,7 @@ export function ContactForm({ recaptchaKey, initialValues }: ContactFormProps) {
                 </button>
                 <RecaptchaContainer />
             </section>
-            <ReCAPTCHA sitekey={recaptchaKey} size="invisible" ref={recaptchaRef} />
+            <ReCAPTCHA sitekey={recaptchaSiteKey} size="invisible" ref={recaptchaRef} />
         </form>
     )
 }

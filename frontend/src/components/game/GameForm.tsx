@@ -3,23 +3,20 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Game } from "../../models/game"
 import { GameService } from "../../services/game.service"
+import { useApiKeys } from "../../contexts/ApiContext"
+import { useForm } from "../../hooks/form"
 import { ImageUploader } from "../forms/ImageUploader"
 import { SvgRender } from "../general/SvgRender"
 import { InputArea } from "../forms/InputArea"
-import { useForm } from "@/hooks/form"
 
-interface GameFormProps {
-    game: Game
-    cloudName: string
-    uploadPreset: string
-    defaultIcon: string
-    defaultScreenshot: string
-}
+const defaultIcon = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719002261/vohr6yravygkly4duxhv.avif'
+const defaultScreenshot = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719002299/zmbzvexomb5jmawvpqzd.avif'
 
-export function GameForm({ game, cloudName, uploadPreset, defaultIcon,
-    defaultScreenshot }: GameFormProps) {
+export function GameForm({ game }: { game: Game }) {
     const gameService = new GameService()
     const router = useRouter()
+    const { cloudinary } = useApiKeys()
+    const { cloudName, uploadPreset } = cloudinary
 
     const [formData, setFormData] = useState<Game>({
         ...game, description: game.description?.replace(/<br>/g, '\n'),

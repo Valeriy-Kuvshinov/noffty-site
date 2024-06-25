@@ -1,30 +1,31 @@
+'use client'
+import { useEffect, useState } from "react"
 import { Game } from "../../../../models/game"
 import { GameService } from "../../../../services/game.service"
-import { UtilityService } from "../../../../services/utility.service"
 import { GameForm } from "../../../../components/game/GameForm"
 import { SvgRender } from "../../../../components/general/SvgRender"
+import { Loader } from "../../../../components/general/Loader"
+import { ErrorContainer } from "../../../../components/general/ErrorContainer"
 
-export default async function GameEdit({ params }: { params: { gameName: string } }) {
-    const defaultIcon = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719002261/vohr6yravygkly4duxhv.avif'
-    const defaultScreenshot = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719002299/zmbzvexomb5jmawvpqzd.avif'
-
+export default function GameEdit({ params }: { params: { gameName: string } }) {
+    const [game, setGame] = useState<Game | null>(null)
+    const [loading, setLoading] = useState(true)
     const gameService = new GameService()
     const gameName = decodeURIComponent(params.gameName)
 
-    let cloudinaryKeys = { cloudName: '', uploadPreset: '' }
-    let game: Game | null = null
+    useEffect(() => {
+        fetchGame()
+    }, [gameName])
 
-    try {
-        const response = await UtilityService.getCloudinaryKeys()
-        cloudinaryKeys = response
-    } catch (error) {
-        console.error('Failed to fetch Cloudinary keys', error)
-    }
-
-    try {
-        game = await gameService.getByName(gameName)
-    } catch (error) {
-        console.error('Failed to fetch game', error)
+    async function fetchGame() {
+        try {
+            const fetchedGame = await gameService.getByName(gameName)
+            setGame(fetchedGame)
+        } catch (error) {
+            console.error('Failed to fetch game', error)
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -34,11 +35,13 @@ export default async function GameEdit({ params }: { params: { gameName: string 
                     <SvgRender iconName="return" />
                 </a>
                 <h2>You are now editing {gameName}</h2>
-                {game && (
-                    <GameForm game={game} cloudName={cloudinaryKeys.cloudName}
-                        uploadPreset={cloudinaryKeys.uploadPreset} defaultIcon={defaultIcon}
-                        defaultScreenshot={defaultScreenshot}
-                    />)}
+                {loading ? (
+                    <Loader />
+                ) : game ? (
+                    <GameForm game={game} />
+                ) : (
+                    <ErrorContainer message={`Sorry, no game found matching ${gameName}.`} />
+                )}
             </section>
         </main>
     )

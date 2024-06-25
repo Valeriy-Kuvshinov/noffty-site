@@ -20,16 +20,14 @@ export default function GameDetails({ params }: { params: { gameName: string } }
     }, [params.gameName])
 
     async function fetchGame() {
-        if (params.gameName) {
-            try {
-                const fetchedGame = await gameService.getByName(gameName)
+        try {
+            const fetchedGame = await gameService.getByName(gameName)
 
-                setGame(fetchedGame)
-                setLoading(false)
-            } catch (error) {
-                console.error("Failed to fetch game", error)
-                setLoading(false)
-            }
+            setGame(fetchedGame)
+            setLoading(false)
+        } catch (error) {
+            console.error("Failed to fetch game", error)
+            setLoading(false)
         }
     }
 

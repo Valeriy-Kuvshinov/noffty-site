@@ -1,23 +1,15 @@
 import '../assets/css/global.css'
-import { DeviceTypeProvider } from '../contexts/DeviceTypeContext'
-import { ModalProvider } from '../contexts/ModalContext'
+import { UtilityService } from '../services/utility.service'
+import { Providers } from '../contexts/Providers'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { AsideMenu } from '../components/modals/AsideMenu'
 
 const siteLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
 
-function Providers({ children }: { children: React.ReactNode }) {
-  return (
-    <DeviceTypeProvider>
-      <ModalProvider>
-        {children}
-      </ModalProvider>
-    </DeviceTypeProvider>
-  )
-}
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const apiKeys = await UtilityService.getAPIKeys()
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <head>
@@ -25,7 +17,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="icon" href={siteLogo} type="image/png" />
       </head>
       <body>
-        <Providers>
+        <Providers apiKeys={apiKeys}>
           <AsideMenu />
           <main className='main-container'>
             <Header />

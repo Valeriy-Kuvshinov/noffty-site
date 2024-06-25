@@ -42,3 +42,11 @@ export interface VerificationMailReqBody {
     email: string
     code?: string
 }
+
+export interface ApiKeys {
+    recaptchaSiteKey: string
+    cloudinary: {
+        cloudName: string
+        uploadPreset: string
+    }
+}

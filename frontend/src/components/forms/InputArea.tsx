@@ -11,17 +11,6 @@ interface InputAreaProps {
     onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
     placeholder?: string
     maxLength?: number
-}
-
-interface InputAreaProps {
-    label: string
-    svg: string
-    type: 'text' | 'email' | 'textarea'
-    name: string
-    value: string
-    onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-    placeholder?: string
-    maxLength?: number
     error?: string | null
     onBlur?: () => void
     validationOptions?: ValidationOptions

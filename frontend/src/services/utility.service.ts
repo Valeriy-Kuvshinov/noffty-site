@@ -2,7 +2,6 @@ import { LinkTypeTwo } from "../models/utility"
 import { HttpService } from './http.service'
 
 export const UtilityService = {
-    getRecaptchaKey,
     getBrowserName,
     getAllowAttributes,
     capitalizeString,
@@ -11,15 +10,11 @@ export const UtilityService = {
     getYouTubeEmbedUrl,
     areEqual,
     getSocialLinks,
-    getCloudinaryKeys
+    getAPIKeys
 }
 
-async function getRecaptchaKey(): Promise<any> {
-    return HttpService.get(`auth/recaptcha`)
-}
-
-async function getCloudinaryKeys(): Promise<any> {
-    return HttpService.get(`auth/cloudinary`)
+async function getAPIKeys(): Promise<any> {
+    return HttpService.get('auth/api-keys')
 }
 
 function getBrowserName() {

@@ -10,8 +10,7 @@ export const authRoutes: Router = express.Router()
 authRoutes.post('/login', _login)
 authRoutes.post('/signup', _signup)
 authRoutes.post('/logout', _logout)
-authRoutes.get('/recaptcha', _getRecaptchaKey)
-authRoutes.get('/cloudinary', _getCloudinaryFrontKeys)
+authRoutes.get('/api-keys', _getAPIKeys)
 
 // auth controller functions
 async function _login(req: Request<LoginRequestBody>,
@@ -70,22 +69,12 @@ async function _logout(req: Request, res: Response): Promise<void> {
   }
 }
 
-async function _getRecaptchaKey(req: Request, res: Response): Promise<void> {
+async function _getAPIKeys(req: Request, res: Response): Promise<void> {
   try {
-    const recaptchaSiteKey = authService.getRecaptchaSiteKey()
-    res.json({ siteKey: recaptchaSiteKey })
+    const apiKeys = authService.getFrontAPIKeys()
+    res.json(apiKeys)
   } catch (err) {
-    loggerService.error('Failed to fetch reCAPTCHA site key', err)
-    res.status(500).send({ err: 'Failed to fetch reCAPTCHA site key' })
-  }
-}
-
-async function _getCloudinaryFrontKeys(req: Request, res: Response): Promise<void> {
-  try {
-    const cloudinaryKeys = authService.getCloudinaryFrontKeys()
-    res.json(cloudinaryKeys)
-  } catch (err) {
-    loggerService.error('Failed to fetch Cloudinary keys', err)
-    res.status(500).send({ err: 'Failed to fetch Cloudinary keys' })
+    loggerService.error('Failed to fetch API keys', err)
+    res.status(500).send({ err: 'Failed to fetch API keys' })
   }
 }

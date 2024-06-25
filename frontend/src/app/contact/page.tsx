@@ -1,4 +1,3 @@
-import { UtilityService } from "../../services/utility.service"
 import { ContactForm } from "../../components/forms/ContactForm"
 
 interface ContactUsReqBody {
@@ -10,18 +9,10 @@ interface ContactUsReqBody {
     recaptchaToken: string
 }
 
-export default async function Contact() {
-    let recaptchaKey = ''
+export default function Contact() {
     const initialValues: ContactUsReqBody = {
         name: '', email: '', title: '', requestType: 'Q&A',
         message: '', recaptchaToken: ''
-    }
-
-    try {
-        const response = await UtilityService.getRecaptchaKey()
-        recaptchaKey = response.siteKey
-    } catch (error) {
-        console.error('Failed to fetch recaptcha key', error)
     }
 
     return (
@@ -34,8 +25,7 @@ export default async function Contact() {
                         We'd like to hear from you down below!
                     </p>
                 </article>
-                {recaptchaKey &&
-                    <ContactForm recaptchaKey={recaptchaKey} initialValues={initialValues} />}
+                <ContactForm initialValues={initialValues} />
             </section>
         </main>
     )
