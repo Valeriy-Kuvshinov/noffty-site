@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { GameService } from "../../services/game.service"
-import { useSearchParamsUpdate } from "../../hooks/searchParamsUpdate"
+import { useGameFilterParams } from "../../hooks/gameFilterParams"
 import { GameFilter } from "../../components/game/GameFilter"
 import { GameList } from "../../components/game/GameList"
 import { Loader } from "../../components/general/Loader"
@@ -13,7 +13,7 @@ export default function AdminIndex() {
 
     const [games, setGames] = useState([])
     const [loading, setLoading] = useState(true)
-    const { getDefaultFilterValues, updateSearchParams, searchParams } = useSearchParamsUpdate()
+    const { getDefaultFilterValues, updateSearchParams, searchParams } = useGameFilterParams()
 
     const searchParamsString = searchParams.toString()
     const defaultValues = getDefaultFilterValues()

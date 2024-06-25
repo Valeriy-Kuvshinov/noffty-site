@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
-import { useSearchParamsUpdate } from "../hooks/searchParamsUpdate"
+import { useGameFilterParams } from "../hooks/gameFilterParams"
 import { useDeviceType } from "../contexts/DeviceTypeContext"
 import { useModal } from "../contexts/ModalContext"
 import { SvgRender } from "./general/SvgRender"
@@ -11,7 +11,7 @@ import { ImageContainer } from "./general/ImageContainer"
 export function Header() {
     const pathname = usePathname()
     const [searchTerm, setSearchTerm] = useState('')
-    const { updateSearchParams } = useSearchParamsUpdate()
+    const { updateSearchParams } = useGameFilterParams()
     const deviceType = useDeviceType()
     const { openModal } = useModal()
 

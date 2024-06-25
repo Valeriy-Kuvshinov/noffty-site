@@ -2,7 +2,7 @@ import { useCallback, useMemo } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { GameQueryParams } from "../models/game"
 
-export function useSearchParamsUpdate() {
+export function useGameFilterParams() {
     const router = useRouter()
     const searchParams = useSearchParams()
     const stableSearchParams = useMemo(() => new URLSearchParams(
