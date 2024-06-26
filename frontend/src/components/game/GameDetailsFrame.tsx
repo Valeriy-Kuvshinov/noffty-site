@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react"
 import { Game } from "../../models/game"
 import { UtilityService } from "../../services/utility.service"
 import { SvgRender } from "../general/SvgRender"
+import Link from "next/link"
 
 export function GameDetailsFrame({ game }: { game: Game }) {
     const [isFullscreen, setIsFullscreen] = useState(false)
@@ -35,12 +36,13 @@ export function GameDetailsFrame({ game }: { game: Game }) {
         }
     }
 
-    return (<>
+    return (<div className="game-frame flex column w-100 text-center">
+        <h2>You Are Now Playing {game.name}</h2>
         {game.platform === 'html5' ? (
-            <div className="game-frame flex column w-100 layout-row text-center">
-                <h2>You Are Now Playing {game.name}</h2>
+            game.gameLink ? (
                 <div className="iframe-container w-100" ref={iframeContainerRef}>
-                    <iframe className={`w-100 ${isFullscreen ? 'fullscreen' : ''}`}
+                    <iframe
+                        className={`w-100 ${isFullscreen ? 'fullscreen' : ''}`}
                         src={game.gameLink} title={game.name} allow={allowAttributes}
                         allowFullScreen={true} aria-label="game frame"
                     ></iframe>
@@ -49,17 +51,25 @@ export function GameDetailsFrame({ game }: { game: Game }) {
                         <SvgRender iconName={isFullscreen ? 'compress' : 'expand'} />
                     </button>
                 </div>
-            </div>
-        ) : (
-            <div className="game-frame flex column w-100 text-center">
-                <p>Whoa, looks like the game is not intended for the browser, but for
-                    <span className="text-capitalize"> {game.platform}</span> instead.</p>
-                <a href={game.outsideLink} className="flex row" target="_blank"
-                    rel="noopener noreferrer" aria-label="Outside game navigation">
-                    <SvgRender iconName={game.platform} />
-                    <span>Take Me to The Game!</span>
-                    <SvgRender iconName={game.platform} />
-                </a>
-            </div>)}
-    </>)
+            ) : (<>
+                <p>Sorry, seems like the game is not published yet or inaccessible right now.</p>
+                <Link href={`/contact`} className="flex row" aria-label="Navigate to contact page?">
+                    <SvgRender iconName='mail' />
+                    <span>Contact The Owner?</span>
+                    <SvgRender iconName='mail' />
+                </Link>
+            </>)
+        ) : (<>
+            <p>
+                Whoa, looks like the game is not intended for the browser, but for
+                <span className="text-capitalize"> {game.platform}</span> instead.
+            </p>
+            <a href={game.outsideLink} className="flex row" target="_blank"
+                rel="noopener noreferrer" aria-label="Navigate to game's actual platform?">
+                <SvgRender iconName={game.platform} />
+                <span>Take Me to The Game!</span>
+                <SvgRender iconName={game.platform} />
+            </a>
+        </>)}
+    </div>)
 }

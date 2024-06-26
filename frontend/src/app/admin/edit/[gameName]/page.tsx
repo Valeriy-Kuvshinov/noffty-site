@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from "react"
 import { Game } from "../../../../models/game"
-import { GameService } from "../../../../services/game.service"
+import { GameService } from "../../../../services/api/game.service"
 import { GameForm } from "../../../../components/game/GameForm"
 import { SvgRender } from "../../../../components/general/SvgRender"
 import { Loader } from "../../../../components/general/Loader"

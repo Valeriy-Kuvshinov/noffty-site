@@ -1,4 +1,4 @@
-import { HttpService } from './http.service'
+import { HttpService } from './../http.service'
 
 const baseUrl: string = 'mail/'
 

@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Game } from "../../models/game"
-import { GameService } from "../../services/game.service"
+import { GameService } from "../../services/api/game.service"
 import { useApiKeys } from "../../contexts/ApiContext"
 import { useForm } from "../../hooks/form"
 import { ImageUploader } from "../forms/ImageUploader"

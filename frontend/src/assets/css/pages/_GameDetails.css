@@ -70,6 +70,7 @@
 
             .svg-cmp {
                 width: 24px;
+                fill: var(--prmclr2);
             }
 
             &:hover {

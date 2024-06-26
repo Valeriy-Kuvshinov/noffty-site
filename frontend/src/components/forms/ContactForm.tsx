@@ -1,7 +1,7 @@
 'use client'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useRef } from 'react'
-import { MailService } from '../../services/mail.service'
+import { MailService } from '../../services/api/mail.service'
 import { useApiKeys } from '../../contexts/ApiContext'
 import { useForm } from '../../hooks/form'
 import { useHoverSwitch } from '../../hooks/hoverSwitch'

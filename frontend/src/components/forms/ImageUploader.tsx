@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from "react"
-import { uploadService } from "../../services/upload.service"
+import { uploadService } from "../../services/media/upload.service"
 import { ImageContainer } from "../general/ImageContainer"
 
 interface ImageUploaderProps {

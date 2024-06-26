@@ -1,4 +1,4 @@
-import { SvgService } from "../../services/svg.service"
+import { SvgService } from "../../services/media/svg.service"
 
 interface SvgProp {
     iconName: string

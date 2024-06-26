@@ -33,6 +33,7 @@
                 }
 
                 &:hover {
+                    gap: 0.5em;
                     background-color: var(--mnrclr1);
                     color: var(--scdclr4);
                 }

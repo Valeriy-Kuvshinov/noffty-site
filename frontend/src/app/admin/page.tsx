@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { GameService } from "../../services/game.service"
+import { GameService } from "../../services/api/game.service"
 import { useGameFilterParams } from "../../hooks/gameFilterParams"
 import { GameFilter } from "../../components/game/GameFilter"
 import { GameList } from "../../components/game/GameList"
