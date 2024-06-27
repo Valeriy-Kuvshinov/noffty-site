@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from "react"
-import { GameService } from "../../services/game.service"
+import { GameService } from "../../services/api/game.service"
 import { useGameFilterParams } from "../../hooks/gameFilterParams"
 import { GameList } from "../../components/game/GameList"
 import { GameFilter } from "../../components/game/GameFilter"
@@ -17,9 +17,7 @@ export default function GameIndex() {
     const searchParamsString = searchParams.toString()
     const defaultValues = getDefaultFilterValues()
 
-    useEffect(() => {
-        fetchGames()
-    }, [searchParamsString])
+    useEffect(() => { fetchGames() }, [searchParamsString])
 
     async function fetchGames() {
         try {

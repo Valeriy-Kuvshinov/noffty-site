@@ -11,22 +11,22 @@ export class GameService {
         return HttpService.get(`${baseUrl}?${queryParams}`)
     }
 
-    async getById(gameId: string): Promise<any> {
+    async getById(gameId: string): Promise<Game> {
         return HttpService.get(`${baseUrl}by-id/${gameId}`)
     }
 
-    async getByName(gameName: string): Promise<any> {
+    async getByName(gameName: string): Promise<Game> {
         return HttpService.get(`${baseUrl}by-name/${gameName}`)
     }
 
-    async save(game: Game): Promise<any> {
+    async save(game: Game): Promise<Game> {
         if (game._id) {
             return HttpService.put(`${baseUrl}update/${game._id}`, game)
         } else return HttpService.post(baseUrl + 'add/', game)
     }
 
-    async remove(id: string): Promise<any> {
-        return HttpService.remove(`${baseUrl}delete/${id}`)
+    async remove(gameId: string): Promise<any> {
+        return HttpService.remove(`${baseUrl}delete/${gameId}`)
     }
 
     // filtering stuff

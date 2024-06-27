@@ -41,7 +41,6 @@ async function signup(password: string, email: string, imgUrls: string[]): Promi
     email,
     password: hash,
     imgUrls,
-    createdAt: Date.now(),
     isAdmin: false,
   })
 }

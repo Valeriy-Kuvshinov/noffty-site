@@ -7,6 +7,7 @@ import { useDeviceType } from "../contexts/DeviceTypeContext"
 import { useModal } from "../contexts/ModalContext"
 import { SvgRender } from "./general/SvgRender"
 import { ImageContainer } from "./general/ImageContainer"
+import { HeaderDropdown } from "./modals/HeaderDropdown"
 
 export function Header() {
     const pathname = usePathname()
@@ -17,6 +18,7 @@ export function Header() {
 
     const headerLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
     const hiddenSearchPages = pathname.startsWith('/games') || pathname.startsWith('/admin')
+    const defaultIcon = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719433639/vonsaimuwr4b3wrt7keh.avif'
 
     function isActive(path: string) {
         return pathname === path
@@ -32,15 +34,11 @@ export function Header() {
         setSearchTerm('')
     }
 
-    function openAsideMenu() {
-        openModal('aside-menu')
-    }
-
     return (<header className="full">
         <section className="header-contents w-h-100 layout-row">
             {deviceType === 'mobile' || deviceType === 'mini-tablet' ? (
                 <nav className="mobile-view grid align-center justify-between w-100">
-                    <button onClick={openAsideMenu}>
+                    <button onClick={() => openModal('aside-menu')}>
                         <SvgRender iconName="menu" />
                     </button>
                     <Link href="/" className={`${isActive('/') ? 'active' : ''}`}
@@ -74,14 +72,20 @@ export function Header() {
                         title="Go to contact page?" aria-label="Navigate to contact page">
                         <span>Contact</span>
                     </Link>
-                    {!hiddenSearchPages && (
-                        <form onSubmit={handleSearchSubmit} className="w-100 fast-trans">
-                            <input
-                                type="text" placeholder="Search games..." maxLength={35}
-                                value={searchTerm} onChange={handleSearchInputChange}
-                            />
-                            <SvgRender iconName="search" />
-                        </form>)}
+                    <section className="user-form-zone flex row align-center">
+                        {!hiddenSearchPages && (
+                            <form onSubmit={handleSearchSubmit} className="w-100 fast-trans">
+                                <input
+                                    type="text" placeholder="Search games..." maxLength={35}
+                                    value={searchTerm} onChange={handleSearchInputChange}
+                                />
+                                <SvgRender iconName="search" />
+                            </form>)}
+                        <div className="user flex" onClick={() => openModal('header-dropdown')}>
+                            <ImageContainer src={defaultIcon} alt="default user" />
+                        </div>
+                        <HeaderDropdown />
+                    </section>
                 </nav>)}
         </section>
     </header>)

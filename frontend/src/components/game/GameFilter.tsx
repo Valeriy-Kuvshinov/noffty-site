@@ -1,7 +1,7 @@
 'use client'
 import { ChangeEvent, useEffect, useState } from "react"
 import { GameQueryParams } from "../../models/game"
-import { GameService } from "../../services/game.service"
+import { GameService } from "../../services/api/game.service"
 import { UtilityService } from '../../services/utility.service'
 import { useDebounce } from "../../hooks/debounce"
 import { CustomSelect } from '../forms/CustomSelect'

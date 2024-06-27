@@ -95,7 +95,6 @@ async function remove(userId: ObjectId): Promise<number> {
 
 function _buildPipeline(filterBy: UserQueryParams): any {
   const criteria: any = {}
-  if (filterBy.userId) criteria._id = new ObjectId(filterBy.userId)
 
   return criteria
 }

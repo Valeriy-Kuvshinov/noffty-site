@@ -56,6 +56,56 @@ header {
         }
     }
 
+    .header-contents .desktop-view {
+        .user-form-zone {
+            position: relative;
+            gap: 0.5em;
+
+            .user {
+                height: 36px;
+                aspect-ratio: 1 / 1;
+                cursor: pointer;
+                border-radius: 100%;
+                background: var(--scdclr6);
+            }
+
+            .header-dropdown {
+                position: absolute;
+                background: var(--prmclr2);
+                top: 1.75em;
+                right: -1.75em;
+                border: 1px solid var(--prmclr2);
+                padding: 0;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    bottom: 100%;
+                    left: 75%;
+                    transform: translateX(-50%);
+                    border-width: 8px;
+                    border-style: solid;
+                    border-color: transparent transparent var(--prmclr2) transparent;
+                }
+
+                nav {
+                    &:has(> button:nth-child(2))>button:not(:last-child) {
+                        border-bottom: 2px solid var(--prmclr1);
+                    }
+
+                    button {
+                        padding: 0.75em 1.25em;
+
+                        &:hover {
+                            color: var(--prmclr2);
+                            background: var(--prmclr1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     .header-contents .mobile-view {
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: auto auto;

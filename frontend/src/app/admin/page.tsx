@@ -18,9 +18,7 @@ export default function AdminIndex() {
     const searchParamsString = searchParams.toString()
     const defaultValues = getDefaultFilterValues()
 
-    useEffect(() => {
-        fetchGames()
-    }, [searchParamsString])
+    useEffect(() => { fetchGames() }, [searchParamsString])
 
     async function fetchGames() {
         try {

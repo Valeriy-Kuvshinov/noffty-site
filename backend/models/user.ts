@@ -18,11 +18,9 @@ export interface User {
     password?: string
     email?: string
     imgUrls?: string[]
-    createdAt?: number
     isAdmin?: boolean
 }
 
 export interface UserQueryParams {
-    userId?: string
     email?: string
 }
