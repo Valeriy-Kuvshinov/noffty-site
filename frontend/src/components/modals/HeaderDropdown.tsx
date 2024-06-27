@@ -15,7 +15,7 @@ export function HeaderDropdown() {
 
     function handleLogin() {
         closeDropdown()
-        openModal('aside-menu')
+        openModal('login')
     }
 
     useClickOutside(dropdownRef, closeDropdown)

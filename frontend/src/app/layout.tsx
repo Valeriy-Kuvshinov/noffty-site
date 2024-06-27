@@ -4,6 +4,7 @@ import { Providers } from '../contexts/Providers'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { AsideMenu } from '../components/modals/AsideMenu'
+import { LoginForm } from '../components/forms/LoginForm'
 
 const siteLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
 
@@ -18,6 +19,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     <body>
       <Providers apiKeys={apiKeys}>
         <AsideMenu />
+        <LoginForm />
         <main className='main-container'>
           <Header />
           {children}

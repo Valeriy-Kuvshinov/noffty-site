@@ -75,6 +75,7 @@ header {
                 top: 1.75em;
                 right: -1.75em;
                 border: 1px solid var(--prmclr2);
+                border-radius: 0.25em;
                 padding: 0;
 
                 &::before {
@@ -99,6 +100,18 @@ header {
                         &:hover {
                             color: var(--prmclr2);
                             background: var(--prmclr1);
+                        }
+
+                        &:first-child {
+                            border-radius: 0.5em 0.5em 0 0;
+                        }
+
+                        &:last-child {
+                            border-radius: 0 0 0.5em 0.5em;
+                        }
+
+                        &:not(:first-child):not(:last-child) {
+                            border-radius: 0;
                         }
                     }
                 }
