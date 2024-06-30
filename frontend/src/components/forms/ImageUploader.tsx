@@ -101,9 +101,9 @@ export function ImageUploader({ index, defaultImgUrl, folderName, cloudName,
         if (files && files.length > 0) onFileDropped(files[0])
     }
 
-    return (<article className="upload-preview" onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave} onDrop={handleDrop} role="region"
-        aria-labelledby="upload-label" aria-describedby="upload-description">
+    return (<article className="upload-preview" role="region" aria-labelledby="upload-label"
+        aria-describedby="upload-description" onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave} onDrop={handleDrop}>
         <div className="file-upload-container flex column">
             <label htmlFor={inputId} className="flex column fast-trans" id="upload-label">
                 <span id="upload-description" className="family-bold text-center fast-trans">

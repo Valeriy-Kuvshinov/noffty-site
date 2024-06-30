@@ -40,8 +40,6 @@ export function LoginForm() {
                 }
                 const user = await userService.login(loginData)
                 setSessionUser(user)
-
-                resetForm()
                 closeModal('login')
             } catch (err) {
                 console.error('Login failed', err)
@@ -51,37 +49,36 @@ export function LoginForm() {
     const hasErrors = Object.values(errors).some(error => error)
 
     function closeLogin() {
-        closeModal('login')
         resetForm()
+        recaptchaRef.current?.reset()
+        closeModal('login')
     }
 
     useClickOutside(loginRef, closeLogin)
     if (activeModal !== 'login') return null
 
-    return (
-        <dialog className="modal-wrapper flex align-center w-h-100" open={true}>
-            <article className="login-form flex column w-100 fast-trans" ref={loginRef}>
-                <form className="grid" onSubmit={handleSubmit}>
-                    <InputArea label="Email*" type="email" name="loginId" svg='mail'
-                        maxLength={50} value={values.loginId} onChange={handleChange}
-                        placeholder="Your email" error={errors.loginId}
-                        onBlur={() => validateField('loginId', values.loginId)}
-                    />
-                    <InputArea label="Password*" type="text" name="password" svg='lock'
-                        maxLength={30} value={values.password} onChange={handleChange}
-                        placeholder="Your password" error={errors.password}
-                        onBlur={() => validateField('password', values.password)}
-                    />
-                    <section className='form-actions flex row align-center justify-between'>
-                        <button className={`flex row align-center ${!allFieldsFilled || hasErrors ? 'disabled' : ''}`}
-                            type="submit" disabled={!allFieldsFilled || hasErrors}>
-                            <span>Login</span>
-                        </button>
-                        <RecaptchaContainer />
-                    </section>
-                </form>
-            </article>
-            <ReCAPTCHA sitekey={recaptchaSiteKey} size="invisible" ref={recaptchaRef} />
-        </dialog>
-    )
+    return (<dialog className="modal-wrapper flex align-center w-h-100" open={true}>
+        <article className="login-form flex column w-100 fast-trans" ref={loginRef}>
+            <form className="grid" onSubmit={handleSubmit}>
+                <InputArea label="Email*" type="email" name="loginId" svg='mail'
+                    maxLength={50} value={values.loginId} onChange={handleChange}
+                    placeholder="Your email" error={errors.loginId}
+                    onBlur={() => validateField('loginId', values.loginId)}
+                />
+                <InputArea label="Password*" type="text" name="password" svg='lock'
+                    maxLength={30} value={values.password} onChange={handleChange}
+                    placeholder="Your password" error={errors.password}
+                    onBlur={() => validateField('password', values.password)}
+                />
+                <section className='form-actions flex row align-center justify-between'>
+                    <button className={`flex row align-center ${!allFieldsFilled || hasErrors ? 'disabled' : ''}`}
+                        type="submit" disabled={!allFieldsFilled || hasErrors}>
+                        <span>Login</span>
+                    </button>
+                    <RecaptchaContainer />
+                </section>
+            </form>
+        </article>
+        <ReCAPTCHA sitekey={recaptchaSiteKey} size="invisible" ref={recaptchaRef} />
+    </dialog>)
 }

@@ -26,14 +26,17 @@ export function InputArea({ label, svg, type, name, value, onChange, placeholder
             {error && <p title={error}>{error}</p>}
         </label>
         {type === 'textarea' ? (
-            <textarea id={name} name={name} value={value} onChange={onChange}
+            <textarea
+                id={name} name={name} value={value} onChange={onChange}
                 onBlur={onBlur} placeholder={placeholder} maxLength={maxLength}
                 required={validationOptions?.required}
             />
         ) : (
-            <input type={type} id={name} name={name} value={value} onChange={onChange}
+            <input
+                type={type} id={name} name={name} value={value} onChange={onChange}
                 onBlur={onBlur} placeholder={placeholder} maxLength={maxLength}
                 required={validationOptions?.required} pattern={validationOptions?.pattern?.source}
-            />)}
+            />
+        )}
     </div>)
 }

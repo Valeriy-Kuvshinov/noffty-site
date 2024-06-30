@@ -45,7 +45,8 @@ export default function AdminIndex() {
             {loading ? (
                 <Loader />
             ) : (
-                <GameList games={games} isAdminPage={isAdminPage} />)}
+                <GameList games={games} isAdminPage={isAdminPage} />
+            )}
         </section>
     </main>)
 }

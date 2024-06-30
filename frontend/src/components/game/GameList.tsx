@@ -15,7 +15,7 @@ export function GameList({ games, isAdminPage }: GameListProps) {
             <ErrorContainer message={`No games found...`} />
         ) : (
             games.map((game: Game) => (
-                <GamePreview key={game.name} game={game}
-                    isAdminPage={isAdminPage} />)))}
+                <GamePreview key={game.name} game={game} isAdminPage={isAdminPage} />
+            )))}
     </div>)
 }

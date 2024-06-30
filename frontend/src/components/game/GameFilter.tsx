@@ -39,18 +39,15 @@ export function GameFilter({ defaultValues, updateSearchParams }: GameFilterProp
         />
         <SvgRender iconName="search" />
         <div className='select-options grid'>
-            <CustomSelect
-                options={platforms} value={filter.platform || ''}
+            <CustomSelect options={platforms} value={filter.platform || ''}
                 onChange={(newValue) => setFilter(prev => ({ ...prev, platform: newValue }))}
                 label="Select Platform" id="platform-select"
             />
-            <CustomSelect
-                options={genres} value={filter.genre || ''}
+            <CustomSelect options={genres} value={filter.genre || ''}
                 onChange={(newValue) => setFilter(prev => ({ ...prev, genre: newValue }))}
                 label="Select Genre" id="genre-select"
             />
-            <CustomSelect
-                options={gameJams} value={filter.isGameJam || ''}
+            <CustomSelect options={gameJams} value={filter.isGameJam || ''}
                 onChange={(newValue) => setFilter(prev => ({ ...prev, isGameJam: newValue }))}
                 label="Made for Jam?" id="isGameJam-select"
             />

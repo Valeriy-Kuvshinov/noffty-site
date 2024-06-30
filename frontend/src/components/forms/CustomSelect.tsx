@@ -46,7 +46,8 @@ export function CustomSelect({ options, value, onChange, label, id }: SelectProp
                             <SvgRender iconName={option.iconName} />
                         </div>
                     ))}
-                </div>)}
+                </div>
+            )}
         </div>
     </article>)
 }

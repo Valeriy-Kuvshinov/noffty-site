@@ -70,6 +70,7 @@ export function GameDetailsFrame({ game }: { game: Game }) {
                 <span>Take Me to The Game!</span>
                 <SvgRender iconName={game.platform} />
             </a>
-        </>)}
+        </>
+        )}
     </div>)
 }

@@ -12,16 +12,15 @@ export function GameDetailsBody({ game }: { game: Game }) {
         <div className={`screenshots grid ${game.platform !== 'android' ? 'w-100' : ''}`}
             style={{ gridTemplateColumns }}>
             {game.screenshots.slice(1).map((screenshot, index) => (
-                <ImageContainer
-                    key={index}
-                    src={screenshot}
+                <ImageContainer key={index} src={screenshot}
                     alt={`${game.name} screenshot number ${index + 1}`}
                     className={`h-100 ${game.platform !== 'android' ? 'w-100' : ''}`}
                     style={{
                         maxHeight: game.screenshots.length < 5 ? '215px' : 'auto',
                         aspectRatio: game.platform !== 'android' ? '16 / 9' : '9 / 16'
                     }}
-                />))}
+                />
+            ))}
         </div>
         <ReworkedText string={game.description!} />
         <ReworkedText string={`Controls: ${game.controls!}`} />
@@ -37,7 +36,8 @@ export function GameDetailsBody({ game }: { game: Game }) {
                         allowFullScreen={true}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     ></iframe>
-                </div>)}
+                </div>
+            )}
             {game.devlog && (
                 <div className="video flex column w-100">
                     <p>Be sure to check out the developer's log:</p>
@@ -48,7 +48,8 @@ export function GameDetailsBody({ game }: { game: Game }) {
                         allowFullScreen={true}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     ></iframe>
-                </div>)}
+                </div>
+            )}
         </div>
         <div className="game-info flex column w-100">
             <p className="flex">
@@ -71,7 +72,8 @@ export function GameDetailsBody({ game }: { game: Game }) {
                     <SvgRender iconName={'itch'} />
                     <span>Available on Itch.io as well!</span>
                     <SvgRender iconName={'itch'} />
-                </a>)}
+                </a>
+            )}
         </div>
     </article>)
 }

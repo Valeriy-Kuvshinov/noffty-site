@@ -64,7 +64,8 @@ export default function Home() {
         <div className="noffty-links flex row">
           {socialLinks.map(link => (
             <SpecialLink key={link.iconName} iconName={link.iconName}
-              link={link.link} ariaLabel={link.ariaLabel} />))}
+              link={link.link} ariaLabel={link.ariaLabel} />
+          ))}
         </div>
       </article>
 

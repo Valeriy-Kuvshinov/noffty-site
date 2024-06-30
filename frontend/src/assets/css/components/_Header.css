@@ -56,6 +56,16 @@ header {
         }
     }
 
+    .user {
+        border-radius: 100%;
+        background: var(--scdclr6);
+
+        .image-container img {
+            aspect-ratio: 1 / 1;
+            border-radius: 100%;
+        }
+    }
+
     .header-contents .desktop-view {
         position: relative;
 
@@ -64,13 +74,9 @@ header {
 
             .user {
                 cursor: pointer;
-                border-radius: 100%;
-                background: var(--scdclr6);
 
                 .image-container img {
                     height: 36px;
-                    aspect-ratio: 1 / 1;
-                    border-radius: 100%;
                 }
             }
         }
@@ -173,6 +179,14 @@ header {
             .svg-cmp {
                 height: 28px;
                 top: 0.2em;
+            }
+        }
+
+        .user {
+            justify-self: end;
+
+            .image-container img {
+                height: 48px;
             }
         }
     }

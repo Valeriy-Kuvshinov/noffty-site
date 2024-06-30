@@ -24,10 +24,13 @@
     }
 
     nav {
+        overflow-y: auto;
 
-        a {
+        a,
+        button {
             gap: 1em;
             padding: 1em;
+            font-size: 1em;
             color: var(--scdclr6);
             fill: var(--scdclr6);
             border-bottom: 1px solid var(--scdclr6);
@@ -38,7 +41,7 @@
             }
 
             .svg-cmp {
-                width: 32px;
+                width: 2em;
             }
 
             &:hover,

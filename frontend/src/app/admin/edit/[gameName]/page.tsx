@@ -45,7 +45,8 @@ export default function GameEdit({ params }: { params: { gameName: string } }) {
             ) : game ? (
                 <GameForm game={game} />
             ) : (
-                <ErrorContainer message={`Sorry, no game found matching ${gameName}.`} />)}
+                <ErrorContainer message={`Sorry, no game found matching ${gameName}.`} />
+            )}
         </section>
     </main>)
 }

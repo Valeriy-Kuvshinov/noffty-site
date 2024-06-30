@@ -54,7 +54,11 @@ export function Header() {
                                 value={searchTerm} onChange={handleSearchInputChange}
                             />
                             <SvgRender iconName="search" />
-                        </form>)}
+                        </form>
+                    )}
+                    <div className="user flex w-fit">
+                        <ImageContainer src={sessionUser.imgUrls![0]} alt={`${sessionUser.email} avatar`} />
+                    </div>
                 </nav>
             ) : (
                 <nav className="desktop-view flex row align-center justify-between w-100">
@@ -82,13 +86,15 @@ export function Header() {
                                     value={searchTerm} onChange={handleSearchInputChange}
                                 />
                                 <SvgRender iconName="search" />
-                            </form>)}
+                            </form>
+                        )}
                         <div className="user flex w-fit" onClick={() => openModal('header-dropdown')}>
                             <ImageContainer src={sessionUser.imgUrls![0]} alt={`${sessionUser.email} avatar`} />
                         </div>
                     </section>
                     <HeaderDropdown sessionUser={sessionUser} />
-                </nav>)}
+                </nav>
+            )}
         </section>
     </header>)
 }

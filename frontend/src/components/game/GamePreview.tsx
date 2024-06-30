@@ -25,14 +25,16 @@ export function GamePreview({ game, isAdminPage }: GamePreviewProps) {
             {game.isGameJam === 'yes' && (
                 <span className="gmtk" title='Game{Jam} Submission' aria-label='GameJam Submission'>
                     JAM
-                </span>)}
+                </span>
+            )}
             <div className='icon'>
                 <SvgRender iconName={game.platform} />
             </div>
             {isAdminPage && (
                 <button className='flex full-center' onClick={handleEditClick}>
                     <SvgRender iconName='edit' />
-                </button>)}
+                </button>
+            )}
         </div>
 
         <div className='preview-info grid w-100 h-fit'>

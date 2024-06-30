@@ -178,7 +178,6 @@ export default function About() {
                     beatae quia expedita.
                 </p>
             </article>
-
             <CrewInfo people={people} />
         </section>
     </main>)

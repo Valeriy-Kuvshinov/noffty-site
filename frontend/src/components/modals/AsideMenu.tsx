@@ -1,19 +1,22 @@
 'use client'
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useModal } from "../../contexts/ModalContext"
+import { usePathname, useRouter } from "next/navigation"
+import { UserService } from "../../services/api/user.service"
 import { useClickOutside } from "../../hooks/clickOutside"
+import { useModal } from "../../contexts/ModalContext"
+import { useSessionUser } from "../../contexts/SessionContext"
 import { SvgRender } from "../general/SvgRender"
-import { ImageContainer } from "../general/ImageContainer"
 
 export function AsideMenu() {
+    const userService = new UserService()
+    const router = useRouter()
     const pathname = usePathname()
-    const { activeModal, closeModal } = useModal()
-    const asideRef = useRef<HTMLDivElement>(null)
+    const { sessionUser, setSessionUser } = useSessionUser()
+    const { activeModal, closeModal, openModal } = useModal()
     const [showAsideMenu, setShowAsideMenu] = useState(false)
+    const asideRef = useRef<HTMLDivElement>(null)
 
-    const headerLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
     const isOpen = activeModal === 'aside-menu'
 
     function closeAsideMenu() {
@@ -21,8 +24,23 @@ export function AsideMenu() {
         setTimeout(() => closeModal('aside-menu'), 300)
     }
 
+    function handleLogin() {
+        openModal('login')
+    }
+
     function isActive(path: string) {
         return pathname === path
+    }
+
+    async function handleLogout() {
+        try {
+            await userService.logout()
+            setSessionUser(null)
+            closeAsideMenu()
+            router.push('/')
+        } catch (error) {
+            console.error('Logout failed:', error)
+        }
     }
 
     useEffect(() => {
@@ -35,9 +53,8 @@ export function AsideMenu() {
 
     return (<dialog className="modal-wrapper w-h-100" open={isOpen}>
         <article className={`aside-menu flex column w-h-100 fast-trans ${showAsideMenu ? 'show' : ''}`} ref={asideRef}>
-            <div className="menu-header flex row align-center justify-between">
-                <ImageContainer src={headerLogo} alt="noffty logo" />
-                <span>Noffty Productions</span>
+            <div className="menu-header flex row align-center">
+                <span>{sessionUser._id ? `Hello ${sessionUser.email?.split('@')[0]}!` : 'Hello Guest!'}</span>
             </div>
 
             <nav className="flex column">
@@ -61,6 +78,30 @@ export function AsideMenu() {
                     <SvgRender iconName="mail" />
                     <span>Contact</span>
                 </Link>
+                {sessionUser._id ? (<>
+                    {sessionUser.isAdmin && (<>
+                        <Link href="/admin/games" className={`flex row align-center ${isActive('/contact') ? 'active' : ''}`}
+                            onClick={closeAsideMenu} title="Go to contact page?" aria-label="Navigate to contact page">
+                            <SvgRender iconName="edit" />
+                            <span>Manage Games</span>
+                        </Link>
+                        <Link href="/admin/edit" className={`flex row align-center ${isActive('/contact') ? 'active' : ''}`}
+                            onClick={closeAsideMenu} title="Go to contact page?" aria-label="Navigate to contact page">
+                            <SvgRender iconName="plus" />
+                            <span>Create Game</span>
+                        </Link>
+                    </>)}
+                    <button className="flex row align-center" onClick={handleLogout}>
+                        <SvgRender iconName="person" />
+                        <span>Logout</span>
+                    </button>
+                </>
+                ) : (
+                    <button className="flex row align-center" onClick={handleLogin}>
+                        <SvgRender iconName="person" />
+                        <span>Login</span>
+                    </button>
+                )}
             </nav>
         </article>
     </dialog>)

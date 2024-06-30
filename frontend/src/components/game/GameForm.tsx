@@ -82,47 +82,38 @@ export function GameForm({ game }: { game: Game }) {
             value={values.name} onChange={handleChange}
             error={errors.name} onBlur={() => validateField('name', values.name)}
         />
-
         <InputArea label="Game Note*" svg="info" type="text" name="note"
             value={values.note} onChange={handleChange}
             error={errors.note} onBlur={() => validateField('note', values.note)}
         />
-
         <InputArea label="Outside Link*" svg="link" type="text" name="outsideLink"
             value={values.outsideLink || ''} onChange={handleChange}
             error={errors.outsideLink} onBlur={() => validateField('outsideLink', values.outsideLink)}
         />
-
         <InputArea label="Files Link" svg="folder" type="text" name="gameLink"
             value={values.gameLink || ''} onChange={handleChange}
             error={errors.gameLink} onBlur={() => validateField('gameLink', values.gameLink || '')}
         />
-
         <InputArea label="Devlog Link" svg="link" type="text" name="devlog"
             value={values.devlog || ''} onChange={handleChange}
             error={errors.devlog} onBlur={() => validateField('devlog', values.devlog || '')}
         />
-
         <InputArea label="Walkthrough Link" svg="link" type="text" name="walkthrough"
             value={values.walkthrough || ''} onChange={handleChange}
             error={errors.walkthrough} onBlur={() => validateField('walkthrough', values.walkthrough || '')}
         />
-
         <InputArea label="Description*" svg="description" type="textarea" name="description"
             value={values.description || ''} onChange={handleChange}
             error={errors.description} onBlur={() => validateField('description', values.description)}
         />
-
         <InputArea label="Credits*" svg="agreement" type="textarea" name="credits"
             value={values.credits || ''} onChange={handleChange}
             error={errors.credits} onBlur={() => validateField('credits', values.credits)}
         />
-
         <InputArea label="Controls*" svg="keyboard" type="textarea" name="controls"
             value={values.controls || ''} onChange={handleChange}
             error={errors.controls} onBlur={() => validateField('controls', values.controls)}
         />
-
         <div className="input-area grid">
             <label className='grid align-center' htmlFor="genre">
                 <SvgRender iconName='action' />
