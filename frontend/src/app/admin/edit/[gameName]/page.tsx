@@ -36,14 +36,16 @@ export default function GameEdit({ params }: { params: { gameName: string } }) {
 
     return (<main className="edit-page full w-h-100">
         <section className="page-contents flex column align-center w-h-100 layout-row">
-            <a href="/admin" title="Return to game list?" aria-label="Return to game list?">
+            <a href="/admin/games" title="Return to game list?" aria-label="Return to game list?">
                 <SvgRender iconName="return" />
             </a>
             <h2>You are now editing {gameName}</h2>
             {loading ? (
                 <Loader />
-            ) : game ? (
+            ) : game ? (<>
                 <GameForm game={game} />
+                <p>*First image in screenshots array is to be used for thumbnail, IT WILL NOT be shown in the details page of the game*</p>
+            </>
             ) : (
                 <ErrorContainer message={`Sorry, no game found matching ${gameName}.`} />
             )}

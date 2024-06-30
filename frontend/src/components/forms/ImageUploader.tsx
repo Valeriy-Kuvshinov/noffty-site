@@ -1,14 +1,12 @@
 'use client'
 import { useEffect, useState } from "react"
-import { uploadService } from "../../services/media/upload.service"
+import { useApiKeys } from "../../contexts/ApiContext"
 import { ImageContainer } from "../general/ImageContainer"
 
 interface ImageUploaderProps {
     index: number
     defaultImgUrl: string
     folderName: string
-    cloudName: string
-    uploadPreset: string
     onUploaded: (data: { url: string; index: number }) => void
 }
 
@@ -18,15 +16,12 @@ interface ValidationResult {
     errorMessage?: string
 }
 
-export function ImageUploader({ index, defaultImgUrl, folderName, cloudName,
-    uploadPreset, onUploaded }: ImageUploaderProps) {
+export function ImageUploader({ index, defaultImgUrl, folderName, onUploaded }: ImageUploaderProps) {
     const [imgUrl, setImgUrl] = useState('')
     const [isUploading, setIsUploading] = useState(false)
+    const { cloudinary } = useApiKeys()
+    const { cloudName, uploadPreset } = cloudinary
     const inputId = `imgUpload-${index}`
-
-    useEffect(() => {
-        setImgUrl(defaultImgUrl)
-    }, [defaultImgUrl])
 
     function validateFile(file: File): ValidationResult {
         const fileSize = file.size / 1024 / 1024
@@ -46,20 +41,25 @@ export function ImageUploader({ index, defaultImgUrl, folderName, cloudName,
                 errorMessage: 'Only AVIF is allowed!',
             }
         }
+        console.log('File validation passed')
         return { isValid: true }
     }
 
     function onFileDropped(file: File) {
-        uploadFile(file)
+        prepareUploading(file)
     }
 
-    async function uploadFile(file: File) {
+    async function prepareUploading(file: File) {
         const validation = validateFile(file)
-        if (!validation.isValid) return
+        if (!validation.isValid) {
+            console.log(`Validation failed: ${validation.errorHeader}`)
+            console.log(`Error details: ${validation.errorMessage}`)
+            return
+        }
         setIsUploading(true)
 
         try {
-            const data = await uploadService.uploadImg(file, folderName, cloudName, uploadPreset)
+            const data = await CommenceUpload(file, folderName, cloudName, uploadPreset)
             setImgUrl(data.secure_url)
             onUploaded({ url: data.secure_url, index })
         } catch (error) {
@@ -71,7 +71,7 @@ export function ImageUploader({ index, defaultImgUrl, folderName, cloudName,
 
     function onFileInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         if (event.target.files && event.target.files.length > 0) {
-            uploadFile(event.target.files[0])
+            prepareUploading(event.target.files[0])
         }
     }
 
@@ -101,6 +101,29 @@ export function ImageUploader({ index, defaultImgUrl, folderName, cloudName,
         if (files && files.length > 0) onFileDropped(files[0])
     }
 
+    async function CommenceUpload(file: File, folderName: string, cloudName: string, uploadPreset: string) {
+        const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`
+        try {
+            const folderPath = folderName
+            const formData = new FormData()
+            formData.append('upload_preset', uploadPreset)
+            formData.append('file', file)
+            formData.append('folder', folderPath)
+
+            const response = await fetch(UPLOAD_URL, {
+                method: 'POST',
+                body: formData
+            })
+            const data = await response.json()
+            return data
+        } catch (err) {
+            console.error('Failed to upload', err)
+            throw err
+        }
+    }
+
+    useEffect(() => { setImgUrl(defaultImgUrl) }, [defaultImgUrl])
+
     return (<article className="upload-preview" role="region" aria-labelledby="upload-label"
         aria-describedby="upload-description" onDragOver={handleDragOver}
         onDragLeave={handleDragLeave} onDrop={handleDrop}>
@@ -111,9 +134,9 @@ export function ImageUploader({ index, defaultImgUrl, folderName, cloudName,
                 </span>
                 <ImageContainer src={imgUrl} alt="preview image" />
             </label>
-            <input type="file" onChange={onFileInputChange}
-                accept="image/*" id={inputId} style={{ display: 'none' }}
-                aria-labelledby="upload-label" aria-describedby="upload-description"
+            <input type="file" onChange={onFileInputChange} accept="image/*"
+                id={inputId} style={{ display: 'none' }} aria-labelledby="upload-label"
+                aria-describedby="upload-description"
             />
         </div>
     </article>)

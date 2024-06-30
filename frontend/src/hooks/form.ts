@@ -22,6 +22,13 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
         }
     }
 
+    function setFieldValue(name: string, value: any) {
+        setValues(prevValues => ({ ...prevValues, [name]: value }))
+        if (validationSchema[name]?.required) {
+            validateField(name, value.toString())
+        }
+    }
+
     function validateField(name: string, value: string) {
         const fieldValidation = validationSchema[name]
         if (!fieldValidation) return
@@ -61,7 +68,10 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
         setErrors({})
     }
 
-    return { values, errors, validateField, handleChange, handleSubmit, resetForm }
+    return {
+        values, errors, validateField, handleChange,
+        setFieldValue, handleSubmit, resetForm
+    }
 }
 
 // input / textarea optional validators

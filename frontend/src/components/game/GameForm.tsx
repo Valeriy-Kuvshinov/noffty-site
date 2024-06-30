@@ -3,7 +3,6 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Game } from "../../models/game"
 import { GameService } from "../../services/api/game.service"
-import { useApiKeys } from "../../contexts/ApiContext"
 import { useForm } from "../../hooks/form"
 import { ImageUploader } from "../forms/ImageUploader"
 import { SvgRender } from "../general/SvgRender"
@@ -15,9 +14,6 @@ const defaultScreenshot = 'https://res.cloudinary.com/djzid7ags/image/upload/v17
 export function GameForm({ game }: { game: Game }) {
     const gameService = new GameService()
     const router = useRouter()
-    const { cloudinary } = useApiKeys()
-    const { cloudName, uploadPreset } = cloudinary
-    const [formData, setFormData] = useState<Game>(game)
 
     const validationSchema = {
         name: { required: true, minLength: 3, pattern: /[\s.\-!^&?']+/ },
@@ -31,48 +27,48 @@ export function GameForm({ game }: { game: Game }) {
         controls: { required: true, minLength: 3, pattern: /[\s.\-!?@#$',^/*;:]+/ }
     }
 
-    function handleGenreChange(e: React.ChangeEvent<HTMLSelectElement>) {
-        const selectedOptions = Array.from(e.target.selectedOptions, option => option.value)
-        setFormData(prev => ({ ...prev, genre: selectedOptions }))
-    }
-
-    function handleIconUpload(data: { url: string; index: number }) {
-        setFormData(prev => ({ ...prev, icon: data.url }))
-    }
-
-    function handleAddScreenshot() {
-        if (formData.screenshots.length < 5) setFormData(prev =>
-            ({ ...prev, screenshots: [...prev.screenshots, ''] }))
-    }
-
-    function handleRemoveScreenshot(index: number) {
-        if (formData.screenshots.length > 1) setFormData(prev => {
-            const newScreenshots = [...prev.screenshots]
-            newScreenshots.splice(index, 1)
-            return { ...prev, screenshots: newScreenshots }
-        })
-    }
-
-    function handleScreenshotUpload(data: { url: string; index: number }) {
-        setFormData(prev => {
-            const newScreenshots = [...prev.screenshots]
-            newScreenshots[data.index] = data.url
-            return { ...prev, screenshots: newScreenshots }
-        })
-    }
-
-    const { values, errors, validateField, handleChange, handleSubmit, resetForm } =
-        useForm(formData, validationSchema, async (values) => {
+    const { values, errors, validateField, handleChange, handleSubmit, resetForm, setFieldValue } =
+        useForm(game, validationSchema, async (values) => {
             try {
                 await gameService.save(values)
                 console.log('Game saved successfully')
 
                 resetForm()
-                router.push(`/admin`)
+                router.push(`/admin/games`)
             } catch (error) {
                 console.error('Failed to save game', error)
             }
         })
+
+    function handleGenreChange(e: React.ChangeEvent<HTMLSelectElement>) {
+        const selectedOptions = Array.from(e.target.selectedOptions, option => option.value)
+        setFieldValue('genre', selectedOptions)
+    }
+
+    function handleIconUpload(data: { url: string; index: number }) {
+        setFieldValue('icon', data.url)
+    }
+
+    function handleAddScreenshot() {
+        if (values.screenshots.length < 5) {
+            setFieldValue('screenshots', [...values.screenshots, ''])
+        }
+    }
+
+    function handleRemoveScreenshot(index: number) {
+        if (values.screenshots.length > 1) {
+            const newScreenshots = [...values.screenshots]
+            newScreenshots.splice(index, 1)
+            setFieldValue('screenshots', newScreenshots)
+        }
+    }
+
+    function handleScreenshotUpload(data: { url: string; index: number }) {
+        const newScreenshots = [...values.screenshots]
+        newScreenshots[data.index] = data.url
+        setFieldValue('screenshots', newScreenshots)
+    }
+
     const allFieldsFilled = values.name && values.note && values.outsideLink &&
         values.description && values.credits && values.controls
     const hasErrors = Object.values(errors).some(error => error)
@@ -119,7 +115,7 @@ export function GameForm({ game }: { game: Game }) {
                 <SvgRender iconName='action' />
                 <span>Genre:</span>
             </label>
-            <select id="genre" name="genre" multiple value={formData.genre} onChange={handleGenreChange}>
+            <select id="genre" name="genre" multiple value={values.genre} onChange={handleGenreChange}>
                 <option value="action">Action</option>
                 <option value="adventure">Adventure</option>
                 <option value="other">Other</option>
@@ -134,7 +130,7 @@ export function GameForm({ game }: { game: Game }) {
                 <SvgRender iconName='monitor' />
                 <span>Platform:</span>
             </label>
-            <select id="platform" name="platform" value={formData.platform} onChange={handleChange} required>
+            <select id="platform" name="platform" value={values.platform} onChange={handleChange} required>
                 <option value="android">Android</option>
                 <option value="html5">HTML5</option>
                 <option value="steam">Steam</option>
@@ -146,7 +142,7 @@ export function GameForm({ game }: { game: Game }) {
                 <SvgRender iconName='itch' />
                 <span>Is Game Jam:</span>
             </label>
-            <select id="isGameJam" name="isGameJam" value={formData.isGameJam} onChange={handleChange} required>
+            <select id="isGameJam" name="isGameJam" value={values.isGameJam} onChange={handleChange} required>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
@@ -158,22 +154,22 @@ export function GameForm({ game }: { game: Game }) {
                 <span>Screenshots:</span>
             </label>
             <div className="upload-area grid">
-                {formData.screenshots.map((screenshot, index) => (
+                {values.screenshots.map((screenshot: string, index: number) => (
                     <div key={index}>
                         <ImageUploader index={index} defaultImgUrl={screenshot || defaultScreenshot}
-                            folderName="/games/screenshots" cloudName={cloudName}
-                            uploadPreset={uploadPreset} onUploaded={handleScreenshotUpload}
+                            folderName="/games/screenshots" onUploaded={handleScreenshotUpload}
                         />
-                    </div>))}
+                    </div>
+                ))}
                 <div className="amount-management grid">
-                    <button type="button" onClick={() => handleRemoveScreenshot(formData.screenshots.length - 1)}
-                        className={`flex column full-center ${formData.screenshots.length === 1 ? 'disabled' : ''}`}
-                        disabled={formData.screenshots.length === 1}>
+                    <button type="button" onClick={() => handleRemoveScreenshot(values.screenshots.length - 1)}
+                        disabled={values.screenshots.length === 1}
+                        className={`flex column full-center ${values.screenshots.length === 1 ? 'disabled' : ''}`}>
                         <SvgRender iconName="minus" />
                         <span>Remove</span>
                     </button>
-                    <button type="button" onClick={handleAddScreenshot} disabled={formData.screenshots.length >= 5}
-                        className={`flex column full-center ${formData.screenshots.length >= 5 ? 'disabled' : ''}`}>
+                    <button type="button" onClick={handleAddScreenshot} disabled={values.screenshots.length >= 5}
+                        className={`flex column full-center ${values.screenshots.length >= 5 ? 'disabled' : ''}`}>
                         <SvgRender iconName="plus" />
                         <span>Add</span>
                     </button>
@@ -187,9 +183,8 @@ export function GameForm({ game }: { game: Game }) {
                 <span>Icon:</span>
             </label>
             <div className="upload-area grid">
-                <ImageUploader index={0} defaultImgUrl={formData.icon || defaultIcon}
-                    folderName="/games/icons" cloudName={cloudName}
-                    uploadPreset={uploadPreset} onUploaded={handleIconUpload}
+                <ImageUploader index={0} defaultImgUrl={game.icon || defaultIcon}
+                    folderName="/games/icons" onUploaded={handleIconUpload}
                 />
             </div>
         </div>
@@ -199,6 +194,12 @@ export function GameForm({ game }: { game: Game }) {
                 type="submit" disabled={!allFieldsFilled || hasErrors}>
                 <span>Send</span>
             </button>
+
+            {game._id && (
+                <button className="flex row align-center" type="button">
+                    <span>Delete</span>
+                </button>
+            )}
         </section>
     </form>)
 }
