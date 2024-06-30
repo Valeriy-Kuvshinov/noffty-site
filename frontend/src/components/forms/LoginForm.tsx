@@ -4,6 +4,7 @@ import { useRef, useState } from "react"
 import { UserLogin } from "../../models/user"
 import { useModal } from "../../contexts/ModalContext"
 import { useApiKeys } from "../../contexts/ApiContext"
+import { useSessionUser } from "../../contexts/SessionContext"
 import { UserService } from "../../services/api/user.service"
 import { useClickOutside } from "../../hooks/clickOutside"
 import { useForm } from "../../hooks/form"
@@ -15,6 +16,7 @@ export function LoginForm() {
     const userService = new UserService()
     const { activeModal, closeModal } = useModal()
     const { recaptchaSiteKey } = useApiKeys()
+    const { setSessionUser } = useSessionUser()
     const loginRef = useRef<HTMLDivElement>(null)
     const recaptchaRef = useRef<ReCAPTCHA>(null)
 
@@ -37,8 +39,8 @@ export function LoginForm() {
                     recaptchaToken: token
                 }
                 const user = await userService.login(loginData)
+                setSessionUser(user)
 
-                console.log('Logged in successfully', user)
                 resetForm()
                 closeModal('login')
             } catch (err) {

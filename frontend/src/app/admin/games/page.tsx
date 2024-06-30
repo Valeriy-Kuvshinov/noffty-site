@@ -1,11 +1,11 @@
 'use client'
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { GameService } from "../../services/api/game.service"
-import { useGameFilterParams } from "../../hooks/gameFilterParams"
-import { GameFilter } from "../../components/game/GameFilter"
-import { GameList } from "../../components/game/GameList"
-import { Loader } from "../../components/general/Loader"
+import { GameService } from "../../../services/api/game.service"
+import { useGameFilterParams } from "../../../hooks/gameFilterParams"
+import { GameFilter } from "../../../components/game/GameFilter"
+import { GameList } from "../../../components/game/GameList"
+import { Loader } from "../../../components/general/Loader"
 
 export default function AdminIndex() {
     const gameService = new GameService()

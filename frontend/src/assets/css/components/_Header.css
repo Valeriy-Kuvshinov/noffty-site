@@ -5,7 +5,7 @@ header {
     a {
         color: var(--scdclr6);
 
-        &:nth-child(1) {
+        &.logo {
             height: 48px;
             aspect-ratio: 1 / 1;
         }
@@ -57,62 +57,81 @@ header {
     }
 
     .header-contents .desktop-view {
+        position: relative;
+
         .user-form-zone {
-            position: relative;
             gap: 0.5em;
 
             .user {
-                height: 36px;
-                aspect-ratio: 1 / 1;
                 cursor: pointer;
                 border-radius: 100%;
                 background: var(--scdclr6);
+
+                .image-container img {
+                    height: 36px;
+                    aspect-ratio: 1 / 1;
+                    border-radius: 100%;
+                }
+            }
+        }
+
+        .header-dropdown {
+            position: absolute;
+            padding: 0;
+            top: 1.75em;
+            z-index: 1;
+            margin-inline-end: 0;
+            background: var(--prmclr2);
+            border: 1px solid var(--prmclr2);
+            border-radius: 0.25em;
+
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 100%;
+                left: 75%;
+                transform: translateX(-50%);
+                border-width: 8px;
+                border-style: solid;
+                border-color: transparent transparent var(--prmclr2) transparent;
             }
 
-            .header-dropdown {
-                position: absolute;
-                background: var(--prmclr2);
-                top: 1.75em;
-                right: -1.75em;
-                border: 1px solid var(--prmclr2);
-                border-radius: 0.25em;
-                padding: 0;
+            nav {
 
-                &::before {
-                    content: '';
-                    position: absolute;
-                    bottom: 100%;
-                    left: 75%;
-                    transform: translateX(-50%);
-                    border-width: 8px;
-                    border-style: solid;
-                    border-color: transparent transparent var(--prmclr2) transparent;
+                &:has(> button:nth-child(2))>button:not(:last-child),
+                &:has(> a:nth-child(2))>a:not(:last-child) {
+                    border-bottom: 2px solid var(--prmclr1);
                 }
 
-                nav {
-                    &:has(> button:nth-child(2))>button:not(:last-child) {
-                        border-bottom: 2px solid var(--prmclr1);
+                button,
+                a {
+                    padding: 0.5em 0.75em;
+                    font-size: 16px;
+                    color: var(--prmclr1);
+
+                    &:hover {
+                        color: var(--prmclr2);
+                        background: var(--prmclr1);
                     }
 
-                    button {
-                        padding: 0.75em 1.25em;
+                    &:first-child {
+                        border-radius: 0.5em 0.5em 0 0;
+                    }
 
-                        &:hover {
-                            color: var(--prmclr2);
-                            background: var(--prmclr1);
-                        }
+                    &:last-child {
+                        border-radius: 0 0 0.5em 0.5em;
+                    }
 
-                        &:first-child {
-                            border-radius: 0.5em 0.5em 0 0;
-                        }
+                    &:only-child {
+                        border-radius: 0.5em;
+                    }
 
-                        &:last-child {
-                            border-radius: 0 0 0.5em 0.5em;
-                        }
+                    &:not(:first-child):not(:last-child) {
+                        border-radius: 0;
+                    }
 
-                        &:not(:first-child):not(:last-child) {
-                            border-radius: 0;
-                        }
+                    span {
+                        width: 50px;
                     }
                 }
             }

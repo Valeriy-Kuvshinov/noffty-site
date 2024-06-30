@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { useGameFilterParams } from "../hooks/gameFilterParams"
 import { useDeviceType } from "../contexts/DeviceTypeContext"
 import { useModal } from "../contexts/ModalContext"
+import { useSessionUser } from "../contexts/SessionContext"
 import { SvgRender } from "./general/SvgRender"
 import { ImageContainer } from "./general/ImageContainer"
 import { HeaderDropdown } from "./modals/HeaderDropdown"
@@ -12,13 +13,14 @@ import { HeaderDropdown } from "./modals/HeaderDropdown"
 export function Header() {
     const pathname = usePathname()
     const [searchTerm, setSearchTerm] = useState('')
+
     const { updateSearchParams } = useGameFilterParams()
     const deviceType = useDeviceType()
     const { openModal } = useModal()
+    const { sessionUser } = useSessionUser()
 
     const headerLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
     const hiddenSearchPages = pathname.startsWith('/games') || pathname.startsWith('/admin')
-    const defaultIcon = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719433639/vonsaimuwr4b3wrt7keh.avif'
 
     function isActive(path: string) {
         return pathname === path
@@ -41,7 +43,7 @@ export function Header() {
                     <button onClick={() => openModal('aside-menu')}>
                         <SvgRender iconName="menu" />
                     </button>
-                    <Link href="/" className={`${isActive('/') ? 'active' : ''}`}
+                    <Link href="/" className={`logo ${isActive('/') ? 'active' : ''}`}
                         title="Go to home?" aria-label="Navigate to home page">
                         <ImageContainer src={headerLogo} alt="noffty logo" />
                     </Link>
@@ -56,7 +58,7 @@ export function Header() {
                 </nav>
             ) : (
                 <nav className="desktop-view flex row align-center justify-between w-100">
-                    <Link href="/" className={`${isActive('/') ? 'active' : ''}`}
+                    <Link href="/" className={`logo ${isActive('/') ? 'active' : ''}`}
                         title="Go to home?" aria-label="Navigate to home page">
                         <ImageContainer src={headerLogo} alt="noffty logo" />
                     </Link>
@@ -81,11 +83,11 @@ export function Header() {
                                 />
                                 <SvgRender iconName="search" />
                             </form>)}
-                        <div className="user flex" onClick={() => openModal('header-dropdown')}>
-                            <ImageContainer src={defaultIcon} alt="default user" />
+                        <div className="user flex w-fit" onClick={() => openModal('header-dropdown')}>
+                            <ImageContainer src={sessionUser.imgUrls![0]} alt={`${sessionUser.email} avatar`} />
                         </div>
-                        <HeaderDropdown />
                     </section>
+                    <HeaderDropdown sessionUser={sessionUser} />
                 </nav>)}
         </section>
     </header>)
