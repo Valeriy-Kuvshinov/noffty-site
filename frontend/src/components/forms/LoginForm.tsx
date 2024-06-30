@@ -17,6 +17,7 @@ export function LoginForm() {
     const { activeModal, closeModal } = useModal()
     const { recaptchaSiteKey } = useApiKeys()
     const { setSessionUser } = useSessionUser()
+    const [showPassword, setShowPassword] = useState(false)
     const loginRef = useRef<HTMLDivElement>(null)
     const recaptchaRef = useRef<ReCAPTCHA>(null)
 
@@ -54,6 +55,10 @@ export function LoginForm() {
         closeModal('login')
     }
 
+    function togglePasswordShow() {
+        setShowPassword(!showPassword)
+    }
+
     useClickOutside(loginRef, closeLogin)
     if (activeModal !== 'login') return null
 
@@ -65,11 +70,21 @@ export function LoginForm() {
                     placeholder="Your email" error={errors.loginId}
                     onBlur={() => validateField('loginId', values.loginId)}
                 />
-                <InputArea label="Password*" type="text" name="password" svg='lock'
-                    maxLength={30} value={values.password} onChange={handleChange}
-                    placeholder="Your password" error={errors.password}
-                    onBlur={() => validateField('password', values.password)}
-                />
+                <div className={`input-area grid ${errors.password ? 'error' : ''}`}>
+                    <label className='grid align-center' htmlFor="password">
+                        <SvgRender iconName="lock" />
+                        <span>Password*</span>
+                        {errors.password && <p title={errors.password}>{errors.password}</p>}
+                    </label>
+                    <input type={showPassword ? "text" : "password"} id="password"
+                        name="password" value={values.password} onChange={handleChange}
+                        onBlur={() => validateField('password', values.password)}
+                        placeholder="Your password" maxLength={30}
+                    />
+                    <button type="button" onClick={togglePasswordShow}>
+                        <SvgRender iconName={showPassword ? "eye" : "noEye"} />
+                    </button>
+                </div>
                 <section className='form-actions flex row align-center justify-between'>
                     <button className={`flex row align-center ${!allFieldsFilled || hasErrors ? 'disabled' : ''}`}
                         type="submit" disabled={!allFieldsFilled || hasErrors}>

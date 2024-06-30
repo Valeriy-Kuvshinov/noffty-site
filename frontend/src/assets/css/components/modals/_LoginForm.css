@@ -9,11 +9,22 @@
 
     form {
         gap: 0.75em;
-        max-width: 750px;
         grid-template-columns: 1fr 1fr;
 
         .input-area {
             grid-column: 1 / -1;
+
+            &:nth-child(2) {
+                position: relative;
+
+                button {
+                    position: absolute;
+                    height: 36px;
+                    bottom: 0.1em;
+                    right: 0.25em;
+                    z-index: 1;
+                }
+            }
         }
 
         .form-actions {

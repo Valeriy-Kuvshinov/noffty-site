@@ -12,6 +12,7 @@
 
 .loader-container {
     margin: 4em auto 0 auto;
+    z-index: 1;
 
     span {
         color: var(--scdclr4);

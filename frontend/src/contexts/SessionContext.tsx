@@ -1,5 +1,6 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from "react"
+import { usePathname, useRouter } from "next/navigation"
 import { User } from "../models/user"
 import { UserService } from "../services/api/user.service"
 
@@ -7,6 +8,7 @@ interface SessionContextType {
     sessionUser: User
     setSessionUser: (user: User | null) => void
     getSessionUser: () => User
+    isLoading: boolean
 }
 
 const defaultUser: User = {
@@ -22,8 +24,12 @@ const SessionContext = createContext<SessionContextType | undefined>(undefined)
 export function SessionProvider({ children }: { children: React.ReactNode }) {
     const userService = new UserService()
     const [sessionUser, setSessionUser] = useState<User>(defaultUser)
+    const [isLoading, setIsLoading] = useState(true)
+    const router = useRouter()
+    const pathname = usePathname()
 
     async function initializeSession() {
+        setIsLoading(true)
         const storedUser = userService.getLoggedinUser()
         if (storedUser && storedUser._id) {
             try {
@@ -35,9 +41,8 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
                 setSessionUser(defaultUser)
             }
         }
+        setIsLoading(false)
     }
-
-    useEffect(() => { initializeSession() }, [])
 
     function setSessionUserWithStorage(user: User | null) {
         if (user) {
@@ -50,9 +55,18 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
         return sessionUser
     }
 
+    useEffect(() => { initializeSession() }, [])
+
+    useEffect(() => {
+        if (!isLoading && pathname.startsWith('/admin') && !sessionUser.isAdmin) {
+            router.push('/')
+        }
+    }, [pathname, sessionUser.isAdmin, router, isLoading])
+
     return (
         <SessionContext.Provider value={{
-            sessionUser, setSessionUser: setSessionUserWithStorage,
+            sessionUser, isLoading,
+            setSessionUser: setSessionUserWithStorage,
             getSessionUser: getSessionUserFromContext
         }}>
             {children}
