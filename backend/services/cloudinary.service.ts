@@ -13,9 +13,6 @@ cloudinary.config({
 
 export const cloudinaryService = {
     checkOrphanedImages,
-    _getAllCloudinaryImages,
-    _deleteImageFromCloudinary,
-    _extractPublicIdFromUrl,
 }
 
 async function checkOrphanedImages(collectionName: string, folders: string[]): Promise<void> {
@@ -30,9 +27,8 @@ async function checkOrphanedImages(collectionName: string, folders: string[]): P
             loggerService.info('Orphaned images found: ', orphanImages)
             loggerService.info('Total amount found: ', orphanImages.length)
 
-            for (const publicId of orphanImages) {
-                await _deleteImageFromCloudinary(publicId)
-            }
+            for (const publicId of orphanImages) await _deleteImageFromCloudinary(publicId)
+
             loggerService.debug('Deletion of orphaned images completed')
         } else loggerService.info('No orphaned images found')
     } catch (err) {
@@ -65,13 +61,15 @@ async function _getAllPublicIdsFromCollection(collectionName: string): Promise<s
     try {
         const collection = await dbService.getCollection(collectionName)
         const items = await collection.find({},
-            { projection: { imgUrls: 1 } }).toArray()
+            { projection: { imgUrls: 1, screenshots: 1, icon: 1 } }).toArray()
 
-        const imgUrls = items.reduce((acc: string[], item) => {
+        const allImgUrls = items.reduce((acc: string[], item) => {
             if (item.imgUrls) acc.push(...item.imgUrls)
+            if (item.screenshots) acc.push(...item.screenshots)
+            if (item.icon) acc.push(item.icon)
             return acc
         }, [])
-        const resultImagePublicIds = imgUrls.map(
+        const resultImagePublicIds = allImgUrls.map(
             imgUrl => _extractPublicIdFromUrl(imgUrl)).filter(
                 (id): id is string => id !== null)
 

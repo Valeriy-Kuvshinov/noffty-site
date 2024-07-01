@@ -12,6 +12,7 @@ import { userRoutes } from './api/user/user.controller.js'
 import { authRoutes } from './api/auth/auth.controller.js'
 
 import { loggerService } from './services/logger.service.js'
+import { automationService } from './services/automation.service.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -55,4 +56,5 @@ const server = http.createServer(app)
 
 server.listen(port, () => {
   loggerService.info(`Server listening on port http://127.0.0.1:${port}/`)
+  automationService.setupOrphanedImageCheck()
 })

@@ -69,6 +69,18 @@ export function GameForm({ game }: { game: Game }) {
         setFieldValue('screenshots', newScreenshots)
     }
 
+    async function handleDelete() {
+        if (game._id) {
+            try {
+                await gameService.remove(game._id.toString())
+                console.log('Game deleted successfully')
+                router.push('/admin/games')
+            } catch (error) {
+                console.error('Failed to delete game', error)
+            }
+        }
+    }
+
     const allFieldsFilled = values.name && values.note && values.outsideLink &&
         values.description && values.credits && values.controls
     const hasErrors = Object.values(errors).some(error => error)
@@ -196,7 +208,7 @@ export function GameForm({ game }: { game: Game }) {
             </button>
 
             {game._id && (
-                <button className="flex row align-center" type="button">
+                <button className="flex row align-center" type="button" onClick={handleDelete}>
                     <span>Delete</span>
                 </button>
             )}
