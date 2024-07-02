@@ -69,7 +69,7 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
     }
 
     return {
-        values, errors, validateField, handleChange,
+        values, errors, setErrors, validateField, handleChange,
         setFieldValue, handleSubmit, resetForm
     }
 }

@@ -6,7 +6,7 @@ import { Footer } from '../components/Footer'
 import { AsideMenu } from '../components/modals/AsideMenu'
 import { LoginForm } from '../components/forms/LoginForm'
 
-const siteLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
+const siteLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719919435/ydjn6p0djqwbkko4zqts.png'
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const apiKeys = await UtilityService.getAPIKeys()

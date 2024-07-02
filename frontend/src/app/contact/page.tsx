@@ -19,10 +19,12 @@ export default function Contact() {
         <section className="page-contents grid w-h-100 layout-row">
             <article className="intro-part flex column w-100">
                 <h3 className="text-center">Get in Touch</h3>
-                <p className="text-center">
-                    Got any suggestions, bugs to report or willing to help our team?
-                    We'd like to hear from you down below!
+                <p className="text-center">Easiest way to contact us is to join our
+                    <a href="https://discord.gg/SeNsSRt" target="_blank" rel="noopener noreferrer"
+                        aria-label="Navigate to website's discord?"> Discord server.</a>
                 </p>
+                <p className="text-center">However, if you're looking for a more official way of communication,
+                    feel free to use the form below, and we'll make sure to reply.</p>
             </article>
             <ContactForm initialValues={initialValues} />
         </section>

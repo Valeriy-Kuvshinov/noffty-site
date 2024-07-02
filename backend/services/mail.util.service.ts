@@ -9,12 +9,12 @@ export const mailUtilService = {
 
 // generic function for preparing a somewhat neat looking email
 function prepareEmailBody(emailHtml: string): string {
-    const siteLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
+    const siteLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719919435/ydjn6p0djqwbkko4zqts.png'
     return `
     <div style="display: flex; height: 100%; margin: 0 auto; max-width:800px; background-color: #0a0a0a;">
         <div style="width: 100%; padding: 20px; font-size: 1rem; color: #F5F5F5; background-color: #0a0a0a;">
             <a href="https://noffty.productions" style="display: block; width: fit-content; margin: 0 auto; color: #F5F5F5;">
-                <img src="${siteLogo}" alt="noffty productions" style="height: 50px; width: 50px;">
+                <img src="${siteLogo}" alt="noffty productions" style="height: 32px; width: 32px;">
             </a>
             ${emailHtml}
             <p>Sincerely,<br>The Noffty Productions Team<br></p>

@@ -49,9 +49,9 @@ async function getByName(gameName: string): Promise<Game | null> {
 
     if (game) {
       loggerService.info('found game: ', game._id)
-      if (game.description) game.description = utilityService.formatText(game.description)
-      if (game.controls) game.controls = utilityService.formatText(game.controls)
-      if (game.credits) game.credits = utilityService.formatText(game.credits)
+      game.description = utilityService.formatText(game.description || '')
+      game.controls = utilityService.formatText(game.controls || '')
+      game.credits = utilityService.formatText(game.credits || '')
     }
     else loggerService.error('No game found with name:', gameName)
 

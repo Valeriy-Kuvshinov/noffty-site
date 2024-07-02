@@ -28,6 +28,16 @@ export function LoginForm() {
         password: { required: true, minLength: 6 }
     }
 
+    function closeLogin() {
+        resetForm()
+        recaptchaRef.current?.reset()
+        closeModal('login')
+    }
+
+    function togglePasswordShow() {
+        setShowPassword(!showPassword)
+    }
+
     const { values, errors, validateField, handleChange, handleSubmit, resetForm } =
         useForm(initialValues, validationSchema, async (formData) => {
             try {
@@ -49,26 +59,15 @@ export function LoginForm() {
     const allFieldsFilled = values.loginId && values.password
     const hasErrors = Object.values(errors).some(error => error)
 
-    function closeLogin() {
-        resetForm()
-        recaptchaRef.current?.reset()
-        closeModal('login')
-    }
-
-    function togglePasswordShow() {
-        setShowPassword(!showPassword)
-    }
-
     useClickOutside(loginRef, closeLogin)
     if (activeModal !== 'login') return null
 
     return (<dialog className="modal-wrapper flex align-center w-h-100" open={true}>
         <article className="login-form flex column w-100 fast-trans" ref={loginRef}>
             <form className="grid" onSubmit={handleSubmit}>
-                <InputArea label="Email*" type="email" name="loginId" svg='mail'
-                    maxLength={50} value={values.loginId} onChange={handleChange}
-                    placeholder="Your email" error={errors.loginId}
-                    onBlur={() => validateField('loginId', values.loginId)}
+                <InputArea label="Email*" type="email" name="loginId" svg='mail' maxLength={50}
+                    value={values.loginId} onChange={handleChange} placeholder="Your email"
+                    error={errors.loginId} onBlur={() => validateField('loginId', values.loginId)}
                 />
                 <div className={`input-area grid ${errors.password ? 'error' : ''}`}>
                     <label className='grid align-center' htmlFor="password">
@@ -76,10 +75,9 @@ export function LoginForm() {
                         <span>Password*</span>
                         {errors.password && <p title={errors.password}>{errors.password}</p>}
                     </label>
-                    <input type={showPassword ? "text" : "password"} id="password"
-                        name="password" value={values.password} onChange={handleChange}
+                    <input type={showPassword ? "text" : "password"} id="password" name="password" maxLength={24}
+                        value={values.password} onChange={handleChange} placeholder="Your password"
                         onBlur={() => validateField('password', values.password)}
-                        placeholder="Your password" maxLength={30}
                     />
                     <button type="button" onClick={togglePasswordShow}>
                         <SvgRender iconName={showPassword ? "eye" : "noEye"} />

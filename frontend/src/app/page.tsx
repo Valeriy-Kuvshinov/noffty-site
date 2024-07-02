@@ -53,7 +53,7 @@ export default function Home() {
   ]
   const socialLinks = UtilityService.getSocialLinks()
 
-  const companyLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1716704406/xtidg8pprkayhx9pxhce.avif'
+  const companyLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719919509/wkqirx5zx97olc5cofzn.avif'
 
   return (<main className="home-page full w-h-100">
     <section className="page-contents flex column align-center w-h-100 layout-row">

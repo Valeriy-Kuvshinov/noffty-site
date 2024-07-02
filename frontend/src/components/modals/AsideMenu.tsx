@@ -54,7 +54,7 @@ export function AsideMenu() {
     return (<dialog className="modal-wrapper w-h-100" open={isOpen}>
         <article className={`aside-menu flex column w-h-100 fast-trans ${showAsideMenu ? 'show' : ''}`} ref={asideRef}>
             <div className="menu-header flex row align-center">
-                <span>{sessionUser._id ? `Hello ${sessionUser.email?.split('@')[0]}!` : 'Hello Guest!'}</span>
+                <span>{sessionUser._id ? `Welcome @${sessionUser.email?.split('@')[0]}!` : 'Hello Guest!'}</span>
             </div>
 
             <nav className="flex column">
@@ -80,13 +80,13 @@ export function AsideMenu() {
                 </Link>
                 {sessionUser._id ? (<>
                     {sessionUser.isAdmin && (<>
-                        <Link href="/admin/games" className={`flex row align-center ${isActive('/contact') ? 'active' : ''}`}
-                            onClick={closeAsideMenu} title="Go to contact page?" aria-label="Navigate to contact page">
+                        <Link href="/admin/games" className={`flex row align-center ${isActive('/admin/games') ? 'active' : ''}`}
+                            onClick={closeAsideMenu} title="Go to games admin page?" aria-label="Navigate to games management">
                             <SvgRender iconName="edit" />
                             <span>Manage Games</span>
                         </Link>
-                        <Link href="/admin/edit" className={`flex row align-center ${isActive('/contact') ? 'active' : ''}`}
-                            onClick={closeAsideMenu} title="Go to contact page?" aria-label="Navigate to contact page">
+                        <Link href="/admin/edit" className={`flex row align-center ${isActive('/admin/edit') ? 'active' : ''}`}
+                            onClick={closeAsideMenu} title="Create new game?" aria-label="Navigate to game creation page">
                             <SvgRender iconName="plus" />
                             <span>Create Game</span>
                         </Link>

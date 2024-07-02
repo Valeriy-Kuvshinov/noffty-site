@@ -13,39 +13,52 @@
             aspect-ratio: 4 / 3;
         }
 
-        .gmtk {
+        .gmtk,
+        .icon {
             padding: 0.25em 0.75em;
             position: absolute;
-            bottom: 0.5em;
             right: 0.75em;
             letter-spacing: 1px;
             color: var(--scdclr4);
             background: var(--prmclr1);
             border-radius: 0.5em;
             font-size: 14px;
+            opacity: 0;
         }
 
-        .icon,
+        .icon {
+            top: 0.5em;
+        }
+
+        .gmtk {
+            bottom: 0.5em;
+        }
+
         button {
             position: absolute;
             top: 0.75em;
             right: 0.75em;
             width: 36px;
             height: 36px;
-        }
-
-        button {
             left: 0.75em;
             padding: 0.25em;
             background: var(--prmclr2);
             border-radius: 0.5em;
-            opacity: 0.8;
 
             &:hover {
                 fill: var(--scdclr4);
                 background: var(--prmclr1);
-                opacity: 1;
             }
+        }
+
+    }
+
+    &:hover {
+        scale: 1.1;
+
+        .preview-body .icon,
+        .preview-body .gmtk {
+            opacity: 1;
         }
     }
 

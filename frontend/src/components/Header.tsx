@@ -19,7 +19,7 @@ export function Header() {
     const { openModal } = useModal()
     const { sessionUser } = useSessionUser()
 
-    const headerLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1713305122/wx0ji5qxrhkfffiat0tv.png'
+    const headerLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719919435/ydjn6p0djqwbkko4zqts.png'
     const hiddenSearchPages = pathname.startsWith('/games') || pathname.startsWith('/admin')
 
     function isActive(path: string) {
@@ -49,8 +49,7 @@ export function Header() {
                     </Link>
                     {!hiddenSearchPages && (
                         <form onSubmit={handleSearchSubmit} className="w-100 layout-row fast-trans">
-                            <input
-                                type="text" placeholder="Search games..." maxLength={35}
+                            <input type="text" placeholder="Search games..." maxLength={30}
                                 value={searchTerm} onChange={handleSearchInputChange}
                             />
                             <SvgRender iconName="search" />
@@ -81,8 +80,7 @@ export function Header() {
                     <section className="user-form-zone flex row align-center">
                         {!hiddenSearchPages && (
                             <form onSubmit={handleSearchSubmit} className="w-100 fast-trans">
-                                <input
-                                    type="text" placeholder="Search games..." maxLength={35}
+                                <input type="text" placeholder="Search games..." maxLength={30}
                                     value={searchTerm} onChange={handleSearchInputChange}
                                 />
                                 <SvgRender iconName="search" />

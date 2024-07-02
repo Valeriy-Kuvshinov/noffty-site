@@ -8,6 +8,10 @@
     .intro-part {
         gap: 0.5em;
         padding-block-end: 2em;
+
+        p a {
+            color: var(--mnrclr6);
+        }
     }
 
     form {

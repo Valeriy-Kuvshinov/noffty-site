@@ -1,9 +1,10 @@
 'use client'
-import { useState } from "react"
+import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Game } from "../../models/game"
 import { GameService } from "../../services/api/game.service"
 import { useForm } from "../../hooks/form"
+import { useDebounce } from "../../hooks/debounce"
 import { ImageUploader } from "../forms/ImageUploader"
 import { SvgRender } from "../general/SvgRender"
 import { InputArea } from "../forms/InputArea"
@@ -27,8 +28,8 @@ export function GameForm({ game }: { game: Game }) {
         controls: { required: true, minLength: 3, pattern: /[\s.\-!?@#$',^/*;:]+/ }
     }
 
-    const { values, errors, validateField, handleChange, handleSubmit, resetForm, setFieldValue } =
-        useForm(game, validationSchema, async (values) => {
+    const { values, errors, setErrors, validateField, handleChange, handleSubmit,
+        resetForm, setFieldValue } = useForm(game, validationSchema, async (values) => {
             try {
                 await gameService.save(values)
                 console.log('Game saved successfully')
@@ -39,6 +40,7 @@ export function GameForm({ game }: { game: Game }) {
                 console.error('Failed to save game', error)
             }
         })
+    const debouncedName = useDebounce(values.name, 500)
 
     function handleGenreChange(e: React.ChangeEvent<HTMLSelectElement>) {
         const selectedOptions = Array.from(e.target.selectedOptions, option => option.value)
@@ -69,6 +71,19 @@ export function GameForm({ game }: { game: Game }) {
         setFieldValue('screenshots', newScreenshots)
     }
 
+    async function checkNameAvailability(name: string) {
+        try {
+            if (name === game.name) { // don't show error when the edited name is the original
+                setErrors(prevErrors => ({ ...prevErrors, name: null }))
+                return
+            }
+            const { isAvailable } = await gameService.checkNameAvailable(name)
+            setErrors(prevErrors => ({ ...prevErrors, name: isAvailable ? prevErrors.name : 'Name is taken' }))
+        } catch (error) {
+            console.error('Failed to check name availability', error)
+        }
+    }
+
     async function handleDelete() {
         if (game._id) {
             try {
@@ -81,46 +96,50 @@ export function GameForm({ game }: { game: Game }) {
         }
     }
 
+    useEffect(() => {
+        if (debouncedName) checkNameAvailability(debouncedName)
+    }, [debouncedName])
+
     const allFieldsFilled = values.name && values.note && values.outsideLink &&
         values.description && values.credits && values.controls
     const hasErrors = Object.values(errors).some(error => error)
 
     return (<form className="grid layout-row w-100" onSubmit={handleSubmit}>
         <InputArea label="Game Title*" svg="title" type="text" name="name"
-            value={values.name} onChange={handleChange}
-            error={errors.name} onBlur={() => validateField('name', values.name)}
+            maxLength={30} value={values.name} onChange={handleChange} error={errors.name}
+            onBlur={() => validateField('name', values.name)}
         />
         <InputArea label="Game Note*" svg="info" type="text" name="note"
-            value={values.note} onChange={handleChange}
-            error={errors.note} onBlur={() => validateField('note', values.note)}
+            maxLength={40} value={values.note} onChange={handleChange} error={errors.note}
+            onBlur={() => validateField('note', values.note)}
         />
         <InputArea label="Outside Link*" svg="link" type="text" name="outsideLink"
-            value={values.outsideLink || ''} onChange={handleChange}
-            error={errors.outsideLink} onBlur={() => validateField('outsideLink', values.outsideLink)}
+            maxLength={120} value={values.outsideLink || ''} onChange={handleChange} error={errors.outsideLink}
+            onBlur={() => validateField('outsideLink', values.outsideLink)}
         />
         <InputArea label="Files Link" svg="folder" type="text" name="gameLink"
-            value={values.gameLink || ''} onChange={handleChange}
-            error={errors.gameLink} onBlur={() => validateField('gameLink', values.gameLink || '')}
+            maxLength={120} value={values.gameLink || ''} onChange={handleChange} error={errors.gameLink}
+            onBlur={() => validateField('gameLink', values.gameLink || '')}
         />
         <InputArea label="Devlog Link" svg="link" type="text" name="devlog"
-            value={values.devlog || ''} onChange={handleChange}
-            error={errors.devlog} onBlur={() => validateField('devlog', values.devlog || '')}
+            maxLength={120} value={values.devlog || ''} onChange={handleChange} error={errors.devlog}
+            onBlur={() => validateField('devlog', values.devlog || '')}
         />
         <InputArea label="Walkthrough Link" svg="link" type="text" name="walkthrough"
-            value={values.walkthrough || ''} onChange={handleChange}
-            error={errors.walkthrough} onBlur={() => validateField('walkthrough', values.walkthrough || '')}
+            maxLength={120} value={values.walkthrough || ''} onChange={handleChange} error={errors.walkthrough}
+            onBlur={() => validateField('walkthrough', values.walkthrough || '')}
         />
         <InputArea label="Description*" svg="description" type="textarea" name="description"
-            value={values.description || ''} onChange={handleChange}
-            error={errors.description} onBlur={() => validateField('description', values.description)}
+            maxLength={600} value={values.description || ''} onChange={handleChange} error={errors.description}
+            onBlur={() => validateField('description', values.description)}
         />
         <InputArea label="Credits*" svg="agreement" type="textarea" name="credits"
-            value={values.credits || ''} onChange={handleChange}
-            error={errors.credits} onBlur={() => validateField('credits', values.credits)}
+            maxLength={120} value={values.credits || ''} onChange={handleChange} error={errors.credits}
+            onBlur={() => validateField('credits', values.credits)}
         />
         <InputArea label="Controls*" svg="keyboard" type="textarea" name="controls"
-            value={values.controls || ''} onChange={handleChange}
-            error={errors.controls} onBlur={() => validateField('controls', values.controls)}
+            maxLength={120} value={values.controls || ''} onChange={handleChange} error={errors.controls}
+            onBlur={() => validateField('controls', values.controls)}
         />
         <div className="input-area grid">
             <label className='grid align-center' htmlFor="genre">
@@ -195,7 +214,7 @@ export function GameForm({ game }: { game: Game }) {
                 <span>Icon:</span>
             </label>
             <div className="upload-area grid">
-                <ImageUploader index={0} defaultImgUrl={game.icon || defaultIcon}
+                <ImageUploader index={-1} defaultImgUrl={game.icon || defaultIcon}
                     folderName="/games/icons" onUploaded={handleIconUpload}
                 />
             </div>
@@ -206,7 +225,6 @@ export function GameForm({ game }: { game: Game }) {
                 type="submit" disabled={!allFieldsFilled || hasErrors}>
                 <span>Send</span>
             </button>
-
             {game._id && (
                 <button className="flex row align-center" type="button" onClick={handleDelete}>
                     <span>Delete</span>

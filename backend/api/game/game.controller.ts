@@ -9,6 +9,7 @@ export const gameRoutes: Router = express.Router()
 
 gameRoutes.get('/', _getGames)
 gameRoutes.get('/by-name/:name', _getGameByName)
+gameRoutes.get('/check-name/:name', _checkNameAvailable)
 gameRoutes.get('/by-id/:id', _getGameById)
 gameRoutes.post('/add/', _addGame)
 gameRoutes.put('/update/:id', _updateGame)
@@ -50,6 +51,22 @@ async function _getGameByName(req: Request<{ name: string }>,
     } catch (err) {
         loggerService.error('Failed to get game by name', err)
         res.status(500).send({ err: 'Failed to get game by name' })
+    }
+}
+
+async function _checkNameAvailable(req: Request<{ name: string }>,
+    res: Response): Promise<void> {
+    try {
+        const gameName = req.params.name
+        const game = await GameService.getByName(gameName)
+
+        if (game) loggerService.error('This game name is not available: ', game.name)
+        else loggerService.info('This game name is available: ', gameName)
+
+        res.json({ isAvailable: !game })
+    } catch (err) {
+        loggerService.error('Error with checking availability of name', err)
+        res.status(500).send({ err: 'Error with checking availability of name' })
     }
 }
 

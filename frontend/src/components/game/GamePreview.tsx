@@ -23,13 +23,13 @@ export function GamePreview({ game, isAdminPage }: GamePreviewProps) {
         <div className='preview-body w-100 h-fit'>
             <ImageContainer src={game.screenshots[0]} alt={game.name} />
             {game.isGameJam === 'yes' && (
-                <span className="gmtk" title='Game{Jam} Submission' aria-label='GameJam Submission'>
+                <span className="gmtk fast-trans" title='Game{Jam} Submission' aria-label='GameJam Submission'>
                     JAM
                 </span>
             )}
-            <div className='icon'>
-                <SvgRender iconName={game.platform} />
-            </div>
+            <span className='icon fast-trans' aria-label={`Game meant playing on ${game.platform}`}>
+                {game.platform.toUpperCase()}
+            </span>
             {isAdminPage && (
                 <button className='flex full-center' onClick={handleEditClick}>
                     <SvgRender iconName='edit' />

@@ -19,6 +19,10 @@ export class GameService {
         return HttpService.get(`${baseUrl}by-name/${gameName}`)
     }
 
+    async checkNameAvailable(gameName: string): Promise<{ isAvailable: boolean }> {
+        return HttpService.get(`${baseUrl}check-name/${gameName}`)
+    }
+
     async save(game: Game): Promise<Game> {
         if (game._id) {
             return HttpService.put(`${baseUrl}update/${game._id}`, game)
