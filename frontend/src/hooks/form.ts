@@ -38,7 +38,6 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
             setErrors(prevErrors => ({ ...prevErrors, [name]: null }))
             return
         }
-
         const validations = [
             { check: fieldValidation.required, func: () => validateRequired(value) },
             { check: fieldValidation.minLength, func: () => validateMinLength(value, fieldValidation.minLength!) },
@@ -48,7 +47,6 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
             { check: fieldValidation.link, func: () => validateLink(value) },
             { check: fieldValidation.pattern, func: () => validatePattern(value, fieldValidation.pattern!) }
         ]
-
         for (let validation of validations) {
             if (!errorMessage && validation.check) {
                 errorMessage = validation.func()

@@ -45,24 +45,4 @@
             }
         }
     }
-
-    .games-showcase {
-        padding: 1em 0;
-        max-width: 1200px;
-        margin: 0 auto;
-
-        .action-btn {
-            padding: 1em 1.5em;
-            background: var(--scdclr2);
-            color: var(--scdclr3);
-            letter-spacing: 0.75px;
-            border-radius: 0.5em;
-            margin: 1em auto;
-
-            &:hover {
-                background: var(--scdclr1);
-                color: var(--scdclr4);
-            }
-        }
-    }
 }

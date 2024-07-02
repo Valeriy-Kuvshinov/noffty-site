@@ -27,17 +27,6 @@ export function LoginForm() {
         loginId: { required: true, email: true, minLength: 5 },
         password: { required: true, minLength: 6 }
     }
-
-    function closeLogin() {
-        resetForm()
-        recaptchaRef.current?.reset()
-        closeModal('login')
-    }
-
-    function togglePasswordShow() {
-        setShowPassword(!showPassword)
-    }
-
     const { values, errors, validateField, handleChange, handleSubmit, resetForm } =
         useForm(initialValues, validationSchema, async (formData) => {
             try {
@@ -58,6 +47,16 @@ export function LoginForm() {
         })
     const allFieldsFilled = values.loginId && values.password
     const hasErrors = Object.values(errors).some(error => error)
+
+    function closeLogin() {
+        resetForm()
+        recaptchaRef.current?.reset()
+        closeModal('login')
+    }
+
+    function togglePasswordShow() {
+        setShowPassword(!showPassword)
+    }
 
     useClickOutside(loginRef, closeLogin)
     if (activeModal !== 'login') return null

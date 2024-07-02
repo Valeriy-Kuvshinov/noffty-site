@@ -1,6 +1,5 @@
 import { Game } from "../models/game"
 import { UtilityService } from "../services/utility.service"
-import { GameList } from "../components/game/GameList"
 import { SpecialLink } from "../components/general/SpecialLink"
 import { ImageContainer } from "../components/general/ImageContainer"
 
@@ -67,19 +66,6 @@ export default function Home() {
               link={link.link} ariaLabel={link.ariaLabel} />
           ))}
         </div>
-      </article>
-
-      <article className="games-showcase flex column full-center w-100">
-        <h2 className="text-center">Published Games</h2>
-        <h3 className="text-center">Available on Our Site Now!</h3>
-        <GameList games={webGames} isAdminPage={false} />
-
-        <h3 className="text-center">Available on Google Play!</h3>
-        <GameList games={mobileGames} isAdminPage={false} />
-
-        <h4 className="text-center">We've got plenty more games, which you can</h4>
-        <a href="/games" className="action-btn" title="Go to games index?"
-          aria-label="Go to games page">Find on Our Website!</a>
       </article>
     </section>
   </main>)

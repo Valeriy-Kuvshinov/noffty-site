@@ -24,7 +24,6 @@ export function ContactForm({ initialValues }: any) {
         title: { required: true, minLength: 3, pattern: /[\s.\-!?']+/ },
         message: { required: true, minLength: 15, pattern: /[\s.\-!?@#$',*;:]+/ }
     }
-
     const { values, errors, validateField, handleChange, handleSubmit, resetForm } =
         useForm(initialValues, validationSchema, async (formData) => {
             const token = await recaptchaRef.current?.executeAsync()

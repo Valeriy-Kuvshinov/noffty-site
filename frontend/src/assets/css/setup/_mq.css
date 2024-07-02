@@ -188,6 +188,21 @@
         a {
             left: 1em;
         }
+
+        form .edit-preview .game-body .video-wrapper {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media(max-width: 1300px) {
+        form {
+            grid-template-columns: 1fr;
+
+            .edit-preview {
+                padding-block-start: 1em;
+                border-top: 2px solid var(--prmclr2);
+            }
+        }
     }
 
     @media(min-width: 601px) {
@@ -195,6 +210,26 @@
 
         a {
             left: 2em;
+        }
+
+        form .edit-preview .game-body .video-wrapper {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media(min-width: 1301px) {
+        form {
+            grid-template-columns: 1fr 1fr;
+
+            .form-inputs,
+            .edit-preview {
+                grid-column: span 1;
+            }
+
+            .edit-preview {
+                padding-inline-start: 1em;
+                border-left: 2px solid var(--prmclr2);
+            }
         }
     }
 }
