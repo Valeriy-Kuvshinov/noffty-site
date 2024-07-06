@@ -31,7 +31,7 @@ export function GameForm({ game }: { game: Game }) {
     const { values, errors, setErrors, validateField, handleChange, handleSubmit,
         resetForm, setFieldValue } = useForm(game, validationSchema, async (values) => {
             try {
-                await gameService.save(values)
+                await gameService.save(values as Game)
                 console.log('Game saved successfully')
 
                 resetForm()
@@ -69,6 +69,18 @@ export function GameForm({ game }: { game: Game }) {
         setFieldValue('screenshots', newScreenshots)
     }
 
+    async function handleDelete() {
+        if (game._id) {
+            try {
+                await gameService.remove(game._id.toString())
+                console.log('Game deleted successfully')
+                router.push('/admin/games')
+            } catch (error) {
+                console.error('Failed to delete game', error)
+            }
+        }
+    }
+
     async function checkNameAvailability(name: string) {
         try {
             if (name === game.name) { // don't show error when the edited name is the original
@@ -79,18 +91,6 @@ export function GameForm({ game }: { game: Game }) {
             setErrors(prevErrors => ({ ...prevErrors, name: isAvailable ? prevErrors.name : 'Name is taken' }))
         } catch (error) {
             console.error('Failed to check name availability', error)
-        }
-    }
-
-    async function handleDelete() {
-        if (game._id) {
-            try {
-                await gameService.remove(game._id.toString())
-                console.log('Game deleted successfully')
-                router.push('/admin/games')
-            } catch (error) {
-                console.error('Failed to delete game', error)
-            }
         }
     }
 
@@ -226,6 +226,6 @@ export function GameForm({ game }: { game: Game }) {
                 )}
             </section>
         </article>
-        <EditPreview game={values} />
+        <EditPreview game={values as Game} />
     </form>)
 }

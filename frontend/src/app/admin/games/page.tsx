@@ -18,18 +18,19 @@ export default function AdminIndex() {
     const searchParamsString = searchParams.toString()
     const defaultValues = getDefaultFilterValues()
 
-    useEffect(() => { fetchGames() }, [searchParamsString])
-
-    async function fetchGames() {
-        try {
-            const fetchedGames = await gameService.query(defaultValues)
-            setGames(fetchedGames)
-            setLoading(false)
-        } catch (err) {
-            console.error("Failed to fetch games:", err)
-            setLoading(false)
+    useEffect(() => {
+        async function fetchGames() {
+            try {
+                const fetchedGames = await gameService.query(defaultValues)
+                setGames(fetchedGames)
+                setLoading(false)
+            } catch (err) {
+                console.error("Failed to fetch games:", err)
+                setLoading(false)
+            }
         }
-    }
+        fetchGames()
+    }, [searchParamsString])
 
     return (<main className="admin-page full w-h-100">
         <section className="page-contents flex column align-center w-h-100 layout-row">

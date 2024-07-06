@@ -47,7 +47,7 @@ export function useForm(initialValues: FormValues, validationSchema: Record<stri
             { check: fieldValidation.link, func: () => validateLink(value) },
             { check: fieldValidation.pattern, func: () => validatePattern(value, fieldValidation.pattern!) }
         ]
-        for (let validation of validations) {
+        for (const validation of validations) {
             if (!errorMessage && validation.check) {
                 errorMessage = validation.func()
                 if (errorMessage) break

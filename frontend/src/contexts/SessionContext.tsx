@@ -28,21 +28,30 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     const router = useRouter()
     const pathname = usePathname()
 
-    async function initializeSession() {
-        setIsLoading(true)
-        const storedUser = userService.getLoggedinUser()
-        if (storedUser && storedUser._id) {
-            try {
-                const fullUser = await userService.getById(storedUser._id)
-                setSessionUser(fullUser)
-                console.log('Full user in Session Management: ', fullUser)
-            } catch (error) {
-                console.error('Failed to fetch user details:', error)
-                setSessionUser(defaultUser)
+    useEffect(() => {
+        async function initializeSession() {
+            setIsLoading(true)
+            const storedUser = userService.getLoggedinUser()
+            if (storedUser && storedUser._id) {
+                try {
+                    const fullUser = await userService.getById(storedUser._id)
+                    setSessionUser(fullUser)
+                    console.log('Full user in Session Management: ', fullUser)
+                } catch (error) {
+                    console.error('Failed to fetch user details:', error)
+                    setSessionUser(defaultUser)
+                }
             }
+            setIsLoading(false)
         }
-        setIsLoading(false)
-    }
+        initializeSession()
+    }, [])
+
+    useEffect(() => {
+        if (!isLoading && pathname.startsWith('/admin') && !sessionUser.isAdmin) {
+            router.push('/')
+        }
+    }, [pathname, sessionUser.isAdmin, router, isLoading])
 
     function setSessionUserWithStorage(user: User | null) {
         if (user) {
@@ -54,14 +63,6 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     function getSessionUserFromContext() {
         return sessionUser
     }
-
-    useEffect(() => { initializeSession() }, [])
-
-    useEffect(() => {
-        if (!isLoading && pathname.startsWith('/admin') && !sessionUser.isAdmin) {
-            router.push('/')
-        }
-    }, [pathname, sessionUser.isAdmin, router, isLoading])
 
     return (
         <SessionContext.Provider value={{

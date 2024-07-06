@@ -23,8 +23,8 @@ export default function Contact() {
                     <a href="https://discord.gg/SeNsSRt" target="_blank" rel="noopener noreferrer"
                         aria-label="Navigate to website's discord?"> Discord server.</a>
                 </p>
-                <p className="text-center">However, if you're looking for a more official way of communication,
-                    feel free to use the form below, and we'll make sure to reply.</p>
+                <p className="text-center">{`However, if you're looking for a more official way of communication,
+                    feel free to use the form below, and we'll make sure to reply.`}</p>
             </article>
             <ContactForm initialValues={initialValues} />
         </section>

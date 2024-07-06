@@ -3,7 +3,7 @@ import { GameForm } from "../../../components/game/GameForm"
 import { SvgRender } from "../../../components/general/SvgRender"
 
 export default function GameCreate() {
-    let defaultGame: Game = {
+    const defaultGame: Game = {
         name: 'New Game',
         note: 'To Be Continued',
         icon: 'https://res.cloudinary.com/djzid7ags/image/upload/v1719002261/vohr6yravygkly4duxhv.avif',

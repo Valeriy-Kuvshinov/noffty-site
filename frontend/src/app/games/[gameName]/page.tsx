@@ -14,19 +14,20 @@ export default function GameDetails({ params }: { params: { gameName: string } }
     const [game, setGame] = useState<Game | null>(null)
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => { fetchGame() }, [gameName])
+    useEffect(() => {
+        async function fetchGame() {
+            try {
+                const fetchedGame = await gameService.getByName(gameName)
 
-    async function fetchGame() {
-        try {
-            const fetchedGame = await gameService.getByName(gameName)
-
-            setGame(fetchedGame)
-            setLoading(false)
-        } catch (error) {
-            console.error("Failed to fetch game", error)
-            setLoading(false)
+                setGame(fetchedGame)
+                setLoading(false)
+            } catch (error) {
+                console.error("Failed to fetch game", error)
+                setLoading(false)
+            }
         }
-    }
+        fetchGame()
+    }, [gameName])
 
     return (<main className="game-page full w-h-100">
         <section className="page-contents flex column align-center w-h-100 layout-row">

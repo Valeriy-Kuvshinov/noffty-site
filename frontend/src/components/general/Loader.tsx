@@ -20,17 +20,15 @@ export function Loader() {
         "T2mure is also cool...",
         "Where is T3mure?"
     ]
-
     const [currentPhrase, setCurrentPhrase] = useState('')
 
     useEffect(() => {
+        function getRandomPhrase() {
+            const randomIndex = Math.floor(Math.random() * phrases.length)
+            return phrases[randomIndex]
+        }
         setCurrentPhrase(getRandomPhrase())
     }, [])
-
-    function getRandomPhrase() {
-        const randomIndex = Math.floor(Math.random() * phrases.length)
-        return phrases[randomIndex]
-    }
 
     return (<article className="loader-container flex column">
         <span className="text-center">{currentPhrase}</span>

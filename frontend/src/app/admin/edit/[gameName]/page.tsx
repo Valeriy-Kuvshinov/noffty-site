@@ -14,25 +14,26 @@ export default function GameEdit({ params }: { params: { gameName: string } }) {
     const [game, setGame] = useState<Game | null>(null)
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => { fetchGame() }, [gameName])
+    useEffect(() => {
+        async function fetchGame() {
+            try {
+                const fetchedGame = await gameService.getByName(gameName)
 
-    async function fetchGame() {
-        try {
-            const fetchedGame = await gameService.getByName(gameName)
-
-            const formattedGame = { //format certain fields that use textarea
-                ...fetchedGame,
-                description: fetchedGame.description?.replace(/<br>/g, '\n'),
-                controls: fetchedGame.controls?.replace(/<br>/g, '\n'),
-                credits: fetchedGame.credits?.replace(/<br>/g, '\n')
+                const formattedGame = {
+                    ...fetchedGame,
+                    description: fetchedGame.description?.replace(/<br>/g, '\n'),
+                    controls: fetchedGame.controls?.replace(/<br>/g, '\n'),
+                    credits: fetchedGame.credits?.replace(/<br>/g, '\n')
+                }
+                setGame(formattedGame)
+                setLoading(false)
+            } catch (error) {
+                console.error('Failed to fetch game', error)
+                setLoading(false)
             }
-            setGame(formattedGame)
-            setLoading(false)
-        } catch (error) {
-            console.error('Failed to fetch game', error)
-            setLoading(false)
         }
-    }
+        fetchGame()
+    }, [gameName])
 
     return (<main className="edit-page full w-h-100">
         <section className="page-contents flex column align-center w-h-100 layout-row">
