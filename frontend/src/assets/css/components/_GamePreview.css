@@ -53,7 +53,7 @@
     }
 
     &:hover {
-        scale: 1.1;
+        scale: 1.05;
 
         .preview-body .icon,
         .preview-body .gmtk {
@@ -73,6 +73,7 @@
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1;
+            line-clamp: 1;
             letter-spacing: 0.5px;
             grid-column: 2 / -1;
         }

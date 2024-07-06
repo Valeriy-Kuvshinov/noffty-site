@@ -100,7 +100,11 @@ export class SvgService {
       <path d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1M3 8a5 5 0 0 0 7.757 4.172l-6.929-6.93A5 5 0 0 0 3 8m5-5c-1.02 0-1.967.305-2.757.828l6.929 6.93A5 5 0 0 0 8 3"/>
     </svg>`,
 
-    arrow: `<svg width="64" height="64" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+    arrowRight: `<svg width="64" height="64" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414"/>
+    </svg>`,
+
+    arrowLeft: `<svg width="64" height="64" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" transform="scale(-1 1)">
       <path d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414"/>
     </svg>`,
 

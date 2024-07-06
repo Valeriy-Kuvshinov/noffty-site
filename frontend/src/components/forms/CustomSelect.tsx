@@ -34,7 +34,7 @@ export function CustomSelect({ options, value, onChange, label, id }: SelectProp
             <div className={`selected-value flex row align-center justify-between fast-trans ${isOpen ? 'open' : ''}`}
                 onClick={() => setIsOpen(!isOpen)}>
                 {options.find((opt: CustomOption) => opt.value === value)?.label}
-                <SvgRender iconName='arrow' />
+                <SvgRender iconName='arrowRight' />
             </div>
             {isOpen && (
                 <div className="options-container">

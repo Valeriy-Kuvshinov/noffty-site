@@ -1,12 +1,8 @@
 /* home page mq */
 .home-page .page-contents {
     @media(max-width: 600px) {
-        padding: 2em 1em;
-
         .intro-part {
-            .image-container img {
-                max-width: 192px;
-            }
+            padding: 1em 1em;
 
             .noffty-links {
                 gap: 1em;
@@ -17,15 +13,26 @@
                 }
             }
         }
+
+        .game-content {
+            padding: 2em 1em;
+        }
+    }
+
+    @media(max-width: 1200px) {
+        .game-content {
+            grid-template-columns: 1fr;
+
+            .games-carousel {
+                grid-row: 1;
+            }
+        }
     }
 
     @media(min-width: 601px) {
-        padding: 2em 2em;
 
         .intro-part {
-            .image-container img {
-                max-width: 256px;
-            }
+            padding: 3em 2em;
 
             .noffty-links {
                 gap: 1.5em;
@@ -34,6 +41,25 @@
                     width: 5em;
                     height: 5em;
                 }
+            }
+        }
+
+        .game-content {
+            padding: 3em 2em;
+        }
+    }
+
+    @media(min-width: 1201px) {
+        .game-content {
+            grid-template-columns: 1fr 1fr;
+
+            .games-carousel,
+            .content-info {
+                grid-row: 1;
+            }
+
+            .content-info {
+                padding: 1em 2em;
             }
         }
     }

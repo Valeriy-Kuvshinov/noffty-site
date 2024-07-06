@@ -25,13 +25,12 @@ app.use(express.json()) // for req.body
 
 if (process.env.NODE_ENV === 'production') {
   // Express serve static files on production environment
-  app.use(express.static(path.resolve(__dirname, '..', 'public', 'browser')))
+  app.use(express.static(path.resolve(__dirname, '..', 'public')))
 } else {
   const corsOptions = {
     origin: [
-      'http://noffty.onrender.com',
-      'http://noffty.productions',
-      // include actual ip address of production
+      'http://noffty.com',
+      'http://157.173.210.249',
       'http://127.0.0.1:3000',
       'http://localhost:3000',
       'http://127.0.0.1:3030',
@@ -48,7 +47,7 @@ app.use('/api/auth', authRoutes)
 app.use('/api/mail', mailRoutes)
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'public', 'browser', 'index.html'))
+  res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'))
 })
 
 const port = process.env.PORT || 3030
