@@ -23,6 +23,10 @@ export function ImageUploader({ index, defaultImgUrl, folderName, onUploaded }: 
     const { cloudName, uploadPreset } = cloudinary
     const inputId = `imgUpload-${index}`
 
+    useEffect(() => {
+        if (defaultImgUrl !== imgUrl) setImgUrl(defaultImgUrl)
+    }, [defaultImgUrl])
+
     function validateFile(file: File): ValidationResult {
         const fileSize = file.size / 1024 / 1024
         const allowedFormats = ['image/avif']
@@ -122,8 +126,6 @@ export function ImageUploader({ index, defaultImgUrl, folderName, onUploaded }: 
         }
     }
 
-    useEffect(() => { setImgUrl(defaultImgUrl) }, [defaultImgUrl])
-
     return (<article className="upload-preview" role="region" aria-labelledby="upload-label"
         aria-describedby="upload-description" onDragOver={handleDragOver}
         onDragLeave={handleDragLeave} onDrop={handleDrop}>
@@ -132,7 +134,7 @@ export function ImageUploader({ index, defaultImgUrl, folderName, onUploaded }: 
                 <span id="upload-description" className="family-bold text-center fast-trans">
                     {getUploadLabel()}
                 </span>
-                <ImageContainer src={imgUrl} alt="preview image" />
+                {imgUrl && <ImageContainer src={imgUrl} alt="preview image" />}
             </label>
             <input type="file" onChange={onFileInputChange} accept="image/*"
                 id={inputId} style={{ display: 'none' }} aria-labelledby="upload-label"

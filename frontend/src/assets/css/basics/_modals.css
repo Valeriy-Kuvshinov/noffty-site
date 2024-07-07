@@ -11,7 +11,7 @@
 }
 
 .loader-container {
-    margin: 4em auto 0 auto;
+    margin: 4em auto 1em auto;
     z-index: 1;
 
     span {
@@ -22,9 +22,20 @@
     .image-container {
         width: 180px;
 
+        &:nth-child(2) {
+            z-index: 1;
+        }
+
         &:nth-child(3) {
-            margin-block-start: -2em;
-            z-index: -1;
+            margin-block-start: -2.5em;
+
+            img {
+                border-radius: 0 0 2em 2em;
+            }
+        }
+
+        img {
+            background: none;
         }
     }
 }

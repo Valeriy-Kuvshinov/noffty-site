@@ -30,7 +30,7 @@ export function Loader() {
         setCurrentPhrase(getRandomPhrase())
     }, [])
 
-    return (<article className="loader-container flex column">
+    return (<article className="loader-container flex column align-center">
         <span className="text-center">{currentPhrase}</span>
         <ImageContainer src={loaderGif} alt="Loading..." />
         <ImageContainer src={floor} alt="Loading..." />

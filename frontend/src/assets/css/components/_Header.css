@@ -75,7 +75,7 @@ header {
             .user {
                 cursor: pointer;
 
-                .image-container img {
+                .image-container {
                     height: 36px;
                     min-width: 36px
                 }

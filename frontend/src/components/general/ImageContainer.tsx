@@ -1,4 +1,6 @@
 'use client'
+import Image from 'next/image'
+import cloudinaryLoader from "@/scripts/cloudinaryLoader"
 import { useState, useEffect } from "react"
 
 interface ImageContainerProps {
@@ -6,45 +8,32 @@ interface ImageContainerProps {
     alt: string
     style?: React.CSSProperties
     className?: string
+    width?: number
+    height?: number
 }
 
-export function ImageContainer({ src, alt, style, className }: ImageContainerProps) {
-    const lowResSrc = getLowResImageUrl(src)
-    const [highResSrc, setHighResSrc] = useState('')
+export function ImageContainer({ src, alt, style, className, width, height }: ImageContainerProps) {
+    const [dimensions, setDimensions] = useState({ width: width || 100, height: height || 100 })
+    const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
-        let isCancelled = false
-        const highResImg = new Image()
-
-        highResImg.onload = () => {
-            if (!isCancelled) setHighResSrc(src)
+        if (src && (!width || !height)) {
+            const img = new window.Image()
+            img.onload = () => {
+                setDimensions({ width: img.width, height: img.height })
+            }
+            img.src = src
         }
-        highResImg.onerror = (err) => {
-            if (!isCancelled) console.error('Error loading high-res image', err)
-        }
+    }, [src, width, height])
 
-        const timer = setTimeout(() => highResImg.src = src, 100)
-
-        return () => {
-            isCancelled = true
-            clearTimeout(timer)
-        }
-    }, [src])
-
-    // Helper function to generate the low-resolution image URL
-    function getLowResImageUrl(imageUrl: string) {
-        const transformation = 'w_25,h_25,c_scale,e_blur:300,q_auto'
-        const parts = imageUrl.split('/upload/')
-        return `${parts[0]}/upload/${transformation}/${parts[1]}`
-    }
+    if (!src) return null
 
     return (<div className={`image-container w-100 ${className}`} style={style}>
-        <img src={lowResSrc} alt={alt} className="w-h-100"
-            style={{ display: highResSrc ? 'none' : 'block' }}
-            aria-label="low resolution image" />
-
-        {highResSrc && <img src={highResSrc} alt={alt}
-            className="w-h-100" style={{ display: 'block' }}
-            aria-label="high resolution image" />}
+        <Image loader={cloudinaryLoader} src={src} alt={alt}
+            width={dimensions.width} height={dimensions.height}
+            className={`w-h-100 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            onLoad={() => setIsLoaded(true)} placeholder="blur"
+            blurDataURL={cloudinaryLoader({ src, width: 25, quality: 1 })}
+        />
     </div>)
 }

@@ -1,4 +1,4 @@
-import { LinkTypeTwo } from "../models/utility"
+import { LinkTypeTwo, ApiKeys } from "../models/utility"
 import { HttpService } from './http.service'
 
 export const UtilityService = {
@@ -13,7 +13,7 @@ export const UtilityService = {
     getAPIKeys
 }
 
-async function getAPIKeys(): Promise<any> {
+async function getAPIKeys(): Promise<ApiKeys> {
     return HttpService.get('auth/api-keys')
 }
 

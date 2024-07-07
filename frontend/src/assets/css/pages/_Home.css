@@ -27,9 +27,13 @@
         gap: 1em;
         border-bottom: 1px solid var(--scdclr7);
 
-        .image-container img {
+        .image-container {
             width: fit-content;
             margin: 0 auto;
+
+            img {
+                border-radius: 50%;
+            }
         }
 
         .noffty-links a {
@@ -94,7 +98,7 @@
             button {
                 position: absolute;
                 top: 0;
-                bottom: 71px;
+                bottom: 79px;
                 z-index: 2;
                 background: var(--scdclr3);
                 opacity: 0.25;

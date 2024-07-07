@@ -14,5 +14,10 @@ const nextConfig = {
             },
         ]
     },
+    images: {
+        domains: ['res.cloudinary.com'],
+        loader: 'custom',
+        loaderFile: './src/scripts/cloudinaryLoader.ts',
+    },
 }
 export default nextConfig
