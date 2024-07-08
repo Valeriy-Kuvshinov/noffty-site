@@ -14,7 +14,18 @@ export const UtilityService = {
 }
 
 async function getAPIKeys(): Promise<ApiKeys> {
-    return HttpService.get('auth/api-keys')
+    try {
+        return await HttpService.get('auth/api-keys')
+    } catch (error) {
+        console.error('Failed to fetch API keys:', error)
+        return {
+            recaptchaSiteKey: '',
+            cloudinary: {
+                cloudName: '',
+                uploadPreset: ''
+            }
+        }
+    }
 }
 
 function getBrowserName() {

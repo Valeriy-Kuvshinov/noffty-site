@@ -13,7 +13,10 @@ interface ImageContainerProps {
 }
 
 export function ImageContainer({ src, alt, style, className, width, height }: ImageContainerProps) {
-    const [dimensions, setDimensions] = useState({ width: width || 100, height: height || 100 })
+    const [dimensions, setDimensions] = useState({
+        width: width || 100,
+        height: height || 100
+    })
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {

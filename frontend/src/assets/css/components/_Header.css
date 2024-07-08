@@ -56,14 +56,10 @@ header {
         }
     }
 
-    .user {
-        border-radius: 100%;
+    .user .image-container img {
+        aspect-ratio: 1 / 1;
         background: var(--scdclr6);
-
-        .image-container img {
-            aspect-ratio: 1 / 1;
-            border-radius: 100%;
-        }
+        border-radius: 100%;
     }
 
     .header-contents .desktop-view {
@@ -185,10 +181,8 @@ header {
 
         .user {
             justify-self: end;
-
-            .image-container img {
-                height: 48px;
-            }
+            width: 48px;
+            height: 48px;
         }
     }
 }

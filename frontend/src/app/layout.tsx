@@ -7,7 +7,7 @@ import { LoginForm } from '../components/forms/LoginForm'
 
 const siteLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719919435/ydjn6p0djqwbkko4zqts.png'
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (<html lang="en">
     <head>
       <title>Noffty Productions</title>

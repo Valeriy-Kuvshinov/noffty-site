@@ -1,11 +1,8 @@
 import dotenv from 'dotenv';
-import configProd from './prod.js';
-import configDev from './dev.js';
 dotenv.config();
-let config;
-if (process.env.NODE_ENV === 'production')
-    config = configProd;
-else
-    config = configDev;
-config.isGuestMode = true;
+const config = {
+    dbURL: process.env.DB_URL || '',
+    dbName: process.env.DB_NAME || '',
+    isGuestMode: true,
+};
 export { config };

@@ -6,33 +6,39 @@ import { ApiProvider } from "./ApiContext"
 import { DeviceTypeProvider } from "./DeviceTypeContext"
 import { ModalProvider } from "./ModalContext"
 import { SessionProvider } from "./SessionContext"
+import { Loader } from "../components/general/Loader"
 
-export function Providers({ children }: { children: React.ReactNode }) {
+interface ProvidersProps {
+    children: React.ReactNode
+}
+
+export function Providers({ children }: ProvidersProps) {
     const [apiKeys, setApiKeys] = useState<ApiKeys | null>(null)
 
     useEffect(() => {
-        async function fetchAPIKeys() {
-            try {
-                const keys = await UtilityService.getAPIKeys()
-                setApiKeys(keys as ApiKeys)
-            } catch (error) {
-                console.error('Failed to fetch API keys:', error)
-            }
+        async function fetchAndSetKeys() {
+            const keys = await UtilityService.getAPIKeys()
+            setApiKeys(keys)
+            sessionStorage.setItem('apiKeys', JSON.stringify(keys))
         }
-        fetchAPIKeys()
+
+        const cachedKeys = sessionStorage.getItem('apiKeys')
+        if (cachedKeys) {
+            setApiKeys(JSON.parse(cachedKeys))
+        } else {
+            fetchAndSetKeys()
+        }
     }, [])
 
-    if (!apiKeys) return null
+    if (!apiKeys) return <Loader />
 
-    return (
-        <ApiProvider apiKeys={apiKeys}>
-            <DeviceTypeProvider>
-                <ModalProvider>
-                    <SessionProvider>
-                        {children}
-                    </SessionProvider >
-                </ModalProvider>
-            </DeviceTypeProvider>
-        </ApiProvider>
-    )
+    return (<ApiProvider apiKeys={apiKeys}>
+        <DeviceTypeProvider>
+            <ModalProvider>
+                <SessionProvider>
+                    {children}
+                </SessionProvider >
+            </ModalProvider>
+        </DeviceTypeProvider>
+    </ApiProvider>)
 }
