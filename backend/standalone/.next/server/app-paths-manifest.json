@@ -1,11 +1,11 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
+  "/about/page": "app/about/page.js",
+  "/admin/edit/[gameName]/page": "app/admin/edit/[gameName]/page.js",
   "/admin/games/page": "app/admin/games/page.js",
+  "/contact/page": "app/contact/page.js",
   "/admin/edit/page": "app/admin/edit/page.js",
   "/games/[gameName]/page": "app/games/[gameName]/page.js",
-  "/about/page": "app/about/page.js",
   "/games/page": "app/games/page.js",
-  "/admin/edit/[gameName]/page": "app/admin/edit/[gameName]/page.js",
-  "/page": "app/page.js",
-  "/contact/page": "app/contact/page.js"
+  "/page": "app/page.js"
 }
