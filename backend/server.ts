@@ -5,6 +5,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import http from 'http'
+import fs from 'fs'
 
 import { gameRoutes } from './api/game/game.controller.js'
 import { mailRoutes } from './api/mail/mail.controller.js'
@@ -25,7 +26,9 @@ app.use(express.json()) // for req.body
 
 if (process.env.NODE_ENV === 'production') {
   // Express serve static files on production environment
-  app.use(express.static(path.resolve(__dirname, '..', 'public')))
+  // app.use(express.static(path.resolve(__dirname, '..', 'standalone')))
+  // Serve Next.js static files
+  app.use('/_next', express.static(path.join(__dirname, 'standalone', '.next')))
 } else {
   const corsOptions = {
     origin: [
@@ -46,8 +49,19 @@ app.use('/api/user', userRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/mail', mailRoutes)
 
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '..', 'standalone', 'index.html'))
+// })
+// Serve Next.js pages
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'))
+  const pagePath = path.join(__dirname, 'standalone', '.next', 'server', 'app', req.path, 'index.html')
+
+  if (fs.existsSync(pagePath)) {
+    res.sendFile(pagePath)
+  } else {
+    // If the specific page doesn't exist, fall back to the main index.html
+    res.sendFile(path.join(__dirname, 'standalone', '.next', 'server', 'app', 'index.html'))
+  }
 })
 
 const port = process.env.PORT || 3030

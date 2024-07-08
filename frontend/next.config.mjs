@@ -4,6 +4,7 @@ const nextConfig = {
     webpack: (config) => {
         return config
     },
+    output: 'standalone',
     images: {
         unoptimized: true,  // Required for static export
         domains: ['res.cloudinary.com'],
