@@ -52,14 +52,15 @@ app.use('/api/mail', mailRoutes)
 // app.get('*', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, '..', 'standalone', 'index.html'))
 // })
+
 // Serve Next.js pages
 app.get('*', (req, res) => {
   const pagePath = path.join(__dirname, 'standalone', '.next', 'server', 'app', req.path, 'index.html')
+  console.log(`Attempting to serve: ${pagePath}`)
 
-  if (fs.existsSync(pagePath)) {
-    res.sendFile(pagePath)
-  } else {
-    // If the specific page doesn't exist, fall back to the main index.html
+  if (fs.existsSync(pagePath)) res.sendFile(pagePath)
+  else {
+    console.log(`Falling back to: ${path.join(__dirname, 'standalone', '.next', 'server', 'app', 'index.html')}`)
     res.sendFile(path.join(__dirname, 'standalone', '.next', 'server', 'app', 'index.html'))
   }
 })
