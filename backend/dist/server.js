@@ -18,11 +18,12 @@ dotenv.config();
 const app = express();
 app.use(cookieParser()); // for res.cookies
 app.use(express.json()); // for req.body
+const rootDir = process.cwd();
 if (process.env.NODE_ENV === 'production') {
     // Express serve static files on production environment
     // app.use(express.static(path.resolve(__dirname, '..', 'standalone')))
     // Serve Next.js static files
-    app.use('/_next', express.static(path.join(__dirname, 'standalone', '.next')));
+    app.use('/_next', express.static(path.join(rootDir, 'standalone', '.next')));
 }
 else {
     const corsOptions = {
@@ -47,13 +48,13 @@ app.use('/api/mail', mailRoutes);
 // })
 // Serve Next.js pages
 app.get('*', (req, res) => {
-    const pagePath = path.join(__dirname, 'standalone', '.next', 'server', 'app', req.path, 'index.html');
+    const pagePath = path.join(rootDir, 'standalone', '.next', 'server', 'app', req.path, 'index.html');
     console.log(`Attempting to serve: ${pagePath}`);
     if (fs.existsSync(pagePath))
         res.sendFile(pagePath);
     else {
-        console.log(`Falling back to: ${path.join(__dirname, 'standalone', '.next', 'server', 'app', 'index.html')}`);
-        res.sendFile(path.join(__dirname, 'standalone', '.next', 'server', 'app', 'index.html'));
+        console.log(`Falling back to: ${path.join(rootDir, 'standalone', '.next', 'server', 'app', 'index.html')}`);
+        res.sendFile(path.join(rootDir, 'standalone', '.next', 'server', 'app', 'index.html'));
     }
 });
 const port = process.env.PORT || 3030;
