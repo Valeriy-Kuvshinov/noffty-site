@@ -61,7 +61,7 @@ app.get('*', (req, res) => {
     else {
       // If not found, serve the 404 page
       console.log(`Page not found, serving 404`)
-      res.status(404).sendFile(path.join(nextDir, 'server', 'app', '_not-found', 'index.html'))
+      res.status(404).sendFile(path.join(nextDir, 'server', 'app', '_not-found.html'))
     }
   }
 })
