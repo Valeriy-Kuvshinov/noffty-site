@@ -50,6 +50,10 @@
 
         .image-container {
             max-width: 120px;
+
+            img {
+                background: none;
+            }
         }
 
         span {

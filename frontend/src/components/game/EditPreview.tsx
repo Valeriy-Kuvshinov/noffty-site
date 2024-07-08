@@ -45,21 +45,17 @@ export function EditPreview({ game }: { game: Game }) {
                 {game.walkthrough && (
                     <div className="video flex column w-100">
                         <p>{`If you're stuck, we've got you covered:`}</p>
-                        <iframe src={UtilityService.getYouTubeEmbedUrl(game.walkthrough)}
-                            title="Game Walkthrough" allowFullScreen={true}
-                            aria-label="Video walkthrough for the game"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        ></iframe>
+                        <div className="iframe flex column full-center">
+                            <p>Walkthrough video will be shown here...</p>
+                        </div>
                     </div>
                 )}
                 {game.devlog && (
                     <div className="video flex column w-100">
                         <p>{`Be sure to check out the developer's log:`}</p>
-                        <iframe src={UtilityService.getYouTubeEmbedUrl(game.devlog)}
-                            title="Developer's Log" allowFullScreen={true}
-                            aria-label="Video devlog about the game"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        ></iframe>
+                        <div className="iframe flex column full-center">
+                            <p>Devlog video will be shown here...</p>
+                        </div>
                     </div>
                 )}
             </div>

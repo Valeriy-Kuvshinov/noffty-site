@@ -1,39 +1,29 @@
-'use client'
-import { useEffect, useState } from "react"
 import { Game } from "../../../models/game"
 import { GameService } from "../../../services/api/game.service"
 import { GameDetailsBody } from "../../../components/game/GameDetailsBody"
-import { Loader } from "../../../components/general/Loader"
 import { ErrorContainer } from "../../../components/general/ErrorContainer"
 import { GameDetailsFrame } from "../../../components/game/GameDetailsFrame"
 
-export default function GameDetails({ params }: { params: { gameName: string } }) {
+// Enable ISR
+export const revalidate = 0
+
+async function getGame(gameName: string): Promise<Game | null> {
     const gameService = new GameService()
+    try {
+        return await gameService.getByName(gameName)
+    } catch (error) {
+        console.error("Failed to fetch game", error)
+        return null
+    }
+}
+
+export default async function GameDetails({ params }: { params: { gameName: string } }) {
     const gameName = decodeURIComponent(params.gameName)
-
-    const [game, setGame] = useState<Game | null>(null)
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        async function fetchGame() {
-            try {
-                const fetchedGame = await gameService.getByName(gameName)
-
-                setGame(fetchedGame)
-                setLoading(false)
-            } catch (error) {
-                console.error("Failed to fetch game", error)
-                setLoading(false)
-            }
-        }
-        fetchGame()
-    }, [gameName])
+    const game = await getGame(gameName)
 
     return (<main className="game-page full w-h-100">
         <section className="page-contents flex column align-center w-h-100 layout-row">
-            {loading ? (
-                <Loader />
-            ) : game ? (<>
+            {game ? (<>
                 <GameDetailsFrame game={game} />
                 <GameDetailsBody game={game} />
             </>) : (

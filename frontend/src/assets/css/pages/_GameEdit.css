@@ -177,7 +177,6 @@
                 border-radius: 1.5em;
                 margin: 0 auto 1em auto;
 
-
                 .iframe-placeholder {
                     min-height: 280px;
                     background: var(--prmclr3);
@@ -252,10 +251,11 @@
                             line-clamp: 1;
                         }
 
-                        iframe {
+                        .iframe {
                             max-height: 450px;
                             aspect-ratio: 16 / 9;
                             border-radius: 0.5em;
+                            background: var(--scdclr2);
                             border: none;
                         }
                     }

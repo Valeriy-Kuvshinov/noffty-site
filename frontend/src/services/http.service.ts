@@ -12,8 +12,12 @@ export const HttpService = {
 
 async function request(method: string, endpoint: string, data?: any) {
     const url = `${baseUrl}${endpoint}`
-    const headers = { 'Content-Type': 'application/json' }
-
+    const headers = {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+    }
     const config: RequestInit = { method: method, headers: headers }
 
     if (method !== 'GET' && data) config.body = JSON.stringify(data)
@@ -31,10 +35,15 @@ async function request(method: string, endpoint: string, data?: any) {
     }
 }
 
-function get(endpoint: string, params?: any) {
-    const queryString = params ?
-        `?${new URLSearchParams(params).toString()}` : ''
+function get(endpoint: string, params?: Record<string, string | number | boolean>) {
+    const queryString = params ? `?${createQueryString(params)}` : ''
     return request('GET', `${endpoint}${queryString}`)
+}
+
+function createQueryString(params: Record<string, string | number | boolean>): string {
+    return Object.entries(params).map(([key, value]) =>
+        `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
+        .join('&')
 }
 
 function post(endpoint: string, data?: any) {
