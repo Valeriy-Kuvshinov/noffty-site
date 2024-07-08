@@ -22,11 +22,10 @@ app.use(cookieParser()) // for res.cookies
 app.use(express.json()) // for req.body
 
 const rootDir = process.cwd()
-const nextDir = path.join(rootDir, 'standalone', '.next')
 
 if (process.env.NODE_ENV === 'production') {
   // Serve Next.js static files
-  app.use('/_next', express.static(path.join(nextDir, 'static')))
+  app.use('/_next', express.static(path.join(rootDir, 'standalone', '.next')))
 } else {
   const corsOptions = {
     origin: [
@@ -50,20 +49,20 @@ app.use('/api/mail', mailRoutes)
 
 // Serve Next.js pages
 app.get('*', (req, res) => {
-  const pagePath = path.join(nextDir, 'server', 'pages', `${req.path}.html`)
+  const pagePath = path.join(rootDir, 'standalone', '.next', 'server', 'app', req.path, 'index.html')
   console.log(`Attempting to serve: ${pagePath}`)
 
-  if (fs.existsSync(pagePath)) res.sendFile(pagePath)
-  else {
-    const dynamicPagePath = path.join(nextDir, 'server', 'pages', req.path, 'index.html')
-    // Check if it's a dynamic route
-    if (fs.existsSync(dynamicPagePath)) res.sendFile(dynamicPagePath)
-    else {
-      // If not found, serve the 404 page
-      console.log(`Page not found, serving 404`)
-      res.status(404).sendFile(path.join(nextDir, 'server', 'app', '_not-found.html'))
-    }
+  if (fs.existsSync(pagePath)) {
+    res.sendFile(pagePath)
+  } else {
+    console.log(`Falling back to: ${path.join(rootDir, 'standalone', '.next', 'server', 'app', 'index.html')}`)
+    res.sendFile(path.join(rootDir, 'standalone', '.next', 'server', 'app', 'index.html'))
   }
+})
+
+// Handle 404 pages
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(rootDir, 'standalone', '.next', 'server', 'app', '_not-found.html'))
 })
 
 const port = process.env.PORT || 3030
