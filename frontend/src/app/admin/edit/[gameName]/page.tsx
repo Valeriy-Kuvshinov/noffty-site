@@ -5,10 +5,10 @@ import { SvgRender } from "../../../../components/general/SvgRender"
 import { ErrorContainer } from "../../../../components/general/ErrorContainer"
 
 // Enable ISR
-export const revalidate = 0
+// export const revalidate = 0
+const gameService = new GameService()
 
 async function getGame(gameName: string): Promise<Game | null> {
-    const gameService = new GameService()
     try {
         const fetchedGame = await gameService.getByName(gameName)
         return {
@@ -20,6 +20,16 @@ async function getGame(gameName: string): Promise<Game | null> {
     } catch (error) {
         console.error('Failed to fetch game', error)
         return null
+    }
+}
+
+export async function generateStaticParams() {
+    try {
+        const games = await gameService.query()
+        return games.map((game: Game) => ({ gameName: encodeURIComponent(game.name) }))
+    } catch (error) {
+        console.error("Failed to fetch games for static params", error)
+        return []
     }
 }
 

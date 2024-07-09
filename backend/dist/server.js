@@ -1,4 +1,5 @@
-import path from 'path';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -15,16 +16,18 @@ dotenv.config();
 const app = express();
 app.use(cookieParser()); // for res.cookies
 app.use(express.json()); // for req.body
-const rootDir = process.cwd();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 if (process.env.NODE_ENV === 'production') {
-    // Serve Next.js static files
-    app.use('/_next', express.static(path.join(rootDir, 'standalone', '.next')));
+    // Serve static files from the 'out' directory
+    app.use(express.static(path.join(__dirname, '..', 'out')));
 }
 else {
     const corsOptions = {
         origin: [
             'http://noffty.com',
             'http://157.173.210.249',
+            'http://noffty.onrender.com',
             'http://127.0.0.1:3000',
             'http://localhost:3000',
             'http://127.0.0.1:3030',
@@ -39,21 +42,27 @@ app.use('/api/game', gameRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/mail', mailRoutes);
-// Serve Next.js pages
+// Serve static files for Next.js routes
 app.get('*', (req, res) => {
-    const pagePath = path.join(rootDir, 'standalone', '.next', 'server', 'app', req.path, 'index.html');
+    const pagePath = path.join(__dirname, '..', 'out', req.path);
     console.log(`Attempting to serve: ${pagePath}`);
-    if (fs.existsSync(pagePath)) {
+    if (fs.existsSync(pagePath) && fs.statSync(pagePath).isFile()) {
         res.sendFile(pagePath);
     }
     else {
-        console.log(`Falling back to: ${path.join(rootDir, 'standalone', '.next', 'server', 'app', 'index.html')}`);
-        res.sendFile(path.join(rootDir, 'standalone', '.next', 'server', 'app', 'index.html'));
+        const indexPath = path.join(pagePath, 'index.html');
+        if (fs.existsSync(indexPath))
+            res.sendFile(indexPath);
+        // If the specific page doesn't exist, fall back to the main index.html
+        else {
+            console.log(`Falling back to: ${path.join(__dirname, '..', 'out', 'index.html')}`);
+            res.sendFile(path.join(__dirname, '..', 'out', 'index.html'));
+        }
     }
 });
 // Handle 404 pages
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(rootDir, 'standalone', '.next', 'server', 'app', '_not-found.html'));
+    res.status(404).sendFile(path.join(__dirname, '..', 'out', '404.html'));
 });
 const port = process.env.PORT || 3030;
 const server = http.createServer(app);
