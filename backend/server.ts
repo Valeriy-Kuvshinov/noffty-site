@@ -49,7 +49,7 @@ app.use('/api/user', userRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/mail', mailRoutes)
 
-// Serve static files for Next.js routes
+// Serve static files for Next.js routes and handle 404
 app.get('*', (req, res) => {
   const pagePath = path.join(__dirname, '..', 'out', req.path)
   console.log(`Attempting to serve: ${pagePath}`)
@@ -58,21 +58,18 @@ app.get('*', (req, res) => {
     res.sendFile(pagePath)
   } else {
     const indexPath = path.join(pagePath, 'index.html')
-    if (fs.existsSync(indexPath)) res.sendFile(indexPath)
-    else {
-      console.log('page not found, rerouting to home page')
-      res.sendFile(path.join(__dirname, '..', 'out', 'index.html'))
+    if (fs.existsSync(indexPath)) {
+      res.sendFile(indexPath)
+    } else {
+      // If no specific file is found, attempt to serve the 404 page
+      const notFoundPath = path.join(__dirname, '..', 'out', '404', 'index.html')
+      if (fs.existsSync(notFoundPath)) {
+        res.status(404).sendFile(notFoundPath)
+      } else {
+        // Fallback to main index.html if custom 404 page is not found
+        res.status(404).sendFile(path.join(__dirname, '..', 'out', 'index.html'))
+      }
     }
-  }
-})
-
-// Handle 404 pages using the custom 404 page
-app.use((req, res) => {
-  const notFoundPath = path.join(__dirname, '..', 'out', '404', 'index.html')
-  if (fs.existsSync(notFoundPath)) res.status(404).sendFile(notFoundPath)
-  else {
-    // Fallback to main index.html if custom 404 page is not found
-    res.status(404).sendFile(path.join(__dirname, '..', 'out', 'index.html'))
   }
 })
 
