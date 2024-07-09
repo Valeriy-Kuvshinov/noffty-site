@@ -1,0 +1,188 @@
+header {
+    background: var(--prmclr3);
+    border-bottom: 1px solid var(--scdclr6);
+
+    a {
+        color: var(--scdclr6);
+
+        &.logo {
+            height: 48px;
+            aspect-ratio: 1 / 1;
+        }
+
+        &:hover,
+        &.active {
+            color: var(--scdclr4);
+        }
+
+        &.active {
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+
+    form {
+        position: relative;
+        max-width: 68px;
+
+        &:focus-within {
+            max-width: 250px;
+
+            .svg-cmp {
+                opacity: 1;
+            }
+        }
+
+        input {
+            padding: 0.25em 0.5em;
+            border: 2px solid transparent;
+            border-radius: 0.5em;
+            font-size: 0.56em;
+
+            &:focus {
+                border-color: var(--mnrclr2);
+            }
+        }
+
+        .svg-cmp {
+            position: absolute;
+            height: 26px;
+            width: 32px;
+            top: 0.325em;
+            right: 0.25em;
+            fill: var(--scdclr3);
+            z-index: 1;
+            opacity: 0;
+        }
+    }
+
+    .user .image-container img {
+        aspect-ratio: 1 / 1;
+        background: var(--scdclr6);
+        border-radius: 100%;
+    }
+
+    .header-contents .desktop-view {
+        position: relative;
+
+        .user-form-zone {
+            gap: 0.5em;
+
+            .user {
+                cursor: pointer;
+
+                .image-container {
+                    height: 36px;
+                    min-width: 36px
+                }
+            }
+        }
+
+        .header-dropdown {
+            position: absolute;
+            padding: 0;
+            top: 1.75em;
+            z-index: 1;
+            margin-inline-end: -0.1em;
+            background: var(--prmclr2);
+            border: 1px solid var(--prmclr2);
+            border-radius: 0.25em;
+
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 100%;
+                left: 75%;
+                transform: translateX(-50%);
+                border-width: 8px;
+                border-style: solid;
+                border-color: transparent transparent var(--prmclr2) transparent;
+            }
+
+            nav {
+
+                &:has(> button:nth-child(2))>button:not(:last-child),
+                &:has(> a:nth-child(2))>a:not(:last-child) {
+                    border-bottom: 2px solid var(--prmclr1);
+                }
+
+                button,
+                a {
+                    padding: 0.5em 0.75em;
+                    font-size: 16px;
+                    color: var(--prmclr1);
+
+                    &:hover {
+                        color: var(--prmclr2);
+                        background: var(--prmclr1);
+                    }
+
+                    &:first-child {
+                        border-radius: 0.5em 0.5em 0 0;
+                    }
+
+                    &:last-child {
+                        border-radius: 0 0 0.5em 0.5em;
+                    }
+
+                    &:only-child {
+                        border-radius: 0.5em;
+                    }
+
+                    &:not(:first-child):not(:last-child) {
+                        border-radius: 0;
+                    }
+
+                    span {
+                        width: 55px;
+                    }
+                }
+            }
+        }
+    }
+
+    .header-contents .mobile-view {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto;
+
+        button:nth-child(1),
+        a {
+            height: 48px;
+            aspect-ratio: 1 / 1;
+        }
+
+        a {
+            justify-self: center;
+        }
+
+        button:nth-child(1) .svg-cmp {
+            fill: var(--scdclr3);
+        }
+
+        form {
+            grid-column: 1 / -1;
+            grid-row: 2;
+            max-width: 200px;
+            margin-block-start: 0.5em;
+
+            &:focus-within {
+                max-width: 400px;
+            }
+
+            input {
+                font-size: 0.75em;
+            }
+
+            .svg-cmp {
+                height: 28px;
+                top: 0.2em;
+            }
+        }
+
+        .user {
+            justify-self: end;
+            width: 48px;
+            height: 48px;
+        }
+    }
+}

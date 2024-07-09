@@ -1,0 +1,106 @@
+.index-page .page-contents .game-list a,
+.admin-page .page-contents .game-list a {
+    gap: 0.5em;
+    color: var(--scdclr3);
+
+    .preview-body {
+        position: relative;
+
+        .image-container img {
+            padding: 0;
+            border-radius: 0.75em;
+            aspect-ratio: 4 / 3;
+        }
+
+        .gmtk,
+        .icon {
+            padding: 0.25em 0.75em;
+            position: absolute;
+            right: 0.75em;
+            letter-spacing: 1px;
+            color: var(--scdclr4);
+            background: var(--prmclr1);
+            border-radius: 0.5em;
+            font-size: 14px;
+            opacity: 0;
+        }
+
+        .icon {
+            top: 0.5em;
+        }
+
+        .gmtk {
+            bottom: 0.5em;
+        }
+
+        button {
+            position: absolute;
+            top: 0.75em;
+            right: 0.75em;
+            width: 36px;
+            height: 36px;
+            left: 0.75em;
+            padding: 0.25em;
+            background: var(--prmclr2);
+            border-radius: 0.5em;
+
+            &:hover {
+                fill: var(--scdclr4);
+                background: var(--prmclr1);
+            }
+        }
+
+    }
+
+    &:hover {
+        scale: 1.05;
+
+        .preview-body .icon,
+        .preview-body .gmtk {
+            opacity: 1;
+        }
+    }
+
+    .preview-info {
+        column-gap: 1em;
+        grid-template-columns: 64px 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+
+        h3,
+        p {
+            grid-column: 2 / -1;
+            max-height: 30px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            line-clamp: 1;
+            letter-spacing: 0.5px;
+        }
+
+        h3 {
+            grid-row: 1 / 2;
+        }
+
+        p {
+            grid-row: 2 / -1;
+        }
+
+        .image-container {
+            grid-column: span 1;
+            grid-row: span 2;
+
+            img {
+                padding: 0;
+                border-radius: 1em;
+                aspect-ratio: 1 / 1;
+                background: none;
+            }
+        }
+    }
+
+    &:hover {
+        color: var(--scdclr4);
+    }
+}

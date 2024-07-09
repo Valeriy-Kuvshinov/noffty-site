@@ -1,0 +1,48 @@
+.input-area {
+    gap: 0.25em;
+
+    label {
+        grid-template-columns: auto auto 1fr;
+        padding: 0 0.5em;
+        column-gap: 0.5em;
+
+        .svg-cmp {
+            width: 32px;
+            fill: var(--prmclr2);
+        }
+
+        p {
+            justify-self: end;
+            color: var(--mnrclr3);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            line-clamp: 1;
+        }
+    }
+
+    textarea {
+        min-height: 180px;
+    }
+
+    input,
+    select,
+    textarea {
+        padding: 0.25em 0.5em;
+        border: 2px solid transparent;
+        border-radius: 0.5em;
+        font-size: 1em;
+
+        &:focus {
+            border-color: var(--mnrclr2);
+        }
+    }
+
+    &.error input,
+    &.error select,
+    &.error textarea {
+        border-color: var(--mnrclr3);
+    }
+}

@@ -1,0 +1,84 @@
+.about-page .page-contents {
+    gap: 1em;
+
+    h3 {
+        font-size: 1.75em;
+    }
+
+    .intro-part,
+    .credits {
+        gap: 0.5em;
+        padding-block-end: 2em;
+    }
+
+    .credits .crew-list {
+        gap: 1em;
+
+        button {
+            gap: 0.5em;
+            padding: 0.5em 0.75em;
+            background: transparent;
+            border-radius: 0.5em;
+            font-size: 1em;
+            color: var(--prmclr2);
+            margin: 0 auto;
+
+            .svg-cmp {
+                width: 24px;
+                fill: var(--prmclr2);
+            }
+
+            &.active,
+            &:hover {
+                color: var(--scdclr8);
+                background: var(--prmclr2);
+
+                .svg-cmp {
+                    fill: var(--scdclr8);
+                }
+            }
+        }
+    }
+
+    .member-info {
+        gap: 0.5em;
+        padding-block-end: 1em;
+
+        ul {
+            gap: 1em;
+            padding: 0;
+            margin: 0 auto;
+
+            li::marker {
+                content: "🕶 ";
+            }
+        }
+
+        .social-links-area {
+            margin-block-start: 0.5em;
+
+            h4 {
+                font-size: 1.5em;
+            }
+
+            .social-links {
+                gap: 2em;
+                margin: 0 auto;
+
+                a {
+                    gap: 0.25em;
+
+                    .svg-cmp {
+                        width: 48px;
+                        fill: var(--prmclr2);
+                    }
+
+                    &:only-child:nth-child(1) {
+                        grid-column: 1 / -1 !important;
+                    }
+                }
+            }
+        }
+    }
+
+}

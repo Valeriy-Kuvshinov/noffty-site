@@ -1,0 +1,12 @@
+.index-page .page-contents,
+.admin-page .page-contents {
+    .game-list {
+        gap: 3em;
+        max-width: 1500px;
+        margin: 1em 0;
+
+        .error-container {
+            grid-column: 1/-1;
+        }
+    }
+}

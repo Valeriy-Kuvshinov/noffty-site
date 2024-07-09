@@ -1,0 +1,229 @@
+.home-page .page-contents {
+    position: relative;
+
+    h2 {
+        letter-spacing: 1px;
+    }
+
+    .video-container video {
+        max-width: 100%;
+        max-height: 100%;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        margin: auto;
+    }
+
+    .intro-part,
+    .game-content {
+        height: 100vh;
+        background: #000000cf;
+    }
+
+    .intro-part {
+        gap: 1em;
+        border-bottom: 1px solid var(--scdclr7);
+
+        .image-container {
+            width: fit-content;
+            margin: 0 auto;
+
+            img {
+                border-radius: 50%;
+            }
+        }
+
+        .noffty-links a {
+            position: relative;
+
+            .svg-cmp {
+                max-width: 120px;
+                max-height: 120px;
+                fill: var(--scdclr6);
+
+                &:first-child {
+                    stroke: var(--scdclr6);
+                    stroke-width: 0.25px;
+                }
+
+                &:last-child {
+                    position: absolute;
+                    padding: 0.25em;
+                    transform: scale(0.4);
+                    top: 0;
+                }
+            }
+
+            &:hover {
+                .svg-cmp {
+                    fill: var(--prmclr2);
+
+                    &:first-child {
+                        stroke: var(--prmclr2);
+                    }
+                }
+            }
+        }
+    }
+
+    .game-content {
+        gap: 2em;
+
+        .content-info a {
+            padding: 0.5em 1em;
+            gap: 0.5em;
+            background: var(--prmclr1);
+            border-radius: 0.5em;
+            margin: 1em auto;
+
+            .svg-cmp {
+                max-width: 32px;
+                fill: var(--prmclr2);
+            }
+
+            &:hover {
+                background: var(--prmclr3);
+            }
+        }
+
+        .games-carousel {
+            position: relative;
+            max-height: 512px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+
+            button {
+                position: absolute;
+                top: 0;
+                bottom: 79px;
+                z-index: 2;
+                background: var(--scdclr3);
+                opacity: 0.25;
+
+                &:nth-child(1) {
+                    left: 0;
+                    border-radius: 0.5em 0 0 0;
+                }
+
+                &:nth-child(3) {
+                    right: 0;
+                    border-radius: 0 0.5em 0 0;
+                }
+
+                .svg-cmp {
+                    width: 48px;
+                    fill: var(--prmclr1);
+                }
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            .carousel-container {
+                position: relative;
+                aspect-ratio: 4 / 3;
+
+                a {
+                    position: absolute;
+                    gap: 0.5em;
+
+                    .preview-body {
+                        position: relative;
+
+                        .image-container img {
+                            padding: 0;
+                            /* max-height: 512px; */
+                            border-radius: 0.75em;
+                            aspect-ratio: 4 / 3;
+                            object-fit: contain;
+                            background: var(--prmclr3);
+                            border-radius: 0.5em;
+                        }
+
+                        .gmtk,
+                        .icon {
+                            padding: 0.25em 0.75em;
+                            position: absolute;
+                            top: 0.5em;
+                            letter-spacing: 1px;
+                            color: var(--scdclr4);
+                            background: var(--prmclr1);
+                            border-radius: 0.5em;
+                            font-size: 14px;
+                            opacity: 0;
+                        }
+
+                        .icon {
+                            right: 4.5em;
+                        }
+
+                        .gmtk {
+                            left: 4.5em;
+                        }
+                    }
+
+                    .preview-info {
+                        column-gap: 1em;
+                        grid-template-columns: 64px 1fr 1fr;
+                        grid-template-rows: 1fr 1fr;
+                        padding: 0.25em 0.5em;
+                        position: absolute;
+                        bottom: 0;
+                        background: var(--prmclr1);
+                        border-radius: 0 0 0.5em 0.5em;
+                        opacity: 0.25;
+
+                        h3,
+                        p {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 1;
+                            line-clamp: 1;
+                            letter-spacing: 0.5px;
+                            grid-column: 2 / -1;
+                        }
+
+                        h3 {
+                            grid-row: 1 / 2;
+                        }
+
+                        p {
+                            grid-row: 2 / -1;
+                        }
+
+                        .image-container {
+                            grid-column: span 1;
+                            grid-row: span 2;
+
+                            img {
+                                padding: 0;
+                                border-radius: 1em;
+                                aspect-ratio: 1 / 1;
+                                background: none;
+                            }
+                        }
+
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
+
+            &:hover {
+
+                .carousel-container a .preview-body .gmtk,
+                .carousel-container a .preview-body .icon {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

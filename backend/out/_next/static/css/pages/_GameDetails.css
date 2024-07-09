@@ -1,0 +1,180 @@
+.game-page .page-contents {
+    h3 {
+        letter-spacing: 1px;
+    }
+
+    p {
+        letter-spacing: 0.75px;
+    }
+
+    .game-frame {
+        padding: 1em 0 1.5em 0;
+        max-width: 1200px;
+        min-height: 350px;
+        background: var(--scdclr2);
+        color: var(--scdclr3);
+        border-radius: 1.5em;
+        margin: 0 auto 1em auto;
+
+        h2 {
+            padding-block-end: 0.5em;
+        }
+
+        .iframe-container {
+            position: relative;
+
+            iframe {
+                max-height: 750px;
+                aspect-ratio: 16 / 9;
+                border: none;
+                box-shadow: 0 4px 100px rgba(0, 0, 0, 0.75);
+
+                &.fullscreen {
+                    max-height: 100%;
+                    max-width: 100%;
+                }
+            }
+
+            button {
+                position: absolute;
+                bottom: 1em;
+                right: 0.75em;
+                width: 3em;
+                height: 3em;
+                border: 1px solid var(--scdclr1);
+                opacity: 0.75;
+
+                .svg-cmp {
+                    fill: var(--prmclr1);
+                }
+
+                &:hover {
+                    opacity: 1;
+                    border: 1px solid var(--scdclr4);
+
+                    .svg-cmp {
+                        fill: var(--scdclr4);
+                    }
+                }
+            }
+        }
+
+        a {
+            padding: 1em 1.5em;
+            gap: 0.25em;
+            background: var(--scdclr2);
+            color: var(--scdclr3);
+            letter-spacing: 0.75px;
+            border-radius: 0.5em;
+            margin: 1em auto;
+
+            .svg-cmp {
+                width: 24px;
+                fill: var(--prmclr2);
+            }
+
+            &:hover {
+                background: var(--prmclr3);
+                color: var(--scdclr4);
+            }
+        }
+    }
+
+    .game-body {
+        gap: 1em;
+        border-top: 1px solid var(--scdclr7);
+        padding-block-start: 1em;
+
+        .screenshots {
+            gap: 1em;
+            padding-block-end: 1em;
+            max-width: 100%;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            margin: 0 auto;
+
+            .image-container img {
+                max-width: 375px;
+                min-width: 135px;
+                border-radius: 0.5em;
+                cursor: pointer;
+            }
+        }
+
+        p:nth-child(3) {
+            padding-block-start: 1em;
+            border-top: 1px solid var(--scdclr7);
+        }
+
+        p:nth-child(4) {
+            font-weight: bold;
+        }
+
+        .video-wrapper {
+            gap: 1em;
+            border-bottom: 1px solid var(--scdclr7);
+            padding-block-end: 1em;
+
+            .video {
+                gap: 0.5em;
+
+                p {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                    line-clamp: 1;
+                }
+
+                iframe {
+                    max-height: 450px;
+                    aspect-ratio: 16 / 9;
+                    border-radius: 0.5em;
+                    border: none;
+                }
+            }
+        }
+
+        .game-info {
+            padding: 1em 0;
+            max-width: 600px;
+            background: var(--scdclr7);
+            border-radius: 0.5em;
+            margin: 0 auto;
+
+            p {
+                gap: 1em;
+                font-size: 1em;
+
+                span {
+                    min-width: 120px;
+                }
+            }
+
+            a {
+                padding: 1em 1.5em;
+                gap: 0.25em;
+                background: var(--scdclr3);
+                color: var(--prmclr1);
+                letter-spacing: 0.75px;
+                border-radius: 0.5em;
+                margin: 1em auto;
+
+                .svg-cmp {
+                    width: 24px;
+                    fill: var(--prmclr1);
+                }
+
+                &:hover {
+                    background: var(--prmclr1);
+                    color: var(--scdclr3);
+
+                    .svg-cmp {
+                        fill: var(--scdclr3);
+                    }
+                }
+            }
+        }
+    }
+}
