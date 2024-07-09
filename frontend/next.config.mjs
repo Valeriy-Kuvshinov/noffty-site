@@ -5,6 +5,7 @@ const nextConfig = {
         return config
     },
     output: 'export',
+    trailingSlash: true,
     images: {
         unoptimized: true,  // Required for static export
         domains: ['res.cloudinary.com'],

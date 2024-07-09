@@ -30,7 +30,6 @@
     }
 
     @media(min-width: 601px) {
-
         .intro-part {
             padding: 3em 2em;
 
@@ -292,10 +291,8 @@
 }
 
 /* game list cmp mq */
-.home-page .page-contents .games-showcase .game-list,
 .index-page .page-contents .game-list,
 .admin-page .page-contents .game-list {
-
     @media(max-width: 480px) {
         grid-template-columns: repeat(1, 1fr);
     }

@@ -59,17 +59,21 @@ app.get('*', (req, res) => {
   } else {
     const indexPath = path.join(pagePath, 'index.html')
     if (fs.existsSync(indexPath)) res.sendFile(indexPath)
-    // If the specific page doesn't exist, fall back to the main index.html
     else {
-      console.log(`Falling back to: ${path.join(__dirname, '..', 'out', 'index.html')}`)
+      console.log('page not found, rerouting to home page')
       res.sendFile(path.join(__dirname, '..', 'out', 'index.html'))
     }
   }
 })
 
-// Handle 404 pages
+// Handle 404 pages using the custom 404 page
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, '..', 'out', '404.html'))
+  const notFoundPath = path.join(__dirname, '..', 'out', '404', 'index.html')
+  if (fs.existsSync(notFoundPath)) res.status(404).sendFile(notFoundPath)
+  else {
+    // Fallback to main index.html if custom 404 page is not found
+    res.status(404).sendFile(path.join(__dirname, '..', 'out', 'index.html'))
+  }
 })
 
 const port = process.env.PORT || 3030
