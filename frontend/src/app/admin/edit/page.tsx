@@ -4,8 +4,8 @@ import { SvgRender } from "../../../components/general/SvgRender"
 
 export default function GameCreate() {
     const defaultGame: Game = {
-        name: 'New Game',
-        note: 'To Be Continued',
+        title: 'New Game',
+        subtitle: 'To Be Continued',
         icon: 'https://res.cloudinary.com/djzid7ags/image/upload/v1719002261/vohr6yravygkly4duxhv.avif',
         screenshots: ['https://res.cloudinary.com/djzid7ags/image/upload/v1719002299/zmbzvexomb5jmawvpqzd.avif'],
         platform: 'html5',

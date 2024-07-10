@@ -13,7 +13,6 @@ import { SvgRender } from "../general/SvgRender"
 import { InputArea } from "./InputArea"
 
 export function LoginForm() {
-    const userService = new UserService()
     const { activeModal, closeModal } = useModal()
     const { recaptchaSiteKey } = useApiKeys()
     const { setSessionUser } = useSessionUser()
@@ -38,7 +37,7 @@ export function LoginForm() {
                     password: formData.password,
                     recaptchaToken: token
                 }
-                const user = await userService.login(loginData)
+                const user = await UserService.login(loginData)
                 setSessionUser(user)
                 closeModal('login')
             } catch (err) {

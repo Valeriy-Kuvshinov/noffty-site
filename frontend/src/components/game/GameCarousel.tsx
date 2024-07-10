@@ -29,7 +29,7 @@ export function GameCarousel({ games }: { games: Game[] }) {
         </button>
         <div className="carousel-container flex w-h-100 fast-trans">
             {visibleGames.map((game, index) => (
-                <GamePreview key={game.name} game={game} index={index - 1} />
+                <GamePreview key={game.title} game={game} index={index - 1} />
             ))}
         </div>
         <button onClick={nextGame} aria-label="Next game">
@@ -44,7 +44,7 @@ function GamePreview({ game, index }: { game: Game, index: number }) {
         condition: game.screenshots.length < 2
     })
 
-    return (<Link href={`/games/${encodeURIComponent(game.name)}`}
+    return (<Link href={`/games/${encodeURIComponent(game.title)}`}
         className="flex column align-center w-h-100 slow-trans"
         onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
         style={{ transform: `translateX(${index * 100}%)` }}>
@@ -57,12 +57,12 @@ function GamePreview({ game, index }: { game: Game, index: number }) {
             <span className='icon fast-trans' aria-label={`Game meant playing on ${game.platform}`}>
                 {game.platform.toUpperCase()}
             </span>
-            <ImageContainer src={currentScreenshot} alt={`${game.name} screenshot`} />
+            <ImageContainer src={currentScreenshot} alt={`${game.title} screenshot`} />
         </div>
         <div className="preview-info grid w-100 h-fit fast-trans">
-            <ImageContainer src={game.icon} alt={`${game.name} icon`} className="game-icon" />
-            <h3>{game.name}</h3>
-            <p>{game.note}</p>
+            <ImageContainer src={game.icon} alt={`${game.title} icon`} className="game-icon" />
+            <h3>{game.title}</h3>
+            <p>{game.subtitle}</p>
         </div>
     </Link>)
 }

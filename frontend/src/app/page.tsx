@@ -8,8 +8,8 @@ import { SvgRender } from "../components/general/SvgRender"
 export default function Home() {
   const games: Game[] = [
     {
-      "name": "Absurd^2",
-      "note": "Simple 2D platformer",
+      "title": "Absurd^2",
+      "subtitle": "Simple 2D platformer",
       "platform": "html5",
       "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1716708223/games/icons/robpcra0w1qdahbso1z5.avif",
       "screenshots": [
@@ -19,8 +19,8 @@ export default function Home() {
       "isGameJam": 'no'
     },
     {
-      "name": "Boiling Point Classic",
-      "note": "Reverse Horde Roguelite",
+      "title": "Boiling Point Classic",
+      "subtitle": "Reverse Horde Roguelite",
       "platform": "html5",
       "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1716708223/games/icons/aimouzhzjqx6j2hltqmv.avif",
       "screenshots": [
@@ -30,8 +30,8 @@ export default function Home() {
       "isGameJam": 'yes'
     },
     {
-      "name": "Gun Stick Dash Jump",
-      "note": "Corrupted action platformer",
+      "title": "Gun Stick Dash Jump",
+      "subtitle": "Corrupted action platformer",
       "platform": "html5",
       "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1716708223/games/icons/frxyvh0gxraa19qli7jf.avif",
       "screenshots": [
@@ -41,8 +41,8 @@ export default function Home() {
       "isGameJam": 'yes'
     },
     {
-      "name": "WavePunk",
-      "note": "Wave merging adventure",
+      "title": "WavePunk",
+      "subtitle": "Wave merging adventure",
       "platform": "html5",
       "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1716708222/games/icons/k2zizoiquqqbm2eqi34s.avif",
       "screenshots": [

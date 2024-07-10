@@ -3,11 +3,20 @@ const baseUrl = process.env.NODE_ENV !== 'production'
     : 'https://noffty.com/api/'
 
 export const HttpService = {
-    request,
-    get,
-    post,
-    put,
-    remove
+    get(endpoint: string, params?: Record<string, string | number | boolean>) {
+        const queryString = params ? `?${createQueryString(params)}` : ''
+        return request('GET', `${endpoint}${queryString}`)
+    },
+    post(endpoint: string, data?: any) {
+        return request('POST', endpoint, data)
+    },
+    put(endpoint: string, data?: any) {
+        return request('PUT', endpoint, data)
+    },
+    remove(endpoint: string, data?: any) {
+        if (data) return request('DELETE', endpoint, data)
+        return request('DELETE', endpoint)
+    }
 }
 
 async function request(method: string, endpoint: string, data?: any) {
@@ -35,26 +44,8 @@ async function request(method: string, endpoint: string, data?: any) {
     }
 }
 
-function get(endpoint: string, params?: Record<string, string | number | boolean>) {
-    const queryString = params ? `?${createQueryString(params)}` : ''
-    return request('GET', `${endpoint}${queryString}`)
-}
-
 function createQueryString(params: Record<string, string | number | boolean>): string {
     return Object.entries(params).map(([key, value]) =>
         `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
         .join('&')
-}
-
-function post(endpoint: string, data?: any) {
-    return request('POST', endpoint, data)
-}
-
-function put(endpoint: string, data?: any) {
-    return request('PUT', endpoint, data)
-}
-
-function remove(endpoint: string, data?: any) {
-    if (data) return request('DELETE', endpoint, data)
-    return request('DELETE', endpoint)
 }

@@ -37,13 +37,13 @@ export function GameDetailsFrame({ game }: { game: Game }) {
     }
 
     return (<div className="game-frame flex column w-100 text-center">
-        <h2>You Are Now Playing {game.name}</h2>
+        <h2>You Are Now Playing {game.title}</h2>
         {game.platform === 'html5' ? (
             game.gameLink ? (
                 <div className="iframe-container w-100" ref={iframeContainerRef}>
                     <iframe
                         className={`w-100 ${isFullscreen ? 'fullscreen' : ''}`}
-                        src={game.gameLink} title={game.name} allow={allowAttributes}
+                        src={game.gameLink} title={game.title} allow={allowAttributes}
                         allowFullScreen={true} aria-label="game frame"
                     ></iframe>
                     <button onClick={toggleFullscreen} title="Toggle fullscreen?"

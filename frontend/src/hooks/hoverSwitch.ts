@@ -24,7 +24,5 @@ export function useHoverSwitch<T>(props: UseHoverSwitchProps<T>): UseHoverSwitch
         setValue(defaultValue)
     }
 
-    return {
-        value, handleMouseEnter, handleMouseLeave
-    }
+    return { value, handleMouseEnter, handleMouseLeave }
 }

@@ -1,7 +1,7 @@
 'use client'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useRef } from 'react'
-import { MailService } from '../../services/api/mail.service'
+import { HttpService } from '../../services/http.service'
 import { useApiKeys } from '../../contexts/ApiContext'
 import { useForm } from '../../hooks/form'
 import { useHoverSwitch } from '../../hooks/hoverSwitch'
@@ -14,7 +14,6 @@ export function ContactForm({ initialValues }: any) {
     const defaultImg = 'https://res.cloudinary.com/djzid7ags/image/upload/v1718830337/g373afizfrrnplfms5rf.avif'
     const hoveredImg = 'https://res.cloudinary.com/djzid7ags/image/upload/v1718830337/ig5n5ytdmnrh5wopdajt.avif'
 
-    const mailService = new MailService()
     const recaptchaRef = useRef<ReCAPTCHA>(null)
     const { recaptchaSiteKey } = useApiKeys()
 
@@ -24,13 +23,18 @@ export function ContactForm({ initialValues }: any) {
         title: { required: true, minLength: 3, pattern: /[\s.\-!?']+/ },
         message: { required: true, minLength: 15, pattern: /[\s.\-!?@#$',*;:]+/ }
     }
+
+    async function sendContactUsMail(formData: any): Promise<any> {
+        return HttpService.post('mail/contact', formData)
+    }
+
     const { values, errors, validateField, handleChange, handleSubmit, resetForm } =
         useForm(initialValues, validationSchema, async (formData) => {
             const token = await recaptchaRef.current?.executeAsync()
             const completeFormData = { ...formData, recaptchaToken: token || '' }
 
             try {
-                const response = await mailService.sendContactUsMail(completeFormData)
+                const response = await sendContactUsMail(completeFormData)
                 console.log(response)
 
                 resetForm()

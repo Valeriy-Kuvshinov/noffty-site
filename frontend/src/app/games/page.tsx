@@ -7,7 +7,6 @@ import { GameFilter } from "../../components/game/GameFilter"
 import { Loader } from "../../components/general/Loader"
 
 export default function GameIndex() {
-    const gameService = new GameService()
     const isAdminPage = false
 
     const [games, setGames] = useState([])
@@ -20,7 +19,7 @@ export default function GameIndex() {
     useEffect(() => {
         async function fetchGames() {
             try {
-                const fetchedGames = await gameService.query(defaultValues)
+                const fetchedGames = await GameService.query(defaultValues)
                 setGames(fetchedGames)
                 setLoading(false)
             } catch (err) {

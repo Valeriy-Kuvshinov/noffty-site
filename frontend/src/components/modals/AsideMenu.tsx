@@ -9,7 +9,6 @@ import { useSessionUser } from "../../contexts/SessionContext"
 import { SvgRender } from "../general/SvgRender"
 
 export function AsideMenu() {
-    const userService = new UserService()
     const router = useRouter()
     const pathname = usePathname()
     const { sessionUser, setSessionUser } = useSessionUser()
@@ -34,7 +33,7 @@ export function AsideMenu() {
 
     async function handleLogout() {
         try {
-            await userService.logout()
+            await UserService.logout()
             setSessionUser(null)
             closeAsideMenu()
             router.push('/')

@@ -15,13 +15,13 @@ export function GamePreview({ game, isAdminPage }: GamePreviewProps) {
 
     function handleEditClick(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
-        router.push(`/admin/edit/${game.name}`)
+        router.push(`/admin/edit/${game.title}`)
     }
 
-    return (<Link href={`/games/${game.name}`} key={game.name} aria-label='noffty-game'
+    return (<Link href={`/games/${game.title}`} key={game.title} aria-label='noffty-game'
         className='flex column align-center w-100 text-capitalize'>
         <div className='preview-body w-100 h-fit'>
-            <ImageContainer src={game.screenshots[0]} alt={game.name} />
+            <ImageContainer src={game.screenshots[0]} alt={game.title} />
             {game.isGameJam === 'yes' && (
                 <span className="gmtk fast-trans" title='Game{Jam} Submission' aria-label='GameJam Submission'>
                     JAM
@@ -38,9 +38,9 @@ export function GamePreview({ game, isAdminPage }: GamePreviewProps) {
         </div>
 
         <div className='preview-info grid w-100 h-fit'>
-            <ImageContainer src={game.icon} alt={game.name} />
-            <h3 title={game.name}>{game.name}</h3>
-            <p title={game.note}>{game.note}</p>
+            <ImageContainer src={game.icon} alt={game.title} />
+            <h3 title={game.title}>{game.title}</h3>
+            <p title={game.subtitle}>{game.subtitle}</p>
         </div>
     </Link>)
 }

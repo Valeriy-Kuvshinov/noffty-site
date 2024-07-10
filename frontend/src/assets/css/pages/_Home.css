@@ -25,14 +25,13 @@
 
     .intro-part {
         gap: 1em;
-        border-bottom: 1px solid var(--scdclr7);
 
         .image-container {
             width: fit-content;
             margin: 0 auto;
 
             img {
-                border-radius: 50%;
+                border-radius: 0.5em;
             }
         }
 

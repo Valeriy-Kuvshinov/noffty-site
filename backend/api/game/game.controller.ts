@@ -8,8 +8,8 @@ import { loggerService } from '../../services/logger.service.js'
 export const gameRoutes: Router = express.Router()
 
 gameRoutes.get('/', _getGames)
-gameRoutes.get('/by-name/:name', _getGameByName)
-gameRoutes.get('/check-name/:name', _checkNameAvailable)
+gameRoutes.get('/by-name/:title', _getGameByName)
+gameRoutes.get('/check-name/:title', _checkNameAvailable)
 gameRoutes.get('/by-id/:id', _getGameById)
 gameRoutes.post('/add/', _addGame)
 gameRoutes.put('/update/:id', _updateGame)
@@ -19,8 +19,8 @@ gameRoutes.delete('/delete/:id', _removeGame)
 async function _getGames(req: Request<{}, {}, {}, GameQueryParams>,
     res: Response): Promise<void> {
     try {
-        const { name, platform, genre, isGameJam } = req.query
-        let filterBy = { name, platform, genre, isGameJam }
+        const { title, platform, genre, isGameJam } = req.query
+        let filterBy = { title, platform, genre, isGameJam }
 
         loggerService.debug('Filtering games by: ', filterBy)
         const games = await GameService.query(filterBy)
@@ -42,10 +42,10 @@ async function _getGameById(req: Request<{ id: ObjectId }>,
     }
 }
 
-async function _getGameByName(req: Request<{ name: string }>,
+async function _getGameByName(req: Request<{ title: string }>,
     res: Response): Promise<void> {
     try {
-        const gameName = decodeURIComponent(req.params.name)
+        const gameName = decodeURIComponent(req.params.title)
         const game = await GameService.getByName(gameName)
         res.json(game)
     } catch (err) {
@@ -54,13 +54,13 @@ async function _getGameByName(req: Request<{ name: string }>,
     }
 }
 
-async function _checkNameAvailable(req: Request<{ name: string }>,
+async function _checkNameAvailable(req: Request<{ title: string }>,
     res: Response): Promise<void> {
     try {
-        const gameName = req.params.name
+        const gameName = req.params.title
         const game = await GameService.getByName(gameName)
 
-        if (game) loggerService.error('This game name is not available: ', game.name)
+        if (game) loggerService.error('This game name is not available: ', game.title)
         else loggerService.info('This game name is available: ', gameName)
 
         res.json({ isAvailable: !game })

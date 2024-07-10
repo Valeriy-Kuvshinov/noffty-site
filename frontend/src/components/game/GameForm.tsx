@@ -14,12 +14,11 @@ const defaultIcon = 'https://res.cloudinary.com/djzid7ags/image/upload/v17190022
 const defaultScreenshot = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719002299/zmbzvexomb5jmawvpqzd.avif'
 
 export function GameForm({ game }: { game: Game }) {
-    const gameService = new GameService()
     const router = useRouter()
 
     const validationSchema = {
-        name: { required: true, minLength: 3, pattern: /[\s.\-!^&?']+/ },
-        note: { required: true, minLength: 3, pattern: /[\s.\-!?']+/ },
+        title: { required: true, minLength: 3, pattern: /[\s.\-!^&?']+/ },
+        subtitle: { required: true, minLength: 3, pattern: /[\s.\-!?']+/ },
         outsideLink: { required: true, minLength: 3, link: true },
         gameLink: { minLength: 3, link: true },
         devlog: { minLength: 3, link: true },
@@ -31,7 +30,7 @@ export function GameForm({ game }: { game: Game }) {
     const { values, errors, setErrors, validateField, handleChange, handleSubmit,
         resetForm, setFieldValue } = useForm(game, validationSchema, async (values) => {
             try {
-                await gameService.save(values as Game)
+                await GameService.save(values as Game)
                 console.log('Game saved successfully')
 
                 resetForm()
@@ -40,7 +39,7 @@ export function GameForm({ game }: { game: Game }) {
                 console.error('Failed to save game', error)
             }
         })
-    const debouncedName = useDebounce(values.name, 500)
+    const debouncedName = useDebounce(values.title, 500)
 
     function handleGenreChange(e: React.ChangeEvent<HTMLSelectElement>) {
         const selectedOptions = Array.from(e.target.selectedOptions, option => option.value)
@@ -72,7 +71,7 @@ export function GameForm({ game }: { game: Game }) {
     async function handleDelete() {
         if (game._id) {
             try {
-                await gameService.remove(game._id.toString())
+                await GameService.remove(game._id.toString())
                 console.log('Game deleted successfully')
                 router.push('/admin/games')
             } catch (error) {
@@ -83,12 +82,14 @@ export function GameForm({ game }: { game: Game }) {
 
     async function checkNameAvailability(name: string) {
         try {
-            if (name === game.name) { // don't show error when the edited name is the original
+            if (name === game.title) { // don't show error when the edited name is the original
                 setErrors(prevErrors => ({ ...prevErrors, name: null }))
                 return
             }
-            const { isAvailable } = await gameService.checkNameAvailable(name)
-            setErrors(prevErrors => ({ ...prevErrors, name: isAvailable ? prevErrors.name : 'Name is taken' }))
+            const { isAvailable } = await GameService.checkNameAvailable(name)
+            setErrors(prevErrors => ({
+                ...prevErrors, name: isAvailable ? prevErrors.name : 'Name is taken'
+            }))
         } catch (error) {
             console.error('Failed to check name availability', error)
         }
@@ -98,19 +99,19 @@ export function GameForm({ game }: { game: Game }) {
         if (debouncedName) checkNameAvailability(debouncedName)
     }, [debouncedName])
 
-    const allFieldsFilled = values.name && values.note && values.outsideLink &&
+    const allFieldsFilled = values.title && values.subtitle && values.outsideLink &&
         values.description && values.credits && values.controls
     const hasErrors = Object.values(errors).some(error => error)
 
     return (<form className="grid layout-row w-100" onSubmit={handleSubmit}>
         <article className="form-inputs grid w-100">
-            <InputArea label="Game Title*" svg="title" type="text" name="name"
-                maxLength={30} value={values.name} onChange={handleChange} error={errors.name}
-                onBlur={() => validateField('name', values.name)}
+            <InputArea label="Game Title*" svg="title" type="text" name="title"
+                maxLength={30} value={values.title} onChange={handleChange} error={errors.title}
+                onBlur={() => validateField('title', values.title)}
             />
-            <InputArea label="Game Note*" svg="info" type="text" name="note"
-                maxLength={40} value={values.note} onChange={handleChange} error={errors.note}
-                onBlur={() => validateField('note', values.note)}
+            <InputArea label="Game Subtitle*" svg="info" type="text" name="subtitle"
+                maxLength={40} value={values.subtitle} onChange={handleChange} error={errors.subtitle}
+                onBlur={() => validateField('subtitle', values.subtitle)}
             />
             <InputArea label="Outside Link*" svg="link" type="text" name="outsideLink"
                 maxLength={120} value={values.outsideLink || ''} onChange={handleChange} error={errors.outsideLink}

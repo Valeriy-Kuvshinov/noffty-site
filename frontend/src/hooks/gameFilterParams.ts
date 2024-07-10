@@ -10,7 +10,7 @@ export function useGameFilterParams() {
 
     function getDefaultFilterValues() {
         const defaultValues = {
-            name: stableSearchParams.get('name') || '',
+            title: stableSearchParams.get('title') || '',
             platform: stableSearchParams.get('platform') || '',
             genre: stableSearchParams.get('genre') || '',
             isGameJam: stableSearchParams.get('isGameJam') || ''

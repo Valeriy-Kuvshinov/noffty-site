@@ -8,9 +8,9 @@ export function EditPreview({ game }: { game: Game }) {
     const gridTemplateColumns = `repeat(${game.screenshots.length - 1}, 1fr)`
 
     return (<article className="edit-preview">
-        <h2 className="text-center">Preview: {game.name}</h2>
+        <h2 className="text-center">Preview: {game.title}</h2>
         <div className="game-frame flex column w-100 text-center">
-            <h3>You Are Now Playing {game.name}</h3>
+            <h3>You Are Now Playing {game.title}</h3>
             {game.platform === 'html5' ? (
                 game.gameLink ? (
                     <div className="iframe-placeholder flex full-center">
@@ -24,12 +24,12 @@ export function EditPreview({ game }: { game: Game }) {
             )}
         </div>
         <div className="game-body flex column w-100 layout-row">
-            <h3 className="text-center">{game.note}</h3>
+            <h3 className="text-center">{game.subtitle}</h3>
             <div className={`preview-screenshots grid ${game.platform !== 'android' ? 'w-100' : ''}`}
                 style={{ gridTemplateColumns }}>
                 {game.screenshots.slice(1).map((screenshot, index) => (
                     <ImageContainer key={index} src={screenshot}
-                        alt={`${game.name} screenshot number ${index + 1}`}
+                        alt={`${game.title} screenshot number ${index + 1}`}
                         className={`preview-screenshot ${game.platform !== 'android' ? 'w-100' : ''}`}
                         style={{
                             maxHeight: game.screenshots.length < 5 ? '215px' : 'auto',

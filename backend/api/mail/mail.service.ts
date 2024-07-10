@@ -21,7 +21,7 @@ async function sendContactUsMail(data: ContactUsReqBody): Promise<void> {
         <p>${message}</p>
         <hr>
         <p>This message was sent by <b>${name}</b>.</p>
-        <p>Contact him back via the email <b>${email}</b>, or by pressing the Reply button.</p>
+        <p>Contact them back via the email <b>${email}</b>, or by pressing the Reply button.</p>
     `
     const mailOptions: MailOptions = {
         from: process.env.SENDER_GMAIL_ADDRESS ?? '',
@@ -31,7 +31,7 @@ async function sendContactUsMail(data: ContactUsReqBody): Promise<void> {
         text: `Dear admin, a new message from Contact Us has arrived.
         Message type: ${requestType}.
         ${message}, This message was sent by ${name}.
-        Contact him back via this email: ${email}, or by pressing the Reply button.`,
+        Contact them back via this email: ${email}, or by pressing the Reply button.`,
         html: mailUtilService.prepareEmailBody(emailHtml),
     }
     await mailUtilService.sendEmail(mailOptions)

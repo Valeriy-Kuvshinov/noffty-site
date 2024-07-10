@@ -20,6 +20,10 @@
             padding-block-end: 0.5em;
         }
 
+        p {
+            padding: 0 1em;
+        }
+
         .iframe-container {
             position: relative;
 

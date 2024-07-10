@@ -13,10 +13,9 @@ interface GameFilterProps {
 }
 
 export function GameFilter({ defaultValues, updateSearchParams }: GameFilterProps) {
-    const gameService = new GameService()
-    const genres = gameService.getGenres()
-    const platforms = gameService.getPlatforms()
-    const gameJams = gameService.getGameJams()
+    const genres = GameService.getGenres()
+    const platforms = GameService.getPlatforms()
+    const gameJams = GameService.getGameJams()
 
     const [filter, setFilter] = useState(defaultValues)
     const debouncedFilter = useDebounce(filter, 1000)
@@ -33,8 +32,8 @@ export function GameFilter({ defaultValues, updateSearchParams }: GameFilterProp
     }
 
     return (<article className="filter-area flex column layout-row w-100">
-        <input type="text" name="name" placeholder="Search by name..." maxLength={30}
-            value={filter.name || ''} onChange={handleInputChange}
+        <input type="text" name="title" placeholder="Search by name..." maxLength={30}
+            value={filter.title || ''} onChange={handleInputChange}
         />
         <SvgRender iconName="search" />
         <div className='select-options grid'>

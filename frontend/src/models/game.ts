@@ -1,7 +1,7 @@
 export interface Game {
     _id?: string
-    name: string
-    note: string
+    title: string
+    subtitle: string
     icon: string
     screenshots: string[]
     platform: string
@@ -18,7 +18,7 @@ export interface Game {
 }
 
 export interface GameQueryParams {
-    name?: string
+    title?: string
     platform?: string
     genre?: string
     isGameJam?: string

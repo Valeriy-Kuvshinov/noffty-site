@@ -22,7 +22,6 @@ const defaultUser: User = {
 const SessionContext = createContext<SessionContextType | undefined>(undefined)
 
 export function SessionProvider({ children }: { children: React.ReactNode }) {
-    const userService = new UserService()
     const [sessionUser, setSessionUser] = useState<User>(defaultUser)
     const [isLoading, setIsLoading] = useState(true)
     const router = useRouter()
@@ -31,12 +30,11 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         async function initializeSession() {
             setIsLoading(true)
-            const storedUser = userService.getLoggedinUser()
+            const storedUser = UserService.getLoggedinUser()
             if (storedUser && storedUser._id) {
                 try {
-                    const fullUser = await userService.getById(storedUser._id)
+                    const fullUser = await UserService.getById(storedUser._id)
                     setSessionUser(fullUser)
-                    console.log('Full user in Session Management: ', fullUser)
                 } catch (error) {
                     console.error('Failed to fetch user details:', error)
                     setSessionUser(defaultUser)
@@ -56,7 +54,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     function setSessionUserWithStorage(user: User | null) {
         if (user) {
             setSessionUser(user)
-            userService.setLoggedinUser(user)
+            UserService.setLoggedinUser(user)
         } else setSessionUser(defaultUser)
     }
 

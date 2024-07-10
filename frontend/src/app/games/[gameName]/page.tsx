@@ -5,27 +5,26 @@ import { ErrorContainer } from "../../../components/general/ErrorContainer"
 import { GameDetailsFrame } from "../../../components/game/GameDetailsFrame"
 
 // Enable ISR
-// export const revalidate = 0
-const gameService = new GameService()
+export const revalidate = 0
 
 async function getGame(gameName: string): Promise<Game | null> {
     try {
-        return await gameService.getByName(gameName)
+        return await GameService.getByName(gameName)
     } catch (error) {
         console.error("Failed to fetch game", error)
         return null
     }
 }
 
-export async function generateStaticParams() {
-    try {
-        const games = await gameService.query()
-        return games.map((game: Game) => ({ gameName: encodeURIComponent(game.name) }))
-    } catch (error) {
-        console.error("Failed to fetch games for static params", error)
-        return []
-    }
-}
+// export async function generateStaticParams() {
+//     try {
+//         const games = await GameService.query()
+//         return games.map((game: Game) => ({ gameName: encodeURIComponent(game.title) }))
+//     } catch (error) {
+//         console.error("Failed to fetch games for static params", error)
+//         return []
+//     }
+// }
 
 export default async function GameDetails({ params }: { params: { gameName: string } }) {
     const gameName = decodeURIComponent(params.gameName)

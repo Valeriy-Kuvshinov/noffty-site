@@ -2,8 +2,8 @@ import { ObjectId } from "mongodb"
 
 export interface Game {
     _id?: ObjectId
-    name: string
-    note: string
+    title: string
+    subtitle: string
     icon: string
     screenshots: string[]
     platform: string
@@ -21,7 +21,7 @@ export interface Game {
 
 export interface MatchCriteria {
     $match: {
-        name?: { $regex: RegExp }
+        title?: { $regex: RegExp }
         platform?: string
         genre?: { $in: string[] }
         isGameJam?: string
@@ -29,7 +29,7 @@ export interface MatchCriteria {
 }
 
 export interface GameQueryParams {
-    name?: string
+    title?: string
     platform?: string
     genre?: string
     isGameJam?: string

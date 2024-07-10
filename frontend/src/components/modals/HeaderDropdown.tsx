@@ -9,7 +9,6 @@ import { useModal } from "../../contexts/ModalContext"
 import { useSessionUser } from "../../contexts/SessionContext"
 
 export function HeaderDropdown({ sessionUser }: { sessionUser: User }) {
-    const userService = new UserService()
     const router = useRouter()
     const { activeModal, closeModal, openModal } = useModal()
     const { setSessionUser } = useSessionUser()
@@ -28,7 +27,7 @@ export function HeaderDropdown({ sessionUser }: { sessionUser: User }) {
 
     async function handleLogout() {
         try {
-            await userService.logout()
+            await UserService.logout()
             setSessionUser(null)
             closeDropdown()
             router.push('/')

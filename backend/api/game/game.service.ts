@@ -39,13 +39,13 @@ async function getById(gameId: ObjectId): Promise<Game | null> {
   }
 }
 
-async function getByName(gameName: string): Promise<Game | null> {
+async function getByName(gameTitle: string): Promise<Game | null> {
   try {
     const collection = await dbService.getCollection(GAMES_COLLECTION)
 
-    const refinedName = utilityService.escapeRegExp(gameName)
+    const refinedName = utilityService.escapeRegExp(gameTitle)
     const game = await collection.findOne<Game>(
-      { name: { $regex: `^${refinedName}$`, $options: 'i' } })
+      { title: { $regex: `^${refinedName}$`, $options: 'i' } })
 
     if (game) {
       loggerService.info('found game: ', game._id)
@@ -53,11 +53,11 @@ async function getByName(gameName: string): Promise<Game | null> {
       game.controls = utilityService.formatText(game.controls || '')
       game.credits = utilityService.formatText(game.credits || '')
     }
-    else loggerService.error('No game found with name:', gameName)
+    else loggerService.error('No game found with name:', gameTitle)
 
     return game
   } catch (err) {
-    loggerService.error(`Error finding game ${gameName}`, err)
+    loggerService.error(`Error finding game ${gameTitle}`, err)
     throw err
   }
 }
@@ -106,8 +106,8 @@ function _buildPipeline(filterBy: GameQueryParams): object[] {
 
   const criteria: MatchCriteria = { $match: {} }
 
-  if (filterBy.name) {
-    criteria.$match.name = { $regex: new RegExp(filterBy.name, 'i') }
+  if (filterBy.title) {
+    criteria.$match.title = { $regex: new RegExp(filterBy.title, 'i') }
   }
 
   if (filterBy.platform) {

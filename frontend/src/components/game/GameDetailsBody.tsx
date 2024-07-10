@@ -8,12 +8,12 @@ export function GameDetailsBody({ game }: { game: Game }) {
     const gridTemplateColumns = `repeat(${game.screenshots.length - 1}, 1fr)`
 
     return (<article className="game-body flex column w-100 layout-row">
-        <h3 className="text-center text-capitalize">{game.note}</h3>
+        <h3 className="text-center text-capitalize">{game.subtitle}</h3>
         <div className={`screenshots grid ${game.platform !== 'android' ? 'w-100' : ''}`}
             style={{ gridTemplateColumns }}>
             {game.screenshots.slice(1).map((screenshot, index) => (
                 <ImageContainer key={index} src={screenshot}
-                    alt={`${game.name} screenshot number ${index + 1}`}
+                    alt={`${game.title} screenshot number ${index + 1}`}
                     className={`h-100 ${game.platform !== 'android' ? 'w-100' : ''}`}
                     style={{
                         maxHeight: game.screenshots.length < 5 ? '215px' : 'auto',

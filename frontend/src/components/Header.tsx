@@ -32,7 +32,7 @@ export function Header() {
 
     function handleSearchSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        updateSearchParams({ name: searchTerm }, '/games')
+        updateSearchParams({ title: searchTerm }, '/games')
         setSearchTerm('')
     }
 
@@ -49,7 +49,7 @@ export function Header() {
                     </Link>
                     {!hiddenSearchPages && (
                         <form onSubmit={handleSearchSubmit} className="w-100 layout-row fast-trans">
-                            <input type="text" placeholder="Search games..." maxLength={30}
+                            <input type="text" placeholder="Find your next game, broski..." maxLength={30}
                                 value={searchTerm} onChange={handleSearchInputChange}
                             />
                             <SvgRender iconName="search" />

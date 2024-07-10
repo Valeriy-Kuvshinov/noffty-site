@@ -34,32 +34,13 @@
                 .image-container img {
                     width: 42px;
                     height: 30px;
+                    background: none;
                 }
 
                 &:hover {
                     gap: 0.5em;
                     background-color: var(--mnrclr1);
                     color: var(--scdclr4);
-                }
-            }
-
-            .recaptcha-branding {
-                grid-template-columns: auto auto;
-                grid-template-rows: auto auto;
-                gap: 0.25em 0.75em;
-
-                .image-container {
-                    max-width: 36px;
-                }
-
-                span {
-                    max-width: 80px;
-                    font-size: 0.9em;
-                }
-
-                .links {
-                    grid-column: 1/-1;
-                    font-size: 0.75em;
                 }
             }
         }

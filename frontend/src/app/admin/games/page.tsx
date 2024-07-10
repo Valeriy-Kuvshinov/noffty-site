@@ -8,7 +8,6 @@ import { GameList } from "../../../components/game/GameList"
 import { Loader } from "../../../components/general/Loader"
 
 export default function AdminIndex() {
-    const gameService = new GameService()
     const isAdminPage = true
 
     const [games, setGames] = useState([])
@@ -21,7 +20,7 @@ export default function AdminIndex() {
     useEffect(() => {
         async function fetchGames() {
             try {
-                const fetchedGames = await gameService.query(defaultValues)
+                const fetchedGames = await GameService.query(defaultValues)
                 setGames(fetchedGames)
                 setLoading(false)
             } catch (err) {
