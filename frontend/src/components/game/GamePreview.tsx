@@ -15,10 +15,11 @@ export function GamePreview({ game, isAdminPage }: GamePreviewProps) {
 
     function handleEditClick(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
-        router.push(`/admin/edit/${game.title}`)
+        router.push(`/admin/edit/game?name=${encodeURIComponent(game.title)}`)
     }
 
-    return (<Link href={`/games/${game.title}`} key={game.title} aria-label='noffty-game'
+    return (<Link key={game.title} aria-label='noffty-game'
+        href={`/games/details?name=${encodeURIComponent(game.title)}`}
         className='flex column align-center w-100 text-capitalize'>
         <div className='preview-body w-100 h-fit'>
             <ImageContainer src={game.screenshots[0]} alt={game.title} />

@@ -37,10 +37,19 @@ export interface ValidationOptions {
     link?: boolean
 }
 
-export interface VerificationMailReqBody {
-    username?: string
+// export interface VerificationMailReqBody {
+//     username?: string
+//     email: string
+//     code?: string
+// }
+
+export interface ContactUsReqBody {
+    name: string
     email: string
-    code?: string
+    title: string
+    requestType: string
+    message: string
+    recaptchaToken: string
 }
 
 export interface ApiKeys {

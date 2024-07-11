@@ -1,13 +1,5 @@
+import { ContactUsReqBody } from "../../models/utility"
 import { ContactForm } from "../../components/forms/ContactForm"
-
-interface ContactUsReqBody {
-    name: string
-    email: string
-    title: string
-    requestType: string
-    message: string
-    recaptchaToken: string
-}
 
 export default function Contact() {
     const initialValues: ContactUsReqBody = {

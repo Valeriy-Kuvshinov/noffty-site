@@ -4,7 +4,7 @@ const nextConfig = {
     webpack: (config) => {
         return config
     },
-    // output: 'export',
+    output: 'export',
     trailingSlash: true,
     images: {
         unoptimized: true,  // Required for static export

@@ -130,7 +130,7 @@ export function GameForm({ game }: { game: Game }) {
                 onBlur={() => validateField('walkthrough', values.walkthrough || '')}
             />
             <InputArea label="Description*" svg="description" type="textarea" name="description"
-                maxLength={600} value={values.description || ''} onChange={handleChange} error={errors.description}
+                maxLength={900} value={values.description || ''} onChange={handleChange} error={errors.description}
                 onBlur={() => validateField('description', values.description)}
             />
             <InputArea label="Credits*" svg="agreement" type="textarea" name="credits"

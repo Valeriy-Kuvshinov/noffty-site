@@ -66,7 +66,7 @@ export default function Home() {
       </div>
       <article className="intro-part flex column full-center w-100 layout-row">
         <ImageContainer src={companyLogo} alt="noffty logo" />
-        <h2 className="text-center">{`Welcome to Noffty Production's Website`}</h2>
+        <h2 className="text-center">{`We do games here, ok?`}</h2>
 
         <div className="noffty-links flex row">
           {socialLinks.map(link => (

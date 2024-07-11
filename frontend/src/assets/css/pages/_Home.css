@@ -90,7 +90,7 @@
 
         .games-carousel {
             position: relative;
-            max-height: 512px;
+            max-height: 420px;
             overflow: hidden;
             aspect-ratio: 4/3;
 
@@ -99,8 +99,7 @@
                 top: 0;
                 bottom: 79px;
                 z-index: 2;
-                background: var(--scdclr3);
-                opacity: 0.25;
+                background: var(--scdclr7);
 
                 &:nth-child(1) {
                     left: 0;
@@ -114,11 +113,15 @@
 
                 .svg-cmp {
                     width: 48px;
-                    fill: var(--prmclr1);
+                    fill: var(--scdclr1);
                 }
 
                 &:hover {
-                    opacity: 1;
+                    background: var(--mnrclr7);
+
+                    .svg-cmp {
+                        fill: var(--scdclr3);
+                    }
                 }
             }
 
@@ -135,7 +138,6 @@
 
                         .image-container img {
                             padding: 0;
-                            /* max-height: 512px; */
                             border-radius: 0.75em;
                             aspect-ratio: 4 / 3;
                             object-fit: contain;

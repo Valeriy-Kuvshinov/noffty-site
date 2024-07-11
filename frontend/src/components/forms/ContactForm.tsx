@@ -1,16 +1,17 @@
 'use client'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useRef } from 'react'
+import { ContactUsReqBody } from '@/models/utility'
 import { HttpService } from '../../services/http.service'
-import { useApiKeys } from '../../contexts/ApiContext'
 import { useForm } from '../../hooks/form'
 import { useHoverSwitch } from '../../hooks/hoverSwitch'
+import { useApiKeys } from '../../contexts/ApiContext'
 import { RecaptchaContainer } from './RecaptchaContainer'
 import { ImageContainer } from '../general/ImageContainer'
 import { InputArea } from './InputArea'
 import { SvgRender } from '../general/SvgRender'
 
-export function ContactForm({ initialValues }: any) {
+export function ContactForm({ initialValues }: { initialValues: ContactUsReqBody }) {
     const defaultImg = 'https://res.cloudinary.com/djzid7ags/image/upload/v1718830337/g373afizfrrnplfms5rf.avif'
     const hoveredImg = 'https://res.cloudinary.com/djzid7ags/image/upload/v1718830337/ig5n5ytdmnrh5wopdajt.avif'
 
@@ -24,7 +25,7 @@ export function ContactForm({ initialValues }: any) {
         message: { required: true, minLength: 15, pattern: /[\s.\-!?@#$',*;:]+/ }
     }
 
-    async function sendContactUsMail(formData: any): Promise<any> {
+    async function sendContactUsMail(formData: ContactUsReqBody): Promise<any> {
         return HttpService.post('mail/contact', formData)
     }
 
@@ -34,9 +35,7 @@ export function ContactForm({ initialValues }: any) {
             const completeFormData = { ...formData, recaptchaToken: token || '' }
 
             try {
-                const response = await sendContactUsMail(completeFormData)
-                console.log(response)
-
+                await sendContactUsMail(completeFormData as ContactUsReqBody)
                 resetForm()
                 recaptchaRef.current?.reset()
             } catch (error) {

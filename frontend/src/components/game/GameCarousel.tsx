@@ -44,7 +44,7 @@ function GamePreview({ game, index }: { game: Game, index: number }) {
         condition: game.screenshots.length < 2
     })
 
-    return (<Link href={`/games/${encodeURIComponent(game.title)}`}
+    return (<Link href={`/games/details?name=${encodeURIComponent(game.title)}`}
         className="flex column align-center w-h-100 slow-trans"
         onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
         style={{ transform: `translateX(${index * 100}%)` }}>
