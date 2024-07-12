@@ -9,8 +9,11 @@ type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR'
 const __filename = fileURLToPath(import.meta.url)
 const currentDir = path.dirname(__filename)
 
+// Construct the path to the project root
+const projectRoot = path.resolve(currentDir, '..')
+
 // Construct the path to the logs directory dynamically
-const logsDir = path.join(currentDir, '..', 'logs')
+const logsDir = path.join(projectRoot, 'logs')
 const logFile = path.join(logsDir, 'backend.log')
 
 if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir, { recursive: true })
