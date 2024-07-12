@@ -1,8 +1,8 @@
 import express, { Router, Request, Response } from 'express'
 import { LoginRequestBody, SignupRequestBody } from '../../models/user.js'
 import { authService } from './auth.service.js'
-import { loggerService } from '../../services/logger.service.js'
-import { utilityService } from '../../services/utility.service.js'
+import { loggerService } from '../../services/logger.js'
+import { utilityService } from '../../services/utility.js'
 
 // auth routes
 export const authRoutes: Router = express.Router()

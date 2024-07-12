@@ -2,7 +2,7 @@ import express, { Router, Request, Response } from 'express'
 import { ObjectId } from 'mongodb'
 import { Game, GameQueryParams } from '../../models/game.js'
 import { GameService } from './game.service.js'
-import { loggerService } from '../../services/logger.service.js'
+import { loggerService } from '../../services/logger.js'
 
 // game routes
 export const gameRoutes: Router = express.Router()

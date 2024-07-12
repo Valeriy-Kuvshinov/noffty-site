@@ -1,7 +1,7 @@
 import express, { Router, Request, Response } from 'express'
 import { ObjectId } from 'mongodb'
 import { User, UserQueryParams } from '../../models/user.js'
-import { loggerService } from '../../services/logger.service.js'
+import { loggerService } from '../../services/logger.js'
 import { userService } from './user.service.js'
 
 // user routes

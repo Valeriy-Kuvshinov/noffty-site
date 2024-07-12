@@ -1,5 +1,5 @@
 import express from 'express';
-import { loggerService } from '../../services/logger.service.js';
+import { loggerService } from '../../services/logger.js';
 import { userService } from './user.service.js';
 // user routes
 export const userRoutes = express.Router();

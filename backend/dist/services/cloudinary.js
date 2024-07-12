@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { v2 as cloudinary } from 'cloudinary';
-import { dbService } from './db.service.js';
-import { loggerService } from './logger.service.js';
+import { dbService } from './database.js';
+import { loggerService } from './logger.js';
 dotenv.config();
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,

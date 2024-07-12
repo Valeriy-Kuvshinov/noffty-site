@@ -1,12 +1,19 @@
 import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
 // Define a type for the log level to restrict it to specific strings
 type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR'
 
-const logsDir = './logs'
-if (!fs.existsSync(logsDir)) {
-    fs.mkdirSync(logsDir)
-}
+// Get the current directory of the executing script
+const __filename = fileURLToPath(import.meta.url)
+const currentDir = path.dirname(__filename)
+
+// Construct the path to the logs directory dynamically
+const logsDir = path.join(currentDir, '..', 'logs')
+const logFile = path.join(logsDir, 'backend.log')
+
+if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir, { recursive: true })
 
 // This function doesn't need modification, but TypeScript knows its return type is string
 function getTime(): string {
@@ -26,8 +33,8 @@ function doLog(level: LogLevel, ...args: any[]): void {
 
     let line = strs.join(' | ')
     line = `${getTime()} - ${level} - ${line}\n`
-    fs.appendFile('./logs/backend.log', line, (err) => {
-        if (err) console.log('FATAL: cannot write to log file')
+    fs.appendFile(logFile, line, (err) => {
+        if (err) console.log('FATAL: cannot write to log file', err)
     })
 }
 

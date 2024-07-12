@@ -1,5 +1,5 @@
 import express from 'express';
-import { loggerService } from '../../services/logger.service.js';
+import { loggerService } from '../../services/logger.js';
 import { mailService } from './mail.service.js';
 // mail routes
 export const mailRoutes = express.Router();

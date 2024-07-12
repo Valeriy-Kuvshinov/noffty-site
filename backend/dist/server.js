@@ -10,8 +10,8 @@ import { gameRoutes } from './api/game/game.controller.js';
 import { mailRoutes } from './api/mail/mail.controller.js';
 import { userRoutes } from './api/user/user.controller.js';
 import { authRoutes } from './api/auth/auth.controller.js';
-import { loggerService } from './services/logger.service.js';
-import { automationService } from './services/automation.service.js';
+import { loggerService } from './services/logger.js';
+import { automationService } from './services/automation.js';
 dotenv.config();
 const app = express();
 app.use(cookieParser()); // for res.cookies

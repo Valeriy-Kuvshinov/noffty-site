@@ -1,7 +1,7 @@
 import express from 'express';
 import { authService } from './auth.service.js';
-import { loggerService } from '../../services/logger.service.js';
-import { utilityService } from '../../services/utility.service.js';
+import { loggerService } from '../../services/logger.js';
+import { utilityService } from '../../services/utility.js';
 // auth routes
 export const authRoutes = express.Router();
 authRoutes.post('/login', _login);

@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
-import { dbService } from "../../services/db.service.js";
-import { loggerService } from "../../services/logger.service.js";
-import { utilityService } from "../../services/utility.service.js";
+import { dbService } from "../../services/database.js";
+import { loggerService } from "../../services/logger.js";
+import { utilityService } from "../../services/utility.js";
 const GAMES_COLLECTION = 'game';
 export const GameService = {
     query,
@@ -32,11 +32,11 @@ async function getById(gameId) {
         throw err;
     }
 }
-async function getByName(gameName) {
+async function getByName(gameTitle) {
     try {
         const collection = await dbService.getCollection(GAMES_COLLECTION);
-        const refinedName = utilityService.escapeRegExp(gameName);
-        const game = await collection.findOne({ name: { $regex: `^${refinedName}$`, $options: 'i' } });
+        const refinedName = utilityService.escapeRegExp(gameTitle);
+        const game = await collection.findOne({ title: { $regex: `^${refinedName}$`, $options: 'i' } });
         if (game) {
             loggerService.info('found game: ', game._id);
             game.description = utilityService.formatText(game.description || '');
@@ -44,11 +44,11 @@ async function getByName(gameName) {
             game.credits = utilityService.formatText(game.credits || '');
         }
         else
-            loggerService.error('No game found with name:', gameName);
+            loggerService.error('No game found with name:', gameTitle);
         return game;
     }
     catch (err) {
-        loggerService.error(`Error finding game ${gameName}`, err);
+        loggerService.error(`Error finding game ${gameTitle}`, err);
         throw err;
     }
 }
@@ -91,8 +91,8 @@ async function remove(gameId) {
 function _buildPipeline(filterBy) {
     const pipeline = [];
     const criteria = { $match: {} };
-    if (filterBy.name) {
-        criteria.$match.name = { $regex: new RegExp(filterBy.name, 'i') };
+    if (filterBy.title) {
+        criteria.$match.title = { $regex: new RegExp(filterBy.title, 'i') };
     }
     if (filterBy.platform) {
         criteria.$match.platform = filterBy.platform;

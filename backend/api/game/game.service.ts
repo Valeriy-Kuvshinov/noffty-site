@@ -1,8 +1,8 @@
 import { ObjectId } from "mongodb"
 import { Game, GameQueryParams, MatchCriteria } from "../../models/game.js"
-import { dbService } from "../../services/db.service.js"
-import { loggerService } from "../../services/logger.service.js"
-import { utilityService } from "../../services/utility.service.js"
+import { dbService } from "../../services/database.js"
+import { loggerService } from "../../services/logger.js"
+import { utilityService } from "../../services/utility.js"
 
 const GAMES_COLLECTION = 'game'
 

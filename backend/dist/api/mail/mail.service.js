@@ -1,6 +1,5 @@
-import { loggerService } from '../../services/logger.service.js';
-import { utilityService } from '../../services/utility.service.js';
-import { mailUtilService } from '../../services/mail.util.service.js';
+import { loggerService } from '../../services/logger.js';
+import { utilityService } from '../../services/utility.js';
 export const mailService = {
     sendContactUsMail,
     sendResetCodeMail
@@ -17,7 +16,7 @@ async function sendContactUsMail(data) {
         <p>${message}</p>
         <hr>
         <p>This message was sent by <b>${name}</b>.</p>
-        <p>Contact him back via the email <b>${email}</b>, or by pressing the Reply button.</p>
+        <p>Contact them back via the email <b>${email}</b>, or by pressing the Reply button.</p>
     `;
     const mailOptions = {
         from: process.env.SENDER_GMAIL_ADDRESS ?? '',
@@ -27,10 +26,10 @@ async function sendContactUsMail(data) {
         text: `Dear admin, a new message from Contact Us has arrived.
         Message type: ${requestType}.
         ${message}, This message was sent by ${name}.
-        Contact him back via this email: ${email}, or by pressing the Reply button.`,
-        html: mailUtilService.prepareEmailBody(emailHtml),
+        Contact them back via this email: ${email}, or by pressing the Reply button.`,
+        html: utilityService.prepareEmailBody(emailHtml),
     };
-    await mailUtilService.sendEmail(mailOptions);
+    await utilityService.sendEmail(mailOptions);
 }
 async function sendResetCodeMail(email, code) {
     loggerService.debug(`Sending reset code email containing: ${email}, ${code}`);
@@ -50,7 +49,7 @@ async function sendResetCodeMail(email, code) {
         please copy the following code: ${code}.
         Do not give this code to anyone!
         If you did not request a user reset, please ignore this email or contact us through the site.`,
-        html: mailUtilService.prepareEmailBody(emailHtml),
+        html: utilityService.prepareEmailBody(emailHtml),
     };
-    await mailUtilService.sendEmail(mailOptions);
+    await utilityService.sendEmail(mailOptions);
 }

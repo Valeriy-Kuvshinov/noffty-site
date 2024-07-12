@@ -1,6 +1,6 @@
 import express, { Router, Request, Response } from 'express'
 import { ContactUsReqBody, VerificationMailReqBody } from '../../models/utility.js'
-import { loggerService } from '../../services/logger.service.js'
+import { loggerService } from '../../services/logger.js'
 import { mailService } from './mail.service.js'
 
 // mail routes

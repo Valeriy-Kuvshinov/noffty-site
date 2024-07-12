@@ -1,7 +1,6 @@
 import { ContactUsReqBody, MailOptions } from '../../models/utility.js'
-import { loggerService } from '../../services/logger.service.js'
-import { utilityService } from '../../services/utility.service.js'
-import { mailUtilService } from '../../services/mail.util.service.js'
+import { loggerService } from '../../services/logger.js'
+import { utilityService } from '../../services/utility.js'
 
 export const mailService = {
     sendContactUsMail,
@@ -32,9 +31,9 @@ async function sendContactUsMail(data: ContactUsReqBody): Promise<void> {
         Message type: ${requestType}.
         ${message}, This message was sent by ${name}.
         Contact them back via this email: ${email}, or by pressing the Reply button.`,
-        html: mailUtilService.prepareEmailBody(emailHtml),
+        html: utilityService.prepareEmailBody(emailHtml),
     }
-    await mailUtilService.sendEmail(mailOptions)
+    await utilityService.sendEmail(mailOptions)
 }
 
 async function sendResetCodeMail(email: string, code: string): Promise<void> {
@@ -55,7 +54,7 @@ async function sendResetCodeMail(email: string, code: string): Promise<void> {
         please copy the following code: ${code}.
         Do not give this code to anyone!
         If you did not request a user reset, please ignore this email or contact us through the site.`,
-        html: mailUtilService.prepareEmailBody(emailHtml),
+        html: utilityService.prepareEmailBody(emailHtml),
     }
-    await mailUtilService.sendEmail(mailOptions)
+    await utilityService.sendEmail(mailOptions)
 }

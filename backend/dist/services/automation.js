@@ -1,5 +1,5 @@
-import { cloudinaryService } from "./cloudinary.service.js";
-import { loggerService } from "./logger.service.js";
+import { cloudinaryService } from "./cloudinary.js";
+import { loggerService } from "./logger.js";
 const GAMES_COLLECTION = 'game';
 export const automationService = {
     setupOrphanedImageCheck,

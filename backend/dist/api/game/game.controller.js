@@ -1,11 +1,11 @@
 import express from 'express';
 import { GameService } from './game.service.js';
-import { loggerService } from '../../services/logger.service.js';
+import { loggerService } from '../../services/logger.js';
 // game routes
 export const gameRoutes = express.Router();
 gameRoutes.get('/', _getGames);
-gameRoutes.get('/by-name/:name', _getGameByName);
-gameRoutes.get('/check-name/:name', _checkNameAvailable);
+gameRoutes.get('/by-name/:title', _getGameByName);
+gameRoutes.get('/check-name/:title', _checkNameAvailable);
 gameRoutes.get('/by-id/:id', _getGameById);
 gameRoutes.post('/add/', _addGame);
 gameRoutes.put('/update/:id', _updateGame);
@@ -13,8 +13,8 @@ gameRoutes.delete('/delete/:id', _removeGame);
 // game controller functions
 async function _getGames(req, res) {
     try {
-        const { name, platform, genre, isGameJam } = req.query;
-        let filterBy = { name, platform, genre, isGameJam };
+        const { title, platform, genre, isGameJam } = req.query;
+        let filterBy = { title, platform, genre, isGameJam };
         loggerService.debug('Filtering games by: ', filterBy);
         const games = await GameService.query(filterBy);
         res.json(games);
@@ -36,7 +36,7 @@ async function _getGameById(req, res) {
 }
 async function _getGameByName(req, res) {
     try {
-        const gameName = decodeURIComponent(req.params.name);
+        const gameName = decodeURIComponent(req.params.title);
         const game = await GameService.getByName(gameName);
         res.json(game);
     }
@@ -47,10 +47,10 @@ async function _getGameByName(req, res) {
 }
 async function _checkNameAvailable(req, res) {
     try {
-        const gameName = req.params.name;
+        const gameName = req.params.title;
         const game = await GameService.getByName(gameName);
         if (game)
-            loggerService.error('This game name is not available: ', game.name);
+            loggerService.error('This game name is not available: ', game.title);
         else
             loggerService.info('This game name is available: ', gameName);
         res.json({ isAvailable: !game });

@@ -1,7 +1,7 @@
 import mongoDB from 'mongodb'
 const { MongoClient } = mongoDB
 import { config } from '../config/index.js'
-import { loggerService } from './logger.service.js'
+import { loggerService } from './logger.js'
 
 // Define a type for the MongoDB connection
 type DbConnection = mongoDB.Db | null
