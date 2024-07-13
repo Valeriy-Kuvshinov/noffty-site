@@ -26,6 +26,7 @@ export default function GameEdit() {
         description: 'Game info for the user',
         credits: 'Game stuff by T1mure',
         controls: 'WASD / Space keys to move',
+        specialNote: 'Disclaimer or gmtk thing',
         genre: ['action'],
         devlog: '',
         walkthrough: '',
@@ -49,7 +50,8 @@ export default function GameEdit() {
                         ...fetchedGame,
                         description: fetchedGame.description?.replace(/<br>/g, '\n'),
                         controls: fetchedGame.controls?.replace(/<br>/g, '\n'),
-                        credits: fetchedGame.credits?.replace(/<br>/g, '\n')
+                        credits: fetchedGame.credits?.replace(/<br>/g, '\n'),
+                        specialNote: fetchedGame.specialNote?.replace(/<br>/g, '\n')
                     })
                     setIsCreating(false)
                 } else setError(`Sorry, no game found matching ${gameName}.`)

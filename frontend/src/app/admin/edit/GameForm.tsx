@@ -25,7 +25,8 @@ export function GameForm({ game }: { game: Game }) {
         walkthrough: { minLength: 3, link: true },
         description: { required: true, minLength: 15, pattern: /[\s.\-!?@#$',^*_;():]+/ },
         credits: { required: true, minLength: 3, pattern: /[\s.\-!?@#$',^*_;:]+/ },
-        controls: { required: true, minLength: 3, pattern: /[\s.\-!?@#$',^/*;:]+/ }
+        controls: { required: true, minLength: 3, pattern: /[\s.\-!?@#$',^/*;:]+/ },
+        specialNote: { minLength: 9, pattern: /[\s.\-!?@#$"',^*_;():]+/ }
     }
     const { values, errors, setErrors, validateField, handleChange, handleSubmit,
         resetForm, setFieldValue } = useForm(game, validationSchema, async (values) => {
@@ -105,34 +106,36 @@ export function GameForm({ game }: { game: Game }) {
 
     return (<form className="grid layout-row w-100" onSubmit={handleSubmit}>
         <article className="form-inputs grid w-100">
-            <InputArea label="Game Title*" svg="title" type="text" name="title"
-                maxLength={30} value={values.title} onChange={handleChange} error={errors.title}
-                onBlur={() => validateField('title', values.title)}
-            />
-            <InputArea label="Game Subtitle*" svg="info" type="text" name="subtitle"
-                maxLength={40} value={values.subtitle} onChange={handleChange} error={errors.subtitle}
-                onBlur={() => validateField('subtitle', values.subtitle)}
-            />
-            <InputArea label="Outside Link*" svg="link" type="text" name="outsideLink"
-                maxLength={120} value={values.outsideLink || ''} onChange={handleChange} error={errors.outsideLink}
-                onBlur={() => validateField('outsideLink', values.outsideLink)}
-            />
-            <InputArea label="Files Link" svg="folder" type="text" name="gameLink"
-                maxLength={120} value={values.gameLink || ''} onChange={handleChange} error={errors.gameLink}
-                onBlur={() => validateField('gameLink', values.gameLink || '')}
-            />
-            <InputArea label="Devlog Link" svg="link" type="text" name="devlog"
-                maxLength={120} value={values.devlog || ''} onChange={handleChange} error={errors.devlog}
-                onBlur={() => validateField('devlog', values.devlog || '')}
-            />
-            <InputArea label="Walkthrough Link" svg="link" type="text" name="walkthrough"
-                maxLength={120} value={values.walkthrough || ''} onChange={handleChange} error={errors.walkthrough}
-                onBlur={() => validateField('walkthrough', values.walkthrough || '')}
-            />
-            <InputArea label="Description*" svg="description" type="textarea" name="description"
-                maxLength={900} value={values.description || ''} onChange={handleChange} error={errors.description}
-                onBlur={() => validateField('description', values.description)}
-            />
+            <section className="special-layout grid align-center w-100 h-fit">
+                <InputArea label="Game Title*" svg="title" type="text" name="title"
+                    maxLength={30} value={values.title} onChange={handleChange} error={errors.title}
+                    onBlur={() => validateField('title', values.title)}
+                />
+                <InputArea label="Game Subtitle*" svg="info" type="text" name="subtitle"
+                    maxLength={40} value={values.subtitle} onChange={handleChange} error={errors.subtitle}
+                    onBlur={() => validateField('subtitle', values.subtitle)}
+                />
+                <InputArea label="Outside Link*" svg="link" type="text" name="outsideLink"
+                    maxLength={120} value={values.outsideLink || ''} onChange={handleChange} error={errors.outsideLink}
+                    onBlur={() => validateField('outsideLink', values.outsideLink)}
+                />
+                <InputArea label="Files Link" svg="folder" type="text" name="gameLink"
+                    maxLength={120} value={values.gameLink || ''} onChange={handleChange} error={errors.gameLink}
+                    onBlur={() => validateField('gameLink', values.gameLink || '')}
+                />
+                <InputArea label="Devlog Link" svg="link" type="text" name="devlog"
+                    maxLength={120} value={values.devlog || ''} onChange={handleChange} error={errors.devlog}
+                    onBlur={() => validateField('devlog', values.devlog || '')}
+                />
+                <InputArea label="Walkthrough Link" svg="link" type="text" name="walkthrough"
+                    maxLength={120} value={values.walkthrough || ''} onChange={handleChange} error={errors.walkthrough}
+                    onBlur={() => validateField('walkthrough', values.walkthrough || '')}
+                />
+                <InputArea label="Description*" svg="description" type="textarea" name="description"
+                    maxLength={900} value={values.description || ''} onChange={handleChange} error={errors.description}
+                    onBlur={() => validateField('description', values.description)}
+                />
+            </section>
             <InputArea label="Credits*" svg="agreement" type="textarea" name="credits"
                 maxLength={120} value={values.credits || ''} onChange={handleChange} error={errors.credits}
                 onBlur={() => validateField('credits', values.credits)}
@@ -141,40 +144,57 @@ export function GameForm({ game }: { game: Game }) {
                 maxLength={120} value={values.controls || ''} onChange={handleChange} error={errors.controls}
                 onBlur={() => validateField('controls', values.controls)}
             />
+            <InputArea label="Note" svg="info" type="textarea" name="specialNote"
+                maxLength={600} value={values.specialNote || ''} onChange={handleChange} error={errors.specialNote}
+                onBlur={() => validateField('specialNote', values.specialNote)}
+            />
+            <section className="special-layout grid align-center w-100 h-fit">
+                <div className="input-area grid">
+                    <label className='grid align-center' htmlFor="genre">
+                        <SvgRender iconName='action' />
+                        <span>Genre:</span>
+                    </label>
+                    <select id="genre" name="genre" multiple value={values.genre} onChange={handleGenreChange}>
+                        <option value="action">Action</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="other">Other</option>
+                        <option value="platformer">Platformer</option>
+                        <option value="puzzle">Puzzle</option>
+                        <option value="roguelike">Roguelike</option>
+                    </select>
+                </div>
+                <div className="input-area grid">
+                    <label className='grid align-center' htmlFor="platform">
+                        <SvgRender iconName='monitor' />
+                        <span>Platform:</span>
+                    </label>
+                    <select id="platform" name="platform" value={values.platform} onChange={handleChange} required>
+                        <option value="android">Android</option>
+                        <option value="html5">HTML5</option>
+                        <option value="steam">Steam</option>
+                    </select>
+                </div>
+                <div className="input-area grid">
+                    <label className='grid align-center' htmlFor="isGameJam">
+                        <SvgRender iconName='itch' />
+                        <span>Is Game Jam:</span>
+                    </label>
+                    <select id="isGameJam" name="isGameJam" value={values.isGameJam} onChange={handleChange} required>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+            </section>
             <div className="input-area grid">
-                <label className='grid align-center' htmlFor="genre">
-                    <SvgRender iconName='action' />
-                    <span>Genre:</span>
+                <label className='grid align-center' htmlFor="icon">
+                    <SvgRender iconName='images' />
+                    <span>Icon:</span>
                 </label>
-                <select id="genre" name="genre" multiple value={values.genre} onChange={handleGenreChange}>
-                    <option value="action">Action</option>
-                    <option value="adventure">Adventure</option>
-                    <option value="other">Other</option>
-                    <option value="platformer">Platformer</option>
-                    <option value="puzzle">Puzzle</option>
-                    <option value="roguelike">Roguelike</option>
-                </select>
-            </div>
-            <div className="input-area grid">
-                <label className='grid align-center' htmlFor="platform">
-                    <SvgRender iconName='monitor' />
-                    <span>Platform:</span>
-                </label>
-                <select id="platform" name="platform" value={values.platform} onChange={handleChange} required>
-                    <option value="android">Android</option>
-                    <option value="html5">HTML5</option>
-                    <option value="steam">Steam</option>
-                </select>
-            </div>
-            <div className="input-area grid">
-                <label className='grid align-center' htmlFor="isGameJam">
-                    <SvgRender iconName='itch' />
-                    <span>Is Game Jam:</span>
-                </label>
-                <select id="isGameJam" name="isGameJam" value={values.isGameJam} onChange={handleChange} required>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
+                <div className="upload-area grid">
+                    <ImageUploader index={-1} defaultImgUrl={game.icon || defaultIcon}
+                        folderName="/games/icons" onUploaded={handleIconUpload}
+                    />
+                </div>
             </div>
             <div className="input-area grid">
                 <label className='grid align-center' htmlFor="screenshots">
@@ -202,17 +222,6 @@ export function GameForm({ game }: { game: Game }) {
                             <span>Add</span>
                         </button>
                     </div>
-                </div>
-            </div>
-            <div className="input-area grid">
-                <label className='grid align-center' htmlFor="icon">
-                    <SvgRender iconName='images' />
-                    <span>Icon:</span>
-                </label>
-                <div className="upload-area grid">
-                    <ImageUploader index={-1} defaultImgUrl={game.icon || defaultIcon}
-                        folderName="/games/icons" onUploaded={handleIconUpload}
-                    />
                 </div>
             </div>
             <section className='form-actions flex row align-center justify-between'>

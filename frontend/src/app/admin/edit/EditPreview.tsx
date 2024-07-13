@@ -7,10 +7,12 @@ import { ReworkedText } from "../../../components/general/ReworkedText"
 
 export function EditPreview({ game }: { game: Game }) {
     const gridTemplateColumns = `repeat(${game.screenshots.length - 1}, 1fr)`
+    const isSpecialGame = game.title === "Stoic^2" || game.title === "Absurd^2"
 
     const gameDescription = utilityService.formatText(game.description || '')
     const gameControls = utilityService.formatText(game.controls || '')
     const gameCredits = utilityService.formatText(game.credits || '')
+    const gameSpecialNote = utilityService.formatText(game.specialNote || '')
 
     return (<article className="edit-preview">
         <h2 className="text-center">Preview: {game.title}</h2>
@@ -56,6 +58,13 @@ export function EditPreview({ game }: { game: Game }) {
             <ReworkedText string={gameDescription!} />
             <ReworkedText string={`Controls: ${gameControls!}`} />
             <ReworkedText string={gameCredits!} />
+            {game.specialNote && (
+                isSpecialGame ? (
+                    <ReworkedText string={gameSpecialNote!} custom="special" />
+                ) : (
+                    <ReworkedText string={gameSpecialNote!} />
+                )
+            )}
             <div className="video-wrapper grid w-100">
                 {game.walkthrough && (
                     <div className="video flex column w-100">

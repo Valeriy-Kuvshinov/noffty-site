@@ -30,10 +30,7 @@ async function signup(password, email, imgUrls) {
         throw new Error('Missing required details');
     const hash = await hashPassword(password);
     return userService.save({
-        email,
-        password: hash,
-        imgUrls,
-        isAdmin: false,
+        email, password: hash, imgUrls, isAdmin: false,
     });
 }
 async function checkPassword(password) {

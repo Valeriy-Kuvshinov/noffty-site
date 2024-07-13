@@ -126,6 +126,7 @@ function GameDetailsFrame({ game }: { game: Game }) {
 
 function GameDetailsBody({ game }: { game: Game }) {
     const gridTemplateColumns = `repeat(${game.screenshots.length - 1}, 1fr)`
+    const isSpecialGame = game.title === "Stoic^2" || game.title === "Absurd^2"
 
     return (<article className="game-body flex column w-100 layout-row">
         <h3 className="text-center text-capitalize">{game.subtitle}</h3>
@@ -145,6 +146,13 @@ function GameDetailsBody({ game }: { game: Game }) {
         <ReworkedText string={game.description!} />
         <ReworkedText string={`Controls: ${game.controls!}`} />
         <ReworkedText string={game.credits!} />
+        {game.specialNote && (
+            isSpecialGame ? (
+                <ReworkedText string={game.specialNote!} custom="special" />
+            ) : (
+                <ReworkedText string={game.specialNote!} />
+            )
+        )}
         <div className="video-wrapper grid w-100">
             {game.walkthrough && (
                 <div className="video flex column w-100">

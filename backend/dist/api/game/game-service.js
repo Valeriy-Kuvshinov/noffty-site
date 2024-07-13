@@ -42,6 +42,7 @@ async function getByName(gameTitle) {
             game.description = utilityService.formatText(game.description || '');
             game.controls = utilityService.formatText(game.controls || '');
             game.credits = utilityService.formatText(game.credits || '');
+            game.specialNote = utilityService.formatText(game.specialNote || '');
         }
         else
             loggerService.error('No game found with name:', gameTitle);

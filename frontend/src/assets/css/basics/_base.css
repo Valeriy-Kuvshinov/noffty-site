@@ -50,6 +50,11 @@ span {
     font-weight: normal;
     padding: 0;
     line-height: 1.6;
+
+    &.special {
+        font-style: italic;
+        color: transparent;
+    }
 }
 
 a {

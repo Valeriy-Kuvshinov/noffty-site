@@ -38,10 +38,7 @@ async function signup(password: string, email: string, imgUrls: string[]): Promi
   const hash = await hashPassword(password)
 
   return userService.save({
-    email,
-    password: hash,
-    imgUrls,
-    isAdmin: false,
+    email, password: hash, imgUrls, isAdmin: false,
   })
 }
 

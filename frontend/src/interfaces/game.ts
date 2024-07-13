@@ -10,6 +10,7 @@ export interface Game {
     description?: string
     credits?: string
     controls?: string
+    specialNote?: string
     genre?: string[]
     devlog?: string
     walkthrough?: string

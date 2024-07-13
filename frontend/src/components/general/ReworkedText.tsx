@@ -1,8 +1,12 @@
 'use client'
 import React from 'react'
 
-export function ReworkedText({ string }: { string: string }) {
+interface ReworkedTextProps {
+    string: string
+    custom?: string
+}
 
+export function ReworkedText({ string, custom }: ReworkedTextProps) {
     function convertLineBreaks(inputString: string): JSX.Element[] {
         return inputString.split('<br>').map((line, index, array) => (
             <React.Fragment key={index}>
@@ -12,5 +16,5 @@ export function ReworkedText({ string }: { string: string }) {
         ))
     }
 
-    return (<p>{convertLineBreaks(string)}</p>)
+    return (<p className={custom}>{convertLineBreaks(string)}</p>)
 }
