@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { GameQueryParams } from "../models/game"
+import { GameQueryParams } from "../interfaces/game"
 
 export function useGameFilterParams() {
     const router = useRouter()

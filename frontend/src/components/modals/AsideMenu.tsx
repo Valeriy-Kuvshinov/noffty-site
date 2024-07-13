@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { UserService } from "../../services/api/user.service"
+import { userService } from "../../services/api/user-service"
 import { useClickOutside } from "../../hooks/clickOutside"
 import { useModal } from "../../contexts/ModalContext"
 import { useSessionUser } from "../../contexts/SessionContext"
@@ -33,7 +33,7 @@ export function AsideMenu() {
 
     async function handleLogout() {
         try {
-            await UserService.logout()
+            await userService.logout()
             setSessionUser(null)
             closeAsideMenu()
             router.push('/')

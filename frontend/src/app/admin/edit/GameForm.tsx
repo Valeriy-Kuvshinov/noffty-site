@@ -1,13 +1,13 @@
 'use client'
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { Game } from "../../models/game"
-import { GameService } from "../../services/api/game.service"
-import { useForm } from "../../hooks/form"
-import { useDebounce } from "../../hooks/debounce"
-import { ImageUploader } from "../forms/ImageUploader"
-import { SvgRender } from "../general/SvgRender"
-import { InputArea } from "../forms/InputArea"
+import { Game } from "../../../interfaces/game"
+import { gameService } from "../../../services/api/game-service"
+import { useForm } from "../../../hooks/form"
+import { useDebounce } from "../../../hooks/debounce"
+import { ImageUploader } from "../../../components/forms/ImageUploader"
+import { SvgRender } from "../../../components/general/SvgRender"
+import { InputArea } from "../../../components/forms/InputArea"
 import { EditPreview } from "./EditPreview"
 
 const defaultIcon = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719002261/vohr6yravygkly4duxhv.avif'
@@ -30,7 +30,7 @@ export function GameForm({ game }: { game: Game }) {
     const { values, errors, setErrors, validateField, handleChange, handleSubmit,
         resetForm, setFieldValue } = useForm(game, validationSchema, async (values) => {
             try {
-                await GameService.save(values as Game)
+                await gameService.save(values as Game)
                 console.log('Game saved successfully')
 
                 resetForm()
@@ -71,7 +71,7 @@ export function GameForm({ game }: { game: Game }) {
     async function handleDelete() {
         if (game._id) {
             try {
-                await GameService.remove(game._id.toString())
+                await gameService.remove(game._id.toString())
                 console.log('Game deleted successfully')
                 router.push('/admin/games')
             } catch (error) {
@@ -86,7 +86,7 @@ export function GameForm({ game }: { game: Game }) {
                 setErrors(prevErrors => ({ ...prevErrors, name: null }))
                 return
             }
-            const { isAvailable } = await GameService.checkNameAvailable(name)
+            const { isAvailable } = await gameService.checkNameAvailable(name)
             setErrors(prevErrors => ({
                 ...prevErrors, name: isAvailable ? prevErrors.name : 'Name is taken'
             }))

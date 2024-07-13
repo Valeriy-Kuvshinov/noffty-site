@@ -1,11 +1,11 @@
 'use client'
 import ReCAPTCHA from "react-google-recaptcha"
 import { useRef, useState } from "react"
-import { UserLogin } from "../../models/user"
+import { UserLogin } from "../../interfaces/user"
 import { useModal } from "../../contexts/ModalContext"
 import { useApiKeys } from "../../contexts/ApiContext"
 import { useSessionUser } from "../../contexts/SessionContext"
-import { UserService } from "../../services/api/user.service"
+import { userService } from "../../services/api/user-service"
 import { useClickOutside } from "../../hooks/clickOutside"
 import { useForm } from "../../hooks/form"
 import { RecaptchaContainer } from "./RecaptchaContainer"
@@ -37,7 +37,7 @@ export function LoginForm() {
                     password: formData.password,
                     recaptchaToken: token
                 }
-                const user = await UserService.login(loginData)
+                const user = await userService.login(loginData)
                 setSessionUser(user)
                 closeModal('login')
             } catch (err) {

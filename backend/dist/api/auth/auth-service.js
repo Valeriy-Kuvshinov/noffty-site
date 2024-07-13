@@ -1,7 +1,7 @@
 import Cryptr from 'cryptr';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
-import { userService } from '../user/user.service.js';
+import { userService } from '../user/user-service.js';
 import { loggerService } from '../../services/logger.js';
 export const authService = {
     signup,

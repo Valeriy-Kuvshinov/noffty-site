@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { GameService } from "../../../services/api/game.service"
+import { gameService } from "../../../services/api/game-service"
 import { useGameFilterParams } from "../../../hooks/gameFilterParams"
 import { GameFilter } from "../../../components/game/GameFilter"
 import { GameList } from "../../../components/game/GameList"
@@ -20,7 +20,7 @@ export default function AdminIndex() {
     useEffect(() => {
         async function fetchGames() {
             try {
-                const fetchedGames = await GameService.query(defaultValues)
+                const fetchedGames = await gameService.query(defaultValues)
                 setGames(fetchedGames)
                 setLoading(false)
             } catch (err) {

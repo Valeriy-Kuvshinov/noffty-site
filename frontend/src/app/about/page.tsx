@@ -1,4 +1,4 @@
-import { Person } from "../../models/utility"
+import { Person } from "../../interfaces/utility"
 import { CrewInfo } from "../../components/general/CrewInfo"
 
 export default function About() {

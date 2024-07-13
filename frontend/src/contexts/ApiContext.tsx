@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react"
-import { ApiKeys } from "../models/utility"
+import { ApiKeys } from "../interfaces/utility"
 
 interface ApiProviderProps {
     children: React.ReactNode

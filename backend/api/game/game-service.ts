@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb"
-import { Game, GameQueryParams, MatchCriteria } from "../../models/game.js"
+import { Game, GameQueryParams, MatchCriteria } from "../../interfaces/game.js"
 import { dbService } from "../../services/database.js"
 import { loggerService } from "../../services/logger.js"
 import { utilityService } from "../../services/utility.js"

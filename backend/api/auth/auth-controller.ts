@@ -1,6 +1,6 @@
 import express, { Router, Request, Response } from 'express'
-import { LoginRequestBody, SignupRequestBody } from '../../models/user.js'
-import { authService } from './auth.service.js'
+import { LoginRequestBody, SignupRequestBody } from '../../interfaces/user.js'
+import { authService } from './auth-service.js'
 import { loggerService } from '../../services/logger.js'
 import { utilityService } from '../../services/utility.js'
 

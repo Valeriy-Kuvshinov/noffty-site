@@ -1,6 +1,6 @@
-import { LinkTypeTwo } from "../models/utility"
+import { LinkTypeTwo } from "../interfaces/utility"
 
-export const UtilityService = {
+export const utilityService = {
     getBrowserName: (): string => {
         const userAgent = navigator.userAgent.toLowerCase()
         switch (true) {
@@ -18,7 +18,7 @@ export const UtilityService = {
     },
 
     getAllowAttributes: (): string => {
-        const browser = UtilityService.getBrowserName()
+        const browser = utilityService.getBrowserName()
         switch (browser) {
             case "Chrome":
             case "Edge":
@@ -54,6 +54,10 @@ export const UtilityService = {
     getYouTubeEmbedUrl: (url: string): string => {
         const videoId = new URLSearchParams(new URL(url).search).get('v')
         return `https://www.youtube.com/embed/${videoId}`
+    },
+
+    formatText(string: string) {
+        return string.replace(/\n/g, '<br>')
     },
 
     areEqual: <T extends object>(obj1: T, obj2: T): boolean => {

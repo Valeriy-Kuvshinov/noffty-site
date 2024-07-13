@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from "react"
-import { ApiKeys } from "../models/utility"
-import { HttpService } from "../services/http.service"
+import { ApiKeys } from "../interfaces/utility"
+import { httpService } from "../services/http-service"
 import { ApiProvider } from "./ApiContext"
 import { DeviceTypeProvider } from "./DeviceTypeContext"
 import { ModalProvider } from "./ModalContext"
@@ -17,7 +17,7 @@ export function Providers({ children }: ProvidersProps) {
 
     async function getAPIKeys(): Promise<ApiKeys> {
         try {
-            return await HttpService.get('auth/api-keys')
+            return await httpService.get('auth/api-keys')
         } catch (error) {
             console.error('Failed to fetch API keys:', error)
             return {

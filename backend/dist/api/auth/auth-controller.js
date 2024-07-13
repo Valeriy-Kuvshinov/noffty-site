@@ -1,5 +1,5 @@
 import express from 'express';
-import { authService } from './auth.service.js';
+import { authService } from './auth-service.js';
 import { loggerService } from '../../services/logger.js';
 import { utilityService } from '../../services/utility.js';
 // auth routes

@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react"
 import Link from "next/link"
-import { Game } from "../../models/game"
+import { Game } from "../../interfaces/game"
 import { useHoverSwitch } from "../../hooks/hoverSwitch"
 import { SvgRender } from "../general/SvgRender"
 import { ImageContainer } from "../general/ImageContainer"

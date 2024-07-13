@@ -1,4 +1,4 @@
-import { LinkTypeTwo } from "../../models/utility"
+import { LinkTypeTwo } from "../../interfaces/utility"
 import { SvgRender } from "./../general/SvgRender"
 
 export function SpecialLink({ iconName, link, ariaLabel }: LinkTypeTwo) {

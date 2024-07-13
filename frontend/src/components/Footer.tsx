@@ -1,13 +1,13 @@
 'use client'
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { UtilityService } from "../services/utility.service"
+import { utilityService } from "../services/utility-service"
 import { SpecialLink } from "./general/SpecialLink"
 
 export function Footer() {
     const pathname = usePathname()
 
-    const socialLinks = UtilityService.getSocialLinks()
+    const socialLinks = utilityService.getSocialLinks()
 
     function isActive(path: string) {
         return pathname === path

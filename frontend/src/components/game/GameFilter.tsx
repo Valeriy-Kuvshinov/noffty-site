@@ -1,8 +1,8 @@
 'use client'
 import { ChangeEvent, useEffect, useState } from "react"
-import { GameQueryParams } from "../../models/game"
-import { GameService } from "../../services/api/game.service"
-import { UtilityService } from '../../services/utility.service'
+import { GameQueryParams } from "../../interfaces/game"
+import { gameService } from "../../services/api/game-service"
+import { utilityService } from '../../services/utility-service'
 import { useDebounce } from "../../hooks/debounce"
 import { CustomSelect } from '../forms/CustomSelect'
 import { SvgRender } from '../general/SvgRender'
@@ -13,15 +13,15 @@ interface GameFilterProps {
 }
 
 export function GameFilter({ defaultValues, updateSearchParams }: GameFilterProps) {
-    const genres = GameService.getGenres()
-    const platforms = GameService.getPlatforms()
-    const gameJams = GameService.getGameJams()
+    const genres = gameService.getGenres()
+    const platforms = gameService.getPlatforms()
+    const gameJams = gameService.getGameJams()
 
     const [filter, setFilter] = useState(defaultValues)
     const debouncedFilter = useDebounce(filter, 1000)
 
     useEffect(() => {
-        if (!UtilityService.areEqual(debouncedFilter, defaultValues)) {
+        if (!utilityService.areEqual(debouncedFilter, defaultValues)) {
             updateSearchParams(debouncedFilter)
         }
     }, [debouncedFilter, defaultValues])

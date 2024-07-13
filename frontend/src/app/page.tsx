@@ -1,5 +1,5 @@
-import { Game } from "../models/game"
-import { UtilityService } from "../services/utility.service"
+import { Game } from "../interfaces/game"
+import { utilityService } from "../services/utility-service"
 import { SpecialLink } from "../components/general/SpecialLink"
 import { ImageContainer } from "../components/general/ImageContainer"
 import { GameCarousel } from "../components/game/GameCarousel"
@@ -52,7 +52,7 @@ export default function Home() {
       "isGameJam": 'yes'
     }
   ]
-  const socialLinks = UtilityService.getSocialLinks()
+  const socialLinks = utilityService.getSocialLinks()
   const video = 'https://res.cloudinary.com/djzid7ags/video/upload/v1719778348/video/diggiwi6prn2pbrzhfnd.webm'
   const companyLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719919509/wkqirx5zx97olc5cofzn.avif'
 

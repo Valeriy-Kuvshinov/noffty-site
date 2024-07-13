@@ -1,8 +1,8 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
-import { User } from "../models/user"
-import { UserService } from "../services/api/user.service"
+import { User } from "../interfaces/user"
+import { userService } from "../services/api/user-service"
 
 interface SessionContextType {
     sessionUser: User
@@ -30,10 +30,10 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         async function initializeSession() {
             setIsLoading(true)
-            const storedUser = UserService.getLoggedinUser()
+            const storedUser = userService.getLoggedinUser()
             if (storedUser && storedUser._id) {
                 try {
-                    const fullUser = await UserService.getById(storedUser._id)
+                    const fullUser = await userService.getById(storedUser._id)
                     setSessionUser(fullUser)
                 } catch (error) {
                     console.error('Failed to fetch user details:', error)
@@ -54,7 +54,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     function setSessionUserWithStorage(user: User | null) {
         if (user) {
             setSessionUser(user)
-            UserService.setLoggedinUser(user)
+            userService.setLoggedinUser(user)
         } else setSessionUser(defaultUser)
     }
 

@@ -1,8 +1,8 @@
 import Cryptr from 'cryptr'
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
-import { User } from '../../models/user.js'
-import { userService } from '../user/user.service.js'
+import { User } from '../../interfaces/user.js'
+import { userService } from '../user/user-service.js'
 import { loggerService } from '../../services/logger.js'
 
 export const authService = {

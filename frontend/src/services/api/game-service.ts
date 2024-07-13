@@ -1,34 +1,34 @@
-import { Game, GameQueryParams } from '../../models/game'
-import { CustomOption } from '../../models/utility'
-import { HttpService } from '../http.service'
+import { Game, GameQueryParams } from '../../interfaces/game'
+import { CustomOption } from '../../interfaces/utility'
+import { httpService } from '../http-service'
 
 const baseUrl: string = 'game/'
 
-export const GameService = {
+export const gameService = {
     query: async (filterBy: GameQueryParams = {}): Promise<any> => {
         const queryParams = new URLSearchParams(filterBy as any).toString()
-        return HttpService.get(`${baseUrl}?${queryParams}`)
+        return httpService.get(`${baseUrl}?${queryParams}`)
     },
 
     getById: async (gameId: string): Promise<Game> => {
-        return HttpService.get(`${baseUrl}by-id/${gameId}`)
+        return httpService.get(`${baseUrl}by-id/${gameId}`)
     },
 
     getByName: async (gameTitle: string): Promise<Game> => {
-        return HttpService.get(`${baseUrl}by-name/${gameTitle}`)
+        return httpService.get(`${baseUrl}by-name/${gameTitle}`)
     },
 
     checkNameAvailable: async (gameTitle: string): Promise<{ isAvailable: boolean }> => {
-        return HttpService.get(`${baseUrl}check-name/${gameTitle}`)
+        return httpService.get(`${baseUrl}check-name/${gameTitle}`)
     },
 
     save: async (game: Game): Promise<Game> => {
-        if (game._id) return HttpService.put(`${baseUrl}update/${game._id}`, game)
-        else return HttpService.post(baseUrl + 'add/', game)
+        if (game._id) return httpService.put(`${baseUrl}update/${game._id}`, game)
+        else return httpService.post(baseUrl + 'add/', game)
     },
 
     remove: async (gameId: string): Promise<any> => {
-        return HttpService.remove(`${baseUrl}delete/${gameId}`)
+        return httpService.remove(`${baseUrl}delete/${gameId}`)
     },
 
     getGenres: (): CustomOption[] => [

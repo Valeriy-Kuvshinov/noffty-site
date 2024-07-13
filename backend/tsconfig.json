@@ -22,7 +22,7 @@
     "api/**/*.ts",
     "services/**/*.ts",
     "middleware/**/*.ts",
-    "models/**/*.ts"
+    "interfaces/**/*.ts"
   ],
   "exclude": [
     "node_modules",

@@ -1,4 +1,4 @@
-import { ContactUsReqBody, MailOptions } from '../../models/utility.js'
+import { ContactUsReqBody, MailOptions } from '../../interfaces/utility.js'
 import { loggerService } from '../../services/logger.js'
 import { utilityService } from '../../services/utility.js'
 

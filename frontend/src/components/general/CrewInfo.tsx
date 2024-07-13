@@ -1,6 +1,6 @@
 'use client'
 import { useState } from "react"
-import { Person } from "../../models/utility"
+import { Person } from "../../interfaces/utility"
 import { SvgRender } from "./SvgRender"
 
 interface CrewInfoProps {

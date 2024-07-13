@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react"
-import { ValidationOptions } from "../models/utility"
+import { ValidationOptions } from "../interfaces/utility"
 
 interface FormValues {
     [key: string]: any

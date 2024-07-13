@@ -2,7 +2,7 @@ const baseUrl = process.env.NODE_ENV !== 'production'
     ? 'http://localhost:3030/api/'
     : 'https://noffty.com/api/'
 
-export const HttpService = {
+export const httpService = {
     get(endpoint: string, params?: Record<string, string | number | boolean>) {
         const queryString = params ? `?${createQueryString(params)}` : ''
         return request('GET', `${endpoint}${queryString}`)

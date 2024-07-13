@@ -1,15 +1,15 @@
 'use client'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useRef } from 'react'
-import { ContactUsReqBody } from '@/models/utility'
-import { HttpService } from '../../services/http.service'
+import { ContactUsReqBody } from '@/interfaces/utility'
+import { httpService } from '../../services/http-service'
 import { useForm } from '../../hooks/form'
 import { useHoverSwitch } from '../../hooks/hoverSwitch'
 import { useApiKeys } from '../../contexts/ApiContext'
-import { RecaptchaContainer } from './RecaptchaContainer'
-import { ImageContainer } from '../general/ImageContainer'
-import { InputArea } from './InputArea'
-import { SvgRender } from '../general/SvgRender'
+import { RecaptchaContainer } from '../../components/forms/RecaptchaContainer'
+import { ImageContainer } from '../../components/general/ImageContainer'
+import { InputArea } from '../../components/forms/InputArea'
+import { SvgRender } from '../../components/general/SvgRender'
 
 export function ContactForm({ initialValues }: { initialValues: ContactUsReqBody }) {
     const defaultImg = 'https://res.cloudinary.com/djzid7ags/image/upload/v1718830337/g373afizfrrnplfms5rf.avif'
@@ -26,7 +26,7 @@ export function ContactForm({ initialValues }: { initialValues: ContactUsReqBody
     }
 
     async function sendContactUsMail(formData: ContactUsReqBody): Promise<any> {
-        return HttpService.post('mail/contact', formData)
+        return httpService.post('mail/contact', formData)
     }
 
     const { values, errors, validateField, handleChange, handleSubmit, resetForm } =

@@ -2,8 +2,8 @@
 import Link from "next/link"
 import { useRef } from "react"
 import { useRouter } from "next/navigation"
-import { User } from "../../models/user"
-import { UserService } from "../../services/api/user.service"
+import { User } from "../../interfaces/user"
+import { userService } from "../../services/api/user-service"
 import { useClickOutside } from "../../hooks/clickOutside"
 import { useModal } from "../../contexts/ModalContext"
 import { useSessionUser } from "../../contexts/SessionContext"
@@ -27,7 +27,7 @@ export function HeaderDropdown({ sessionUser }: { sessionUser: User }) {
 
     async function handleLogout() {
         try {
-            await UserService.logout()
+            await userService.logout()
             setSessionUser(null)
             closeDropdown()
             router.push('/')

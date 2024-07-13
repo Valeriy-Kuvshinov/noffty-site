@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Game } from '../../models/game'
+import { Game } from '../../interfaces/game'
 import { ImageContainer } from '../general/ImageContainer'
 import { SvgRender } from '../general/SvgRender'
 
@@ -15,7 +15,7 @@ export function GamePreview({ game, isAdminPage }: GamePreviewProps) {
 
     function handleEditClick(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
-        router.push(`/admin/edit/game?name=${encodeURIComponent(game.title)}`)
+        router.push(`/admin/edit?name=${encodeURIComponent(game.title)}`)
     }
 
     return (<Link key={game.title} aria-label='noffty-game'

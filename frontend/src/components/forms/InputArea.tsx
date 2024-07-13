@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react"
-import { ValidationOptions } from "../../models/utility"
+import { ValidationOptions } from "../../interfaces/utility"
 import { SvgRender } from "../general/SvgRender"
 
 interface InputAreaProps {

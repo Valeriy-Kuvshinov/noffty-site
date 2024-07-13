@@ -1,5 +1,5 @@
-import { ContactUsReqBody } from "../../models/utility"
-import { ContactForm } from "../../components/forms/ContactForm"
+import { ContactUsReqBody } from "../../interfaces/utility"
+import { ContactForm } from "./ContactForm"
 
 export default function Contact() {
     const initialValues: ContactUsReqBody = {

@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { dbService } from '../../services/database.js';
-import { authService } from '../../api/auth/auth.service.js';
+import { authService } from '../auth/auth-service.js';
 import { loggerService } from '../../services/logger.js';
 const USERS_COLLECTION = 'user';
 export const userService = {

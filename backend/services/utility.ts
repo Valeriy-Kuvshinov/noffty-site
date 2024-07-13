@@ -3,8 +3,8 @@ import fetch from 'node-fetch'
 import dotenv from 'dotenv'
 import { ObjectId } from 'mongodb'
 import nodemailer, { Transporter } from 'nodemailer'
+import { MailOptions } from '../interfaces/utility.js'
 import { loggerService } from './logger.js'
-import { MailOptions } from '../models/utility.js'
 
 interface RecaptchaResponse {
     success: boolean

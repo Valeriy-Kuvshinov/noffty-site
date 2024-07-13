@@ -1,5 +1,5 @@
 'use client'
-import { CustomOption } from "../../models/utility"
+import { CustomOption } from "../../interfaces/utility"
 import { useRef, useState } from "react"
 import { useClickOutside } from "../../hooks/clickOutside"
 import { SvgRender } from "../general/SvgRender"

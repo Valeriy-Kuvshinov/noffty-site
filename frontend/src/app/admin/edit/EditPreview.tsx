@@ -1,11 +1,16 @@
 'use client'
-import { UtilityService } from "../../services/utility.service"
-import { Game } from "../../models/game"
-import { ImageContainer } from "../general/ImageContainer"
-import { SvgRender } from "../general/SvgRender"
+import { utilityService } from "../../../services/utility-service"
+import { Game } from "../../../interfaces/game"
+import { ImageContainer } from "../../../components/general/ImageContainer"
+import { SvgRender } from "../../../components/general/SvgRender"
+import { ReworkedText } from "../../../components/general/ReworkedText"
 
 export function EditPreview({ game }: { game: Game }) {
     const gridTemplateColumns = `repeat(${game.screenshots.length - 1}, 1fr)`
+
+    const gameDescription = utilityService.formatText(game.description || '')
+    const gameControls = utilityService.formatText(game.controls || '')
+    const gameCredits = utilityService.formatText(game.credits || '')
 
     return (<article className="edit-preview">
         <h2 className="text-center">Preview: {game.title}</h2>
@@ -19,8 +24,18 @@ export function EditPreview({ game }: { game: Game }) {
                 ) : (
                     <p>Game not published or inaccessible</p>
                 )
-            ) : (
-                <p>Game is for {game.platform}</p>
+            ) : (<>
+                <p>
+                    Whoa, looks like the game is not intended for the browser, but for
+                    <span className="text-capitalize"> {game.platform}</span> instead.
+                </p>
+                <a href={game.outsideLink} className="flex row" target="_blank"
+                    rel="noopener noreferrer" aria-label="Navigate to game's actual platform?">
+                    <SvgRender iconName={game.platform} />
+                    <span>Take Me to The Game!</span>
+                    <SvgRender iconName={game.platform} />
+                </a>
+            </>
             )}
         </div>
         <div className="game-body flex column w-100 layout-row">
@@ -38,9 +53,9 @@ export function EditPreview({ game }: { game: Game }) {
                     />
                 ))}
             </div>
-            <p>{game.description || ''}</p>
-            <p>{`Controls: ${game.controls || ''}`}</p>
-            <p>{game.credits || ''}</p>
+            <ReworkedText string={gameDescription!} />
+            <ReworkedText string={`Controls: ${gameControls!}`} />
+            <ReworkedText string={gameCredits!} />
             <div className="video-wrapper grid w-100">
                 {game.walkthrough && (
                     <div className="video flex column w-100">
@@ -62,17 +77,17 @@ export function EditPreview({ game }: { game: Game }) {
             <div className="game-info flex column w-100">
                 <p className="flex">
                     <span className="text-right">Published</span>
-                    {UtilityService.formatDate(game.createdAt!)} GMT / UTC
+                    {utilityService.formatDate(game.createdAt!)} GMT / UTC
                 </p>
                 <p className="flex">
                     <span className="text-right">Platform</span>
                     {game.platform.includes('html5') ?
-                        UtilityService.upperCaseString(game.platform) :
-                        UtilityService.capitalizeString(game.platform)}
+                        utilityService.upperCaseString(game.platform) :
+                        utilityService.capitalizeString(game.platform)}
                 </p>
                 <p className="flex">
                     <span className="text-right">Genre</span>
-                    {game.genre?.map(genre => UtilityService.capitalizeString(genre)).join(', ')}
+                    {game.genre?.map(genre => utilityService.capitalizeString(genre)).join(', ')}
                 </p>
                 {game.outsideLink?.includes('itch.io') && (
                     <a href={game.outsideLink} target="_blank" aria-label="navigation to itch.io" title="Go to itch.io?"

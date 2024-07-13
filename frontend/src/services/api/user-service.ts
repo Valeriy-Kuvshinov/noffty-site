@@ -1,47 +1,47 @@
-import { User, UserLogin, UserSignup } from "../../models/user"
-import { HttpService } from "../http.service"
+import { User, UserLogin, UserSignup } from "../../interfaces/user"
+import { httpService } from "../http-service"
 
 const SESSION_KEY_LOGGEDIN_USER: string = 'loggedinUser'
 const baseUrl: string = 'user/'
 
-export const UserService = {
+export const userService = {
     query: async (filterBy = {}): Promise<any> => {
         const queryParams = new URLSearchParams(filterBy as any).toString()
         console.log(`Expected request to backend: ${baseUrl}?${queryParams}`)
-        return HttpService.get(`${baseUrl}?${queryParams}`)
+        return httpService.get(`${baseUrl}?${queryParams}`)
     },
 
     getById: async (userId: string): Promise<User> => {
-        return HttpService.get(`${baseUrl}by-id/${userId}`)
+        return httpService.get(`${baseUrl}by-id/${userId}`)
     },
 
     getByEmail: async (email: string): Promise<User> => {
-        return HttpService.get(`${baseUrl}by-email/${email}`)
+        return httpService.get(`${baseUrl}by-email/${email}`)
     },
 
     remove: async (userId: string): Promise<any> => {
-        return HttpService.remove(`${baseUrl}delete/${userId}`)
+        return httpService.remove(`${baseUrl}delete/${userId}`)
     },
 
     save: async (user: User): Promise<User> => {
-        if (user._id) return HttpService.put(`${baseUrl}update/${user._id}`, user)
-        else return HttpService.post(baseUrl + 'add/', user)
+        if (user._id) return httpService.put(`${baseUrl}update/${user._id}`, user)
+        else return httpService.post(baseUrl + 'add/', user)
     },
 
     login: async (userCred: UserLogin): Promise<User> => {
-        const user = await HttpService.post('auth/login', userCred)
-        UserService.setLoggedinUser(user)
+        const user = await httpService.post('auth/login', userCred)
+        userService.setLoggedinUser(user)
         return user
     },
 
     signup: async (signupData: UserSignup): Promise<User> => {
-        const newUser = await HttpService.post('auth/signup', signupData)
-        UserService.setLoggedinUser(newUser)
+        const newUser = await httpService.post('auth/signup', signupData)
+        userService.setLoggedinUser(newUser)
         return newUser
     },
 
     logout: async (): Promise<void> => {
-        await HttpService.post('auth/logout', null)
+        await httpService.post('auth/logout', null)
         sessionStorage.removeItem(SESSION_KEY_LOGGEDIN_USER)
     },
 
