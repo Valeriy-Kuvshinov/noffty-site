@@ -80,7 +80,7 @@ export default function Home() {
 
         <div className="content-info flex column">
           <h2 className="text-center">From Platformer to Roguelike,
-            we work hard to deliver to you the best Indie Web and Android games possible
+            we work hard to deliver to you the best Web & Android Indie games possible.
           </h2>
           <a href="/games" className="flex row align-center w-fit" title="Go to games page?"
             aria-label="Go to games page">
