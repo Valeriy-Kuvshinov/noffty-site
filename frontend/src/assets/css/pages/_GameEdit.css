@@ -214,7 +214,7 @@
                     padding-block-end: 1em;
                     max-width: 100%;
                     overflow-x: auto;
-                    scrollbar-width: auto;
+                    scrollbar-width: thin;
                     margin: 0 auto;
 
                     .image-container img {
