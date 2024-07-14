@@ -10,12 +10,12 @@ interface ImageContainerProps {
     className?: string
     width?: number
     height?: number
+    onClick?: () => void
 }
 
-export function ImageContainer({ src, alt, style, className, width, height }: ImageContainerProps) {
+export function ImageContainer({ src, alt, style, className, width, height, onClick }: ImageContainerProps) {
     const [dimensions, setDimensions] = useState({
-        width: width || 100,
-        height: height || 100
+        width: width || 100, height: height || 100
     })
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -31,7 +31,7 @@ export function ImageContainer({ src, alt, style, className, width, height }: Im
 
     if (!src) return null
 
-    return (<div className={`image-container w-100 ${className}`} style={style}>
+    return (<div className={`image-container flex w-100 ${className}`} style={style} onClick={onClick}>
         <Image loader={cloudinaryLoader} src={src} alt={alt}
             width={dimensions.width} height={dimensions.height}
             className={`w-h-100 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}

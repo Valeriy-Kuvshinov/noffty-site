@@ -1,0 +1,26 @@
+.modal-wrapper .image-modal {
+    position: relative;
+    max-width: 95%;
+    max-height: 95%;
+    background: var(--scdclr3);
+    border: 2px solid var(--scdclr5);
+    border-radius: 0.5em;
+    margin: 3em auto;
+
+    .image-container img {
+        border-radius: 0.5em;
+    }
+
+    button {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        z-index: 1;
+        background: var(--scdclr3);
+        border-radius: 0.5em;
+
+        .svg-cmp {
+            width: 32px;
+        }
+    }
+}

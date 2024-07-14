@@ -169,13 +169,15 @@ export default function About() {
     return (<main className="about-page full w-h-100">
         <section className="page-contents grid w-h-100 layout-row">
             <article className="intro-part flex column w-100">
-                <h3 className="text-center">About Noffty Productions</h3>
-
+                <h3 className="text-center">Name of The Year Productions</h3>
                 <p className="text-center">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error
-                    pariatur at odit aperiam id, velit repellendus minima, officia
-                    repudiandae dolor, deserunt rem labore minus nesciunt aliquid magnam
-                    beatae quia expedita.
+                    {`A "company" made of sweat and tears, originated from the last table of boring history lessons. 
+                    Is here take over your mind, as well as the whole world!`}
+                </p>
+                <p className="text-center">
+                    I would have released all of these games just under T1mure.
+                    But I colaborate so often I deicded it wouldnt be fair to imply that the game are fully made by me.
+                    So here we are, since 2018, still making games instead of doing homework :)
                 </p>
             </article>
             <CrewInfo people={people} />

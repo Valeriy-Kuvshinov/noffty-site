@@ -1,11 +1,13 @@
 'use client'
 import { utilityService } from "../../../services/utility-service"
 import { Game } from "../../../interfaces/game"
+import { useModal } from "../../../contexts/ModalContext"
 import { ImageContainer } from "../../../components/general/ImageContainer"
 import { SvgRender } from "../../../components/general/SvgRender"
 import { ReworkedText } from "../../../components/general/ReworkedText"
 
 export function EditPreview({ game }: { game: Game }) {
+    const { openModal } = useModal()
     const gridTemplateColumns = `repeat(${game.screenshots.length - 1}, 1fr)`
     const isSpecialGame = game.title === "Stoic^2" || game.title === "Absurd^2"
 
@@ -13,6 +15,10 @@ export function EditPreview({ game }: { game: Game }) {
     const gameControls = utilityService.formatText(game.controls || '')
     const gameCredits = utilityService.formatText(game.credits || '')
     const gameSpecialNote = utilityService.formatText(game.specialNote || '')
+
+    function handleImageClick(imageUrl: string) {
+        openModal('image-modal', imageUrl)
+    }
 
     return (<article className="edit-preview">
         <h2 className="text-center">Preview: {game.title}</h2>
@@ -52,6 +58,7 @@ export function EditPreview({ game }: { game: Game }) {
                             maxHeight: game.screenshots.length < 5 ? '215px' : 'auto',
                             aspectRatio: game.platform !== 'android' ? '16 / 9' : '9 / 16'
                         }}
+                        onClick={() => handleImageClick(screenshot)}
                     />
                 ))}
             </div>

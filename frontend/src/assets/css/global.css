@@ -30,3 +30,4 @@
 /* modal components */
 @import './components/modals/_AsideMenu.css';
 @import './components/modals/_LoginForm.css';
+@import './components/modals/_ImageModal.css';

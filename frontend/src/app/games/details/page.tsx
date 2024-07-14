@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import { Game } from "../../../interfaces/game"
 import { utilityService } from '../../../services/utility-service'
 import { gameService } from "../../../services/api/game-service"
+import { useModal } from '../../../contexts/ModalContext'
 import { ErrorContainer } from "../../../components/general/ErrorContainer"
 import { Loader } from "../../../components/general/Loader"
 import { SvgRender } from '../../../components/general/SvgRender'
@@ -125,8 +126,13 @@ function GameDetailsFrame({ game }: { game: Game }) {
 }
 
 function GameDetailsBody({ game }: { game: Game }) {
+    const { openModal } = useModal()
     const gridTemplateColumns = `repeat(${game.screenshots.length - 1}, 1fr)`
     const isSpecialGame = game.title === "Stoic^2" || game.title === "Absurd^2"
+
+    function handleImageClick(imageUrl: string) {
+        openModal('image-modal', imageUrl)
+    }
 
     return (<article className="game-body flex column w-100 layout-row">
         <h3 className="text-center text-capitalize">{game.subtitle}</h3>
@@ -140,6 +146,7 @@ function GameDetailsBody({ game }: { game: Game }) {
                         maxHeight: game.screenshots.length < 5 ? '215px' : 'auto',
                         aspectRatio: game.platform !== 'android' ? '16 / 9' : '9 / 16'
                     }}
+                    onClick={() => handleImageClick(screenshot)}
                 />
             ))}
         </div>
