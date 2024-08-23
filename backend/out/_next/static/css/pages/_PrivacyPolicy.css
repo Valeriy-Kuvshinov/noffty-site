@@ -1,0 +1,36 @@
+.privacy-policy-page .page-contents {
+    gap: 1.5em;
+
+    h1 {
+        gap: 0.25em;
+        font-size: 30px;
+        user-select: none;
+
+        .svg-cmp {
+            width: 32px;
+            fill: var(--prmclr2);
+        }
+    }
+
+    .policy-section {
+        max-width: 1200px;
+
+        h2 {
+            font-size: 21px;
+            border-bottom: 2px dashed var(--prmclr2);
+        }
+
+        ul {
+            margin: 0.5em 0;
+            padding: 0 0 0 1em;
+
+            li {
+                list-style: square;
+            }
+        }
+
+        a {
+            color: var(--mnrclr6);
+        }
+    }
+}

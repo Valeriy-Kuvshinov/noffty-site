@@ -15,23 +15,27 @@ export function Footer() {
 
     return (<footer className="full">
         <section className="footer-contents w-h-100 grid layout-row">
-            <div className="links flex column">
-                <h3>Navigation</h3>
-                <Link href="/games" className={`${isActive('/games') ? 'active' : ''}`}
+            <div className="links grid">
+                <h2>Navigation</h2>
+                <Link href="/games" className={`${isActive('/games/') ? 'active' : ''} w-fit`}
                     title="Go to games index?" aria-label="Navigate to games page">
                     <span>Games</span>
                 </Link>
-                <Link href="/about" className={`${isActive('/about') ? 'active' : ''}`}
+                <Link href="/about" className={`${isActive('/about/') ? 'active' : ''} w-fit`}
                     title="Go to about page?" aria-label="Navigate to about page">
                     <span>About</span>
                 </Link>
-                <Link href="/contact" className={`${isActive('/contact') ? 'active' : ''}`}
+                <Link href="/contact" className={`${isActive('/contact/') ? 'active' : ''} w-fit`}
                     title="Go to contact page?" aria-label="Navigate to contact page">
                     <span>Contact</span>
                 </Link>
+                <Link href="/privacy" className={`${isActive('/privacy/') ? 'active' : ''} w-fit`}
+                    title="Go to privacy policy page?" aria-label="Navigate to privacy policy page">
+                    <span>Privacy</span>
+                </Link>
             </div>
             <div className="outside-links flex column">
-                <h3>Follow Us</h3>
+                <h2>Follow Us</h2>
                 <div className="noffty-links flex row">
                     {socialLinks.map(link => (
                         <SpecialLink key={link.iconName} iconName={link.iconName}

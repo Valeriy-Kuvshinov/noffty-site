@@ -1,6 +1,6 @@
 'use client'
-import Image from 'next/image'
-import cloudinaryLoader from "@/scripts/cloudinaryLoader"
+import Image, { ImageLoaderProps } from 'next/image'
+// import cloudinaryLoader from "../../scripts/cloudinaryLoader"
 import { useState, useEffect } from "react"
 
 interface ImageContainerProps {
@@ -11,6 +11,12 @@ interface ImageContainerProps {
     width?: number
     height?: number
     onClick?: () => void
+}
+
+function cloudinaryLoader({ src, width, quality }: ImageLoaderProps): string {
+    const params = ['f_auto', 'c_limit', `w_${width}`, `q_${quality || 'auto'}`]
+    const [baseUrl, imagePath] = src.split('/upload/')
+    return `${baseUrl}/upload/${params.join(',')}/${imagePath}`
 }
 
 export function ImageContainer({ src, alt, style, className, width, height, onClick }: ImageContainerProps) {

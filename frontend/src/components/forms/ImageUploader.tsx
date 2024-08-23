@@ -131,7 +131,7 @@ export function ImageUploader({ index, defaultImgUrl, folderName, onUploaded }: 
         onDragLeave={handleDragLeave} onDrop={handleDrop}>
         <div className="file-upload-container flex column">
             <label htmlFor={inputId} className="flex column fast-trans" id="upload-label">
-                <span id="upload-description" className="family-bold text-center fast-trans">
+                <span id="upload-description" className="family-bold text-center fast-trans w-100">
                     {getUploadLabel()}
                 </span>
                 {imgUrl && <ImageContainer src={imgUrl} alt="preview image" />}

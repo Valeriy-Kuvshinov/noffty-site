@@ -52,7 +52,6 @@
 
                             span {
                                 padding: 0.25em;
-                                width: 100%;
                                 color: var(--prmclr1);
                                 background: var(--prmclr2);
                                 border-radius: 0.5em 0.5em 0 0;

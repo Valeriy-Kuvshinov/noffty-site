@@ -35,7 +35,7 @@ header {
 
         input {
             padding: 0.25em 0.5em;
-            border: 2px solid transparent;
+            border: 2px solid var(--mnrclr7);
             border-radius: 0.5em;
             font-size: 0.56em;
 
@@ -64,6 +64,7 @@ header {
 
     .header-contents .desktop-view {
         position: relative;
+        max-width: 1200px;
 
         .user-form-zone {
             gap: 0.5em;
@@ -72,8 +73,9 @@ header {
                 cursor: pointer;
 
                 .image-container {
-                    height: 36px;
-                    min-width: 36px
+                    min-width: 36px;
+                    max-width: 36px;
+                    aspect-ratio: 1 / 1;
                 }
             }
         }

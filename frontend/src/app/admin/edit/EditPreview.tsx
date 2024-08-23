@@ -20,7 +20,7 @@ export function EditPreview({ game }: { game: Game }) {
         openModal('image-modal', imageUrl)
     }
 
-    return (<article className="edit-preview">
+    return (<article className="edit-preview flex column w-100">
         <h2 className="text-center">Preview: {game.title}</h2>
         <div className="game-frame flex column w-100 text-center">
             <h3>You Are Now Playing {game.title}</h3>

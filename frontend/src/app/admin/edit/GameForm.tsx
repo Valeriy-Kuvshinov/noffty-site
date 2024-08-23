@@ -105,6 +105,7 @@ export function GameForm({ game }: { game: Game }) {
     const hasErrors = Object.values(errors).some(error => error)
 
     return (<form className="grid layout-row w-100" onSubmit={handleSubmit}>
+        <EditPreview game={values as Game} />
         <article className="form-inputs grid w-100">
             <section className="special-layout grid align-center w-100 h-fit">
                 <InputArea label="Game Title*" svg="title" type="text" name="title"
@@ -236,6 +237,5 @@ export function GameForm({ game }: { game: Game }) {
                 )}
             </section>
         </article>
-        <EditPreview game={values as Game} />
     </form>)
 }

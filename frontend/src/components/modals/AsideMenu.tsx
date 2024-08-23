@@ -62,29 +62,29 @@ export function AsideMenu() {
                     <SvgRender iconName="home" />
                     <span>Home</span>
                 </Link>
-                <Link href="/games" className={`flex row align-center ${isActive('/games') ? 'active' : ''}`}
+                <Link href="/games" className={`flex row align-center ${isActive('/games/') ? 'active' : ''}`}
                     onClick={closeAsideMenu} title="Go to games page?" aria-label="Navigate to games page">
                     <SvgRender iconName="controller" />
                     <span>Games</span>
                 </Link>
-                <Link href="/about" className={`flex row align-center ${isActive('/about') ? 'active' : ''}`}
+                <Link href="/about" className={`flex row align-center ${isActive('/about/') ? 'active' : ''}`}
                     onClick={closeAsideMenu} title="Go to about page?" aria-label="Navigate to about page">
                     <SvgRender iconName="info" />
                     <span>About</span>
                 </Link>
-                <Link href="/contact" className={`flex row align-center ${isActive('/contact') ? 'active' : ''}`}
+                <Link href="/contact" className={`flex row align-center ${isActive('/contact/') ? 'active' : ''}`}
                     onClick={closeAsideMenu} title="Go to contact page?" aria-label="Navigate to contact page">
                     <SvgRender iconName="mail" />
                     <span>Contact</span>
                 </Link>
                 {sessionUser._id ? (<>
                     {sessionUser.isAdmin && (<>
-                        <Link href="/admin/games" className={`flex row align-center ${isActive('/admin/games') ? 'active' : ''}`}
+                        <Link href="/admin/games" className={`flex row align-center ${isActive('/admin/games/') ? 'active' : ''}`}
                             onClick={closeAsideMenu} title="Go to games admin page?" aria-label="Navigate to games management">
                             <SvgRender iconName="edit" />
                             <span>Manage Games</span>
                         </Link>
-                        <Link href="/admin/edit" className={`flex row align-center ${isActive('/admin/edit') ? 'active' : ''}`}
+                        <Link href="/admin/edit" className={`flex row align-center ${isActive('/admin/edit/') ? 'active' : ''}`}
                             onClick={closeAsideMenu} title="Create new game?" aria-label="Navigate to game creation page">
                             <SvgRender iconName="plus" />
                             <span>Create Game</span>

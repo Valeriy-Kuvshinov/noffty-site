@@ -19,7 +19,7 @@
 
         input {
             padding: 0.25em 0.5em;
-            border: 2px solid transparent;
+            border: 2px solid var(--mnrclr7);
             border-radius: 0.5em;
             font-size: 1.25em;
 

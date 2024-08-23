@@ -216,7 +216,7 @@
 
         form {
             .form-inputs {
-                grid-template-columns: repeat(1, 1fr);
+                grid-template-columns: 1fr;
 
                 .input-area:nth-child(7):not(.special-layout .input-area) {
                     grid-column: span 1;
@@ -226,28 +226,29 @@
                     }
                 }
 
-                .special-layout {
-                    &:nth-of-type(2) {
-                        grid-template-columns: 1fr 1fr;
-                        grid-template-rows: auto auto;
+                .special-layout:nth-of-type(2) {
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: auto auto;
+                    grid-template-areas:
+                        "a b"
+                        "a c";
 
-                        .input-area:nth-child(1) {
-                            grid-column: 1;
-                            grid-row: span 2;
+                    .input-area {
+                        &:nth-child(1) {
+                            grid-area: a;
                         }
 
-                        .input-area:nth-child(2) {
-                            grid-column: 2;
-                            grid-row: 1;
+                        &:nth-child(2) {
+                            grid-area: b;
                         }
 
-                        .input-area:nth-child(3) {
-                            grid-column: 2;
-                            grid-row: 2;
+                        &:nth-child(3) {
+                            grid-area: c;
                         }
                     }
                 }
             }
+
 
             .edit-preview .game-body .video-wrapper {
                 grid-template-columns: 1fr;
@@ -259,7 +260,13 @@
         form {
             grid-template-columns: 1fr;
 
+            .form-inputs {
+                grid-row: 1;
+                padding-block-end: 1em;
+            }
+
             .edit-preview {
+                grid-row: 2;
                 padding-block-start: 1em;
                 border-top: 2px solid var(--prmclr2);
             }
@@ -277,76 +284,74 @@
             .form-inputs {
                 grid-template-columns: repeat(3, 1fr);
 
+                .special-layout:first-of-type {
+                    grid-column: span 3;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-rows: repeat(3, auto);
+                    grid-template-areas:
+                        "a1 a2 a7"
+                        "a3 a4 a7"
+                        "a5 a6 a7";
+
+                    .input-area {
+                        &:nth-child(1) {
+                            grid-area: a1;
+                        }
+
+                        &:nth-child(2) {
+                            grid-area: a2;
+                        }
+
+                        &:nth-child(3) {
+                            grid-area: a3;
+                        }
+
+                        &:nth-child(4) {
+                            grid-area: a4;
+                        }
+
+                        &:nth-child(5) {
+                            grid-area: a5;
+                        }
+
+                        &:nth-child(6) {
+                            grid-area: a6;
+                        }
+
+                        &:nth-child(7) {
+                            grid-area: a7;
+                            align-self: start;
+                        }
+                    }
+                }
+
+                .special-layout:nth-of-type(2) {
+                    grid-column: span 2;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-areas:
+                        "b1 b2"
+                        "b1 b3";
+
+                    .input-area {
+                        &:nth-child(1) {
+                            grid-area: b1;
+                        }
+
+                        &:nth-child(2) {
+                            grid-area: b2;
+                        }
+
+                        &:nth-child(3) {
+                            grid-area: b3;
+                        }
+                    }
+                }
+
                 .input-area:nth-child(7):not(.special-layout .input-area) {
                     grid-column: span 3;
 
                     .upload-area {
                         grid-template-columns: repeat(3, 1fr);
-                    }
-                }
-
-                .special-layout {
-                    &:first-of-type {
-                        grid-column: span 3;
-                        grid-template-columns: repeat(3, 1fr);
-                        grid-template-rows: repeat(3, auto);
-
-                        .input-area:nth-child(1) {
-                            grid-column: 1;
-                            grid-row: 1;
-                        }
-
-                        .input-area:nth-child(2) {
-                            grid-column: 2;
-                            grid-row: 1;
-                        }
-
-                        .input-area:nth-child(3) {
-                            grid-column: 1;
-                            grid-row: 2;
-                        }
-
-                        .input-area:nth-child(4) {
-                            grid-column: 2;
-                            grid-row: 2;
-                        }
-
-                        .input-area:nth-child(5) {
-                            grid-column: 1;
-                            grid-row: 3;
-                        }
-
-                        .input-area:nth-child(6) {
-                            grid-column: 2;
-                            grid-row: 3;
-                        }
-
-                        .input-area:nth-child(7) {
-                            grid-column: 3;
-                            grid-row: 1 / -1;
-                            align-self: start;
-                        }
-                    }
-
-                    &:nth-of-type(2) {
-                        grid-column: span 2;
-                        grid-template-columns: 1fr 1fr;
-                        grid-template-rows: auto auto;
-
-                        .input-area:nth-child(1) {
-                            grid-column: 1;
-                            grid-row: span 2;
-                        }
-
-                        .input-area:nth-child(2) {
-                            grid-column: 2;
-                            grid-row: 1;
-                        }
-
-                        .input-area:nth-child(3) {
-                            grid-column: 2;
-                            grid-row: 2;
-                        }
                     }
                 }
             }
@@ -361,14 +366,9 @@
         form {
             grid-template-columns: 1fr 1fr;
 
-            .form-inputs,
             .edit-preview {
-                grid-column: span 1;
-            }
-
-            .edit-preview {
-                padding-inline-start: 1em;
-                border-left: 2px solid var(--prmclr2);
+                padding-inline-end: 1em;
+                border-right: 2px solid var(--prmclr2);
             }
         }
     }
@@ -425,6 +425,17 @@
     }
 }
 
+/* privacy policy page mq */
+.privacy-policy-page .page-contents {
+    @media(max-width: 600px) {
+        padding: 2em 1em;
+    }
+
+    @media(min-width: 601px) {
+        padding: 3em 2em;
+    }
+}
+
 /* not found page mq */
 .error-page .page-contents {
     @media(max-width: 600px) {
@@ -459,9 +470,63 @@ header .header-contents {
 footer .footer-contents {
     @media(max-width: 600px) {
         padding: 1em 1em;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-gap: 1em;
+
+        h2 {
+            margin: 0 auto;
+        }
+
+        .links {
+            grid-template-columns: repeat(4, 1fr);
+
+            h2 {
+                grid-column: 1/-1;
+            }
+
+            a {
+                justify-self: center;
+            }
+        }
+
+        .outside-links .noffty-links {
+            justify-content: space-between;
+        }
     }
 
     @media(min-width: 601px) {
         padding: 1em 2em;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto auto;
+        grid-gap: 1em;
+
+        .links {
+            grid-row: 1 / -1;
+            grid-template-columns: 1fr 1fr;
+
+            h2 {
+                grid-column: 1/-1;
+            }
+        }
+
+        .outside-links {
+            grid-column: 2 / -1;
+            grid-row: 1;
+            justify-self: end;
+
+            h2 {
+                margin: 0 auto;
+            }
+
+            .noffty-links {
+                gap: 2em;
+            }
+        }
+
+        .copyright {
+            grid-column: 2 / -1;
+            grid-row: 2;
+        }
     }
 }
