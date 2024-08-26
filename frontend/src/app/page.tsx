@@ -59,7 +59,7 @@ export default function Home() {
   return (<main className="home-page full w-h-100">
     <section className="page-contents flex column align-center w-h-100 layout-row">
       <div className="video-container flex column">
-        <video autoPlay loop muted>
+        <video autoPlay loop muted playsInline>
           <source src={video} type="video/webm" />
           Your browser does not support the video tag.
         </video>

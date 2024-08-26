@@ -249,7 +249,6 @@
                 }
             }
 
-
             .edit-preview .game-body .video-wrapper {
                 grid-template-columns: 1fr;
             }
@@ -447,6 +446,17 @@
     }
 }
 
+/* login modal mq */
+.modal-wrapper .login-form {
+    @media(max-width:400px) {
+        max-width: 95%;
+    }
+
+    @media(min-width: 401px) {
+        max-width: 400px;
+    }
+}
+
 /* header mq */
 header .header-contents {
     @media(max-width: 600px) {
@@ -488,10 +498,6 @@ footer .footer-contents {
             a {
                 justify-self: center;
             }
-        }
-
-        .outside-links .noffty-links {
-            justify-content: space-between;
         }
     }
 

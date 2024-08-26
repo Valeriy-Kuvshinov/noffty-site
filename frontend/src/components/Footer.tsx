@@ -36,7 +36,7 @@ export function Footer() {
             </div>
             <div className="outside-links flex column">
                 <h2>Follow Us</h2>
-                <div className="noffty-links flex row">
+                <div className="noffty-links flex row justify-between">
                     {socialLinks.map(link => (
                         <SpecialLink key={link.iconName} iconName={link.iconName}
                             link={link.link} ariaLabel={link.ariaLabel} />))}
