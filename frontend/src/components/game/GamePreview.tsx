@@ -40,8 +40,8 @@ export function GamePreview({ game, isAdminPage }: GamePreviewProps) {
 
         <div className='preview-info grid w-100 h-fit'>
             <ImageContainer src={game.icon} alt={game.title} />
-            <h3 title={game.title}>{game.title}</h3>
-            <p title={game.subtitle}>{game.subtitle}</p>
+            <h3 className='text-hide-overflow' title={game.title}>{game.title}</h3>
+            <p className='text-hide-overflow' title={game.subtitle}>{game.subtitle}</p>
         </div>
     </Link>)
 }

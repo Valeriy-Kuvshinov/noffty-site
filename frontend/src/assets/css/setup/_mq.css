@@ -16,6 +16,18 @@
 
         .game-content {
             padding: 2em 1em;
+
+            .games-carousel .carousel-container a .preview-body {
+                .icon {
+                    right: 6.25em;
+                    font-size: 14px;
+                }
+
+                .gmtk {
+                    left: 6.25em;
+                    font-size: 14px;
+                }
+            }
         }
     }
 
@@ -25,6 +37,8 @@
 
             .games-carousel {
                 grid-row: 1;
+                max-width: 900px;
+                justify-self: center;
             }
         }
     }
@@ -45,6 +59,18 @@
 
         .game-content {
             padding: 3em 2em;
+
+            .games-carousel .carousel-container a .preview-body {
+                .icon {
+                    right: 5.5em;
+                    font-size: 16px;
+                }
+
+                .gmtk {
+                    left: 5.5em;
+                    font-size: 16px;
+                }
+            }
         }
     }
 
@@ -268,6 +294,10 @@
                 grid-row: 2;
                 padding-block-start: 1em;
                 border-top: 2px solid var(--prmclr2);
+
+                .game-body .screenshots {
+                    max-width: 90vw;
+                }
             }
         }
     }
@@ -368,6 +398,10 @@
             .edit-preview {
                 padding-inline-end: 1em;
                 border-right: 2px solid var(--prmclr2);
+
+                .game-body .screenshots {
+                    max-width: 45vw;
+                }
             }
         }
     }

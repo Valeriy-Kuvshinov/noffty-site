@@ -61,8 +61,8 @@ function GamePreview({ game, index }: { game: Game, index: number }) {
         </div>
         <div className="preview-info grid w-100 h-fit fast-trans">
             <ImageContainer src={game.icon} alt={`${game.title} icon`} className="game-icon" />
-            <h3>{game.title}</h3>
-            <p>{game.subtitle}</p>
+            <h3 className="text-hide-overflow">{game.title}</h3>
+            <p className="text-hide-overflow">{game.subtitle}</p>
         </div>
     </Link>)
 }

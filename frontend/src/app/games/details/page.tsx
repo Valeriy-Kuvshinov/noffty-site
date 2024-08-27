@@ -136,12 +136,12 @@ function GameDetailsBody({ game }: { game: Game }) {
 
     return (<article className="game-body flex column w-100 layout-row">
         <h3 className="text-center text-capitalize">{game.subtitle}</h3>
-        <div className={`screenshots grid ${game.platform !== 'android' ? 'w-100' : ''}`}
+        <div className={`screenshots grid ${game.platform !== 'android' &&
+            game.screenshots.length >= 5 ? 'w-100' : ''}`}
             style={{ gridTemplateColumns }}>
             {game.screenshots.slice(1).map((screenshot, index) => (
-                <ImageContainer key={index} src={screenshot}
+                <ImageContainer key={index} src={screenshot} className={`h-100`}
                     alt={`${game.title} screenshot number ${index + 1}`}
-                    className={`h-100 ${game.platform !== 'android' ? 'w-100' : ''}`}
                     style={{
                         maxHeight: game.screenshots.length < 5 ? '215px' : 'auto',
                         aspectRatio: game.platform !== 'android' ? '16 / 9' : '9 / 16'
@@ -163,7 +163,7 @@ function GameDetailsBody({ game }: { game: Game }) {
         <div className="video-wrapper grid w-100">
             {game.walkthrough && (
                 <div className="video flex column w-100">
-                    <p>{`If you're stuck, we've got you covered:`}</p>
+                    <p className="text-hide-overflow">{`If you're stuck, we've got you covered:`}</p>
                     <iframe src={utilityService.getYouTubeEmbedUrl(game.walkthrough)}
                         title="Game Walkthrough" allowFullScreen={true}
                         aria-label="Video walkthrough for the game"
@@ -173,7 +173,7 @@ function GameDetailsBody({ game }: { game: Game }) {
             )}
             {game.devlog && (
                 <div className="video flex column w-100">
-                    <p>{`Be sure to check out the developer's log:`}</p>
+                    <p className="text-hide-overflow">{`Be sure to check out the developer's log:`}</p>
                     <iframe src={utilityService.getYouTubeEmbedUrl(game.devlog)}
                         title="Developer's Log" allowFullScreen={true}
                         aria-label="Video devlog about the game"

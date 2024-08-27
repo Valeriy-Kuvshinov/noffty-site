@@ -2,7 +2,7 @@
     position: relative;
 
     h2 {
-        letter-spacing: 1px;
+        letter-spacing: 2px;
     }
 
     .video-container video {
@@ -56,13 +56,11 @@
                 }
             }
 
-            &:hover {
-                .svg-cmp {
-                    fill: var(--prmclr2);
+            &:hover .svg-cmp {
+                fill: var(--prmclr2);
 
-                    &:first-child {
-                        stroke: var(--prmclr2);
-                    }
+                &:first-child {
+                    stroke: var(--prmclr2);
                 }
             }
         }
@@ -149,21 +147,12 @@
                         .icon {
                             padding: 0.25em 0.75em;
                             position: absolute;
-                            top: 0.5em;
+                            top: 1em;
                             letter-spacing: 1px;
                             color: var(--scdclr4);
                             background: var(--prmclr1);
                             border-radius: 0.5em;
-                            font-size: 14px;
                             opacity: 0;
-                        }
-
-                        .icon {
-                            right: 4.5em;
-                        }
-
-                        .gmtk {
-                            left: 4.5em;
                         }
                     }
 
@@ -183,14 +172,8 @@
 
                         h3,
                         p {
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            display: -webkit-box;
-                            -webkit-box-orient: vertical;
-                            -webkit-line-clamp: 1;
-                            line-clamp: 1;
-                            letter-spacing: 0.5px;
                             grid-column: 2 / -1;
+                            letter-spacing: 0.5px;
                         }
 
                         h3 {

@@ -70,12 +70,6 @@
         p {
             grid-column: 2 / -1;
             max-height: 30px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            line-clamp: 1;
             letter-spacing: 0.5px;
         }
 

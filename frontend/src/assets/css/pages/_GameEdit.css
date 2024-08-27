@@ -207,17 +207,16 @@
                 border-top: 1px solid var(--scdclr7);
                 padding-block-start: 1em;
 
-                .preview-screenshots {
-                    gap: 1em;
+                .screenshots {
+                    gap: 1.5em;
                     padding-block-end: 1em;
-                    max-width: 100%;
                     overflow-x: auto;
                     scrollbar-width: thin;
                     margin: 0 auto;
 
                     .image-container img {
                         max-width: 375px;
-                        min-width: 75px;
+                        min-width: 210px;
                         border-radius: 0.5em;
                         cursor: pointer;
                     }
@@ -239,15 +238,6 @@
 
                     .video {
                         gap: 0.5em;
-
-                        p {
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            display: -webkit-box;
-                            -webkit-box-orient: vertical;
-                            -webkit-line-clamp: 1;
-                            line-clamp: 1;
-                        }
 
                         .iframe {
                             max-height: 450px;

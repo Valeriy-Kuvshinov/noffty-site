@@ -3,8 +3,8 @@
 
     label {
         grid-template-columns: auto auto 1fr;
-        padding: 0 0.5em;
         column-gap: 0.5em;
+        padding: 0 0.5em;
 
         .svg-cmp {
             width: 32px;
@@ -14,12 +14,6 @@
         p {
             justify-self: end;
             color: var(--mnrclr3);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            line-clamp: 1;
         }
     }
 

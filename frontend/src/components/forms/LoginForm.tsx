@@ -71,7 +71,8 @@ export function LoginForm() {
                     <label className='grid align-center' htmlFor="password">
                         <SvgRender iconName="lock" />
                         <span>Password*</span>
-                        {errors.password && <p title={errors.password}>{errors.password}</p>}
+                        {errors.password && <p className="text-hide-overflow"
+                            title={errors.password}>{errors.password}</p>}
                     </label>
                     <input type={showPassword ? "text" : "password"} id="password" name="password" maxLength={24}
                         value={values.password} onChange={handleChange} placeholder="Your password"

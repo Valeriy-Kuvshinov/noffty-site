@@ -40,7 +40,7 @@ export function Header() {
         <section className="header-contents w-h-100 layout-row">
             {deviceType === 'mobile' || deviceType === 'mini-tablet' ? (
                 <nav className="mobile-view grid align-center justify-between">
-                    <button onClick={() => openModal('aside-menu')}>
+                    <button onClick={() => openModal('aside-menu')} aria-label="Open mobile navigation & user menu">
                         <SvgRender iconName="menu" />
                     </button>
                     <Link href="/" className={`logo ${isActive('/') ? 'active' : ''}`}

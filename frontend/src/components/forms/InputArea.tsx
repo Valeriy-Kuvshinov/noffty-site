@@ -23,7 +23,7 @@ export function InputArea({ label, svg, type, name, value, onChange, placeholder
         <label className='grid align-center' htmlFor={name}>
             <SvgRender iconName={svg} />
             <span>{label}</span>
-            {error && <p title={error}>{error}</p>}
+            {error && <p className="text-hide-overflow" title={error}>{error}</p>}
         </label>
         {type === 'textarea' ? (
             <textarea

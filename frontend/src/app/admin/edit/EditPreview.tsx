@@ -48,12 +48,12 @@ export function EditPreview({ game }: { game: Game }) {
         </div>
         <div className="game-body flex column w-100 layout-row">
             <h3 className="text-center">{game.subtitle}</h3>
-            <div className={`preview-screenshots grid ${game.platform !== 'android' ? 'w-100' : ''}`}
+            <div className={`screenshots grid ${game.platform !== 'android' &&
+                game.screenshots.length >= 5 ? 'w-100' : ''}`}
                 style={{ gridTemplateColumns }}>
                 {game.screenshots.slice(1).map((screenshot, index) => (
-                    <ImageContainer key={index} src={screenshot}
+                    <ImageContainer key={index} src={screenshot} className={`h-100`}
                         alt={`${game.title} screenshot number ${index + 1}`}
-                        className={`preview-screenshot ${game.platform !== 'android' ? 'w-100' : ''}`}
                         style={{
                             maxHeight: game.screenshots.length < 5 ? '215px' : 'auto',
                             aspectRatio: game.platform !== 'android' ? '16 / 9' : '9 / 16'
@@ -75,17 +75,17 @@ export function EditPreview({ game }: { game: Game }) {
             <div className="video-wrapper grid w-100">
                 {game.walkthrough && (
                     <div className="video flex column w-100">
-                        <p>{`If you're stuck, we've got you covered:`}</p>
+                        <p className="text-hide-overflow">{`If you're stuck, we've got you covered:`}</p>
                         <div className="iframe flex column full-center">
-                            <p>Walkthrough video will be shown here...</p>
+                            <p className="text-center">Walkthrough video will be shown here...</p>
                         </div>
                     </div>
                 )}
                 {game.devlog && (
                     <div className="video flex column w-100">
-                        <p>{`Be sure to check out the developer's log:`}</p>
+                        <p className="text-hide-overflow">{`Be sure to check out the developer's log:`}</p>
                         <div className="iframe flex column full-center">
-                            <p>Devlog video will be shown here...</p>
+                            <p className="text-center">Devlog video will be shown here...</p>
                         </div>
                     </div>
                 )}

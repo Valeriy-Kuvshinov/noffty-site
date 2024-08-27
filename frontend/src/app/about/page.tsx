@@ -173,10 +173,15 @@ export default function About() {
                     url: 'https://www.youtube.com/@AbiodaDev',
                     iconName: 'youtube',
                     userName: '@AbiodaDev'
+                },
+                {
+                    url: 'https://abiodapro.itch.io/',
+                    iconName: 'itch',
+                    userName: '@Abio'
                 }
             ],
             contributions: [
-                { game: 'Purple Prince or something guy desert adventure', role: 'Ruining The Game' }
+                { game: 'Purple Prince Desert Adventure', role: 'Ruining The Game' }
             ]
         }
     ]
