@@ -54,7 +54,8 @@ export default function About() {
             contributions: [
                 { game: 'Gun Stick Dash Jump', role: 'Music' },
                 { game: 'Betorched', role: 'Music' },
-                { game: 'Boiling Point Classic', role: 'Music' }
+                { game: 'Boiling Point Classic', role: 'Music' },
+                { game: 'Yapping Wizards Goblin Defenders', role: 'Music & Voice Acting' },
             ]
         },
         {
@@ -96,7 +97,7 @@ export default function About() {
                 }
             ],
             contributions: [
-                { game: 'WavePunk', role: 'Art and Music' }
+                { game: 'WavePunk', role: 'Art & Music' }
             ]
         },
         {
@@ -141,7 +142,8 @@ export default function About() {
             name: 'Maya K',
             social: [],
             contributions: [
-                { game: 'Absurd^2', role: 'Writer' }
+                { game: 'Absurd^2', role: 'Writer' },
+                { game: 'Yapping Wizards Goblin Defenders', role: 'Voice Acting' },
             ]
         },
         {
@@ -154,14 +156,27 @@ export default function About() {
                 }
             ],
             contributions: [
-                { game: '', role: 'Playtesting' }
+                { game: '', role: 'General Game Playtesting' }
             ]
         },
         {
             name: 'Ded',
             social: [],
             contributions: [
-                { game: '', role: 'Playtesting' }
+                { game: '', role: 'General Game Playtesting' }
+            ]
+        },
+        {
+            name: 'AbiodaDev',
+            social: [
+                {
+                    url: 'https://www.youtube.com/@AbiodaDev',
+                    iconName: 'youtube',
+                    userName: '@AbiodaDev'
+                }
+            ],
+            contributions: [
+                { game: 'Purple Prince or something guy desert adventure', role: 'Ruining The Game' }
             ]
         }
     ]

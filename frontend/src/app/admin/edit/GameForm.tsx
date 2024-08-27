@@ -164,7 +164,7 @@ export function GameForm({ game }: { game: Game }) {
                         <option value="roguelike">Roguelike</option>
                     </select>
                 </div>
-                <div className="input-area grid">
+                <div className="input-area grid h-fit">
                     <label className='grid align-center' htmlFor="platform">
                         <SvgRender iconName='monitor' />
                         <span>Platform:</span>
@@ -186,7 +186,7 @@ export function GameForm({ game }: { game: Game }) {
                     </select>
                 </div>
             </section>
-            <div className="input-area grid">
+            <div className="input-area grid h-fit">
                 <label className='grid align-center' htmlFor="icon">
                     <SvgRender iconName='images' />
                     <span>Icon:</span>
@@ -197,7 +197,7 @@ export function GameForm({ game }: { game: Game }) {
                     />
                 </div>
             </div>
-            <div className="input-area grid">
+            <div className="input-area grid h-fit">
                 <label className='grid align-center' htmlFor="screenshots">
                     <SvgRender iconName='images' />
                     <span>Screenshots:</span>

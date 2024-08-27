@@ -12,9 +12,16 @@ const siteDescription = 'Noffty Productions - Delivering the best Web & Android 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (<html lang="en">
     <head>
-      <title>Noffty Productions</title>
+      <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="description" content={siteDescription} />
+      <meta property="og:title" content="Noffty Productions" />
+      <meta property="og:description" content={siteDescription} />
+      <meta property="og:image" content={siteLogo} />
+      <meta property="og:url" content="https://noffty.com" />
+      <title>Noffty Productions</title>
       <link rel="icon" href={siteLogo} type="image/png" />
+      <link rel="canonical" href="https://noffty.com" />
     </head>
     <body>
       <Providers>

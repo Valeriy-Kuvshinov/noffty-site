@@ -67,7 +67,7 @@ export function LoginForm() {
                     value={values.loginId} onChange={handleChange} placeholder="Your email"
                     error={errors.loginId} onBlur={() => validateField('loginId', values.loginId)}
                 />
-                <div className={`input-area grid ${errors.password ? 'error' : ''}`}>
+                <div className={`input-area grid ${errors.password ? 'error' : ''} h-fit`}>
                     <label className='grid align-center' htmlFor="password">
                         <SvgRender iconName="lock" />
                         <span>Password*</span>

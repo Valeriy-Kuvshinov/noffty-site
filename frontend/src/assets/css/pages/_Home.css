@@ -168,14 +168,15 @@
                     }
 
                     .preview-info {
-                        column-gap: 1em;
                         grid-template-columns: 64px 1fr 1fr;
                         grid-template-rows: 1fr 1fr;
+                        column-gap: 1em;
                         padding: 0.25em 0.5em;
                         position: absolute;
                         bottom: 0;
                         left: 0;
                         right: 0;
+                        max-height: 72px;
                         background: var(--prmclr1);
                         border-radius: 0 0 0.5em 0.5em;
                         opacity: 0.25;

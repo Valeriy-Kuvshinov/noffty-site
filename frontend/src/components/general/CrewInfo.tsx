@@ -37,11 +37,13 @@ export function CrewInfo({ people }: CrewInfoProps) {
 
                 <ul className="flex column">
                     {selectedMember.contributions.map((contribution, index) => (
-                        <li key={index}>
+                        <li key={index}>🕶
                             {contribution.game && <span>
-                                {`${contribution.game} - `}
+                                {` ${contribution.game} -`}
                             </span>}
-                            {contribution.role}
+                            {contribution.role && <span>
+                                {` ${contribution.role}`}
+                            </span>}
                         </li>
                     ))}
                 </ul>

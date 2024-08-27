@@ -19,7 +19,7 @@ interface InputAreaProps {
 export function InputArea({ label, svg, type, name, value, onChange, placeholder,
     maxLength, error, onBlur, validationOptions }: InputAreaProps) {
 
-    return (<div className={`input-area grid ${error ? 'error' : ''}`}>
+    return (<div className={`input-area grid ${error ? 'error' : ''} h-fit`}>
         <label className='grid align-center' htmlFor={name}>
             <SvgRender iconName={svg} />
             <span>{label}</span>
