@@ -1,57 +1,9 @@
-import { Game } from "../interfaces/game"
 import { utilityService } from "../services/utility-service"
 import { SpecialLink } from "../components/general/SpecialLink"
 import { ImageContainer } from "../components/general/ImageContainer"
-import { GameCarousel } from "../components/game/GameCarousel"
 import { SvgRender } from "../components/general/SvgRender"
 
 export default function Home() {
-  const games: Game[] = [
-    {
-      "title": "Absurd^2",
-      "subtitle": "Simple 2D platformer",
-      "platform": "html5",
-      "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1716708223/games/icons/robpcra0w1qdahbso1z5.avif",
-      "screenshots": [
-        "https://res.cloudinary.com/djzid7ags/image/upload/v1716713779/games/screenshots/aow5n7wehb2bvijvylqz.avif",
-        "https://res.cloudinary.com/djzid7ags/image/upload/v1716713777/games/screenshots/n2hrvpdq49uheetuis2l.avif"
-      ],
-      "isGameJam": 'no'
-    },
-    {
-      "title": "Boiling Point Classic",
-      "subtitle": "Reverse Horde Roguelite",
-      "platform": "html5",
-      "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1716708223/games/icons/aimouzhzjqx6j2hltqmv.avif",
-      "screenshots": [
-        "https://res.cloudinary.com/djzid7ags/image/upload/v1716713149/games/screenshots/ffeaahkmjbga6lnjxirm.avif",
-        "https://res.cloudinary.com/djzid7ags/image/upload/v1716713148/games/screenshots/qm52wn5sa81f3jsdpjla.avif"
-      ],
-      "isGameJam": 'yes'
-    },
-    {
-      "title": "Gun Stick Dash Jump",
-      "subtitle": "Corrupted action platformer",
-      "platform": "html5",
-      "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1716708223/games/icons/frxyvh0gxraa19qli7jf.avif",
-      "screenshots": [
-        "https://res.cloudinary.com/djzid7ags/image/upload/v1716712789/games/screenshots/ckujz51caydgcd111qpb.avif",
-        "https://res.cloudinary.com/djzid7ags/image/upload/v1716712791/games/screenshots/tm680ywli1ee22kv0yai.avif"
-      ],
-      "isGameJam": 'yes'
-    },
-    {
-      "title": "WavePunk",
-      "subtitle": "Wave merging adventure",
-      "platform": "html5",
-      "icon": "https://res.cloudinary.com/djzid7ags/image/upload/v1716708222/games/icons/k2zizoiquqqbm2eqi34s.avif",
-      "screenshots": [
-        "https://res.cloudinary.com/djzid7ags/image/upload/v1716713475/games/screenshots/wx2agit1icmycnts55zl.avif",
-        "https://res.cloudinary.com/djzid7ags/image/upload/v1716713475/games/screenshots/weucxxqyxygxsuqpxjbr.avif"
-      ],
-      "isGameJam": 'yes'
-    }
-  ]
   const socialLinks = utilityService.getSocialLinks()
   const video = 'https://res.cloudinary.com/djzid7ags/video/upload/v1719778348/video/diggiwi6prn2pbrzhfnd.webm'
   const companyLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719919509/wkqirx5zx97olc5cofzn.avif'
@@ -76,9 +28,7 @@ export default function Home() {
         </div>
       </article>
       <article className="game-content grid full-center w-100 layout-row">
-        <GameCarousel games={games} />
-
-        <div className="content-info flex column">
+        <div className="content-info flex column layout-row">
           <h2 className="text-center">From Platformer to Roguelike,
             we work hard to deliver to you the best Web & Android Indie games possible.
           </h2>

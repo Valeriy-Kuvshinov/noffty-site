@@ -16,30 +16,6 @@
 
         .game-content {
             padding: 2em 1em;
-
-            .games-carousel .carousel-container a .preview-body {
-                .icon {
-                    right: 6.25em;
-                    font-size: 14px;
-                }
-
-                .gmtk {
-                    left: 6.25em;
-                    font-size: 14px;
-                }
-            }
-        }
-    }
-
-    @media(max-width: 1200px) {
-        .game-content {
-            grid-template-columns: 1fr;
-
-            .games-carousel {
-                grid-row: 1;
-                max-width: 900px;
-                justify-self: center;
-            }
         }
     }
 
@@ -54,37 +30,6 @@
                     width: 5em;
                     height: 5em;
                 }
-            }
-        }
-
-        .game-content {
-            padding: 3em 2em;
-
-            .games-carousel .carousel-container a .preview-body {
-                .icon {
-                    right: 5.5em;
-                    font-size: 16px;
-                }
-
-                .gmtk {
-                    left: 5.5em;
-                    font-size: 16px;
-                }
-            }
-        }
-    }
-
-    @media(min-width: 1201px) {
-        .game-content {
-            grid-template-columns: 1fr 1fr;
-
-            .games-carousel,
-            .content-info {
-                grid-row: 1;
-            }
-
-            .content-info {
-                padding: 1em 2em;
             }
         }
     }

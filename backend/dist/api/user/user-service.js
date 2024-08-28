@@ -47,15 +47,15 @@ async function save(user) {
     const collection = await dbService.getCollection(USERS_COLLECTION);
     try {
         if (user._id) {
-            const { _id, ...userToUpdate } = user;
+            const { _id, ...updatedUser } = user;
             const id = _id instanceof ObjectId ? _id : new ObjectId(_id);
-            if (userToUpdate.password) {
-                userToUpdate.password = await authService.checkPassword(userToUpdate.password);
+            if (updatedUser.password) {
+                updatedUser.password = await authService.checkPassword(updatedUser.password);
             }
-            const result = await collection.updateOne({ _id: id }, { $set: userToUpdate });
+            const result = await collection.updateOne({ _id: id }, { $set: updatedUser });
             if (result.matchedCount === 0)
                 throw new Error(`User with id ${id.toHexString()} not found`);
-            return { ...userToUpdate, _id: id };
+            return { ...updatedUser, _id: id };
         }
         else {
             const response = await collection.insertOne(user);

@@ -11,6 +11,7 @@ import { useForm } from "../../hooks/form"
 import { RecaptchaContainer } from "./RecaptchaContainer"
 import { SvgRender } from "../general/SvgRender"
 import { InputArea } from "./InputArea"
+import { showErrorMsg, showSuccessMsg } from "../modals/SystemMsg"
 
 export function LoginForm() {
     const { activeModal, closeModal } = useModal()
@@ -39,9 +40,12 @@ export function LoginForm() {
                 }
                 const user = await userService.login(loginData)
                 setSessionUser(user)
-                closeModal('login')
-            } catch (err) {
+                showSuccessMsg('Login Successful!', 'Welcome home broski.')
+                closeLogin()
+            } catch (err: any) {
                 console.error('Login failed', err)
+                showErrorMsg('Login Failed!', err.message)
+                closeLogin()
             }
         })
     const allFieldsFilled = values.loginId && values.password
@@ -49,7 +53,6 @@ export function LoginForm() {
 
     function closeLogin() {
         resetForm()
-        recaptchaRef.current?.reset()
         closeModal('login')
     }
 
@@ -91,6 +94,8 @@ export function LoginForm() {
                 </section>
             </form>
         </article>
-        <ReCAPTCHA sitekey={recaptchaSiteKey} size="invisible" ref={recaptchaRef} />
+        {recaptchaSiteKey && <ReCAPTCHA key={activeModal}
+            sitekey={recaptchaSiteKey} size="invisible" ref={recaptchaRef} />
+        }
     </dialog>)
 }

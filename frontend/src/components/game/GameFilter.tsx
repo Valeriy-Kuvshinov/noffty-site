@@ -32,7 +32,7 @@ export function GameFilter({ defaultValues, updateSearchParams }: GameFilterProp
     }
 
     return (<article className="filter-area flex column layout-row w-100">
-        <input type="text" name="title" placeholder="Search by name..." maxLength={30}
+        <input type="text" name="title" placeholder="Search by name..." maxLength={40}
             value={filter.title || ''} onChange={handleInputChange}
         />
         <SvgRender iconName="search" />

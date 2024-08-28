@@ -29,20 +29,32 @@ export const userService = {
     },
 
     login: async (userCred: UserLogin): Promise<User> => {
-        const user = await httpService.post('auth/login', userCred)
-        userService.setLoggedinUser(user)
-        return user
+        try {
+            const user = await httpService.post('auth/login', userCred)
+            userService.setLoggedinUser(user)
+            return user
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     signup: async (signupData: UserSignup): Promise<User> => {
-        const newUser = await httpService.post('auth/signup', signupData)
-        userService.setLoggedinUser(newUser)
-        return newUser
+        try {
+            const newUser = await httpService.post('auth/signup', signupData)
+            userService.setLoggedinUser(newUser)
+            return newUser
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     logout: async (): Promise<void> => {
-        await httpService.post('auth/logout', null)
-        sessionStorage.removeItem(SESSION_KEY_LOGGEDIN_USER)
+        try {
+            await httpService.post('auth/logout', null)
+            sessionStorage.removeItem(SESSION_KEY_LOGGEDIN_USER)
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     getLoggedinUser: (): User | null => {

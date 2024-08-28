@@ -24,8 +24,8 @@ export function GameForm({ game }: { game: Game }) {
         devlog: { minLength: 3, link: true },
         walkthrough: { minLength: 3, link: true },
         description: { required: true, minLength: 15, pattern: /[\s.\-!?@#$',^*_;():]+/ },
-        credits: { required: true, minLength: 3, pattern: /[\s.\-!?@#$',^*_;:]+/ },
-        controls: { required: true, minLength: 3, pattern: /[\s.\-!?@#$',^/*;:]+/ },
+        credits: { required: true, minLength: 3, pattern: /[\s.\-!?@#$',^*_();:]+/ },
+        controls: { required: true, minLength: 3, pattern: /[\s.\-!?@#$',^/*();:]+/ },
         specialNote: { minLength: 9, pattern: /[\s.\-!?@#$"',^*_;():]+/ }
     }
     const { values, errors, setErrors, validateField, handleChange, handleSubmit,
@@ -109,7 +109,7 @@ export function GameForm({ game }: { game: Game }) {
         <article className="form-inputs grid w-100">
             <section className="special-layout grid align-center w-100 h-fit">
                 <InputArea label="Game Title*" svg="title" type="text" name="title"
-                    maxLength={30} value={values.title} onChange={handleChange} error={errors.title}
+                    maxLength={40} value={values.title} onChange={handleChange} error={errors.title}
                     onBlur={() => validateField('title', values.title)}
                 />
                 <InputArea label="Game Subtitle*" svg="info" type="text" name="subtitle"
@@ -162,6 +162,7 @@ export function GameForm({ game }: { game: Game }) {
                         <option value="platformer">Platformer</option>
                         <option value="puzzle">Puzzle</option>
                         <option value="roguelike">Roguelike</option>
+                        <option value="strategy">Strategy</option>
                     </select>
                 </div>
                 <div className="input-area grid h-fit">

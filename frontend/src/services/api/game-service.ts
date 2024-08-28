@@ -38,7 +38,8 @@ export const gameService = {
         { label: 'Other', value: 'other', iconName: 'questionMark' },
         { label: 'Platformer', value: 'platformer', iconName: 'platformer' },
         { label: 'Puzzle', value: 'puzzle', iconName: 'puzzle' },
-        { label: 'Roguelike', value: 'roguelike', iconName: 'dice' }
+        { label: 'Roguelike', value: 'roguelike', iconName: 'dice' },
+        { label: 'Strategy', value: 'strategy', iconName: 'rook' }
     ],
 
     getPlatforms: (): CustomOption[] => [

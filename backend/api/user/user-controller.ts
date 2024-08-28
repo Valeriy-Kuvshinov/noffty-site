@@ -23,7 +23,7 @@ async function _getUsers(req: Request<{}, {}, {}, UserQueryParams>,
     res.json(users)
   } catch (err) {
     loggerService.error('Cannot get users', err)
-    res.status(500).send({ err: 'Failed to get users' })
+    res.status(500).send({ errorMessage: 'Failed to get users' })
   }
 }
 
@@ -34,7 +34,7 @@ async function _getUserById(req: Request<{ id: ObjectId }>,
     res.json(user)
   } catch (err) {
     loggerService.error('Failed to get user', err)
-    res.status(500).send({ err: 'Failed to get user' })
+    res.status(500).send({ errorMessage: 'Failed to get user' })
   }
 }
 
@@ -45,7 +45,7 @@ async function _getUserByEmail(req: Request<{ email: string }>,
     res.json(user)
   } catch (err) {
     loggerService.error('Failed to get user', err)
-    res.status(500).send({ err: 'Failed to get user' })
+    res.status(500).send({ errorMessage: 'Failed to get user' })
   }
 }
 
@@ -61,7 +61,7 @@ async function _checkEmailAvailable(req: Request<{ email: string }>,
     res.json({ isAvailable: !user })
   } catch (err) {
     loggerService.error('Error with checking availability of email', err)
-    res.status(500).send({ err: 'Error with checking availability of email' })
+    res.status(500).send({ errorMessage: 'Error with checking availability of email' })
   }
 }
 
@@ -75,7 +75,7 @@ async function _addUser(req: Request<{}, {}, User>,
     res.json(addedUser)
   } catch (err) {
     loggerService.error('Failed to add user', err)
-    res.status(500).send({ err: 'Failed to add user' })
+    res.status(500).send({ errorMessage: 'Failed to add user' })
   }
 }
 
@@ -89,7 +89,7 @@ async function _updateUser(req: Request<{ id: ObjectId }, {}, User>,
     res.json(savedUser)
   } catch (err) {
     loggerService.error('Failed to update user', err)
-    res.status(500).send({ err: 'Failed to update user' })
+    res.status(500).send({ errorMessage: 'Failed to update user' })
   }
 }
 
@@ -103,6 +103,6 @@ async function _removeUser(req: Request<{ id: ObjectId }>,
     res.status(200).send({ msg: 'User successfully removed' })
   } catch (err) {
     loggerService.error('Failed to delete user', err)
-    res.status(400).send({ err: 'Failed to delete user' })
+    res.status(400).send({ errorMessage: 'Failed to delete user' })
   }
 }

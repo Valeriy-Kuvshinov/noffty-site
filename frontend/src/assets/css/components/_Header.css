@@ -1,6 +1,7 @@
 header {
     background: var(--prmclr3);
     border-bottom: 1px solid var(--scdclr6);
+    z-index: 2;
 
     a {
         color: var(--scdclr6);

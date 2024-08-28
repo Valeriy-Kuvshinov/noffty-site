@@ -27,7 +27,7 @@ async function _getGames(req: Request<{}, {}, {}, GameQueryParams>,
         res.json(games)
     } catch (err) {
         loggerService.error('Failed to get games', err)
-        res.status(500).send({ err: 'Failed to get games' })
+        res.status(500).send({ errorMessage: 'Failed to get games' })
     }
 }
 
@@ -38,7 +38,7 @@ async function _getGameById(req: Request<{ id: ObjectId }>,
         res.json(game)
     } catch (err) {
         loggerService.error('Failed to get game', err)
-        res.status(500).send({ err: 'Failed to get game' })
+        res.status(500).send({ errorMessage: 'Failed to get game' })
     }
 }
 
@@ -50,7 +50,7 @@ async function _getGameByName(req: Request<{ title: string }>,
         res.json(game)
     } catch (err) {
         loggerService.error('Failed to get game by name', err)
-        res.status(500).send({ err: 'Failed to get game by name' })
+        res.status(500).send({ errorMessage: 'Failed to get game by name' })
     }
 }
 
@@ -66,7 +66,7 @@ async function _checkNameAvailable(req: Request<{ title: string }>,
         res.json({ isAvailable: !game })
     } catch (err) {
         loggerService.error('Error with checking availability of name', err)
-        res.status(500).send({ err: 'Error with checking availability of name' })
+        res.status(500).send({ errorMessage: 'Error with checking availability of name' })
     }
 }
 
@@ -80,7 +80,7 @@ async function _addGame(req: Request<{}, {}, Game>,
         res.json(addedGame)
     } catch (err) {
         loggerService.error('Failed to add game', err)
-        res.status(500).send({ err: 'Failed to add game' })
+        res.status(500).send({ errorMessage: 'Failed to add game' })
     }
 }
 
@@ -94,7 +94,7 @@ async function _updateGame(req: Request<{ id: ObjectId }, {}, Game>,
         res.json(updatedGame)
     } catch (err) {
         loggerService.error('Failed to update game', err)
-        res.status(500).send({ err: 'Failed to update game' })
+        res.status(500).send({ errorMessage: 'Failed to update game' })
     }
 }
 
@@ -108,6 +108,6 @@ async function _removeGame(req: Request<{ id: ObjectId }>,
         res.status(200).send({ msg: 'Game successfully removed' })
     } catch (err) {
         loggerService.error('Failed to remove game', err)
-        res.status(500).send({ err: 'Failed to remove game' })
+        res.status(500).send({ errorMessage: 'Failed to remove game' })
     }
 }

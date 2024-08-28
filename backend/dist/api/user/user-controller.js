@@ -18,7 +18,7 @@ async function _getUsers(req, res) {
     }
     catch (err) {
         loggerService.error('Cannot get users', err);
-        res.status(500).send({ err: 'Failed to get users' });
+        res.status(500).send({ errorMessage: 'Failed to get users' });
     }
 }
 async function _getUserById(req, res) {
@@ -28,7 +28,7 @@ async function _getUserById(req, res) {
     }
     catch (err) {
         loggerService.error('Failed to get user', err);
-        res.status(500).send({ err: 'Failed to get user' });
+        res.status(500).send({ errorMessage: 'Failed to get user' });
     }
 }
 async function _getUserByEmail(req, res) {
@@ -38,7 +38,7 @@ async function _getUserByEmail(req, res) {
     }
     catch (err) {
         loggerService.error('Failed to get user', err);
-        res.status(500).send({ err: 'Failed to get user' });
+        res.status(500).send({ errorMessage: 'Failed to get user' });
     }
 }
 async function _checkEmailAvailable(req, res) {
@@ -53,7 +53,7 @@ async function _checkEmailAvailable(req, res) {
     }
     catch (err) {
         loggerService.error('Error with checking availability of email', err);
-        res.status(500).send({ err: 'Error with checking availability of email' });
+        res.status(500).send({ errorMessage: 'Error with checking availability of email' });
     }
 }
 async function _addUser(req, res) {
@@ -65,7 +65,7 @@ async function _addUser(req, res) {
     }
     catch (err) {
         loggerService.error('Failed to add user', err);
-        res.status(500).send({ err: 'Failed to add user' });
+        res.status(500).send({ errorMessage: 'Failed to add user' });
     }
 }
 async function _updateUser(req, res) {
@@ -77,7 +77,7 @@ async function _updateUser(req, res) {
     }
     catch (err) {
         loggerService.error('Failed to update user', err);
-        res.status(500).send({ err: 'Failed to update user' });
+        res.status(500).send({ errorMessage: 'Failed to update user' });
     }
 }
 async function _removeUser(req, res) {
@@ -89,6 +89,6 @@ async function _removeUser(req, res) {
     }
     catch (err) {
         loggerService.error('Failed to delete user', err);
-        res.status(400).send({ err: 'Failed to delete user' });
+        res.status(400).send({ errorMessage: 'Failed to delete user' });
     }
 }

@@ -1,6 +1,7 @@
 footer {
     background: var(--prmclr4);
     border-top: 1px solid var(--scdclr6);
+    z-index: 1;
 
     .footer-contents {
         max-width: 1264px;

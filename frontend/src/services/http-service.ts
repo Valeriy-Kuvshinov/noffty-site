@@ -35,8 +35,7 @@ async function request(method: string, endpoint: string, data?: any) {
         const response = await fetch(url, config)
         const jsonData = await response.json()
 
-        if (!response.ok) throw new Error(jsonData.message ||
-            'An unknown error occurred')
+        if (!response.ok) throw new Error(jsonData.errorMessage || 'An unknown error occurred')
         return jsonData
     } catch (error) {
         console.error('HTTP Service Error: ', error)

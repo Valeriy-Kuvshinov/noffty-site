@@ -5,6 +5,7 @@ import { Footer } from '../components/Footer'
 import { AsideMenu } from '../components/modals/AsideMenu'
 import { LoginForm } from '../components/forms/LoginForm'
 import { ImageModal } from '../components/modals/ImageModal'
+import { SystemMsg } from '../components/modals/SystemMsg'
 
 const siteLogo = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719919435/ydjn6p0djqwbkko4zqts.png'
 const siteDescription = 'Noffty Productions - Delivering the best Web & Android Indie games from Platformer to Roguelike.'
@@ -28,7 +29,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <AsideMenu />
         <LoginForm />
         <ImageModal />
-        <main className='main-container'>
+        <SystemMsg />
+        <main className='main-container grid'>
           <Header />
           {children}
           <Footer />

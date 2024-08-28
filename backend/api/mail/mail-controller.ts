@@ -21,7 +21,7 @@ async function _sendContactUsMail(req: Request<ContactUsReqBody>, res: Response)
         res.status(200).send({ msg: 'Mail successfully sent' })
     } catch (error) {
         loggerService.error('Failed sending mail: ' + error)
-        res.status(500).send({ error: 'Failed sending mail' })
+        res.status(500).send({ errorMessage: 'Failed sending mail' })
     }
 }
 
@@ -34,6 +34,6 @@ async function _sendResetCodeMail(req: Request<VerificationMailReqBody>, res: Re
         res.status(200).send({ msg: 'Mail successfully sent' })
     } catch (error) {
         loggerService.error('Failed sending mail: ' + error)
-        res.status(500).send({ error: 'Failed sending mail' })
+        res.status(500).send({ errorMessage: 'Failed sending mail' })
     }
 }

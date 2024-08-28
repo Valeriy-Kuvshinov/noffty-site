@@ -18,7 +18,7 @@ async function _sendContactUsMail(req, res) {
     }
     catch (error) {
         loggerService.error('Failed sending mail: ' + error);
-        res.status(500).send({ error: 'Failed sending mail' });
+        res.status(500).send({ errorMessage: 'Failed sending mail' });
     }
 }
 async function _sendResetCodeMail(req, res) {
@@ -30,6 +30,6 @@ async function _sendResetCodeMail(req, res) {
     }
     catch (error) {
         loggerService.error('Failed sending mail: ' + error);
-        res.status(500).send({ error: 'Failed sending mail' });
+        res.status(500).send({ errorMessage: 'Failed sending mail' });
     }
 }

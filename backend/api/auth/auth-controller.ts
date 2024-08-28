@@ -28,10 +28,10 @@ async function _login(req: Request<LoginRequestBody>,
     res.json(user)
   } catch (err) {
     const error = err as { message: string }
-    loggerService.error('Failed to Login ', error)
+    loggerService.error('Failed to Login...', error)
 
-    if (error.message === 'Invalid reCAPTCHA') res.status(401).send({ err: 'Invalid reCAPTCHA' })
-    else res.status(500).send({ err: 'Failed to Login' })
+    if (error.message === 'Invalid reCAPTCHA') res.status(401).send({ errorMessage: 'Invalid reCAPTCHA' })
+    else res.status(401).send({ errorMessage: error.message })
   }
 }
 
@@ -54,8 +54,8 @@ async function _signup(req: Request<SignupRequestBody>,
     const error = err as { message: string }
     loggerService.error('Failed to Login ', error)
 
-    if (error.message === 'Invalid reCAPTCHA') res.status(401).send({ err: 'Invalid reCAPTCHA' })
-    else res.status(500).send({ err: 'Failed to Signup' })
+    if (error.message === 'Invalid reCAPTCHA') res.status(401).send({ errorMessage: 'Invalid reCAPTCHA' })
+    else res.status(401).send({ errorMessage: error.message })
   }
 }
 
@@ -65,7 +65,7 @@ async function _logout(req: Request, res: Response): Promise<void> {
     res.status(200).send({ msg: 'Logged out successfully' })
   } catch (err) {
     loggerService.error('Failed to logout ', err)
-    res.status(500).send({ err: 'Failed to logout' })
+    res.status(500).send({ errorMessage: 'Failed to logout' })
   }
 }
 
@@ -75,6 +75,6 @@ async function _getAPIKeys(req: Request, res: Response): Promise<void> {
     res.json(apiKeys)
   } catch (err) {
     loggerService.error('Failed to fetch API keys', err)
-    res.status(500).send({ err: 'Failed to fetch API keys' })
+    res.status(500).send({ errorMessage: 'Failed to fetch API keys' })
   }
 }

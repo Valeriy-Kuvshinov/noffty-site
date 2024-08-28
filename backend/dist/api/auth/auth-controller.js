@@ -21,11 +21,11 @@ async function _login(req, res) {
     }
     catch (err) {
         const error = err;
-        loggerService.error('Failed to Login ', error);
+        loggerService.error('Failed to Login...', error);
         if (error.message === 'Invalid reCAPTCHA')
-            res.status(401).send({ err: 'Invalid reCAPTCHA' });
+            res.status(401).send({ errorMessage: 'Invalid reCAPTCHA' });
         else
-            res.status(500).send({ err: 'Failed to Login' });
+            res.status(401).send({ errorMessage: error.message });
     }
 }
 async function _signup(req, res) {
@@ -44,9 +44,9 @@ async function _signup(req, res) {
         const error = err;
         loggerService.error('Failed to Login ', error);
         if (error.message === 'Invalid reCAPTCHA')
-            res.status(401).send({ err: 'Invalid reCAPTCHA' });
+            res.status(401).send({ errorMessage: 'Invalid reCAPTCHA' });
         else
-            res.status(500).send({ err: 'Failed to Signup' });
+            res.status(401).send({ errorMessage: error.message });
     }
 }
 async function _logout(req, res) {
@@ -56,7 +56,7 @@ async function _logout(req, res) {
     }
     catch (err) {
         loggerService.error('Failed to logout ', err);
-        res.status(500).send({ err: 'Failed to logout' });
+        res.status(500).send({ errorMessage: 'Failed to logout' });
     }
 }
 async function _getAPIKeys(req, res) {
@@ -66,6 +66,6 @@ async function _getAPIKeys(req, res) {
     }
     catch (err) {
         loggerService.error('Failed to fetch API keys', err);
-        res.status(500).send({ err: 'Failed to fetch API keys' });
+        res.status(500).send({ errorMessage: 'Failed to fetch API keys' });
     }
 }

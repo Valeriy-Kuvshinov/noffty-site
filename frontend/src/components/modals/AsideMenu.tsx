@@ -51,7 +51,7 @@ export function AsideMenu() {
     if (!isOpen) return null
 
     return (<dialog className="modal-wrapper w-h-100" open={isOpen}>
-        <article className={`aside-menu flex column w-h-100 fast-trans ${showAsideMenu ? 'show' : ''}`} ref={asideRef}>
+        <aside className={`flex column w-h-100 fast-trans ${showAsideMenu ? 'show' : ''}`} ref={asideRef}>
             <div className="menu-header flex row align-center">
                 <span>{sessionUser._id ? `Welcome @${sessionUser.email?.split('@')[0]}!` : 'Hello Guest!'}</span>
             </div>
@@ -102,6 +102,6 @@ export function AsideMenu() {
                     </button>
                 )}
             </nav>
-        </article>
+        </aside>
     </dialog>)
 }

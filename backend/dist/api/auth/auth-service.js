@@ -18,10 +18,10 @@ async function login(loginId, password) {
     loggerService.debug(`auth - login with loginId: ${loginId}`);
     const user = await userService.getByEmail(loginId);
     if (!user)
-        throw new Error('Invalid loginId or password');
+        throw new Error('User is unknown!');
     const match = await bcrypt.compare(password, user.password);
     if (!match)
-        throw new Error('Invalid loginId or password');
+        throw new Error('Password is incorrect!');
     return user;
 }
 async function signup(password, email, imgUrls) {

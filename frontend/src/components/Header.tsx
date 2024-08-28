@@ -49,7 +49,7 @@ export function Header() {
                     </Link>
                     {!hiddenSearchPages && (
                         <form onSubmit={handleSearchSubmit} className="w-100 layout-row fast-trans">
-                            <input type="text" placeholder="Find your next game, broski..." maxLength={30}
+                            <input type="text" placeholder="Find your next game, broski..." maxLength={40}
                                 value={searchTerm} onChange={handleSearchInputChange}
                             />
                             <SvgRender iconName="search" />
@@ -80,7 +80,7 @@ export function Header() {
                     <section className="user-form-zone flex row align-center">
                         {!hiddenSearchPages && (
                             <form onSubmit={handleSearchSubmit} className="w-100 fast-trans">
-                                <input type="text" placeholder="Search games..." maxLength={30}
+                                <input type="text" placeholder="Search games..." maxLength={40}
                                     value={searchTerm} onChange={handleSearchInputChange}
                                 />
                                 <SvgRender iconName="search" />

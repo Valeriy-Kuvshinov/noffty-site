@@ -181,7 +181,7 @@ export default function About() {
                 }
             ],
             contributions: [
-                { game: 'Purple Prince Desert Adventure', role: 'Ruining The Game' }
+                { game: 'Purple Prince or something guy', role: 'Ruining The Game' }
             ]
         }
     ]
