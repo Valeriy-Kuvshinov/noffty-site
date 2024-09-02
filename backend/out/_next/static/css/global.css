@@ -1,35 +1,35 @@
 /* basics */
-@import './basics/_base.css';
-@import './basics/_helpers.css';
-@import './basics/_layout.css';
-@import './basics/_modals.css';
+@import './basics/base.css';
+@import './basics/helpers.css';
+@import './basics/layout.css';
+@import './basics/modals.css';
 
 /* setup */
-@import './setup/_typography.css';
-@import './setup/_variables.css';
-@import './setup/_mq.css';
+@import './setup/typography.css';
+@import './setup/variables.css';
+@import './setup/mq.css';
 
 /* pages */
-@import './pages/_home.css';
-@import './pages/_about.css';
-@import './pages/_contact.css';
-@import './pages/_privacy-policy.css';
-@import './pages/_game-index.css';
-@import './pages/_game-details.css';
-@import './pages/_admin.css';
-@import './pages/_game-edit.css';
+@import './pages/home.css';
+@import './pages/about.css';
+@import './pages/contact.css';
+@import './pages/privacy-policy.css';
+@import './pages/game-index.css';
+@import './pages/game-details.css';
+@import './pages/admin.css';
+@import './pages/game-edit.css';
 
 /* components */
-@import './components/_header.css';
-@import './components/_game-filter.css';
-@import './components/_custom-select.css';
-@import './components/_game-list.css';
-@import './components/_game-preview.css';
-@import './components/_footer.css';
-@import './components/_input-area.css';
+@import './components/header.css';
+@import './components/game-filter.css';
+@import './components/custom-select.css';
+@import './components/game-list.css';
+@import './components/game-preview.css';
+@import './components/footer.css';
+@import './components/input-area.css';
 
 /* modal components */
-@import './components/modals/_aside-menu.css';
-@import './components/modals/_login-form.css';
-@import './components/modals/_image-modal.css';
-@import './components/modals/_system-msg.css';
+@import './components/modals/aside-menu.css';
+@import './components/modals/login-form.css';
+@import './components/modals/image-modal.css';
+@import './components/modals/system-msg.css';
