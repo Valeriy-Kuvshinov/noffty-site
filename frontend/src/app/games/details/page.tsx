@@ -126,7 +126,6 @@ function GameDetailsFrame({ game }: { game: Game }) {
 
 function GameDetailsBody({ game }: { game: Game }) {
     const { openModal } = useModal()
-    const gridTemplateColumns = `repeat(${game.screenshots.length - 1}, 1fr)`
     const isSpecialGame = game.title === "Stoic^2" || game.title === "Absurd^2"
 
     function handleImageClick(imageUrl: string) {
@@ -135,9 +134,8 @@ function GameDetailsBody({ game }: { game: Game }) {
 
     return (<article className="game-body flex column w-100 layout-row">
         <h3 className="text-center text-capitalize">{game.subtitle}</h3>
-        <div className={`screenshots grid ${game.platform !== 'android' &&
-            game.screenshots.length >= 5 ? 'w-100' : ''}`}
-            style={{ gridTemplateColumns }}>
+        <div className={`screenshots flex row ${game.platform !== 'android' &&
+            game.screenshots.length >= 5 ? 'w-100' : ''}`}>
             {game.screenshots.slice(1).map((screenshot, index) => (
                 <ImageContainer key={index} src={screenshot} className={`h-100`}
                     alt={`${game.title} screenshot number ${index + 1}`}
@@ -146,8 +144,8 @@ function GameDetailsBody({ game }: { game: Game }) {
                         aspectRatio: game.platform !== 'android' ? '16 / 9' : '9 / 16'
                     }}
                     onClick={() => handleImageClick(screenshot)}
-                />
-            ))}
+                />)
+            )}
         </div>
         <ReworkedText string={game.description!} />
         <ReworkedText string={`Controls: ${game.controls!}`} />

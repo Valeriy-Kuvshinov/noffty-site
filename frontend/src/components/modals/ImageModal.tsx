@@ -15,8 +15,9 @@ export function ImageModal() {
     }
 
     useClickOutside(modalRef, closeImageModal)
+    if (!isOpen) return null
 
-    return (<dialog className="modal-wrapper w-h-100" open={isOpen}>
+    return (<dialog className="modal-wrapper flex full-center w-h-100" open={isOpen}>
         <div className="image-modal flex column w-h-fit" ref={modalRef}>
             {modalValue && (
                 <ImageContainer src={modalValue} alt="Modal Image" />

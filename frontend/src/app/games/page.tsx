@@ -7,14 +7,9 @@ import { GameFilter } from "../../components/game/GameFilter"
 import { Loader } from "../../components/general/Loader"
 
 export default function GameIndex() {
-    const isAdminPage = false
-
     const [games, setGames] = useState([])
     const [loading, setLoading] = useState(true)
-    const { getDefaultFilterValues, updateSearchParams, searchParams } = useGameFilterParams()
-
-    const searchParamsString = searchParams.toString()
-    const defaultValues = getDefaultFilterValues()
+    const { defaultValues, updateSearchParams, searchParams } = useGameFilterParams()
 
     useEffect(() => {
         async function fetchGames() {
@@ -28,13 +23,14 @@ export default function GameIndex() {
             }
         }
         fetchGames()
-    }, [searchParamsString])
+    }, [searchParams, defaultValues])
 
     return (<main className="index-page full w-h-100">
         <section className="page-contents flex column align-center w-h-100 layout-row">
             <h2 className="text-center">
-                {games.length === 1 ? 'Explore Our Matching Game'
-                    : `Explore Our ${games.length} Matching Games`}
+                {games.length === 0 ? 'No Games Found to Explore' :
+                    games.length === 1 ? 'Explore This Matching Game' :
+                        `Explore Our ${games.length} Matching Games`}
             </h2>
             <GameFilter
                 defaultValues={defaultValues}
@@ -43,7 +39,7 @@ export default function GameIndex() {
             {loading ? (
                 <Loader />
             ) : (
-                <GameList games={games} isAdminPage={isAdminPage} />
+                <GameList games={games} isAdminPage={false} />
             )}
         </section>
     </main>)

@@ -6,16 +6,28 @@ const baseUrl: string = 'game/'
 
 export const gameService = {
     query: async (filterBy: GameQueryParams = {}): Promise<any> => {
-        const queryParams = new URLSearchParams(filterBy as any).toString()
-        return httpService.get(`${baseUrl}?${queryParams}`)
+        try {
+            const queryParams = new URLSearchParams(filterBy as any).toString()
+            return httpService.get(`${baseUrl}?${queryParams}`)
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     getById: async (gameId: string): Promise<Game> => {
-        return httpService.get(`${baseUrl}by-id/${gameId}`)
+        try {
+            return httpService.get(`${baseUrl}by-id/${gameId}`)
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     getByName: async (gameTitle: string): Promise<Game> => {
-        return httpService.get(`${baseUrl}by-name/${gameTitle}`)
+        try {
+            return httpService.get(`${baseUrl}by-name/${gameTitle}`)
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     checkNameAvailable: async (gameTitle: string): Promise<{ isAvailable: boolean }> => {
@@ -23,12 +35,20 @@ export const gameService = {
     },
 
     save: async (game: Game): Promise<Game> => {
-        if (game._id) return httpService.put(`${baseUrl}update/${game._id}`, game)
-        else return httpService.post(baseUrl + 'add/', game)
+        try {
+            if (game._id) return httpService.put(`${baseUrl}update/${game._id}`, game)
+            else return httpService.post(baseUrl + 'add/', game)
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     remove: async (gameId: string): Promise<any> => {
-        return httpService.remove(`${baseUrl}delete/${gameId}`)
+        try {
+            return httpService.remove(`${baseUrl}delete/${gameId}`)
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     getGenres: (): CustomOption[] => [

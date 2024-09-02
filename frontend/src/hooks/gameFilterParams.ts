@@ -4,40 +4,27 @@ import { GameQueryParams } from "../interfaces/game"
 
 export function useGameFilterParams() {
     const router = useRouter()
-    const searchParams = useSearchParams()
-    const stableSearchParams = useMemo(() => new URLSearchParams(
-        searchParams.toString()), [searchParams])
+    const searchParamsBase = useSearchParams()
+    // prevent redundant calls
+    const searchParams = useMemo(() => searchParamsBase, [searchParamsBase])
 
-    function getDefaultFilterValues() {
-        const defaultValues = {
-            title: stableSearchParams.get('title') || '',
-            platform: stableSearchParams.get('platform') || '',
-            genre: stableSearchParams.get('genre') || '',
-            isGameJam: stableSearchParams.get('isGameJam') || ''
-        }
-        return defaultValues
-    }
+    const defaultValues = useMemo(() => ({
+        title: searchParams.get('title') || '',
+        platform: searchParams.get('platform') || '',
+        genre: searchParams.get('genre') || '',
+        isGameJam: searchParams.get('isGameJam') || ''
+    }), [searchParams])
 
-    function updateSearchParams(newParams: GameQueryParams, basePath: string = '') {
-        const params = new URLSearchParams()
+    // function will be used with GameFilter to update results
+    const updateSearchParams = useCallback((newParams: GameQueryParams, basePath: string = '') => {
+        const params = new URLSearchParams(searchParams.toString())
         Object.entries(newParams).forEach(([key, value]) => {
             if (value) params.set(key, value)
             else params.delete(key)
         })
-        const searchUrl = basePath ? `${basePath}?${params.toString()}` :
-            `?${params.toString()}`
+        const searchUrl = basePath ? `${basePath}?${params.toString()}` : `?${params.toString()}`
         router.push(searchUrl)
-    }
+    }, [router, searchParams])
 
-    const memoGetDefaultFilterValues = useCallback(
-        getDefaultFilterValues, [stableSearchParams])
-
-    const memoUpdateSearchParams = useCallback(
-        updateSearchParams, [router])
-
-    return {
-        getDefaultFilterValues: memoGetDefaultFilterValues,
-        updateSearchParams: memoUpdateSearchParams,
-        searchParams: stableSearchParams
-    }
+    return { defaultValues, updateSearchParams, searchParams }
 }

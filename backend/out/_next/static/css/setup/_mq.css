@@ -428,7 +428,7 @@
 /* login modal mq */
 .modal-wrapper .login-form {
     @media(max-width:400px) {
-        max-width: 95%;
+        max-width: 95vw;
     }
 
     @media(min-width: 401px) {

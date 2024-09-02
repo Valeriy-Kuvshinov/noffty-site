@@ -2,12 +2,12 @@
 import ReCAPTCHA from "react-google-recaptcha"
 import { useRef, useState } from "react"
 import { UserLogin } from "../../interfaces/user"
-import { useModal } from "../../contexts/ModalContext"
-import { useApiKeys } from "../../contexts/ApiContext"
-import { useSessionUser } from "../../contexts/SessionContext"
 import { userService } from "../../services/api/user-service"
 import { useClickOutside } from "../../hooks/clickOutside"
 import { useForm } from "../../hooks/form"
+import { useModal } from "../../contexts/ModalContext"
+import { useApiKeys } from "../../contexts/ApiContext"
+import { useSessionUser } from "../../contexts/SessionContext"
 import { RecaptchaContainer } from "./RecaptchaContainer"
 import { SvgRender } from "../general/SvgRender"
 import { InputArea } from "./InputArea"
@@ -20,6 +20,7 @@ export function LoginForm() {
     const [showPassword, setShowPassword] = useState(false)
     const loginRef = useRef<HTMLDivElement>(null)
     const recaptchaRef = useRef<ReCAPTCHA>(null)
+    const isOpen = activeModal === 'login'
 
     const initialValues = { loginId: '', password: '' }
 
@@ -43,8 +44,8 @@ export function LoginForm() {
                 showSuccessMsg('Login Successful!', 'Welcome home broski.')
                 closeLogin()
             } catch (err: any) {
-                console.error('Login failed', err)
                 showErrorMsg('Login Failed!', err.message)
+                console.error('Login failed', err)
                 closeLogin()
             }
         })
@@ -61,7 +62,7 @@ export function LoginForm() {
     }
 
     useClickOutside(loginRef, closeLogin)
-    if (activeModal !== 'login') return null
+    if (!isOpen) return null
 
     return (<dialog className="modal-wrapper flex align-center w-h-100" open={true}>
         <article className="login-form flex column w-100 fast-trans" ref={loginRef}>

@@ -1,4 +1,3 @@
-// 'use client'
 import { Game } from '../../interfaces/game'
 import { GamePreview } from './GamePreview'
 import { ErrorContainer } from '../general/ErrorContainer'

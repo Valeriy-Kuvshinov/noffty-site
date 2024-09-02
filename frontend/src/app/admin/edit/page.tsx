@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Game } from "../../../interfaces/game"
 import { gameService } from "../../../services/api/game-service"
@@ -15,7 +15,7 @@ export default function GameEdit() {
     const [error, setError] = useState<string | null>(null)
     const [isCreating, setIsCreating] = useState(false)
 
-    const defaultGame: Game = {
+    const defaultGame = useMemo(() => ({
         title: 'New Game',
         subtitle: 'To Be Continued',
         icon: 'https://res.cloudinary.com/djzid7ags/image/upload/v1719002261/vohr6yravygkly4duxhv.avif',
@@ -32,7 +32,7 @@ export default function GameEdit() {
         walkthrough: '',
         isGameJam: 'no',
         createdAt: Date.now()
-    }
+    }), [])
 
     useEffect(() => {
         async function fetchGame() {
@@ -63,7 +63,7 @@ export default function GameEdit() {
             }
         }
         fetchGame()
-    }, [searchParams])
+    }, [searchParams, defaultGame])
 
     return (<main className="edit-page full w-h-100">
         <section className="page-contents flex column align-center w-h-100 layout-row">
@@ -77,14 +77,12 @@ export default function GameEdit() {
             ) : isCreating ? (<>
                 <h2>You are now adding a new game</h2>
                 <GameForm game={defaultGame} />
-            </>
-            ) : game ? (<>
+            </>) : game ? (<>
                 <h2>You are now editing {game.title}</h2>
                 <GameForm game={game} />
                 <p>*First image in screenshots array is to be used for thumbnail,
                     IT WILL NOT be shown in the details page of the game*</p>
-            </>
-            ) : null}
+            </>) : null}
         </section>
     </main>)
 }

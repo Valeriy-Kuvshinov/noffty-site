@@ -21,28 +21,27 @@ export function showErrorMsg(title: string, msg: string) {
 
 export function SystemMsg() {
     const [message, setMessage] = useState<FlashMessage | null>(null)
-    const [visible, setVisible] = useState(false)
-    const [animate, setAnimate] = useState(false)
+    const [isVisible, setIsVisible] = useState(false)
+    const [isAnimate, setIsAnimate] = useState(false)
 
     useEffect(() => {
         function handleFlash({ title, msg, type }: FlashMessage) {
             setMessage({ title, msg, type })
-            setVisible(true)
-            setTimeout(() => setAnimate(true), 500)
+            setIsVisible(true)
+            setTimeout(() => setIsAnimate(true), 500)
             setTimeout(() => {
-                setAnimate(false)
-                setTimeout(() => setVisible(false), 500)
+                setIsAnimate(false)
+                setTimeout(() => setIsVisible(false), 500)
             }, 6000)
         }
-
         eventBus.on('flash', handleFlash)
 
         return () => { eventBus.off('flash', handleFlash) }
     }, [])
 
-    if (!visible) return null
+    if (!isVisible) return null
 
-    return (<div className={`system-message flex column full-center w-fit ${animate ? 'show' : ''} normal-trans`}>
+    return (<div className={`system-message flex column full-center w-fit ${isAnimate ? 'show' : ''} normal-trans`}>
         <div className={`message-title ${message?.type} w-fit`}>
             <h3 className='family-bold'>{message?.title}</h3>
         </div>

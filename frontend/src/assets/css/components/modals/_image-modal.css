@@ -1,13 +1,14 @@
 .modal-wrapper .image-modal {
     position: relative;
-    max-width: 95%;
-    max-height: 95%;
+    max-width: 95vw;
+    max-height: 90vh;
     background: var(--scdclr3);
     border: 2px solid var(--scdclr5);
     border-radius: 0.5em;
-    margin: 3em auto;
 
     .image-container img {
+        max-width: 95vw;
+        max-height: 90vh;
         border-radius: 0.5em;
     }
 

@@ -10,26 +10,26 @@
 @import './setup/_mq.css';
 
 /* pages */
-@import './pages/_Home.css';
-@import './pages/_About.css';
-@import './pages/_Contact.css';
-@import './pages/_PrivacyPolicy.css';
-@import './pages/_GameIndex.css';
-@import './pages/_GameDetails.css';
-@import './pages/_Admin.css';
-@import './pages/_GameEdit.css';
+@import './pages/_home.css';
+@import './pages/_about.css';
+@import './pages/_contact.css';
+@import './pages/_privacy-policy.css';
+@import './pages/_game-index.css';
+@import './pages/_game-details.css';
+@import './pages/_admin.css';
+@import './pages/_game-edit.css';
 
 /* components */
-@import './components/_Header.css';
-@import './components/_GameFilter.css';
-@import './components/_CustomSelect.css';
-@import './components/_GameList.css';
-@import './components/_GamePreview.css';
-@import './components/_Footer.css';
-@import './components/_InputArea.css';
+@import './components/_header.css';
+@import './components/_game-filter.css';
+@import './components/_custom-select.css';
+@import './components/_game-list.css';
+@import './components/_game-preview.css';
+@import './components/_footer.css';
+@import './components/_input-area.css';
 
 /* modal components */
-@import './components/modals/_AsideMenu.css';
-@import './components/modals/_LoginForm.css';
-@import './components/modals/_ImageModal.css';
-@import './components/modals/_SystemMsg.css';
+@import './components/modals/_aside-menu.css';
+@import './components/modals/_login-form.css';
+@import './components/modals/_image-modal.css';
+@import './components/modals/_system-msg.css';

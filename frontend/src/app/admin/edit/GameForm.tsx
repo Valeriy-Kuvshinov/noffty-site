@@ -8,6 +8,7 @@ import { useDebounce } from "../../../hooks/debounce"
 import { ImageUploader } from "../../../components/forms/ImageUploader"
 import { SvgRender } from "../../../components/general/SvgRender"
 import { InputArea } from "../../../components/forms/InputArea"
+import { showErrorMsg, showSuccessMsg } from "../../../components/modals/SystemMsg"
 import { EditPreview } from "./EditPreview"
 
 const defaultIcon = 'https://res.cloudinary.com/djzid7ags/image/upload/v1719002261/vohr6yravygkly4duxhv.avif'
@@ -15,6 +16,10 @@ const defaultScreenshot = 'https://res.cloudinary.com/djzid7ags/image/upload/v17
 
 export function GameForm({ game }: { game: Game }) {
     const router = useRouter()
+
+    const genres = gameService.getGenres().slice(1)
+    const platforms = gameService.getPlatforms().slice(1)
+    const gameJams = gameService.getGameJams().slice(1)
 
     const validationSchema = {
         title: { required: true, minLength: 3, pattern: /[\s.\-!^&?']+/ },
@@ -32,12 +37,12 @@ export function GameForm({ game }: { game: Game }) {
         resetForm, setFieldValue } = useForm(game, validationSchema, async (values) => {
             try {
                 await gameService.save(values as Game)
-                console.log('Game saved successfully')
-
+                showSuccessMsg('Game Saved!', 'Game database updated.')
                 resetForm()
                 router.push(`/admin/games`)
-            } catch (error) {
-                console.error('Failed to save game', error)
+            } catch (err: any) {
+                showErrorMsg('Save Failed!', err.message)
+                console.error('Failed to save game', err)
             }
         })
     const debouncedName = useDebounce(values.title, 500)
@@ -73,32 +78,32 @@ export function GameForm({ game }: { game: Game }) {
         if (game._id) {
             try {
                 await gameService.remove(game._id.toString())
-                console.log('Game deleted successfully')
+                showSuccessMsg('Game Deleted!', 'Game database updated.')
                 router.push('/admin/games')
-            } catch (error) {
-                console.error('Failed to delete game', error)
+            } catch (err: any) {
+                showErrorMsg('Deletion Failed!', err.message)
+                console.error('Failed to delete game', err)
             }
-        }
-    }
-
-    async function checkNameAvailability(name: string) {
-        try {
-            if (name === game.title) { // don't show error when the edited name is the original
-                setErrors(prevErrors => ({ ...prevErrors, name: null }))
-                return
-            }
-            const { isAvailable } = await gameService.checkNameAvailable(name)
-            setErrors(prevErrors => ({
-                ...prevErrors, name: isAvailable ? prevErrors.name : 'Name is taken'
-            }))
-        } catch (error) {
-            console.error('Failed to check name availability', error)
         }
     }
 
     useEffect(() => {
         if (debouncedName) checkNameAvailability(debouncedName)
-    }, [debouncedName])
+
+        async function checkNameAvailability(name: string) {
+            try {
+                if (name === game.title) {
+                    setErrors(prevErrors => ({ ...prevErrors, title: null }))
+                    return
+                }
+                const { isAvailable } = await gameService.checkNameAvailable(name)
+                setErrors(prevErrors => ({ ...prevErrors, title: isAvailable ? null : 'Name is taken' }))
+            } catch (error) {
+                console.error('Failed to check name availability', error)
+                setErrors(prevErrors => ({ ...prevErrors, title: 'Error checking name availability' }))
+            }
+        }
+    }, [debouncedName, game.title, setErrors])
 
     const allFieldsFilled = values.title && values.subtitle && values.outsideLink &&
         values.description && values.credits && values.controls
@@ -156,13 +161,9 @@ export function GameForm({ game }: { game: Game }) {
                         <span>Genre:</span>
                     </label>
                     <select id="genre" name="genre" multiple value={values.genre} onChange={handleGenreChange}>
-                        <option value="action">Action</option>
-                        <option value="adventure">Adventure</option>
-                        <option value="other">Other</option>
-                        <option value="platformer">Platformer</option>
-                        <option value="puzzle">Puzzle</option>
-                        <option value="roguelike">Roguelike</option>
-                        <option value="strategy">Strategy</option>
+                        {genres.map(genre => (
+                            <option key={genre.value} value={genre.value}>{genre.label}</option>
+                        ))}
                     </select>
                 </div>
                 <div className="input-area grid h-fit">
@@ -171,9 +172,9 @@ export function GameForm({ game }: { game: Game }) {
                         <span>Platform:</span>
                     </label>
                     <select id="platform" name="platform" value={values.platform} onChange={handleChange} required>
-                        <option value="android">Android</option>
-                        <option value="html5">HTML5</option>
-                        <option value="steam">Steam</option>
+                        {platforms.map(platform => (
+                            <option key={platform.value} value={platform.value}>{platform.label}</option>
+                        ))}
                     </select>
                 </div>
                 <div className="input-area grid">
@@ -182,8 +183,9 @@ export function GameForm({ game }: { game: Game }) {
                         <span>Is Game Jam:</span>
                     </label>
                     <select id="isGameJam" name="isGameJam" value={values.isGameJam} onChange={handleChange} required>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
+                        {gameJams.map(gameJam => (
+                            <option key={gameJam.value} value={gameJam.value}>{gameJam.label}</option>
+                        ))}
                     </select>
                 </div>
             </section>

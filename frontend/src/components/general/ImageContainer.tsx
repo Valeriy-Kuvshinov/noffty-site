@@ -1,6 +1,5 @@
 'use client'
 import Image, { ImageLoaderProps } from 'next/image'
-// import cloudinaryLoader from "../../scripts/cloudinaryLoader"
 import { useState, useEffect } from "react"
 
 interface ImageContainerProps {

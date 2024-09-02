@@ -7,6 +7,7 @@ import { useClickOutside } from "../../hooks/clickOutside"
 import { useModal } from "../../contexts/ModalContext"
 import { useSessionUser } from "../../contexts/SessionContext"
 import { SvgRender } from "../general/SvgRender"
+import { showErrorMsg } from "./SystemMsg"
 
 export function AsideMenu() {
     const router = useRouter()
@@ -37,8 +38,9 @@ export function AsideMenu() {
             setSessionUser(null)
             closeAsideMenu()
             router.push('/')
-        } catch (error) {
-            console.error('Logout failed:', error)
+        } catch (err: any) {
+            showErrorMsg('Logout Failed!', "This is awkward...")
+            console.error('Logout failed:', err)
         }
     }
 

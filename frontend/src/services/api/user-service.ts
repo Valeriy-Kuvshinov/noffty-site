@@ -6,26 +6,46 @@ const baseUrl: string = 'user/'
 
 export const userService = {
     query: async (filterBy = {}): Promise<any> => {
-        const queryParams = new URLSearchParams(filterBy as any).toString()
-        console.log(`Expected request to backend: ${baseUrl}?${queryParams}`)
-        return httpService.get(`${baseUrl}?${queryParams}`)
+        try {
+            const queryParams = new URLSearchParams(filterBy as any).toString()
+            console.log(`Expected request to backend: ${baseUrl}?${queryParams}`)
+            return httpService.get(`${baseUrl}?${queryParams}`)
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     getById: async (userId: string): Promise<User> => {
-        return httpService.get(`${baseUrl}by-id/${userId}`)
+        try {
+            return httpService.get(`${baseUrl}by-id/${userId}`)
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     getByEmail: async (email: string): Promise<User> => {
-        return httpService.get(`${baseUrl}by-email/${email}`)
+        try {
+            return httpService.get(`${baseUrl}by-email/${email}`)
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     remove: async (userId: string): Promise<any> => {
-        return httpService.remove(`${baseUrl}delete/${userId}`)
+        try {
+            return httpService.remove(`${baseUrl}delete/${userId}`)
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     save: async (user: User): Promise<User> => {
-        if (user._id) return httpService.put(`${baseUrl}update/${user._id}`, user)
-        else return httpService.post(baseUrl + 'add/', user)
+        try {
+            if (user._id) return httpService.put(`${baseUrl}update/${user._id}`, user)
+            else return httpService.post(baseUrl + 'add/', user)
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
     },
 
     login: async (userCred: UserLogin): Promise<User> => {

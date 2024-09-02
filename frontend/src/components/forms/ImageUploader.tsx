@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import { useApiKeys } from "../../contexts/ApiContext"
 import { ImageContainer } from "../general/ImageContainer"
+import { showErrorMsg, showSuccessMsg } from "../modals/SystemMsg"
 
 interface ImageUploaderProps {
     index: number
@@ -23,29 +24,22 @@ export function ImageUploader({ index, defaultImgUrl, folderName, onUploaded }: 
     const { cloudName, uploadPreset } = cloudinary
     const inputId = `imgUpload-${index}`
 
-    useEffect(() => {
-        if (defaultImgUrl !== imgUrl) setImgUrl(defaultImgUrl)
-    }, [defaultImgUrl])
-
     function validateFile(file: File): ValidationResult {
         const fileSize = file.size / 1024 / 1024
         const allowedFormats = ['image/avif']
 
-        if (fileSize > 2) {
-            return {
-                isValid: false,
-                errorHeader: 'Too Big!',
-                errorMessage: 'File size exceeds 2 MB!',
-            }
+        if (fileSize > 2) return {
+            isValid: false,
+            errorHeader: 'File Too Big!',
+            errorMessage: 'File size exceeds 2 MB!',
         }
-        if (!allowedFormats.includes(file.type)) {
-            return {
-                isValid: false,
-                errorHeader: 'Invalid format!',
-                errorMessage: 'Only AVIF is allowed!',
-            }
+        if (!allowedFormats.includes(file.type)) return {
+            isValid: false,
+            errorHeader: 'Invalid Format!',
+            errorMessage: 'Only AVIF is allowed!',
         }
-        console.log('File validation passed')
+
+        showSuccessMsg('File Uploaded!', 'Game images updated.')
         return { isValid: true }
     }
 
@@ -56,8 +50,7 @@ export function ImageUploader({ index, defaultImgUrl, folderName, onUploaded }: 
     async function prepareUploading(file: File) {
         const validation = validateFile(file)
         if (!validation.isValid) {
-            console.log(`Validation failed: ${validation.errorHeader}`)
-            console.log(`Error details: ${validation.errorMessage}`)
+            showErrorMsg(`${validation.errorHeader}`, `${validation.errorMessage}`)
             return
         }
         setIsUploading(true)
@@ -66,8 +59,9 @@ export function ImageUploader({ index, defaultImgUrl, folderName, onUploaded }: 
             const data = await CommenceUpload(file, folderName, cloudName, uploadPreset)
             setImgUrl(data.secure_url)
             onUploaded({ url: data.secure_url, index })
-        } catch (error) {
-            console.error('Upload failed', error)
+        } catch (err: any) {
+            console.error('Upload failed', err)
+            showErrorMsg('Upload Failed!', err.message)
         } finally {
             setIsUploading(false)
         }
@@ -107,6 +101,7 @@ export function ImageUploader({ index, defaultImgUrl, folderName, onUploaded }: 
 
     async function CommenceUpload(file: File, folderName: string, cloudName: string, uploadPreset: string) {
         const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`
+
         try {
             const folderPath = folderName
             const formData = new FormData()
@@ -114,10 +109,7 @@ export function ImageUploader({ index, defaultImgUrl, folderName, onUploaded }: 
             formData.append('file', file)
             formData.append('folder', folderPath)
 
-            const response = await fetch(UPLOAD_URL, {
-                method: 'POST',
-                body: formData
-            })
+            const response = await fetch(UPLOAD_URL, { method: 'POST', body: formData })
             const data = await response.json()
             return data
         } catch (err) {
@@ -125,6 +117,10 @@ export function ImageUploader({ index, defaultImgUrl, folderName, onUploaded }: 
             throw err
         }
     }
+
+    useEffect(() => {
+        if (defaultImgUrl !== imgUrl) setImgUrl(defaultImgUrl)
+    }, [defaultImgUrl, imgUrl])
 
     return (<article className="upload-preview" role="region" aria-labelledby="upload-label"
         aria-describedby="upload-description" onDragOver={handleDragOver}
