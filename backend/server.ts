@@ -6,12 +6,10 @@ import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import http from 'http'
 import fs from 'fs'
-
 import { gameRoutes } from './api/game/game-controller.js'
 import { mailRoutes } from './api/mail/mail-controller.js'
 import { userRoutes } from './api/user/user-controller.js'
 import { authRoutes } from './api/auth/auth-controller.js'
-
 import { loggerService } from './services/logger.js'
 import { automationService } from './services/automation.js'
 
@@ -24,24 +22,26 @@ app.use(express.json()) // for req.body
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
+const corsOptions = {
+  origin: [
+    'http://noffty.com',
+    'https://noffty.com',
+    'http://www.noffty.com',
+    'https://www.noffty.com',
+    'http://127.0.0.1:3000',
+    'http://localhost:3000',
+    'http://127.0.0.1:3030',
+    'http://localhost:3030'
+  ],
+  credentials: true,
+}
+
+// Apply CORS middleware globally
+app.use(cors(corsOptions))
+
 if (process.env.NODE_ENV === 'production') {
   // Serve static files from the 'out' directory
   app.use(express.static(path.join(__dirname, '..', 'out')))
-} else {
-  const corsOptions = {
-    origin: [
-      'http://noffty.com',
-      'https://noffty.com',
-      'http://www.noffty.com',
-      'https://www.noffty.com',
-      'http://127.0.0.1:3000',
-      'http://localhost:3000',
-      'http://127.0.0.1:3030',
-      'http://localhost:3030'
-    ],
-    credentials: true,
-  }
-  app.use(cors(corsOptions))
 }
 
 // API routes
