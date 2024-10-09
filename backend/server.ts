@@ -31,9 +31,9 @@ if (process.env.NODE_ENV === 'production') {
   const corsOptions = {
     origin: [
       'http://noffty.com',
+      'https://noffty.com',
       'http://www.noffty.com',
-      'http://157.173.210.249',
-      'http://noffty.onrender.com',
+      'https://www.noffty.com',
       'http://127.0.0.1:3000',
       'http://localhost:3000',
       'http://127.0.0.1:3030',
